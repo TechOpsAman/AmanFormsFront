@@ -1,0 +1,42 @@
+body {
+    margin: 10px auto;
+    max-width: 800px;
+    background-color: aqua;
+}
+
+.survey-answer-type_answers_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: plum;
+    flex-shrink: 6;
+}
+
+.survey-answer-type_questions_div {
+    background-color: white;
+    margin-bottom: 50px;
+    width: 85%;
+    height: 250px;
+    border-radius: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.survey-answer-type_long_answer {
+    background-color: bisque;
+    width: 20rem;
+    height: 6rem;
+    padding: 10px;
+}
+
+.survey-answer-type_short_answer {
+    background-color: bisque;
+    width: 15rem;
+    padding: 10px;
+}
+
+.survey-answer-type_select_answer {
+    width: 9rem;
+}
