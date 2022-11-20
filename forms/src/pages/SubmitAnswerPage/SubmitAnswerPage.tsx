@@ -45,6 +45,63 @@ function SurveyCreationPage() {
             }
           ],
           "id": "123456a123456a1234abcde"
+        },
+        {
+          "questionName": "הייי",
+          "questionType": "checkbox",
+          "answers": [
+            {
+              "answer": "בטח",
+              "id": "1234123412341234123412ab"
+            },
+            {
+              "answer": "לא",
+              "id": "12341234123412341234abab"
+            },
+            {
+              "answer": "לא",
+              "id": "1234123412341234123aabab"
+            }
+          ],
+          "id": "123456a123456a123abcdef"
+        },
+        {
+          "questionName": "שאלת תשובה קצרה",
+          "questionType": "shortAnswer",
+          "answers": [
+            {
+              "answer": "בטח",
+              "id": "1234123412341234123412ab"
+            },
+            {
+              "answer": "לא",
+              "id": "12341234123412341234abab"
+            },
+            {
+              "answer": "לא",
+              "id": "12341234123412341234abab"
+            }
+          ],
+          "id": "123456a123456a12abcdefg"
+        },
+        {
+          "questionName": "תשובה ארוכה?",
+          "questionType": "longAnswer",
+          "answers": [
+            {
+              "answer": "בטח",
+              "id": "1234123412341234123412ab"
+            },
+            {
+              "answer": "לא",
+              "id": "12341234123412341234abab"
+            },
+            {
+              "answer": "לא",
+              "id": "12341234123412341234abab"
+            }
+          ],
+          "id": "123456a123456a1abcdefgh"
         }
       ],
       createdAt: "2022-11-16T07:14:19.196Z",

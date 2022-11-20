@@ -2,7 +2,6 @@ import "./AnswerType.scss";
 import { Box, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, TextareaAutosize } from "@material-ui/core";
 import { useEffect, useState } from 'react';
 import { SelectChangeEvent } from "@mui/material";
-import ReactDOM from "react-dom";
 import { iSurvey, iSurveyQuestions } from "../../../../../../interfaces/iSurvey";
 import { Answer, iSection } from "../../../../../../interfaces/iSection";
 
@@ -36,7 +35,7 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions, handleSubmit
             return (
               <FormControlLabel
                 key={index}
-                value={checkbox}
+                value={element.id}
                 onClick={(event) => {
                   setCheckbox((event.target as HTMLInputElement).value);
                   updateAnswer([(event.target as HTMLInputElement).value], questionIndex);
@@ -52,31 +51,23 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions, handleSubmit
 
       case "radio":
         return (<div className="survey-answer-type_answers_div">{
-          <FormControl>
-            <RadioGroup aria-label="position" name="answer" defaultValue="top">
-              {
-                answers.map((element: any, index: number) => {
-                  return (
-                    <FormControlLabel
-                      key={index}
-                      value={radio}
-                      onClick={(event) => {
-                        setRadio((event.target as HTMLInputElement).value);
-                        updateAnswer([(event.target as HTMLInputElement).value], questionIndex);
-                      }}
-                      control={<Radio color="primary" />}
-                      label={element.answer}
-                      labelPlacement="start"
-                    />
-
-                  )
-                })
-              }
-
-            </RadioGroup>
-          </FormControl>
-
-        }</div>)
+          <RadioGroup>{
+            answers.map((element: any, index: number) => {
+              return (
+                <FormControlLabel
+                  key={`radio-${index}`}
+                  value={element.id}
+                  onClick={(event) => {
+                    setRadio((event.target as HTMLInputElement).value);
+                    updateAnswer([(event.target as HTMLInputElement).value], questionIndex);
+                  }}
+                  control={<Radio color="primary" />}
+                  label={element.answer}
+                  labelPlacement="start"
+                />
+              )
+            })
+          } </RadioGroup>}</div>)
 
 
       case "shortAnswer":
