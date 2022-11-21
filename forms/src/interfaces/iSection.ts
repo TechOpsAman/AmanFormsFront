@@ -22,3 +22,5 @@ export interface Question {
     select = 'select',
     title = 'title',
   }
+
+  

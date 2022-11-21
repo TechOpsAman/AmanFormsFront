@@ -3,42 +3,56 @@ import { Box, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Rad
 import { useEffect, useState } from 'react';
 import { SelectChangeEvent } from "@mui/material";
 import { iSurvey, iSurveyQuestions } from "../../../../../../interfaces/iSurvey";
-import { Answer, iSection } from "../../../../../../interfaces/iSection";
+import { Answer, iSection, QuestionType } from "../../../../../../interfaces/iSection";
 
-function AnswerType(props: { questionsAndAnswers: iSurveyQuestions, handleSubmit: any }) {
-  const [shortAnswer, setShortAnswer] = useState('');
-  const [longAnswer, setLongAnswer] = useState('');
-  const [select, setSelect] = useState('');
-  const [checkbox, setCheckbox] = useState('');
-  const [radio, setRadio] = useState('');
 
+function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
+
+  const [currAnswers, setCurrAnswers] = useState(['','','']);
   const [survey, setSurvey] = useState<iSurvey>({ surveyId: '', userId: '', content: [] });
 
 
-
-  const updateAnswer = (answers: string[], questionIndex: number) => {
+  const updateAnswer = (answers: string, questionIndex: number, questionType: QuestionType) => {
     const tempArr = survey;
-    tempArr.content[questionIndex].answers = answers;
-    console.log(answers);
+
+    if (questionType === QuestionType.shortAnswer || questionType === QuestionType.longAnswer) {
+      if (tempArr.content[questionIndex].answers.length === 0 || !tempArr.content[questionIndex].answers[0]) tempArr.content[questionIndex].answers = [answers];
+      else tempArr.content[questionIndex].answers = [tempArr.content[questionIndex].answers[0] + answers];
+    }
+    else {
+      tempArr.content[questionIndex].answers = [answers];
+    }
+    setSurvey(tempArr);
   }
 
-  const handleChange = (event: SelectChangeEvent, questionIndex: number) => {
-    setSelect(event.target.value);
-    updateAnswer([event.target.value], questionIndex);
+  const updateCheckboxAnswer = (answer: string, questionIndex: number) => {
+    const tempArr = survey;
+
+    if (tempArr.content[questionIndex].answers.includes(answer)) {
+      const index = tempArr.content[questionIndex].answers.indexOf(answer);
+      tempArr.content[questionIndex].answers.splice(index, 1);
+    } else {
+      tempArr.content[questionIndex].answers.push(answer);
+    }
+    setSurvey(tempArr);
+  }
+
+  const handleChange = (event: SelectChangeEvent, questionIndex: number, type: QuestionType) => {
+    updateAnswer(event.target.value, questionIndex, type as QuestionType);
   };
 
-  const handleAnswers = (type: string, answers: any, questionIndex: number) => {
+
+  const handleAnswers = (type: string, answers: string[], questionIndex: number) => {
     switch (type) {
       case "checkbox":
         return (<div className="survey-answer-type_answers_div">{
-          answers.map((element: any, index: number) => {
+          answers.map((element: any, answerIndex: number) => {
             return (
               <FormControlLabel
-                key={index}
-                value={element.id}
-                onClick={(event) => {
-                  setCheckbox((event.target as HTMLInputElement).value);
-                  updateAnswer([(event.target as HTMLInputElement).value], questionIndex);
+                key={answerIndex}
+                value={element.answer}
+                onChange={(event) => {
+                  updateCheckboxAnswer((event.target as HTMLInputElement).value, questionIndex);
                 }}
                 control={<Checkbox color="primary" />}
                 label={element.answer}
@@ -56,10 +70,9 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions, handleSubmit
               return (
                 <FormControlLabel
                   key={`radio-${index}`}
-                  value={element.id}
+                  value={element.answer}
                   onClick={(event) => {
-                    setRadio((event.target as HTMLInputElement).value);
-                    updateAnswer([(event.target as HTMLInputElement).value], questionIndex);
+                    updateAnswer((event.target as HTMLInputElement).value, questionIndex, type as QuestionType);
                   }}
                   control={<Radio color="primary" />}
                   label={element.answer}
@@ -77,10 +90,12 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions, handleSubmit
               className="survey-answer-type_short_answer"
               maxLength={70}
               minRows={1}
-              value={shortAnswer}
+              value={currAnswers[0]}
               onChange={(e) => {
-                setShortAnswer(e.target.value);
-                updateAnswer([e.target.value], questionIndex);
+                updateAnswer(e.target.value, questionIndex, type as QuestionType);
+                const temp = currAnswers;
+                  currAnswers[0] = e.target.value as string;
+                  setCurrAnswers(temp);
               }}
             />
           </div>
@@ -93,10 +108,12 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions, handleSubmit
               className="survey-answer-type_long_answer"
               maxLength={1000}
               minRows={4}
-              value={longAnswer}
+              value={currAnswers[1]}
               onChange={(e) => {
-                setLongAnswer(e.target.value);
-                updateAnswer([e.target.value], questionIndex);
+                updateAnswer(e.target.value, questionIndex, type as QuestionType);
+                const temp = currAnswers;
+                  currAnswers[1] = e.target.value as string;
+                  setCurrAnswers(temp);
               }}
             />
           </div>
@@ -112,9 +129,13 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions, handleSubmit
                 className="survey-answer-type_select_answer"
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
-                value={select}
+                value={currAnswers[2]}
                 onChange={(e) => {
-                  handleChange(e as SelectChangeEvent, questionIndex);
+                  handleChange(e as SelectChangeEvent, questionIndex, type as QuestionType);
+                  const temp = currAnswers;
+                  console.log(currAnswers[2]);
+                  currAnswers[2] = e.target.value as string;
+                  setCurrAnswers(temp);
                 }}
                 label="select"
               >
@@ -134,17 +155,15 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions, handleSubmit
   }
 
   useEffect(() => {
-    const surveySetup = () => {
+    const surveyInit = () => {
       const temp: iSection[] = [];
       props.questionsAndAnswers.content.map((question) => temp.push({ questionId: question.id as string, answers: [] }))
       setSurvey({ surveyId: props.questionsAndAnswers.id, userId: '123421342134213421342134', content: temp });
     }
 
-    surveySetup();
+    surveyInit();
 
   }, []);
-
-
 
   return (
     <div>

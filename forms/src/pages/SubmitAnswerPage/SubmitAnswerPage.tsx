@@ -59,8 +59,12 @@ function SurveyCreationPage() {
               "id": "12341234123412341234abab"
             },
             {
-              "answer": "לא",
-              "id": "1234123412341234123aabab"
+              "answer": "כן",
+              "id": "123412341234123412ababab"
+            },
+            {
+              "answer": "לאאא",
+              "id": "1234123412341234abababab"
             }
           ],
           "id": "123456a123456a123abcdef"
@@ -111,7 +115,7 @@ function SurveyCreationPage() {
 
   return (
     <div className="survey-creation-page-container" >
-      <AnswerType questionsAndAnswers={sections as unknown as iSurveyQuestions} handleSubmit={setSections as any} />
+      <AnswerType questionsAndAnswers={sections as unknown as iSurveyQuestions} />
     </div>
   );
 }
