@@ -5,7 +5,7 @@ import { useState } from "react";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { isPropertySignature } from "typescript";
-import AnswerType from "./components/form/surveyAnswer/answer/AnswerType"
+import AnswerType from "./components/form/surveyAnswer/answer/AnswerSection"
 import { iSurveyQuestions } from "../../interfaces/iSurvey";
 
 
