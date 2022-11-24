@@ -1,23 +1,25 @@
 import { Checkbox, FormControlLabel } from "@material-ui/core";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AnswerContext } from "../../../../../../context/sectionContext";
 import { iSurvey } from "../../../../../../interfaces/iSurvey";
 
 
 function CheckboxAnswer(props: { answers: any, questionIndex: number }) {
-//     const [survey, setSurvey] = useState<iSurvey>({ surveyId: '', userId: '', content: [] });
+  const surveySection = useContext(AnswerContext);
 
-//     const updateCheckboxAnswer = (answer: string, questionIndex: number) => {
-//     const tempArr = survey;
+    const updateCheckboxAnswer = (answer: string, questionIndex: number) => {
+    // const tempArr = surveySection;
 
-//     if (tempArr.content[questionIndex]?.answers.includes(answer)) {
-//         const index = tempArr.content[questionIndex]?.answers.indexOf(answer);
-//         tempArr.content[questionIndex]?.answers.splice(index, 1);
-//     } else {
-//         tempArr.content[questionIndex]?.answers.push(answer);
-//     }
+    if (surveySection.content[questionIndex]?.answers.includes(answer)) {
+        const index = surveySection.content[questionIndex]?.answers.indexOf(answer);
+        surveySection.content[questionIndex]?.answers.splice(index, 1);
+    } else {
+      surveySection.content[questionIndex]?.answers.push(answer);
+    }    
 
-//     setSurvey(tempArr);
-// }
+    setSurvey(surveySection);
+ survey.content[questionIndex].answers = surveySection
+}
 
     return (
         props.answers.map((element: any, answerIndex: number) => {
@@ -25,9 +27,9 @@ function CheckboxAnswer(props: { answers: any, questionIndex: number }) {
               <FormControlLabel
                 key={answerIndex}
                 value={element.answer}
-                // onChange={(event) => {
-                //   updateCheckboxAnswer((event.target as HTMLInputElement).value, props.questionIndex);
-                // }}
+                onChange={(event) => {
+                  updateCheckboxAnswer((event.target as HTMLInputElement).value, props.questionIndex);
+                }}
                 control={<Checkbox color="primary" />}
                 label={element.answer}
                 labelPlacement="start" />

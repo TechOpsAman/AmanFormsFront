@@ -1,20 +1,19 @@
 import "./AnswerSection.scss";
-import { Box, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, TextareaAutosize } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { useEffect, useState } from 'react';
-import { SelectChangeEvent } from "@mui/material";
 import { iSurvey, iSurveyQuestions } from "../../../../../../interfaces/iSurvey";
-import { Answer, iSection, QuestionType } from "../../../../../../interfaces/iSection";
+import { iSection, QuestionType } from "../../../../../../interfaces/iSection";
 import CheckboxAnswer from "../../AnswerType/CheckboxAnswer/CheckboxAnswer";
 import LongAnswer from "../../AnswerType/LongAnswer/LongAnswer";
 import RadioAnswer from "../../AnswerType/RadioAnswer/RadioAnswer";
 import SelectAnswer from "../../AnswerType/SelectAnswer/SelectAnswer";
 import ShortAnswer from "../../AnswerType/ShortAnswer/ShortAnswer";
+import { AnswerContext } from "../../../../../../context/sectionContext";
 
 function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
+  const [survey, setSurvey] = useState<iSurvey>({ surveyId: '', userId: '', content: [] }); // TODO: too many commments!!!
 
-  //const [currAnswers, setCurrAnswers] = useState(['', '', '']);
-  const [survey, setSurvey] = useState<iSurvey>({ surveyId: '', userId: '', content: [] });
-
+  // const [currAnswers, setCurrAnswers] = useState(['', '', '']);
 
   // const updateAnswer = (answers: string, questionIndex: number, questionType: QuestionType) => {
   //   const tempArr = survey;
@@ -71,25 +70,29 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
         }</div>)
 
       case "radio":
-        return (<div className="survey-answer-type_answers_div">{
-          // <RadioGroup>{
-          //   answers.map((element: any, index: number) => {
-          //     return (
-          //       <FormControlLabel
-          //         key={`radio-${index}`}
-          //         value={element.answer}
-          //         onClick={(event) => {
-          //              ((event.target as HTMLInputElement).value, questionIndex, type as QuestionType);
-          //         }}
-          //         control={<Radio color="primary" />}
-          //         label={element.answer}
-          //         labelPlacement="start"
-          //       />
-          //     )
-          //   })
-          // } </RadioGroup>
-          <RadioAnswer answers={answers as string[]} questionIndex={questionIndex as number} />
-        }</div>)
+        return (<div className="survey-answer-type_answers_div">
+
+          {
+            // <RadioGroup>{
+            //   answers.map((element: any, index: number) => {
+            //     return (
+            //       <FormControlLabel
+            //         key={`radio-${index}`}
+            //         value={element.answer}
+            //         onClick={(event) => {
+            //              ((event.target as HTMLInputElement).value, questionIndex, type as QuestionType);
+            //         }}
+            //         control={<Radio color="primary" />}
+            //         label={element.answer}
+            //         labelPlacement="start"
+            //       />
+            //     )
+            //   })
+            // } </RadioGroup>
+            <RadioAnswer answers={answers as string[]} questionIndex={questionIndex as number} type={type as QuestionType}/>
+          }
+
+        </div>)
 
 
       case "shortAnswer":
@@ -108,13 +111,16 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
               }}
             /> */}
 
-            <ShortAnswer />
+            <ShortAnswer questionIndex={questionIndex as number}/>
           </div>
         );
 
       case "longAnswer":
         return (
           <div className="survey-answer-type_answers_div" dir="rtl">
+
+            <LongAnswer questionIndex={questionIndex as number}/>
+
             {/* <TextareaAutosize
               className="survey-answer-type_long_answer"
               maxLength={1000}
@@ -128,7 +134,7 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
               }}
             /> */}
 
-            <LongAnswer />
+
           </div>
 
         )
@@ -162,7 +168,7 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
             //   </Select>
             // </FormControl>
 
-            <SelectAnswer answers={answers as string[]} />
+            <SelectAnswer answers={answers as string[]} questionIndex={questionIndex as number}/>
           } </div >)
       default:
         return <></>;
@@ -173,7 +179,7 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
     const surveyInit = () => {
       const temp: iSection[] = [];
       props.questionsAndAnswers.content.map((question) => temp.push({ questionId: question.id as string, answers: [] }))
-      setSurvey({ surveyId: props.questionsAndAnswers.id, userId: '123421342134213421342134', content: temp });
+      setSurvey({ surveyId: props.questionsAndAnswers.id, userId: '123421342134213421342134', content: temp }); // TODO: do'nt use real values!!!
     }
 
     surveyInit();
@@ -182,10 +188,13 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
 
   return (
     <div>
+
       {props.questionsAndAnswers.content.map((questions: any, i: number) => {
-        return <Box className="survey-answer-type_questions_div" key={`surveyבםמדא${i}`}>
-          <h3>{questions.questionName}</h3>
-          {handleAnswers(questions.questionType, questions.answers, i)}
+        return <Box className="survey-answer-type_questions_div" key={`surveyבםמדא${i}`}> 
+          <AnswerContext.Provider value={survey}>
+            <h3>{questions.questionName}</h3>
+            {handleAnswers(questions.questionType, questions.answers, i)}
+          </AnswerContext.Provider>
         </Box>
       })}
     </div>
