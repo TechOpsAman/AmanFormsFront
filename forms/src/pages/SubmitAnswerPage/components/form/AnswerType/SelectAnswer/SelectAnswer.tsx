@@ -1,6 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
+import './SelectAnswer.scss';
 
 function SelectAnswer(props: { answers: string[], questionIndex: number }) {
 

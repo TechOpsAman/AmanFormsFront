@@ -1,6 +1,7 @@
 import { TextareaAutosize } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
+import './ShortAnswer.scss';
 
 function ShortAnswer(props: {questionIndex: number}) {
     const surveySection = useContext(AnswerContext);
@@ -16,7 +17,7 @@ function ShortAnswer(props: {questionIndex: number}) {
         <TextareaAutosize
             className="survey-answer-type_short_answer"
             maxLength={70}
-            minRows={1}
+            maxRows={1}
             value={currAnswer[0]}
             onChange={(e) => {
                 updateAnswer(e.target.value, props.questionIndex);
