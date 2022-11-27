@@ -1,8 +1,6 @@
 import { Checkbox, FormControlLabel } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
-import { iSurvey } from "../../../../../../interfaces/iSurvey";
-
 
 function CheckboxAnswer({ answers, questionIndex }: { answers: any, questionIndex: number }) {
   const surveySection = useContext(AnswerContext);
