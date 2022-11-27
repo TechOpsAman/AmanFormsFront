@@ -1,5 +1,5 @@
 import { Checkbox, FormControlLabel } from "@material-ui/core";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 
 function CheckboxAnswer({ answers, questionIndex }: { answers: any, questionIndex: number }) {
