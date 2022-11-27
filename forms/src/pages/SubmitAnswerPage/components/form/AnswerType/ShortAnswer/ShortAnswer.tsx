@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 import './ShortAnswer.scss';
 
-function ShortAnswer(props: {questionIndex: number}) {
+function ShortAnswer({ questionIndex }: {questionIndex: number}) {
     const surveySection = useContext(AnswerContext);
     const [currAnswer, setCurrAnswer] = useState<string[]>([]);
 
@@ -20,7 +20,7 @@ function ShortAnswer(props: {questionIndex: number}) {
             maxRows={1}
             value={currAnswer[0]}
             onChange={(e) => {
-                updateAnswer(e.target.value, props.questionIndex);
+                updateAnswer(e.target.value, questionIndex);
                 const temp = currAnswer;
                 currAnswer[0] = e.target.value as string;
                 setCurrAnswer(temp);

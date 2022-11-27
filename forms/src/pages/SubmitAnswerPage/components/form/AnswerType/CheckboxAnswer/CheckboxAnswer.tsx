@@ -21,7 +21,6 @@ function CheckboxAnswer({ answers, questionIndex }: { answers: any, questionInde
     }
 
     surveySection.content[questionIndex].answers = answersStringsArray;
-    console.log(surveySection);
   }
 
   return (

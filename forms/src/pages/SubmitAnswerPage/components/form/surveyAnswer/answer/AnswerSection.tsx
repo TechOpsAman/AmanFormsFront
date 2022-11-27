@@ -1,17 +1,19 @@
 import "./AnswerSection.scss";
 import { Box } from "@material-ui/core";
 import { useEffect, useState } from 'react';
-import { iSurvey, iSurveyQuestions } from "../../../../../../interfaces/iSurvey";
-import { iSection, QuestionType } from "../../../../../../interfaces/iSection";
+import { iSurvey } from "../../../../../../interfaces/iSurvey";
+import { iSection } from "../../../../../../interfaces/iSection";
 import CheckboxAnswer from "../../AnswerType/CheckboxAnswer/CheckboxAnswer";
 import LongAnswer from "../../AnswerType/LongAnswer/LongAnswer";
 import RadioAnswer from "../../AnswerType/RadioAnswer/RadioAnswer";
 import SelectAnswer from "../../AnswerType/SelectAnswer/SelectAnswer";
 import ShortAnswer from "../../AnswerType/ShortAnswer/ShortAnswer";
 import { AnswerContext } from "../../../../../../context/sectionContext";
+import { iSurveyQuestions } from "../../../../../../interfaces/iSurveyQuestions";
 
-function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
-  const [survey, setSurvey] = useState<iSurvey>({ surveyId: '', userId: '', content: [] }); // TODO: too many commments!!!
+
+function AnswerType({questionsAndAnswers}: { questionsAndAnswers: iSurveyQuestions }) {
+  const [survey, setSurvey] = useState<iSurvey>({ surveyId: '', userId: '', content: [] }); 
 
   const handleAnswers = (type: string, answers: string[], questionIndex: number) => {
     switch (type) {
@@ -23,7 +25,7 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
       case "radio":
         return (<div className="survey-answer-type_answers_div">
           {
-            <RadioAnswer answers={answers as string[]} questionIndex={questionIndex as number} type={type as QuestionType}/>
+            <RadioAnswer answers={answers as string[]} questionIndex={questionIndex as number} />
           }
 
         </div>)
@@ -57,8 +59,8 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
   useEffect(() => {
     const surveyInit = () => {
       const temp: iSection[] = [];
-      props.questionsAndAnswers.content.map((question) => temp.push({ questionId: question.id as string, answers: [] }))
-      setSurvey({ surveyId: props.questionsAndAnswers.id, userId: '123421342134213421342134', content: temp }); // TODO: do'nt use real values!!!
+      questionsAndAnswers.content.map((question) => temp.push({ questionId: question.id as string, answers: [] }))
+      setSurvey({ surveyId: questionsAndAnswers.id, userId: '123421342134213421342134', content: temp }); // TODO: do'nt use real values!!!
     }
 
     surveyInit();
@@ -68,7 +70,7 @@ function AnswerType(props: { questionsAndAnswers: iSurveyQuestions }) {
   return (
     <div>
 
-      {props.questionsAndAnswers.content.map((questions: any, i: number) => {
+      {questionsAndAnswers.content.map((questions: any, i: number) => {
         return <Box className="survey-answer-type_questions_div" key={`surveyבםמדא${i}`}> 
           <AnswerContext.Provider value={survey}>
             <h3>{questions.questionName}</h3>

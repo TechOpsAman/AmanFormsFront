@@ -3,10 +3,10 @@ import { useContext, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 import './SelectAnswer.scss';
 
-function SelectAnswer(props: { answers: string[], questionIndex: number }) {
+function SelectAnswer({ answers, questionIndex }: { answers: string[], questionIndex: number }) {
 
     const [currAnswer, setCurrAnswer] = useState('');
-    const answers = useContext(AnswerContext);
+    const surveyAnswers = useContext(AnswerContext);
 
     return (
         <FormControl variant="standard">
@@ -18,12 +18,12 @@ function SelectAnswer(props: { answers: string[], questionIndex: number }) {
                 value={currAnswer}
                 onChange={(e) => {
                     setCurrAnswer(e.target.value as string);
-                    answers.content[props.questionIndex].answers = [e.target.value as string];
+                    surveyAnswers.content[questionIndex].answers = [e.target.value as string];
                 }}
                 label="select"
             >
                 {
-                    props.answers.map((element: any, index: number) => {
+                    answers.map((element: any, index: number) => {
                         return (
                             < MenuItem value={element.answer} key={index}> {element.answer} </MenuItem>
                         )

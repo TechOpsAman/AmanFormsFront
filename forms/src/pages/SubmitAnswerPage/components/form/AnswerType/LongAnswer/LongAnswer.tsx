@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 import './LongAnswer.scss';
 
-function LongAnswer(props: { questionIndex: number }) {
+function LongAnswer({questionIndex}: { questionIndex: number }) {
     const surveySection = useContext(AnswerContext);
     const [currAnswer, setCurrAnswer] = useState<string[]>([]);
 
@@ -20,7 +20,7 @@ function LongAnswer(props: { questionIndex: number }) {
             maxLength={1000}
             value={currAnswer[1]}
             onChange={(e) => {
-                updateAnswer(e.target.value, props.questionIndex);
+                updateAnswer(e.target.value, questionIndex);
                 const temp = currAnswer;
                 currAnswer[1] = e.target.value as string;
                 setCurrAnswer(temp);

@@ -1,6 +1,7 @@
 import React from "react";
+import { iSurveyQuestions } from "../../interfaces/iSurveyQuestions";
 import AnswerType from "./components/form/surveyAnswer/answer/AnswerSection"
-import { iSurveyQuestions } from "../../interfaces/iSurvey";
+
 
 
 function SurveyCreationPage() {
