@@ -18,8 +18,7 @@ function SurveySection({
 }: {
   section: iQuestion;
   index: number;
-}) {
-  const sections = useContext(sectionsContext);
+}) {let sections = useContext(sectionsContext);
   const label = { inputProps: { "aria-label": "must" } };
   const { t } = useTranslation();
 
@@ -51,9 +50,23 @@ function SurveySection({
     setQuestionType(newType);
   };
 
-  const handleMustAnswerChange = (e: any) => {
+  const handleMustAnswerChange = () => {
     sections[questionIndex].mustAnswer = !sections[questionIndex].mustAnswer;
-    console.log(sections[questionIndex].mustAnswer);
+  }
+
+  const handleCopy = () => {
+    const temp = sections;
+    const recordedItems = temp.splice(questionIndex, 1);
+    recordedItems.push(section);
+    temp.splice(questionIndex, 0, ...recordedItems);
+    sections = temp;
+  }
+  const handleDelete = () => {
+    const temp = sections;
+    const recordedItems = temp.splice(questionIndex, 1);
+    recordedItems.pop();
+    temp.splice(questionIndex, 0, ...recordedItems);
+    sections = temp;
   }
 
   useEffect(() => {
@@ -110,7 +123,6 @@ function SurveySection({
           <div className="switch">
             <Switch
               {...label}
-              // checked={sections[questionIndex].mustAnswer}
               onChange={handleMustAnswerChange}
               defaultChecked
               size="small"
@@ -120,8 +132,8 @@ function SurveySection({
             <span>{t("mustAnswer")}</span>
           </div>
           <div className="bottom-container-icons">
-            <DeleteForeverOutlinedIcon fontSize="large" />
-            <CopyAllIcon fontSize="large" />
+            <DeleteForeverOutlinedIcon fontSize="large" onClick={handleDelete}/>
+            <CopyAllIcon fontSize="large" onClick={handleCopy}/>
           </div>
         </div>
         {!(questionType === QuestionType.longAnswer) &&

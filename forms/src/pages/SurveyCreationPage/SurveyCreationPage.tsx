@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SurveySection from "./components/form/SurveySection/SurveySection";
 import SurveyTitle from "./components/form/SurveyTitle/SurveyTitle";
 import "./SurveyCreationPage.scss";
@@ -38,6 +38,8 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
     items.splice(result.destination.index, 0, recordedItems);
     setSections(items);
   };
+
+  useEffect(() => {}, [sections,setSections]);
 
   return (
     <div className="survey-creation-page-container">
