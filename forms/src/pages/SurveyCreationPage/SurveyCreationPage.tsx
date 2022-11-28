@@ -32,6 +32,29 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
     ]);
   };
 
+  const addSectionWithParams = (section: iQuestion, questionIndex: number) => {
+    const temp = sections;
+    const recordedItems = temp.splice(questionIndex, 1);
+    recordedItems.push({
+      questionName: section.questionName,
+      questionType: section.questionType,
+      answers: section.answers,
+      mustAnswer: section.mustAnswer,
+    });
+    temp.splice(questionIndex, 0, ...recordedItems);
+    setSections(temp);
+    setRender(!render);
+  };
+
+  const handleDelete = (questionIndex: number) => {
+    const temp = [...sections];
+    const recordedItems = temp.splice(questionIndex, 1);
+    recordedItems.pop();
+    temp.splice(questionIndex, 0, ...recordedItems);
+    setSections(temp);
+    setRender(!render);
+  };
+
   const handleDrag = (result: any) => {
     if (!result.destination) return;
     const items = sections;
@@ -71,6 +94,8 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
                               index={i}
                               render={render}
                               setRender={setRender}
+                              addSectionWithParams={addSectionWithParams}
+                              handleDelete={handleDelete}
                             />
                           </sectionsContext.Provider>
                         </li>

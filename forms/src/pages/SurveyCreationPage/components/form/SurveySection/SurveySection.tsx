@@ -16,12 +16,16 @@ function SurveySection({
   section,
   index: questionIndex,
   render,
-  setRender
+  setRender,
+  addSectionWithParams,
+  handleDelete,
 }: {
   section: iQuestion;
   index: number;
   render: any;
   setRender: any;
+  addSectionWithParams: any;
+  handleDelete: any;
 }) {
   let sections = useContext(sectionsContext);
   const label = { inputProps: { "aria-label": "must" } };
@@ -34,6 +38,7 @@ function SurveySection({
   const handleQuestionNameCallBack = (e: ChangeEvent<HTMLInputElement>) => {
     setQuestionName(e.target.value);
     sections[questionIndex].questionName = e.target.value;
+    console.log(sections);
   };
 
   const handleAddAnswer = () => {
@@ -57,22 +62,6 @@ function SurveySection({
 
   const handleMustAnswerChange = () => {
     sections[questionIndex].mustAnswer = !sections[questionIndex].mustAnswer;
-  };
-
-  const handleCopy = () => {
-    const temp = sections;
-    const recordedItems = temp.splice(questionIndex, 1);
-    recordedItems.push(section);
-    temp.splice(questionIndex, 0, ...recordedItems);
-    setRender(!render);
-  };
-
-  const handleDelete = () => {
-    const temp = sections;
-    const recordedItems = temp.splice(questionIndex, 1);
-    recordedItems.pop();
-    temp.splice(questionIndex, 0, ...recordedItems);
-    setRender(!render);
   };
 
   useEffect(() => {
@@ -140,9 +129,16 @@ function SurveySection({
           <div className="bottom-container-icons">
             <DeleteForeverOutlinedIcon
               fontSize="large"
-              onClick={handleDelete}
+              onClick={() => {
+                handleDelete(questionIndex);
+              }}
             />
-            <CopyAllIcon fontSize="large" onClick={handleCopy} />
+            <CopyAllIcon
+              fontSize="large"
+              onClick={() => {
+                addSectionWithParams(section, questionIndex);
+              }}
+            />
           </div>
         </div>
         {!(questionType === QuestionType.longAnswer) &&
