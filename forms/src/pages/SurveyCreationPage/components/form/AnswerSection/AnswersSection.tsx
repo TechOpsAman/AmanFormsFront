@@ -161,7 +161,7 @@ function AnswersSection({
     return ans;
   };
 
-  return <div>{detectAnswer()}</div>;
+  return <div className="answers-section-container">{detectAnswer()}</div>;
 }
 
 export default AnswersSection;

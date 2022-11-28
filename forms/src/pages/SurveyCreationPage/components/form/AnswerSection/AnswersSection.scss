@@ -1,6 +1,8 @@
 .answers-section-answers-container {
   display: flex;
   justify-content: space-between;
+  margin-top: -23px;
+  margin-bottom: -23px;
 }
 
 .answers-section-answers-X-button {
@@ -17,4 +19,9 @@
 .answers-section-answers-X-button:active {
   background-color: #9dc8fe;
   transform: translateY(4px);
+}
+
+.answers-section-container {
+  margin-top: 2rem;
+  margin-bottom: 2.2rem;
 }

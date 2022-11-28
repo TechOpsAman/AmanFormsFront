@@ -8,16 +8,19 @@ import QuestionTypeSelection from "../QuestionTypeSelection/QuestionTypeSelectio
 import Button from "@mui/material/Button";
 import { sectionsContext } from "../../../../../context/sectionsContext";
 import DragIndicatorRoundedIcon from "@mui/icons-material/DragIndicatorRounded";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import CopyAllIcon from "@mui/icons-material/CopyAll";
+import Switch from "@mui/material/Switch";
 
 function SurveySection({
   section,
-  index,
+  index: questionIndex,
 }: {
   section: iQuestion;
   index: number;
 }) {
   const sections = useContext(sectionsContext);
-
+  const label = { inputProps: { "aria-label": "must" } };
   const { t } = useTranslation();
 
   const [questionType, setQuestionType] = useState(section.questionType);
@@ -26,12 +29,12 @@ function SurveySection({
 
   const handleQuestionNameCallBack = (e: ChangeEvent<HTMLInputElement>) => {
     setQuestionName(e.target.value);
-    sections[index].questionName = e.target.value;
+    sections[questionIndex].questionName = e.target.value;
   };
 
   const handleAddAnswer = () => {
-    sections[index].answers = [
-      ...(sections[index].answers as iAnswer[]),
+    sections[questionIndex].answers = [
+      ...(sections[questionIndex].answers as iAnswer[]),
       { answer: "" },
     ];
     setAnswers([...(answers as iAnswer[]), { answer: "" }]);
@@ -48,12 +51,17 @@ function SurveySection({
     setQuestionType(newType);
   };
 
+  const handleMustAnswerChange = (e: any) => {
+    sections[questionIndex].mustAnswer = !sections[questionIndex].mustAnswer;
+    console.log(sections[questionIndex].mustAnswer);
+  }
+
   useEffect(() => {
-    setQuestionName(sections[index].questionName);
-    setQuestionType(sections[index].questionType);
-    setAnswers(sections[index].answers);
+    setQuestionName(sections[questionIndex].questionName);
+    setQuestionType(sections[questionIndex].questionType);
+    setAnswers(sections[questionIndex].answers);
   }, [
-    index,
+    questionIndex,
     section.answers,
     section.questionName,
     section.questionType,
@@ -72,7 +80,7 @@ function SurveySection({
           <QuestionTypeSelection
             selected={questionType}
             handleQuestionTypeChange={handleQuestionTypeChange}
-            index={index}
+            index={questionIndex}
           />
           <span className="survey-section-input_question_type_text">
             {t("questionType")}
@@ -93,17 +101,38 @@ function SurveySection({
           answers={answers as iAnswer[]}
           questionType={questionType}
           handleRemoveAnswer={handleRemoveAnswer}
-          questionIndex={index}
+          questionIndex={questionIndex}
         />
       </div>
-      {!(questionType === QuestionType.longAnswer) &&
-      !(questionType === QuestionType.shortAnswer) ? (
-        <div className="survey-section_add_answer">
-          <Button variant="outlined" onClick={handleAddAnswer}>
-            {t("addAnswer")}
-          </Button>
+      <hr />
+      <div className="bottom-container">
+        <div className="bottom-container-must-wrapper">
+          <div className="switch">
+            <Switch
+              {...label}
+              // checked={sections[questionIndex].mustAnswer}
+              onChange={handleMustAnswerChange}
+              defaultChecked
+              size="small"
+            />
+          </div>
+          <div className="bottom-container-must">
+            <span>{t("mustAnswer")}</span>
+          </div>
+          <div className="bottom-container-icons">
+            <DeleteForeverOutlinedIcon fontSize="large" />
+            <CopyAllIcon fontSize="large" />
+          </div>
         </div>
-      ) : null}
+        {!(questionType === QuestionType.longAnswer) &&
+        !(questionType === QuestionType.shortAnswer) ? (
+          <div className="survey-section_add_answer">
+            <Button variant="outlined" onClick={handleAddAnswer}>
+              {t("addAnswer")}
+            </Button>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

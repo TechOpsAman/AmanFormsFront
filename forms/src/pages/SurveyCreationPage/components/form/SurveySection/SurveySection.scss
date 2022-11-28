@@ -7,7 +7,7 @@
   padding-right: 3rem;
   padding-left: 3rem;
   margin-top: 1rem;
-  padding-top: .4rem;
+  padding-top: 0.4rem;
   box-shadow: 1px 2px 4px 1px rgb(131, 131, 131);
 }
 
@@ -22,19 +22,20 @@
   background: transparent;
 }
 
-.survey-section-input_question_name:focus{
+.survey-section-input_question_name:focus {
   border-bottom: 2px solid #568ea8;
 }
 
 .survey-section-input_question_type {
   display: flex;
   justify-content: space-around;
-  margin-top: 1rem;
+
   margin-left: 1rem;
 }
 
 .survey-section-input_question_type_text {
   margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 .survey-section-input-type-question-name-container {
@@ -53,4 +54,35 @@
   justify-content: center;
   transform: rotate(90deg);
   color: gray;
+}
+
+.bottom-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-container-must { 
+  margin-top: .5rem;
+}
+
+.bottom-container-must span {
+  display: inline-block;
+  line-height: 2;
+  padding: 0 1em;
+  margin-bottom: 1em;
+  border-right: 1px solid;
+}
+
+.bottom-container-must-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-container-icons {
+  margin-top: 6px;
+  margin-left: 6px;
+}
+
+.switch {
+  margin-top: .8rem;
 }

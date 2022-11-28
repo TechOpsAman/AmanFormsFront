@@ -16,6 +16,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
       questionName: t("newQuestion") as string,
       questionType: QuestionType.radio,
       answers: [],
+      mustAnswer: true,
     },
   ]);
   const addSection = () => {
@@ -25,6 +26,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
         questionName: t("newQuestion") as string,
         questionType: QuestionType.radio,
         answers: [],
+        mustAnswer: true,
       },
     ]);
   };

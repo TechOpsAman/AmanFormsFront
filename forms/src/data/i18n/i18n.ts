@@ -20,6 +20,7 @@ const resources = {
         longAnswer: 'longAnswer',
       },
       addAnswer: 'add new answer',
+      mustAnswer: 'must',
     },
   },
   he: {
@@ -36,7 +37,8 @@ const resources = {
         shortAnswer: 'תשובה קצרה',
         longAnswer: 'תשובה ארוכה',
       },
-      addAnswer: 'הוסף אפשרות חדשה',
+      addAnswer: 'הוסף תשובה חדשה',
+      mustAnswer: 'חובה',
     },
   },
 };
