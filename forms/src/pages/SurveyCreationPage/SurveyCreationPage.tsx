@@ -29,7 +29,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
     ]);
   };
 
-  const handleOnDragEnd = (result: any) => {
+  const handleDrag = (result: any) => {
     if (!result.destination) return;
     const items = sections;
     const [recordedItems] = items.splice(result.source.index, 1);
@@ -44,7 +44,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
           <SurveyTitle surveyName={surveyName} />
         </div>
         <div className="survey-creation-page-section-container">
-          <DragDropContext onDragEnd={handleOnDragEnd}>
+          <DragDropContext onDragEnd={() => {}} onDragUpdate={handleDrag}>
             <Droppable droppableId="characters">
               {(provided) => (
                 <ul
