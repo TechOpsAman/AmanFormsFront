@@ -6,7 +6,11 @@ import { useTranslation } from "react-i18next";
 import { QuestionType } from "../../../../../interfaces/iQuestion";
 import { sectionsContext } from "../../../../../context/sectionsContext";
 
-function QuestionTypeSelection(props: {
+function QuestionTypeSelection({
+  selected,
+  handleQuestionTypeChange,
+  index,
+}: {
   selected: QuestionType;
   handleQuestionTypeChange: any;
   index: number;
@@ -20,24 +24,24 @@ function QuestionTypeSelection(props: {
 
     switch (event.target.value) {
       case t("selectQuestionType.checkbox"):
-        sections[props.index].questionType = (QuestionType.checkbox);
-        props.handleQuestionTypeChange(QuestionType.checkbox)
+        sections[index].questionType = QuestionType.checkbox;
+        handleQuestionTypeChange(QuestionType.checkbox);
         break;
       case t("selectQuestionType.longAnswer"):
-        sections[props.index].questionType = (QuestionType.longAnswer);
-        props.handleQuestionTypeChange(QuestionType.longAnswer)
+        sections[index].questionType = QuestionType.longAnswer;
+        handleQuestionTypeChange(QuestionType.longAnswer);
         break;
       case t("selectQuestionType.select"):
-        sections[props.index].questionType = (QuestionType.select);
-        props.handleQuestionTypeChange(QuestionType.select)
+        sections[index].questionType = QuestionType.select;
+        handleQuestionTypeChange(QuestionType.select);
         break;
       case t("selectQuestionType.shortAnswer"):
-        sections[props.index].questionType = (QuestionType.shortAnswer);
-        props.handleQuestionTypeChange(QuestionType.shortAnswer)
+        sections[index].questionType = QuestionType.shortAnswer;
+        handleQuestionTypeChange(QuestionType.shortAnswer);
         break;
       case t("selectQuestionType.radio"):
-        sections[props.index].questionType = (QuestionType.radio);
-        props.handleQuestionTypeChange(QuestionType.radio)
+        sections[index].questionType = QuestionType.radio;
+        handleQuestionTypeChange(QuestionType.radio);
         break;
 
       default:
@@ -46,7 +50,7 @@ function QuestionTypeSelection(props: {
   };
 
   useEffect(() => {
-    switch (props.selected) {
+    switch (selected) {
       case QuestionType.checkbox:
         setQuestionType(t("selectQuestionType.checkbox") as string);
         break;
@@ -66,7 +70,7 @@ function QuestionTypeSelection(props: {
       default:
         break;
     }
-  }, [props.selected, t]);
+  }, [selected, t]);
 
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>

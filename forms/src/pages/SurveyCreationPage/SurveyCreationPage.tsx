@@ -6,34 +6,25 @@ import plus from "../../assets/plus.svg";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { iQuestion, QuestionType } from "../../interfaces/iQuestion";
 import { sectionsContext } from "../../context/sectionsContext";
+import { useTranslation } from "react-i18next";
 
-function SurveyCreationPage(props: { surveyName: string }) {
-  const mock: iQuestion = {
-    id: "123456123456123456123456",
-    questionName: "מה קורה?",
-    questionType: QuestionType.radio,
-    answers: [
-      { answer: "בסדר" },
-      { answer: "" },
-      { answer: "על הפנים" },
-      { answer: "שורד." },
-    ],
-  };
+function SurveyCreationPage({ surveyName }: { surveyName: string }) {
+  const { t } = useTranslation();
 
-  const [sections, setSections] = useState([mock]);
-
+  const [sections, setSections] = useState<iQuestion[]>([
+    {
+      questionName: t("newQuestion") as string,
+      questionType: QuestionType.radio,
+      answers: [],
+    },
+  ]);
   const addSection = () => {
     setSections([
       ...sections,
       {
-        questionName: "??מה קורה?",
-        questionType: QuestionType.checkbox,
-        answers: [
-          { answer: "בסדר" },
-          { answer: "בסדר גמור אפילו" },
-          { answer: "על הפנים" },
-          { answer: "שורד." },
-        ],
+        questionName: t("newQuestion") as string,
+        questionType: QuestionType.radio,
+        answers: [],
       },
     ]);
   };
@@ -50,7 +41,7 @@ function SurveyCreationPage(props: { surveyName: string }) {
     <div className="survey-creation-page-container">
       <div className="survey-creation-page-container-without-plus_svg">
         <div className="survey-creation-page-title-container">
-          <SurveyTitle surveyName={props.surveyName} />
+          <SurveyTitle surveyName={surveyName} />
         </div>
         <div className="survey-creation-page-section-container">
           <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -70,10 +61,7 @@ function SurveyCreationPage(props: { surveyName: string }) {
                           ref={provided.innerRef}
                         >
                           <sectionsContext.Provider value={sections}>
-                            <SurveySection
-                              section={section}
-                              index={i}
-                            />
+                            <SurveySection section={section} index={i} />
                           </sectionsContext.Provider>
                         </li>
                       )}
@@ -87,7 +75,7 @@ function SurveyCreationPage(props: { surveyName: string }) {
         </div>
         <div
           className="survey-creation-page-plus-container"
-          onClick={() => addSection()}
+          onClick={addSection}
         >
           <img
             src={plus}

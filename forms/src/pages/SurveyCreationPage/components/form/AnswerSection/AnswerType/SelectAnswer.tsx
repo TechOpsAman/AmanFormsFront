@@ -4,7 +4,11 @@ import { useTranslation } from "react-i18next";
 import { iAnswer } from "../../../../../../interfaces/iAnswer";
 import { sectionsContext } from "../../../../../../context/sectionsContext";
 
-function SelectAnswer(props: {
+function SelectAnswer({
+  answer,
+  index,
+  questionIndex,
+}: {
   answer: iAnswer;
   index: number;
   questionIndex: number;
@@ -12,13 +16,13 @@ function SelectAnswer(props: {
   const sections = useContext(sectionsContext);
 
   const { t } = useTranslation();
-  const [answer, setAnswer] = useState(props.answer.answer);
+  const [newAnswer, setNewAnswer] = useState(answer.answer);
 
-  if (!answer || answer === "") setAnswer(t("newAnswer") as string);
+  if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
 
   useEffect(() => {
-    setAnswer(props.answer.answer);
-  }, [props.answer]);
+    setNewAnswer(answer.answer);
+  }, [answer]);
 
   return (
     <div className="select-answer-container">
@@ -26,16 +30,16 @@ function SelectAnswer(props: {
         <input
           type="text"
           className="survey-section-answer"
-          value={answer}
+          value={newAnswer}
           onChange={(e) => {
-            setAnswer(e.target.value);
-            const temp = sections[props.questionIndex].answers as iAnswer[];
-            temp[props.index].answer = e.target.value;
-            sections[props.questionIndex].answers = temp;
+            setNewAnswer(e.target.value);
+            const temp = sections[questionIndex].answers as iAnswer[];
+            temp[index].answer = e.target.value;
+            sections[questionIndex].answers = temp;
           }}
         />
       </div>
-      <h3>.{props.index}</h3>
+      <h3>.{index}</h3>
     </div>
   );
 }

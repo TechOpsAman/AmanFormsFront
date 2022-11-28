@@ -10,7 +10,12 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { sectionsContext } from "../../../../../context/sectionsContext";
 import { useContext } from "react";
 
-function AnswersSection(props: {
+function AnswersSection({
+  answers,
+  questionType,
+  handleRemoveAnswer,
+  questionIndex,
+}: {
   answers: iAnswer[];
   questionType: QuestionType;
   handleRemoveAnswer: any;
@@ -20,25 +25,26 @@ function AnswersSection(props: {
 
   const detectAnswer = () => {
     let ans = <div></div>;
-    switch (props.questionType) {
+    switch (questionType) {
       case QuestionType.checkbox:
         ans = (
           <div>
-            {props.answers?.map((answer, i) => {
+            {answers?.map((answer, i) => {
               return (
                 <div className="answers-section-answers-container" key={i}>
                   <button
                     className="answers-section-answers-X-button"
                     onClick={() => {
-                      props.handleRemoveAnswer(i);
+                      handleRemoveAnswer(i);
 
-                      sections[props.questionIndex].answers = [
-                        ...(
-                          sections[props.questionIndex].answers as iAnswer[]
-                        ).slice(0, i),
-                        ...(
-                          sections[props.questionIndex].answers as iAnswer[]
-                        ).slice(i + 1),
+                      sections[questionIndex].answers = [
+                        ...(sections[questionIndex].answers as iAnswer[]).slice(
+                          0,
+                          i
+                        ),
+                        ...(sections[questionIndex].answers as iAnswer[]).slice(
+                          i + 1
+                        ),
                       ];
                     }}
                   >
@@ -47,7 +53,7 @@ function AnswersSection(props: {
                   <CheckBoxAnswer
                     answer={answer}
                     index={i}
-                    questionIndex={props.questionIndex}
+                    questionIndex={questionIndex}
                   />
                 </div>
               );
@@ -59,8 +65,8 @@ function AnswersSection(props: {
         ans = (
           <div>
             <LongAnswer
-              answer={props.answers[0]}
-              questionIndex={props.questionIndex}
+              answer={answers.length > 0 ? answers[0] : { answer: "" }}
+              questionIndex={questionIndex}
             />
           </div>
         );
@@ -68,21 +74,22 @@ function AnswersSection(props: {
       case QuestionType.radio:
         ans = (
           <div>
-            {props.answers?.map((answer, i) => {
+            {answers?.map((answer, i) => {
               return (
                 <div className="answers-section-answers-container" key={i}>
                   <button
                     className="answers-section-answers-X-button"
                     onClick={() => {
-                      props.handleRemoveAnswer(i);
+                      handleRemoveAnswer(i);
 
-                      sections[props.questionIndex].answers = [
-                        ...(
-                          sections[props.questionIndex].answers as iAnswer[]
-                        ).slice(0, i),
-                        ...(
-                          sections[props.questionIndex].answers as iAnswer[]
-                        ).slice(i + 1),
+                      sections[questionIndex].answers = [
+                        ...(sections[questionIndex].answers as iAnswer[]).slice(
+                          0,
+                          i
+                        ),
+                        ...(sections[questionIndex].answers as iAnswer[]).slice(
+                          i + 1
+                        ),
                       ];
                     }}
                   >
@@ -91,7 +98,7 @@ function AnswersSection(props: {
                   <RadioAnswer
                     answer={answer}
                     index={i}
-                    questionIndex={props.questionIndex}
+                    questionIndex={questionIndex}
                   />
                 </div>
               );
@@ -103,21 +110,22 @@ function AnswersSection(props: {
       case QuestionType.select:
         ans = (
           <div>
-            {props.answers?.map((answer, i) => {
+            {answers?.map((answer, i) => {
               return (
                 <div className="answers-section-answers-container" key={i}>
                   <button
                     className="answers-section-answers-X-button"
                     onClick={() => {
-                      props.handleRemoveAnswer(i);
+                      handleRemoveAnswer(i);
 
-                      sections[props.questionIndex].answers = [
-                        ...(
-                          sections[props.questionIndex].answers as iAnswer[]
-                        ).slice(0, i),
-                        ...(
-                          sections[props.questionIndex].answers as iAnswer[]
-                        ).slice(i + 1),
+                      sections[questionIndex].answers = [
+                        ...(sections[questionIndex].answers as iAnswer[]).slice(
+                          0,
+                          i
+                        ),
+                        ...(sections[questionIndex].answers as iAnswer[]).slice(
+                          i + 1
+                        ),
                       ];
                     }}
                   >
@@ -126,7 +134,7 @@ function AnswersSection(props: {
                   <SelectAnswer
                     answer={answer}
                     index={i}
-                    questionIndex={props.questionIndex}
+                    questionIndex={questionIndex}
                   />
                 </div>
               );
@@ -139,8 +147,8 @@ function AnswersSection(props: {
         ans = (
           <div>
             <ShortAnswer
-              answer={props.answers[0]}
-              questionIndex={props.questionIndex}
+              answer={answers.length > 0 ? answers[0] : { answer: "" }}
+              questionIndex={questionIndex}
             />
           </div>
         );

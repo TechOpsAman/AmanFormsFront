@@ -9,23 +9,29 @@ import Button from "@mui/material/Button";
 import { sectionsContext } from "../../../../../context/sectionsContext";
 import DragIndicatorRoundedIcon from "@mui/icons-material/DragIndicatorRounded";
 
-function SurveySection(props: { section: iQuestion; index: number }) {
+function SurveySection({
+  section,
+  index,
+}: {
+  section: iQuestion;
+  index: number;
+}) {
   const sections = useContext(sectionsContext);
 
   const { t } = useTranslation();
 
-  const [questionType, setQuestionType] = useState(props.section.questionType);
-  const [questionName, setQuestionName] = useState(props.section.questionName);
-  const [answers, setAnswers] = useState(props.section.answers);
+  const [questionType, setQuestionType] = useState(section.questionType);
+  const [questionName, setQuestionName] = useState(section.questionName);
+  const [answers, setAnswers] = useState(section.answers);
 
   const handleQuestionNameCallBack = (e: ChangeEvent<HTMLInputElement>) => {
     setQuestionName(e.target.value);
-    sections[props.index].questionName = e.target.value;
+    sections[index].questionName = e.target.value;
   };
 
   const handleAddAnswer = () => {
-    sections[props.index].answers = [
-      ...(sections[props.index].answers as iAnswer[]),
+    sections[index].answers = [
+      ...(sections[index].answers as iAnswer[]),
       { answer: "" },
     ];
     setAnswers([...(answers as iAnswer[]), { answer: "" }]);
@@ -43,20 +49,14 @@ function SurveySection(props: { section: iQuestion; index: number }) {
   };
 
   useEffect(() => {
-    const checkQuestionName = () => {
-      if (!questionName || questionName === "")
-        setQuestionName(t("newQuestion") as string);
-    };
-
-    setQuestionName(sections[props.index].questionName);
-    setQuestionType(sections[props.index].questionType);
-    setAnswers(sections[props.index].answers);
-    checkQuestionName();
+    setQuestionName(sections[index].questionName);
+    setQuestionType(sections[index].questionType);
+    setAnswers(sections[index].answers);
   }, [
-    props.index,
-    props.section.answers,
-    props.section.questionName,
-    props.section.questionType,
+    index,
+    section.answers,
+    section.questionName,
+    section.questionType,
     questionName,
     sections,
     t,
@@ -65,14 +65,14 @@ function SurveySection(props: { section: iQuestion; index: number }) {
   return (
     <div className="survey-section-container">
       <div className="survery-section-drag-indicatior-container">
-        <DragIndicatorRoundedIcon fontSize="large" color="inherit"/>
+        <DragIndicatorRoundedIcon fontSize="large" color="inherit" />
       </div>
       <div className="survey-section-input-type-question-name-container">
         <div className="survey-section-input_question_type">
           <QuestionTypeSelection
             selected={questionType}
             handleQuestionTypeChange={handleQuestionTypeChange}
-            index={props.index}
+            index={index}
           />
           <span className="survey-section-input_question_type_text">
             {t("questionType")}
@@ -93,14 +93,17 @@ function SurveySection(props: { section: iQuestion; index: number }) {
           answers={answers as iAnswer[]}
           questionType={questionType}
           handleRemoveAnswer={handleRemoveAnswer}
-          questionIndex={props.index}
+          questionIndex={index}
         />
       </div>
-      <div className="survey-section_add_answer">
-        <Button variant="outlined" onClick={handleAddAnswer}>
-          {t("addAnswer")}
-        </Button>
-      </div>
+      {!(questionType === QuestionType.longAnswer) &&
+      !(questionType === QuestionType.shortAnswer) ? (
+        <div className="survey-section_add_answer">
+          <Button variant="outlined" onClick={handleAddAnswer}>
+            {t("addAnswer")}
+          </Button>
+        </div>
+      ) : null}
     </div>
   );
 }

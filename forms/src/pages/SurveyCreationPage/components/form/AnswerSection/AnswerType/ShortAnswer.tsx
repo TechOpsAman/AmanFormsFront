@@ -4,26 +4,33 @@ import { useTranslation } from "react-i18next";
 import { iAnswer } from "../../../../../../interfaces/iAnswer";
 import { sectionsContext } from "../../../../../../context/sectionsContext";
 
-function ShortAnswer(props: { answer: iAnswer; questionIndex: number }) {
+function ShortAnswer({
+  answer,
+  questionIndex,
+}: {
+  answer: iAnswer;
+  questionIndex: number;
+}) {
+  console.log(answer);
   const sections = useContext(sectionsContext);
 
   const { t } = useTranslation();
-  const [answer, setAnswer] = useState(props.answer.answer);
+  const [newAnswer, setNewAnswer] = useState(answer.answer);
 
-  if (!answer || answer === "") setAnswer(t("newAnswer") as string);
+  if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
 
   useEffect(() => {
-    setAnswer(props.answer.answer);
-  }, [props.answer]);
+    setNewAnswer(answer.answer);
+  }, [answer]);
 
   return (
     <input
       type="text"
       className="survey-section-answer"
-      value={answer}
+      value={newAnswer}
       onChange={(e) => {
-        setAnswer(e.target.value);
-        sections[props.questionIndex].answers = [{ answer: e.target.value }];
+        setNewAnswer(e.target.value);
+        sections[questionIndex].answers = [{ answer: e.target.value }];
       }}
     />
   );
