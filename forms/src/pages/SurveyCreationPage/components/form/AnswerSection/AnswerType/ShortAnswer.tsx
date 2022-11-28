@@ -11,7 +11,6 @@ function ShortAnswer({
   answer: iAnswer;
   questionIndex: number;
 }) {
-  console.log(answer);
   const sections = useContext(sectionsContext);
 
   const { t } = useTranslation();

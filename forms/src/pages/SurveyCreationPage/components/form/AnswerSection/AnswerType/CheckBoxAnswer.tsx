@@ -40,7 +40,9 @@ function CheckBoxAnswer({
           }}
         />
       </div>
-      <Checkbox disabled />
+      <div className="checkbox">
+        <Checkbox disabled />
+      </div>
     </div>
   );
 }

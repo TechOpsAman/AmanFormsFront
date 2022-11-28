@@ -9,6 +9,8 @@ import ShortAnswer from "./AnswerType/ShortAnswer";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { sectionsContext } from "../../../../../context/sectionsContext";
 import { useContext } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import DragIndicatorRoundedIcon from "@mui/icons-material/DragIndicatorRounded";
 
 function AnswersSection({
   answers,
@@ -23,41 +25,71 @@ function AnswersSection({
 }) {
   const sections = useContext(sectionsContext);
 
+  const handleDrag = (result: any) => {
+    if (!result.destination) return;
+    const items = sections[questionIndex].answers;
+    const [recordedItems] = (items as iAnswer[]).splice(result.source.index, 1);
+    (items as iAnswer[]).splice(result.destination.index, 0, recordedItems);
+    sections[questionIndex].answers = items;
+  };
+
   const detectAnswer = () => {
     let ans = <div></div>;
     switch (questionType) {
       case QuestionType.checkbox:
         ans = (
-          <div>
-            {answers?.map((answer, i) => {
-              return (
-                <div className="answers-section-answers-container" key={i}>
-                  <button
-                    className="answers-section-answers-X-button"
-                    onClick={() => {
-                      handleRemoveAnswer(i);
-
-                      sections[questionIndex].answers = [
-                        ...(sections[questionIndex].answers as iAnswer[]).slice(
-                          0,
-                          i
-                        ),
-                        ...(sections[questionIndex].answers as iAnswer[]).slice(
-                          i + 1
-                        ),
-                      ];
-                    }}
+          <div className="answers-section-answers-container">
+            <DragDropContext onDragEnd={() => {}} onDragUpdate={handleDrag}>
+              <Droppable droppableId="characters">
+                {(provided) => (
+                  <ul
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    className="ulclass"
                   >
-                    <CloseOutlinedIcon />
-                  </button>
-                  <CheckBoxAnswer
-                    answer={answer}
-                    index={i}
-                    questionIndex={questionIndex}
-                  />
-                </div>
-              );
-            })}
+                    {answers?.map((answer, i) => (
+                      <Draggable key={i} draggableId={`id${i}`} index={i}>
+                        {(provided) => (
+                          <li
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                            className="liClass"
+                          >
+                            <button
+                              className="answers-section-answers-X-button"
+                              onClick={() => {
+                                handleRemoveAnswer(i);
+
+                                sections[questionIndex].answers = [
+                                  ...(sections[questionIndex]
+                                    .answers as iAnswer[]).slice(0, i),
+                                  ...(sections[questionIndex]
+                                    .answers as iAnswer[]).slice(i + 1),
+                                ];
+                              }}
+                            >
+                              <CloseOutlinedIcon />
+                            </button>
+                            <div className="answers">
+                              <CheckBoxAnswer
+                                answer={answer}
+                                index={i}
+                                questionIndex={questionIndex}
+                              />
+                              <div className="dragIconAnswer">
+                                <DragIndicatorRoundedIcon />
+                              </div>
+                            </div>
+                          </li>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </ul>
+                )}
+              </Droppable>
+            </DragDropContext>
           </div>
         );
         break;
@@ -73,72 +105,116 @@ function AnswersSection({
         break;
       case QuestionType.radio:
         ans = (
-          <div>
-            {answers?.map((answer, i) => {
-              return (
-                <div className="answers-section-answers-container" key={i}>
-                  <button
-                    className="answers-section-answers-X-button"
-                    onClick={() => {
-                      handleRemoveAnswer(i);
-
-                      sections[questionIndex].answers = [
-                        ...(sections[questionIndex].answers as iAnswer[]).slice(
-                          0,
-                          i
-                        ),
-                        ...(sections[questionIndex].answers as iAnswer[]).slice(
-                          i + 1
-                        ),
-                      ];
-                    }}
+          <div className="answers-section-answers-container">
+            <DragDropContext onDragEnd={() => {}} onDragUpdate={handleDrag}>
+              <Droppable droppableId="characters">
+                {(provided) => (
+                  <ul
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    className="ulclass"
                   >
-                    <CloseOutlinedIcon />
-                  </button>
-                  <RadioAnswer
-                    answer={answer}
-                    index={i}
-                    questionIndex={questionIndex}
-                  />
-                </div>
-              );
-            })}
+                    {answers?.map((answer, i) => (
+                      <Draggable key={i} draggableId={`id${i}`} index={i}>
+                        {(provided) => (
+                          <li
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                            className="liClass"
+                          >
+                            <button
+                              className="answers-section-answers-X-button"
+                              onClick={() => {
+                                handleRemoveAnswer(i);
+
+                                sections[questionIndex].answers = [
+                                  ...(sections[questionIndex]
+                                    .answers as iAnswer[]).slice(0, i),
+                                  ...(sections[questionIndex]
+                                    .answers as iAnswer[]).slice(i + 1),
+                                ];
+                              }}
+                            >
+                              <CloseOutlinedIcon />
+                            </button>
+                            <div className="answers">
+                              <RadioAnswer
+                                answer={answer}
+                                index={i}
+                                questionIndex={questionIndex}
+                              />
+                              <div className="dragIconAnswer">
+                                <DragIndicatorRoundedIcon />
+                              </div>
+                            </div>
+                          </li>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </ul>
+                )}
+              </Droppable>
+            </DragDropContext>
           </div>
         );
         break;
 
       case QuestionType.select:
         ans = (
-          <div>
-            {answers?.map((answer, i) => {
-              return (
-                <div className="answers-section-answers-container" key={i}>
-                  <button
-                    className="answers-section-answers-X-button"
-                    onClick={() => {
-                      handleRemoveAnswer(i);
-
-                      sections[questionIndex].answers = [
-                        ...(sections[questionIndex].answers as iAnswer[]).slice(
-                          0,
-                          i
-                        ),
-                        ...(sections[questionIndex].answers as iAnswer[]).slice(
-                          i + 1
-                        ),
-                      ];
-                    }}
+          <div className="answers-section-answers-container">
+            <DragDropContext onDragEnd={() => {}} onDragUpdate={handleDrag}>
+              <Droppable droppableId="characters">
+                {(provided) => (
+                  <ul
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    className="ulclass"
                   >
-                    <CloseOutlinedIcon />
-                  </button>
-                  <SelectAnswer
-                    answer={answer}
-                    index={i}
-                    questionIndex={questionIndex}
-                  />
-                </div>
-              );
-            })}
+                    {answers?.map((answer, i) => (
+                      <Draggable key={i} draggableId={`id${i}`} index={i}>
+                        {(provided) => (
+                          <li
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                            className="liClass"
+                          >
+                            <button
+                              className="answers-section-answers-X-button"
+                              onClick={() => {
+                                handleRemoveAnswer(i);
+
+                                sections[questionIndex].answers = [
+                                  ...(sections[questionIndex]
+                                    .answers as iAnswer[]).slice(0, i),
+                                  ...(sections[questionIndex]
+                                    .answers as iAnswer[]).slice(i + 1),
+                                ];
+                              }}
+                            >
+                              <CloseOutlinedIcon />
+                            </button>
+                            <div className="answers">
+                              <SelectAnswer
+                                answer={answer}
+                                index={i}
+                                questionIndex={questionIndex}
+                              />
+                              <div className="dragIconAnswerselect">
+                                <DragIndicatorRoundedIcon />
+                              </div>
+                            </div>
+                          </li>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </ul>
+                )}
+              </Droppable>
+            </DragDropContext>
           </div>
         );
         break;

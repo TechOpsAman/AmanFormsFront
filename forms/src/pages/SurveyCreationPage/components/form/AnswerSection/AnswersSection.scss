@@ -1,8 +1,9 @@
 .answers-section-answers-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   margin-top: -23px;
   margin-bottom: -23px;
+  width: 100%;
 }
 
 .answers-section-answers-X-button {
@@ -24,4 +25,31 @@
 .answers-section-container {
   margin-top: 2rem;
   margin-bottom: 2.2rem;
+}
+
+.ulclass {
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+
+.liClass {
+  display: flex;
+  justify-content: right;
+  height: 2rem;
+  margin-bottom: .4rem;
+}
+
+.answers {
+  padding-right: 1rem;
+  display: flex;
+  justify-content: right;
+}
+
+.dragIconAnswer {
+  margin-top: .3rem;
+}
+
+.dragIconAnswerselect {
+  margin-top: 1.2rem;
 }
