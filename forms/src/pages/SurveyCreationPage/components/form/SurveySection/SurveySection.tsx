@@ -15,10 +15,15 @@ import Switch from "@mui/material/Switch";
 function SurveySection({
   section,
   index: questionIndex,
+  render,
+  setRender
 }: {
   section: iQuestion;
   index: number;
-}) {let sections = useContext(sectionsContext);
+  render: any;
+  setRender: any;
+}) {
+  let sections = useContext(sectionsContext);
   const label = { inputProps: { "aria-label": "must" } };
   const { t } = useTranslation();
 
@@ -52,22 +57,23 @@ function SurveySection({
 
   const handleMustAnswerChange = () => {
     sections[questionIndex].mustAnswer = !sections[questionIndex].mustAnswer;
-  }
+  };
 
   const handleCopy = () => {
     const temp = sections;
     const recordedItems = temp.splice(questionIndex, 1);
     recordedItems.push(section);
     temp.splice(questionIndex, 0, ...recordedItems);
-    sections = temp;
-  }
+    setRender(!render);
+  };
+
   const handleDelete = () => {
     const temp = sections;
     const recordedItems = temp.splice(questionIndex, 1);
     recordedItems.pop();
     temp.splice(questionIndex, 0, ...recordedItems);
-    sections = temp;
-  }
+    setRender(!render);
+  };
 
   useEffect(() => {
     setQuestionName(sections[questionIndex].questionName);
@@ -132,8 +138,11 @@ function SurveySection({
             <span>{t("mustAnswer")}</span>
           </div>
           <div className="bottom-container-icons">
-            <DeleteForeverOutlinedIcon fontSize="large" onClick={handleDelete}/>
-            <CopyAllIcon fontSize="large" onClick={handleCopy}/>
+            <DeleteForeverOutlinedIcon
+              fontSize="large"
+              onClick={handleDelete}
+            />
+            <CopyAllIcon fontSize="large" onClick={handleCopy} />
           </div>
         </div>
         {!(questionType === QuestionType.longAnswer) &&

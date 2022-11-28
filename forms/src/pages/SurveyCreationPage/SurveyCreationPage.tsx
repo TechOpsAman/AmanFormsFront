@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 
 function SurveyCreationPage({ surveyName }: { surveyName: string }) {
   const { t } = useTranslation();
+  const [render, setRender] = useState(false);
 
   const [sections, setSections] = useState<iQuestion[]>([
     {
@@ -39,7 +40,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
     setSections(items);
   };
 
-  useEffect(() => {}, [sections,setSections]);
+  useEffect(() => {}, [render]);
 
   return (
     <div className="survey-creation-page-container">
@@ -65,7 +66,12 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
                           ref={provided.innerRef}
                         >
                           <sectionsContext.Provider value={sections}>
-                            <SurveySection section={section} index={i} />
+                            <SurveySection
+                              section={section}
+                              index={i}
+                              render={render}
+                              setRender={setRender}
+                            />
                           </sectionsContext.Provider>
                         </li>
                       )}
