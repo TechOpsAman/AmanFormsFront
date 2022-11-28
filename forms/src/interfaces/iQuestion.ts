@@ -8,10 +8,10 @@ export interface iQuestion {
   selectedAnswers?: Array<iAnswer>;
 }
 export enum QuestionType {
-  shortAnswer = "shortAnswer",
-  longAnswer = "longAnswer",
-  radio = "radio",
-  checkbox = "checkbox",
-  select = "select",
-  title = "title",
+  shortAnswer = "SHORT_ANSWER",
+  longAnswer = "LONG_ANSWER",
+  radio = "RADIO",
+  checkbox = "CHECKBOX",
+  select = "SELECT",
+  title = "TITLE",
 }
