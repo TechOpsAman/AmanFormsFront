@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import SurveySection from "./components/form/SurveySection/SurveySection";
 import SurveyTitle from "./components/form/SurveyTitle/SurveyTitle";
 import "./SurveyCreationPage.scss";
-import plus from "../../assets/plus.svg";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { iQuestion, QuestionType } from "../../interfaces/iQuestion";
 import { sectionsContext } from "../../context/sectionsContext";
@@ -20,16 +19,23 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
       mustAnswer: true,
     },
   ]);
-  const addSection = () => {
-    setSections([
-      ...sections,
-      {
-        questionName: t("newQuestion") as string,
-        questionType: QuestionType.radio,
-        answers: [],
-        mustAnswer: true,
-      },
-    ]);
+  const addSection = (questionIndex: number) => {
+    console.log('he')
+    console.log(questionIndex as number);
+    const temp = sections;
+    const recordedItems = temp.splice(questionIndex, 1);
+    console.log(recordedItems);
+    recordedItems.push({
+      questionName: t("newQuestion") as string,
+      questionType: QuestionType.radio,
+      answers: [],
+      mustAnswer: true,
+    });
+    console.log(recordedItems);
+    temp.splice(questionIndex, 0, ...recordedItems);
+    console.log(temp);
+    setSections(temp);
+    setRender(!render);
   };
 
   const addSectionWithParams = (
@@ -100,6 +106,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
                               addSectionWithParams={addSectionWithParams}
                               handleDelete={handleDelete}
                               provided={provided}
+                              addSection={addSection}
                             />
                           </sectionsContext.Provider>
                         </li>
@@ -111,16 +118,6 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
               )}
             </Droppable>
           </DragDropContext>
-        </div>
-        <div
-          className="survey-creation-page-plus-container"
-          onClick={addSection}
-        >
-          <img
-            src={plus}
-            alt="add survey"
-            className="survey-creation-page-plus_svg"
-          />
         </div>
       </div>
     </div>

@@ -11,6 +11,22 @@
   box-shadow: 1px 2px 4px 1px rgb(131, 131, 131);
 }
 
+.survey-section-add-title-container {
+  width: 10rem;
+  height: 3rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  margin-top: 1rem;
+  box-shadow: 1px 2px 4px 1px rgb(131, 131, 131);
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.survey-section-add-title {
+  margin-top: .4rem;
+  color: rgb(82, 80, 80);
+}
+
 .survey-section-input_question_name {
   width: 40rem;
   height: 3.5rem;
@@ -82,6 +98,7 @@
 }
 
 .bottom-container-icons {
+  color: rgb(82, 80, 80);
   margin-top: 6px;
   margin-left: 6px;
 }

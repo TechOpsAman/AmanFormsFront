@@ -11,6 +11,8 @@ import DragIndicatorRoundedIcon from "@mui/icons-material/DragIndicatorRounded";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import CopyAllIcon from "@mui/icons-material/CopyAll";
 import Switch from "@mui/material/Switch";
+import AddCircleOutlineTwoToneIcon from "@mui/icons-material/AddCircleOutlineTwoTone";
+import TextFieldsTwoToneIcon from "@mui/icons-material/TextFieldsTwoTone";
 
 function SurveySection({
   section,
@@ -20,6 +22,7 @@ function SurveySection({
   addSectionWithParams,
   handleDelete,
   provided,
+  addSection,
 }: {
   section: iQuestion;
   index: number;
@@ -28,6 +31,7 @@ function SurveySection({
   addSectionWithParams: any;
   handleDelete: any;
   provided: any;
+  addSection: any;
 }) {
   let sections = useContext(sectionsContext);
   const label = { inputProps: { "aria-label": "must" } };
@@ -83,79 +87,94 @@ function SurveySection({
   ]);
 
   return (
-    <div className="survey-section-container">
-      <div
-        className="survery-section-drag-indicatior-container"
-        {...provided.dragHandleProps}
-      >
-        <DragIndicatorRoundedIcon fontSize="large" color="inherit" />
-      </div>
-      <div className="survey-section-input-type-question-name-container">
-        <div className="survey-section-input_question_type">
-          <QuestionTypeSelection
-            selected={questionType}
-            handleQuestionTypeChange={handleQuestionTypeChange}
-            index={questionIndex}
-          />
-          <span className="survey-section-input_question_type_text">
-            {t("questionType")}
-          </span>
+    <div>
+      <div className="survey-section-container">
+        <div
+          className="survery-section-drag-indicatior-container"
+          {...provided.dragHandleProps}
+        >
+          <DragIndicatorRoundedIcon fontSize="large" color="inherit" />
         </div>
+        <div className="survey-section-input-type-question-name-container">
+          <div className="survey-section-input_question_type">
+            <QuestionTypeSelection
+              selected={questionType}
+              handleQuestionTypeChange={handleQuestionTypeChange}
+              index={questionIndex}
+            />
+            <span className="survey-section-input_question_type_text">
+              {t("questionType")}
+            </span>
+          </div>
 
-        <input
-          type="text"
-          className="survey-section-input_question_name"
-          value={questionName}
-          onChange={(e) => {
-            handleQuestionNameCallBack(e);
-          }}
-        />
-      </div>
-      <div className="survey-section-answers-wrapper">
-        <AnswersSection
-          answers={answers as iAnswer[]}
-          questionType={questionType}
-          handleRemoveAnswer={handleRemoveAnswer}
-          questionIndex={questionIndex}
-        />
-      </div>
-      <hr />
-      <div className="bottom-container">
-        <div className="bottom-container-must-wrapper">
-          <div className="switch">
-            <Switch
-              {...label}
-              onChange={handleMustAnswerChange}
-              size="small"
-              checked={isSwitch}
-            />
-          </div>
-          <div className="bottom-container-must">
-            <span>{t("mustAnswer")}</span>
-          </div>
-          <div className="bottom-container-icons">
-            <DeleteForeverOutlinedIcon
-              fontSize="large"
-              onClick={() => {
-                handleDelete(questionIndex);
-              }}
-            />
-            <CopyAllIcon
-              fontSize="large"
-              onClick={() => {
-                addSectionWithParams(section, questionIndex, isSwitch);
-              }}
-            />
-          </div>
+          <input
+            type="text"
+            className="survey-section-input_question_name"
+            value={questionName}
+            onChange={(e) => {
+              handleQuestionNameCallBack(e);
+            }}
+          />
         </div>
-        {!(questionType === QuestionType.longAnswer) &&
-        !(questionType === QuestionType.shortAnswer) ? (
-          <div className="survey-section_add_answer">
-            <Button variant="outlined" onClick={handleAddAnswer}>
-              {t("addAnswer")}
-            </Button>
+        <div className="survey-section-answers-wrapper">
+          <AnswersSection
+            answers={answers as iAnswer[]}
+            questionType={questionType}
+            handleRemoveAnswer={handleRemoveAnswer}
+            questionIndex={questionIndex}
+          />
+        </div>
+        <hr />
+        <div className="bottom-container">
+          <div className="bottom-container-must-wrapper">
+            <div className="switch">
+              <Switch
+                {...label}
+                onChange={handleMustAnswerChange}
+                size="small"
+                checked={isSwitch}
+              />
+            </div>
+            <div className="bottom-container-must">
+              <span>{t("mustAnswer")}</span>
+            </div>
+            <div className="bottom-container-icons">
+              <DeleteForeverOutlinedIcon
+                fontSize="large"
+                onClick={() => {
+                  handleDelete(questionIndex);
+                }}
+              />
+              <CopyAllIcon
+                fontSize="large"
+                onClick={() => {
+                  addSectionWithParams(section, questionIndex, isSwitch);
+                }}
+              />
+            </div>
           </div>
-        ) : null}
+          {!(questionType === QuestionType.longAnswer) &&
+          !(questionType === QuestionType.shortAnswer) ? (
+            <div className="survey-section_add_answer">
+              <Button variant="outlined" onClick={handleAddAnswer}>
+                {t("addAnswer")}
+              </Button>
+            </div>
+          ) : null}
+        </div>
+      </div>
+      <div className="survey-section-add-title-container">
+        <div className="survey-section-add-title">
+          <AddCircleOutlineTwoToneIcon
+            fontSize="large"
+            onClick={() => {
+              addSection(questionIndex);
+            }}
+          />
+        </div>
+        <div className="survey-section-add-title">
+          <TextFieldsTwoToneIcon fontSize="large" />
+        </div>
       </div>
     </div>
   );
