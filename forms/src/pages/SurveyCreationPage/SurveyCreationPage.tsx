@@ -72,7 +72,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
           <SurveyTitle surveyName={surveyName} />
         </div>
         <div className="survey-creation-page-section-container">
-          <DragDropContext onDragEnd={() => {}} onDragUpdate={handleDrag}>
+          <DragDropContext onDragEnd={handleDrag}>
             <Droppable droppableId="characters">
               {(provided) => (
                 <ul

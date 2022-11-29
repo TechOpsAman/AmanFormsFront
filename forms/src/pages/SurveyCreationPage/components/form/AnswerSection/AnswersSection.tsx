@@ -39,7 +39,7 @@ function AnswersSection({
       case QuestionType.checkbox:
         ans = (
           <div className="answers-section-answers-container">
-            <DragDropContext onDragEnd={() => {}} onDragUpdate={handleDrag}>
+            <DragDropContext onDragEnd={handleDrag}>
               <Droppable droppableId="characters">
                 {(provided) => (
                   <ul
@@ -52,7 +52,6 @@ function AnswersSection({
                         {(provided) => (
                           <li
                             {...provided.draggableProps}
-                            {...provided.dragHandleProps}
                             ref={provided.innerRef}
                             className="liClass"
                           >
@@ -77,7 +76,7 @@ function AnswersSection({
                                 index={i}
                                 questionIndex={questionIndex}
                               />
-                              <div className="dragIconAnswer">
+                              <div className="dragIconAnswer" {...provided.dragHandleProps}>
                                 <DragIndicatorRoundedIcon />
                               </div>
                             </div>
@@ -106,7 +105,7 @@ function AnswersSection({
       case QuestionType.radio:
         ans = (
           <div className="answers-section-answers-container">
-            <DragDropContext onDragEnd={() => {}} onDragUpdate={handleDrag}>
+            <DragDropContext onDragEnd={handleDrag}>
               <Droppable droppableId="characters">
                 {(provided) => (
                   <ul
@@ -119,7 +118,6 @@ function AnswersSection({
                         {(provided) => (
                           <li
                             {...provided.draggableProps}
-                            {...provided.dragHandleProps}
                             ref={provided.innerRef}
                             className="liClass"
                           >
@@ -144,7 +142,7 @@ function AnswersSection({
                                 index={i}
                                 questionIndex={questionIndex}
                               />
-                              <div className="dragIconAnswer">
+                              <div className="dragIconAnswer" {...provided.dragHandleProps}>
                                 <DragIndicatorRoundedIcon />
                               </div>
                             </div>
@@ -164,7 +162,7 @@ function AnswersSection({
       case QuestionType.select:
         ans = (
           <div className="answers-section-answers-container">
-            <DragDropContext onDragEnd={() => {}} onDragUpdate={handleDrag}>
+            <DragDropContext onDragEnd={handleDrag}>
               <Droppable droppableId="characters">
                 {(provided) => (
                   <ul
@@ -177,7 +175,6 @@ function AnswersSection({
                         {(provided) => (
                           <li
                             {...provided.draggableProps}
-                            {...provided.dragHandleProps}
                             ref={provided.innerRef}
                             className="liClass"
                           >
@@ -202,7 +199,7 @@ function AnswersSection({
                                 index={i}
                                 questionIndex={questionIndex}
                               />
-                              <div className="dragIconAnswerselect">
+                              <div className="dragIconAnswerselect" {...provided.dragHandleProps}>
                                 <DragIndicatorRoundedIcon />
                               </div>
                             </div>
