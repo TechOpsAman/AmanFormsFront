@@ -13,7 +13,7 @@ function LongAnswer({questionIndex}: { questionIndex: number }) {
     }
 
 
-    return (
+    return (        
         <TextareaAutosize
             className="survey-answer-type_long_answer"
             maxRows={4}
