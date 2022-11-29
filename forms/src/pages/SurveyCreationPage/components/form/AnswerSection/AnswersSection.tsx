@@ -76,7 +76,7 @@ function AnswersSection({
                                 index={i}
                                 questionIndex={questionIndex}
                               />
-                              <div className="dragIconAnswer" {...provided.dragHandleProps}>
+                              <div className="dragIconAnswerCheckbox" {...provided.dragHandleProps}>
                                 <DragIndicatorRoundedIcon />
                               </div>
                             </div>

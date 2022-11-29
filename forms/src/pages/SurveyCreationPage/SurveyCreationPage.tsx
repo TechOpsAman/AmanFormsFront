@@ -32,7 +32,11 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
     ]);
   };
 
-  const addSectionWithParams = (section: iQuestion, questionIndex: number, isSwitch: boolean) => {
+  const addSectionWithParams = (
+    section: iQuestion,
+    questionIndex: number,
+    isSwitch: boolean
+  ) => {
     const temp = sections;
     const recordedItems = temp.splice(questionIndex, 1);
     recordedItems.push({
