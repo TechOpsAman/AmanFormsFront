@@ -85,7 +85,6 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
                       {(provided) => (
                         <li
                           {...provided.draggableProps}
-                          {...provided.dragHandleProps}
                           ref={provided.innerRef}
                         >
                           <sectionsContext.Provider value={sections}>
@@ -96,6 +95,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
                               setRender={setRender}
                               addSectionWithParams={addSectionWithParams}
                               handleDelete={handleDelete}
+                              provided={provided}
                             />
                           </sectionsContext.Provider>
                         </li>

@@ -19,6 +19,7 @@ function SurveySection({
   setRender,
   addSectionWithParams,
   handleDelete,
+  provided,
 }: {
   section: iQuestion;
   index: number;
@@ -26,6 +27,7 @@ function SurveySection({
   setRender: any;
   addSectionWithParams: any;
   handleDelete: any;
+  provided: any;
 }) {
   let sections = useContext(sectionsContext);
   const label = { inputProps: { "aria-label": "must" } };
@@ -79,7 +81,7 @@ function SurveySection({
 
   return (
     <div className="survey-section-container">
-      <div className="survery-section-drag-indicatior-container">
+      <div className="survery-section-drag-indicatior-container" {...provided.dragHandleProps}>
         <DragIndicatorRoundedIcon fontSize="large" color="inherit" />
       </div>
       <div className="survey-section-input-type-question-name-container">
