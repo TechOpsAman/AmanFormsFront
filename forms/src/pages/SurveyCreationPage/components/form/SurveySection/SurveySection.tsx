@@ -33,6 +33,7 @@ function SurveySection({
   const label = { inputProps: { "aria-label": "must" } };
   const { t } = useTranslation();
 
+  let isSwitch = section.mustAnswer;
   const [questionType, setQuestionType] = useState(section.questionType);
   const [questionName, setQuestionName] = useState(section.questionName);
   const [answers, setAnswers] = useState(section.answers);
@@ -63,6 +64,8 @@ function SurveySection({
 
   const handleMustAnswerChange = () => {
     sections[questionIndex].mustAnswer = !sections[questionIndex].mustAnswer;
+    isSwitch = !isSwitch;
+    setRender(!render);
   };
 
   useEffect(() => {
@@ -81,7 +84,10 @@ function SurveySection({
 
   return (
     <div className="survey-section-container">
-      <div className="survery-section-drag-indicatior-container" {...provided.dragHandleProps}>
+      <div
+        className="survery-section-drag-indicatior-container"
+        {...provided.dragHandleProps}
+      >
         <DragIndicatorRoundedIcon fontSize="large" color="inherit" />
       </div>
       <div className="survey-section-input-type-question-name-container">
@@ -120,8 +126,8 @@ function SurveySection({
             <Switch
               {...label}
               onChange={handleMustAnswerChange}
-              defaultChecked
               size="small"
+              checked={isSwitch}
             />
           </div>
           <div className="bottom-container-must">
@@ -137,7 +143,7 @@ function SurveySection({
             <CopyAllIcon
               fontSize="large"
               onClick={() => {
-                addSectionWithParams(section, questionIndex);
+                addSectionWithParams(section, questionIndex, isSwitch);
               }}
             />
           </div>
