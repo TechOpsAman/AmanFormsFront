@@ -38,8 +38,24 @@
   background: transparent;
   margin-right: .5rem;
 }
+.survey-section-input_question_name-title {
+  margin-top: .3rem;
+  margin-bottom: 1rem;
+  width: 62rem;
+  height: 3.5rem;
+  background-color: #f9f8fb;
+  font-size: 2rem;
+  text-align: right;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  margin-right: .5rem;
+}
 
 .survey-section-input_question_name:focus {
+  border-bottom: 2px solid #568ea8;
+}
+.survey-section-input_question_name-title:focus {
   border-bottom: 2px solid #568ea8;
 }
 
@@ -105,4 +121,18 @@
 
 .switch {
   margin-top: .8rem;
+}
+
+.survey-section-container-title {
+  width: 64rem;
+  height: 10rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 35px;
+  padding: 2px;
+  text-align: right;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  margin-top: 1rem;
+  padding-top: 0.4rem;
+  box-shadow: 1px 2px 4px 1px rgb(131, 131, 131);
 }

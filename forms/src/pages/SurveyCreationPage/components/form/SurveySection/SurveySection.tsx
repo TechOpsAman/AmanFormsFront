@@ -23,6 +23,7 @@ function SurveySection({
   handleDelete,
   provided,
   addSection,
+  addTitle,
   addQuestionorTitle,
   setAddQuestionorTitle,
 }: {
@@ -34,6 +35,7 @@ function SurveySection({
   handleDelete: any;
   provided: any;
   addSection: any;
+  addTitle: any;
   addQuestionorTitle: any;
   setAddQuestionorTitle: any;
 }) {
@@ -98,81 +100,122 @@ function SurveySection({
         setAddQuestionorTitle(temp);
       }}
     >
-      <div className="survey-section-container">
-        <div
-          className="survery-section-drag-indicatior-container"
-          {...provided.dragHandleProps}
-        >
-          <DragIndicatorRoundedIcon fontSize="large" color="inherit" />
-        </div>
-        <div className="survey-section-input-type-question-name-container">
-          <div className="survey-section-input_question_type">
-            <QuestionTypeSelection
-              selected={questionType}
-              handleQuestionTypeChange={handleQuestionTypeChange}
-              index={questionIndex}
-            />
-            <span className="survey-section-input_question_type_text">
-              {t("questionType")}
-            </span>
-          </div>
+      {!(questionType === QuestionType.title) ? (
+        <div>
+          <div className="survey-section-container">
+            <div
+              className="survery-section-drag-indicatior-container"
+              {...provided.dragHandleProps}
+            >
+              <DragIndicatorRoundedIcon fontSize="large" color="inherit" />
+            </div>
+            <div className="survey-section-input-type-question-name-container">
+              <div className="survey-section-input_question_type">
+                <QuestionTypeSelection
+                  selected={questionType}
+                  handleQuestionTypeChange={handleQuestionTypeChange}
+                  index={questionIndex}
+                />
+                <span className="survey-section-input_question_type_text">
+                  {t("questionType")}
+                </span>
+              </div>
 
+              <input
+                type="text"
+                className="survey-section-input_question_name"
+                value={questionName}
+                onChange={(e) => {
+                  handleQuestionNameCallBack(e);
+                }}
+              />
+            </div>
+            <div className="survey-section-answers-wrapper">
+              <AnswersSection
+                answers={answers as iAnswer[]}
+                questionType={questionType}
+                handleRemoveAnswer={handleRemoveAnswer}
+                questionIndex={questionIndex}
+              />
+            </div>
+            <hr />
+            <div className="bottom-container">
+              <div className="bottom-container-must-wrapper">
+                <div className="switch">
+                  <Switch
+                    {...label}
+                    onChange={handleMustAnswerChange}
+                    size="small"
+                    checked={isSwitch}
+                  />
+                </div>
+                <div className="bottom-container-must">
+                  <span>{t("mustAnswer")}</span>
+                </div>
+                <div className="bottom-container-icons">
+                  <DeleteForeverOutlinedIcon
+                    fontSize="large"
+                    onClick={() => {
+                      handleDelete(questionIndex);
+                    }}
+                  />
+                  <CopyAllIcon
+                    fontSize="large"
+                    onClick={() => {
+                      addSectionWithParams(section, questionIndex, isSwitch);
+                    }}
+                  />
+                </div>
+              </div>
+              {!(questionType === QuestionType.longAnswer) &&
+              !(questionType === QuestionType.shortAnswer) ? (
+                <div className="survey-section_add_answer">
+                  <Button variant="outlined" onClick={handleAddAnswer}>
+                    {t("addAnswer")}
+                  </Button>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="survey-section-container-title">
+          <div
+            className="survery-section-drag-indicatior-container"
+            {...provided.dragHandleProps}
+          >
+            <DragIndicatorRoundedIcon fontSize="large" color="inherit" />
+          </div>
           <input
             type="text"
-            className="survey-section-input_question_name"
+            className="survey-section-input_question_name-title"
             value={questionName}
             onChange={(e) => {
               handleQuestionNameCallBack(e);
             }}
           />
-        </div>
-        <div className="survey-section-answers-wrapper">
-          <AnswersSection
-            answers={answers as iAnswer[]}
-            questionType={questionType}
-            handleRemoveAnswer={handleRemoveAnswer}
-            questionIndex={questionIndex}
-          />
-        </div>
-        <hr />
-        <div className="bottom-container">
-          <div className="bottom-container-must-wrapper">
-            <div className="switch">
-              <Switch
-                {...label}
-                onChange={handleMustAnswerChange}
-                size="small"
-                checked={isSwitch}
-              />
-            </div>
-            <div className="bottom-container-must">
-              <span>{t("mustAnswer")}</span>
-            </div>
-            <div className="bottom-container-icons">
-              <DeleteForeverOutlinedIcon
-                fontSize="large"
-                onClick={() => {
-                  handleDelete(questionIndex);
-                }}
-              />
-              <CopyAllIcon
-                fontSize="large"
-                onClick={() => {
-                  addSectionWithParams(section, questionIndex, isSwitch);
-                }}
-              />
+          <hr />
+
+          <div className="bottom-container">
+            <div className="bottom-container-must-wrapper">
+              <div className="bottom-container-icons">
+                <DeleteForeverOutlinedIcon
+                  fontSize="large"
+                  onClick={() => {
+                    handleDelete(questionIndex);
+                  }}
+                />
+                <CopyAllIcon
+                  fontSize="large"
+                  onClick={() => {
+                    addSectionWithParams(section, questionIndex, isSwitch);
+                  }}
+                />
+              </div>
             </div>
           </div>
-          {!(questionType === QuestionType.longAnswer) &&
-          !(questionType === QuestionType.shortAnswer) ? (
-            <div className="survey-section_add_answer">
-              <Button variant="outlined" onClick={handleAddAnswer}>
-                {t("addAnswer")}
-              </Button>
-            </div>
-          ) : null}
         </div>
-      </div>
+      )}
       {addQuestionorTitle[questionIndex] && (
         <div className="survey-section-add-title-container">
           <div className="survey-section-add-title">
@@ -184,7 +227,12 @@ function SurveySection({
             />
           </div>
           <div className="survey-section-add-title">
-            <TextFieldsTwoToneIcon fontSize="large" />
+            <TextFieldsTwoToneIcon
+              fontSize="large"
+              onClick={() => {
+                addTitle(questionIndex);
+              }}
+            />
           </div>
         </div>
       )}

@@ -34,6 +34,20 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
     setRender(!render);
   };
 
+  const addTitle = (questionIndex: number) => {
+    const temp = sections;
+    const recordedItems = temp.splice(questionIndex, 1);
+    recordedItems.push({
+      questionName: t("newTitle") as string,
+      questionType: QuestionType.title,
+      answers: [],
+      mustAnswer: false,
+    });
+    temp.splice(questionIndex, 0, ...recordedItems);
+    setSections(temp);
+    setRender(!render);
+  };
+
   const addSectionWithParams = (
     section: iQuestion,
     questionIndex: number,
@@ -103,6 +117,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
                               handleDelete={handleDelete}
                               provided={provided}
                               addSection={addSection}
+                              addTitle={addTitle}
                               addQuestionorTitle={addQuestionorTitle}
                               setAddQuestionorTitle={setAddQuestionorTitle}
                             />

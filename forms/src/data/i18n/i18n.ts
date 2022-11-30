@@ -21,6 +21,7 @@ const resources = {
       },
       addAnswer: 'add new answer',
       mustAnswer: 'must',
+      newTitle: "new title",
     },
   },
   he: {
@@ -39,6 +40,7 @@ const resources = {
       },
       addAnswer: 'הוסף תשובה חדשה',
       mustAnswer: 'חובה',
+      newTitle: "הוסף כותרת חדשה",
     },
   },
 };
