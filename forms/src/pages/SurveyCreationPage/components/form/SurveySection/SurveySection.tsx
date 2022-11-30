@@ -145,7 +145,7 @@ function SurveySection({
                   <Switch
                     {...label}
                     onChange={handleMustAnswerChange}
-                    size="small"
+                    size="medium"
                     checked={isSwitch}
                   />
                 </div>
