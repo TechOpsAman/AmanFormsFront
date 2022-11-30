@@ -12,16 +12,18 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ArticleIcon from "@mui/icons-material/Article";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import pic from '../../assets/profilePic.png';
+import pic from "../../assets/profilePic.png";
 
 export function Navbar({
   name,
   id,
   tNumber,
+  isInCreateSurveyPage,
 }: {
   name: string;
   id: string;
   tNumber: string;
+  isInCreateSurveyPage?: boolean;
 }) {
   const settings = [name, id, tNumber];
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -48,7 +50,7 @@ export function Navbar({
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container>
         <Toolbar disableGutters>
           <ArticleIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
@@ -69,42 +71,44 @@ export function Navbar({
             AMAN FORMS
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <IconButton>
-                  <VisibilityIcon />
-                </IconButton>
-              </MenuItem>
-            </Menu>
-          </Box>
+          {isInCreateSurveyPage && (
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <IconButton>
+                    <VisibilityIcon />
+                  </IconButton>
+                </MenuItem>
+              </Menu>
+            </Box>
+          )}
           <ArticleIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -125,18 +129,20 @@ export function Navbar({
             AMAN FORMS
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              onClick={handleCloseNavMenu}
-              sx={{ mt: .6, color: "white", display: "block" }}
-            >
-              <VisibilityIcon />
-            </IconButton>
+            {isInCreateSurveyPage && (
+              <IconButton
+                onClick={handleCloseNavMenu}
+                sx={{ mt: 0.6, color: "white", display: "block" }}
+              >
+                <VisibilityIcon />
+              </IconButton>
+            )}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={name}  src={pic}/>
+                <Avatar alt={name} src={pic} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -157,7 +163,7 @@ export function Navbar({
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="right">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
