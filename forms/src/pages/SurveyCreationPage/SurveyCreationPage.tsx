@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 function SurveyCreationPage({ surveyName }: { surveyName: string }) {
   const { t } = useTranslation();
   const [render, setRender] = useState(false);
+  const [addQuestionorTitle, setAddQuestionorTitle] = useState<boolean[]>([]);
 
   const [sections, setSections] = useState<iQuestion[]>([
     {
@@ -20,20 +21,15 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
     },
   ]);
   const addSection = (questionIndex: number) => {
-    console.log('he')
-    console.log(questionIndex as number);
     const temp = sections;
     const recordedItems = temp.splice(questionIndex, 1);
-    console.log(recordedItems);
     recordedItems.push({
       questionName: t("newQuestion") as string,
       questionType: QuestionType.radio,
       answers: [],
       mustAnswer: true,
     });
-    console.log(recordedItems);
     temp.splice(questionIndex, 0, ...recordedItems);
-    console.log(temp);
     setSections(temp);
     setRender(!render);
   };
@@ -107,6 +103,8 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
                               handleDelete={handleDelete}
                               provided={provided}
                               addSection={addSection}
+                              addQuestionorTitle={addQuestionorTitle}
+                              setAddQuestionorTitle={setAddQuestionorTitle}
                             />
                           </sectionsContext.Provider>
                         </li>

@@ -23,6 +23,8 @@ function SurveySection({
   handleDelete,
   provided,
   addSection,
+  addQuestionorTitle,
+  setAddQuestionorTitle,
 }: {
   section: iQuestion;
   index: number;
@@ -32,6 +34,8 @@ function SurveySection({
   handleDelete: any;
   provided: any;
   addSection: any;
+  addQuestionorTitle: any;
+  setAddQuestionorTitle: any;
 }) {
   let sections = useContext(sectionsContext);
   const label = { inputProps: { "aria-label": "must" } };
@@ -87,7 +91,13 @@ function SurveySection({
   ]);
 
   return (
-    <div>
+    <div
+      onClick={() => {
+        const temp = Array(sections.length).fill(false);
+        temp[questionIndex] = true;
+        setAddQuestionorTitle(temp);
+      }}
+    >
       <div className="survey-section-container">
         <div
           className="survery-section-drag-indicatior-container"
@@ -163,19 +173,21 @@ function SurveySection({
           ) : null}
         </div>
       </div>
-      <div className="survey-section-add-title-container">
-        <div className="survey-section-add-title">
-          <AddCircleOutlineTwoToneIcon
-            fontSize="large"
-            onClick={() => {
-              addSection(questionIndex);
-            }}
-          />
+      {addQuestionorTitle[questionIndex] && (
+        <div className="survey-section-add-title-container">
+          <div className="survey-section-add-title">
+            <AddCircleOutlineTwoToneIcon
+              fontSize="large"
+              onClick={() => {
+                addSection(questionIndex);
+              }}
+            />
+          </div>
+          <div className="survey-section-add-title">
+            <TextFieldsTwoToneIcon fontSize="large" />
+          </div>
         </div>
-        <div className="survey-section-add-title">
-          <TextFieldsTwoToneIcon fontSize="large" />
-        </div>
-      </div>
+      )}
     </div>
   );
 }
