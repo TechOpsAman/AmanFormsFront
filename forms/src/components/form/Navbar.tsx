@@ -13,18 +13,20 @@ import MenuItem from "@mui/material/MenuItem";
 import ArticleIcon from "@mui/icons-material/Article";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import pic from "../../assets/profilePic.png";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 export function Navbar({
   name,
   id,
   tNumber,
-  isInCreateSurveyPage,
 }: {
   name: string;
   id: string;
   tNumber: string;
-  isInCreateSurveyPage?: boolean;
 }) {
+  const location = useLocation();
+  const { t } = useTranslation();
   const settings = [name, id, tNumber];
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -49,29 +51,32 @@ export function Navbar({
   };
 
   return (
-    <AppBar position="static">
-      <Container>
-        <Toolbar disableGutters>
-          <ArticleIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            AMAN FORMS
-          </Typography>
+    <Box sx={{ bgcolor: "secondary.main" }}>
+      <AppBar
+        position="sticky"
+        sx={{ borderBottomRightRadius: "30px", borderBottomLeftRadius: "30px" }}
+      >
+        <Container>
+          <Toolbar disableGutters>
+            <ArticleIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              AMAN FORMS
+            </Typography>
 
-          {isInCreateSurveyPage && (
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -102,74 +107,80 @@ export function Navbar({
                 }}
               >
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <IconButton>
-                    <VisibilityIcon />
-                  </IconButton>
+                  {location.pathname === "/createSurvey" && (
+                    <Tooltip title={t("firstShow")} placement="right" arrow>
+                      <IconButton>
+                        <VisibilityIcon />
+                      </IconButton>
+                    </Tooltip>
+                  )}
                 </MenuItem>
               </Menu>
             </Box>
-          )}
-          <ArticleIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            AMAN FORMS
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {isInCreateSurveyPage && (
-              <IconButton
-                onClick={handleCloseNavMenu}
-                sx={{ mt: 0.6, color: "white", display: "block" }}
-              >
-                <VisibilityIcon />
-              </IconButton>
-            )}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={name} src={pic} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+            <ArticleIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="right">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+              AMAN FORMS
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {location.pathname === "/createSurvey" && (
+                <Tooltip title={t("firstShow")} placement="right" arrow>
+                  <IconButton
+                    onClick={handleCloseNavMenu}
+                    sx={{ mt: 0.6, color: "white", display: "block" }}
+                  >
+                    <VisibilityIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </Box>
+
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt={name} src={pic} />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="right">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </Box>
   );
 }

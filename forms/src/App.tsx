@@ -4,6 +4,15 @@ import SurveyCreationPage from "./pages/SurveyCreationPage/SurveyCreationPage";
 import HomePage from "./pages/HomePage/HomePage";
 import { Navbar } from "./components/form/Navbar";
 import { useEffect, useState } from "react";
+import { createTheme, Box, ThemeProvider } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: "#bbdefb",
+    },
+  },
+});
 
 function App() {
   const [user, setUser] = useState({ name: "a", id: "b", tNumber: "c" });
@@ -14,9 +23,12 @@ function App() {
   }, []);
 
   return (
-    <>
-      <Navbar {...user} isInCreateSurveyPage={true} />
-      <div className="survey-creation-name-container">
+    <ThemeProvider theme={theme}>
+      <Navbar {...user} />
+      <Box
+        className="survey-creation-name-container"
+        sx={{ bgcolor: "secondary.main", minHeight: "93vh"}}
+      >
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -24,8 +36,8 @@ function App() {
             element={<SurveyCreationPage surveyName="" />}
           />
         </Routes>
-      </div>
-    </>
+      </Box>
+    </ThemeProvider>
   );
 }
 
