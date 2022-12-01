@@ -15,7 +15,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const [user, setUser] = useState({ name: "a", id: "b", tNumber: "c" });
+  const [user, setUser] = useState({ name: "noName", id: "noId", tNumber: "noT" });
 
   useEffect(() => {
     //temp - should be get details from shraga
