@@ -18,7 +18,7 @@ function DisplayOptions({ questionList }: { questionList: IQuestion[] }) {
   };
 
   return (
-    <div className="display-options-container">
+    <Card className="display-options-container">
       <IconButton onClick={changeDisplayState}>
         {!areAnswersDisplayed ? (
           <>
@@ -33,7 +33,7 @@ function DisplayOptions({ questionList }: { questionList: IQuestion[] }) {
         )}
       </IconButton>
       <span className="question-name">{chosenQuestion.questionName}</span>
-    </div>
+    </Card>
   );
 }
 
