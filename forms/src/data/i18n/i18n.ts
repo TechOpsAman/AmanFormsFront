@@ -24,6 +24,7 @@ const resources = {
       newTitle: "new title",
       firstShow: "first show",
       searchSurveys: 'seach surveys',
+      lastSurveys: 'last surveys',
 
     },
   },
@@ -46,6 +47,7 @@ const resources = {
       newTitle: "הוסף כותרת חדשה",
       firstShow: "תצוגה מקדימה",
       searchSurveys: 'חיפוש סקרים',
+      lastSurveys: 'סקרים אחרונים',
     },
   },
 };
