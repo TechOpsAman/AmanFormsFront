@@ -1,0 +1,16 @@
+.display-options-container {
+  height: 10%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.question-name {
+  font-size: small;
+}
+
+.display-options-text {
+  font-size: small;
+  color: black;
+}
