@@ -4,34 +4,51 @@ import IconButton from "@mui/material/IconButton";
 import "./ScrollPages.scss";
 import { iSurveyQuestions } from "../../../../../interfaces/iSurveyQuestions";
 import { useState } from "react";
+import { Box, TextField } from "@material-ui/core";
 
 function ScrollPages({ questionsAndAnswers }: { questionsAndAnswers: iSurveyQuestions[] }) {
-  const numOfPages = questionsAndAnswers.length;
-  const [currPage, setCurrPage] = useState<number>(0);
+  const numOfPages = questionsAndAnswers.length + 1;
+  const [currPage, setCurrPage] = useState(1);
+  const [theme, setTheme] = useState(`  מתוך   ${numOfPages}  `);
 
-  const handelForwardPage = () => {
-    if(currPage < numOfPages) setCurrPage(prevCurrPage => prevCurrPage + 1)
-    //  <AnswerType questionsAndAnswers={questionsAndAnswers as unknown as iSurveyQuestions[]} currPage={currPage as number} />
-    console.log(currPage, "numOfPages: " + numOfPages)   
+  const handelPages = (pageNum: number) => {
+    setCurrPage(() => pageNum);
+  };
+
+  function handelForwardPage() {
+    if (currPage < numOfPages) setCurrPage((prevPage) => prevPage + 1);
   }
 
-  const handelBackwardsPage = () => {
-    if(currPage !== 0) setCurrPage(prevCurrPage => prevCurrPage - 1)
-    // <AnswerType questionsAndAnswers={questionsAndAnswers as unknown as iSurveyQuestions[]} currPage={currPage as number} />
-    console.log(currPage, "numOfPages: " + numOfPages)
+  function handelBackwardsPage() {
+    if (currPage !== 1) setCurrPage((prevPage) => prevPage - 1);
   }
 
   return (
-    <div className="survey-answer-unit_scroll_survey_units">
-      <IconButton onClick={handelForwardPage} >
+    <Box className="survey-answer-unit_scroll_survey_units">
+      <IconButton onClick={handelForwardPage}>
         <ChevronLeftIcon color="primary" fontSize="large" />
       </IconButton>
-      
+      <Box dir="rtl" className="survey-answer-unit_page_conter">
+        <TextField
+          id="standard-basic"
+          variant="standard"
+          type="number"
+          value={currPage}
+          className="survey-answer-unit_text_filed"
+          InputProps={{ inputProps: { min: 1, max: 3 } }}
+          onChange={(event) => {
+            handelPages(
+              (event.target as HTMLInputElement).value as unknown as number
+            );
+          }}
+        />
+        <span>{theme}</span>
+      </Box>
       <IconButton onClick={handelBackwardsPage}>
         <ChevronRightIcon color="primary" fontSize="large" />
       </IconButton>
-    </div>
+    </Box>
   );
-} 
+}
 
 export default ScrollPages;
