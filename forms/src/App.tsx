@@ -26,7 +26,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <Navbar {...user} />
       <Box
-        className="survey-creation-name-container"
         sx={{ bgcolor: "secondary.main", minHeight: "93vh"}}
       >
         <Routes>
@@ -41,4 +40,7 @@ function App() {
   );
 }
 
+
+
 export default App;
+
