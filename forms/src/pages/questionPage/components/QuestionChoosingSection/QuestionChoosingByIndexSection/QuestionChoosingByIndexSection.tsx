@@ -28,13 +28,13 @@ function QuestionChoosingByIndexSection({
 
   return (
     <div>
-      {questionList.indexOf(chosenQuestion) === questionList.length - 1 ? (
+      {questionList.indexOf(chosenQuestion) === 0 ? (
         <IconButton disabled>
-          <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
+          <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
         </IconButton>
       ) : (
-        <IconButton onClick={changeToNextQuestion}>
-          <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
+        <IconButton onClick={changeToPreviousQuestion}>
+          <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
         </IconButton>
       )}
       <p className="number-of-question"> מתוך {questionList.length}</p>
@@ -46,13 +46,13 @@ function QuestionChoosingByIndexSection({
         dir="ltr"
         onChange={changeQuestion}
       />
-      {questionList.indexOf(chosenQuestion) === 0 ? (
+      {questionList.indexOf(chosenQuestion) === questionList.length - 1 ? (
         <IconButton disabled>
-          <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
+          <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
         </IconButton>
       ) : (
-        <IconButton onClick={changeToPreviousQuestion}>
-          <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
+        <IconButton onClick={changeToNextQuestion}>
+          <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
         </IconButton>
       )}
     </div>
