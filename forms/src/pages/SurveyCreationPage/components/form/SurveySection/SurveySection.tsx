@@ -158,8 +158,10 @@ function SurveySection({
                     onClick={() => {
                       handleDelete(questionIndex);
                     }}
+                    sx={{ cursor: "pointer" }}
                   />
                   <CopyAllIcon
+                    sx={{ cursor: "pointer" }}
                     fontSize="large"
                     onClick={() => {
                       addSectionWithParams(section, questionIndex, isSwitch);
@@ -200,12 +202,14 @@ function SurveySection({
             <div className="bottom-container-must-wrapper">
               <div className="bottom-container-icons">
                 <DeleteForeverOutlinedIcon
+                  sx={{ cursor: "pointer" }}
                   fontSize="large"
                   onClick={() => {
                     handleDelete(questionIndex);
                   }}
                 />
                 <CopyAllIcon
+                  sx={{ cursor: "pointer" }}
                   fontSize="large"
                   onClick={() => {
                     addSectionWithParams(section, questionIndex, isSwitch);
@@ -220,6 +224,7 @@ function SurveySection({
         <div className="survey-section-add-title-container">
           <div className="survey-section-add-title">
             <AddCircleOutlineTwoToneIcon
+              sx={{ cursor: "pointer" }}
               fontSize="large"
               onClick={() => {
                 addSection(questionIndex);
@@ -228,6 +233,7 @@ function SurveySection({
           </div>
           <div className="survey-section-add-title">
             <TextFieldsTwoToneIcon
+              sx={{ cursor: "pointer" }}
               fontSize="large"
               onClick={() => {
                 addTitle(questionIndex);

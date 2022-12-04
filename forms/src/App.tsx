@@ -15,7 +15,11 @@ const theme = createTheme({
 });
 
 function App() {
-  const [user, setUser] = useState({ name: "noName", id: "noId", tNumber: "noT" });
+  const [user, setUser] = useState({
+    name: "noName",
+    id: "noId",
+    tNumber: "noT",
+  });
 
   useEffect(() => {
     //temp - should be get details from shraga
@@ -25,14 +29,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Navbar {...user} />
-      <Box
-        sx={{ bgcolor: "secondary.main", minHeight: "93vh"}}
-      >
+      <Box sx={{ bgcolor: "secondary.main", minHeight: "93vh" }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
             path="/createSurvey"
-            element={<SurveyCreationPage surveyName="" />}
+            element={<SurveyCreationPage />}
           />
         </Routes>
       </Box>
@@ -40,7 +42,4 @@ function App() {
   );
 }
 
-
-
 export default App;
-

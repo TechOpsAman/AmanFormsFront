@@ -6,8 +6,10 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { iQuestion, QuestionType } from "../../interfaces/iQuestion";
 import { sectionsContext } from "../../context/sectionsContext";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
-function SurveyCreationPage({ surveyName }: { surveyName: string }) {
+function SurveyCreationPage() {
+  const location = useLocation();
   const { t } = useTranslation();
   const [render, setRender] = useState(false);
   const [addQuestionorTitle, setAddQuestionorTitle] = useState<boolean[]>([]);
@@ -20,6 +22,7 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
       mustAnswer: true,
     },
   ]);
+
   const addSection = (questionIndex: number) => {
     const temp = sections;
     const recordedItems = temp.splice(questionIndex, 1);
@@ -83,13 +86,16 @@ function SurveyCreationPage({ surveyName }: { surveyName: string }) {
     setSections(items);
   };
 
-  useEffect(() => {}, [render]);
+  useEffect(() => {
+    if (location.state.survey.content.length > 0)
+      setSections(location.state.survey.content);
+  }, [location.state.survey.content, render]);
 
   return (
     <div className="survey-creation-page-container">
       <div className="survey-creation-page-container-without-plus_svg">
         <div className="survey-creation-page-title-container">
-          <SurveyTitle surveyName={surveyName} />
+          <SurveyTitle surveyName={location.state.survey.surveyName} surveyDescription={location.state.survey.surveyDescription} />
         </div>
         <div className="survey-creation-page-section-container">
           <DragDropContext onDragEnd={handleDrag}>

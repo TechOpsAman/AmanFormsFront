@@ -2,12 +2,20 @@ import "./SurveyTitle.scss";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-function SurveyTitle({ surveyName }: { surveyName: string }) {
+function SurveyTitle({
+  surveyName,
+  surveyDescription,
+}: {
+  surveyName: string;
+  surveyDescription: string;
+}) {
   const { t } = useTranslation();
 
   const [newSurveyName, setNewSurveyName] = useState(surveyName);
-  const [surveyDescription, setSurveyDescription] = useState(
-    t("surveyDescription") as string
+  const [newSurveyDescription, setNewSurveyDescription] = useState(
+    surveyDescription !== ""
+      ? surveyDescription
+      : (t("surveyDescription") as string)
   );
 
   if (newSurveyName === "" || !newSurveyName)
@@ -26,9 +34,9 @@ function SurveyTitle({ surveyName }: { surveyName: string }) {
       <input
         type="text"
         className="survey-title-text-input_survey_description"
-        value={surveyDescription}
+        value={newSurveyDescription}
         onChange={(e) => {
-          setSurveyDescription(e.target.value);
+          setNewSurveyDescription(e.target.value);
         }}
       />
     </div>

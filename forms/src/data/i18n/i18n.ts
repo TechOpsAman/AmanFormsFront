@@ -22,7 +22,9 @@ const resources = {
       addAnswer: 'add new answer',
       mustAnswer: 'must',
       newTitle: "new title",
-      firstShow: "first show"
+      firstShow: "first show",
+      searchSurveys: 'seach surveys',
+
     },
   },
   he: {
@@ -43,6 +45,7 @@ const resources = {
       mustAnswer: 'חובה',
       newTitle: "הוסף כותרת חדשה",
       firstShow: "תצוגה מקדימה",
+      searchSurveys: 'חיפוש סקרים',
     },
   },
 };
