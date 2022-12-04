@@ -2,8 +2,9 @@ import "./App.css";
 import { useState } from "react";
 import { IQuestion, QuestionType } from "./interfaces/iQuestion";
 import { Route, Routes } from "react-router-dom";
-import SelectQuestionByIndex from "./pages/questionPage/components/QuestionChoosingByIndexSection/SelectQuestionByIndex";
-import SelectQuestionByName from "./pages/questionPage/components/QuestionChoosingByNameSection/SelectQuestionByName";
+import QuestionChoosingByIndexSection from "./pages/questionPage/components/QuestionChoosingSection/QuestionChoosingByIndexSection/QuestionChoosingByIndexSection";
+import QuestionChoosingByNameSection from "./pages/questionPage/components/QuestionChoosingSection/QuestionChoosingByNameSection/QuestionChoosingByNameSection";
+import DisplayOptions from "./pages/questionPage/components/QuestionsAndPossibleAnswersSection/DisplayOptions/DisplayOptions";
 
 function App() {
   const [questionList, setQuestionList] = useState<IQuestion[]>([
@@ -15,7 +16,15 @@ function App() {
       selectedAnswers: [],
       mustAnswer: true,
     },
-  ]); // TODO: change to [] (empty array)
+    {
+      id: "654321654321654321654321",
+      questionName: "boolean",
+      questionType: QuestionType.select,
+      answers: [],
+      selectedAnswers: [],
+      mustAnswer: false,
+    },
+  ]); // TODO: change to [] (empty array) and get date from DB.
 
   return (
     <div className="comments-question-page-container">
@@ -23,20 +32,18 @@ function App() {
         <Route
           path="/"
           element={
-            <SelectQuestionByIndex
-              questionList={questionList}
-              setQuestionList={setQuestionList}
-            />
+            <QuestionChoosingByIndexSection questionList={questionList} />
           }
         />
         <Route
-          path="/hi"
+          path="/1"
           element={
-            <SelectQuestionByName
-              questionList={questionList}
-              setQuestionList={setQuestionList}
-            />
+            <QuestionChoosingByNameSection questionList={questionList} />
           }
+        />
+        <Route
+          path="/2"
+          element={<DisplayOptions questionList={questionList} />}
         />
       </Routes>
     </div>
