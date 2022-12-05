@@ -11,7 +11,7 @@ function App() {
     {
       id: "123456123456123456123456",
       questionName: "string",
-      questionType: QuestionType.checkbox,
+      questionType: QuestionType.radio,
       answers: [
         { answer: "xaddadas" },
         { answer: "xaddadas" },
@@ -23,7 +23,7 @@ function App() {
     {
       id: "654321654321654321654321",
       questionName: "boolean",
-      questionType: QuestionType.checkbox,
+      questionType: QuestionType.radio,
       answers: [
         { answer: "xaddadas" },
         { answer: "xaddadas" },
