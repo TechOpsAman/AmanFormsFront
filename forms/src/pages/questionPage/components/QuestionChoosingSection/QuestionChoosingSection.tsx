@@ -1,18 +1,21 @@
 import "./QuestionChoosingSection.scss";
 import { Card } from "@material-ui/core";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IQuestion } from "../../../../interfaces/iQuestion";
 import QuestionChoosingByIndexSection from "./QuestionChoosingByIndexSection/QuestionChoosingByIndexSection";
 import QuestionChoosingByNameSection from "./QuestionChoosingByNameSection/QuestionChoosingByNameSection";
+import { chosenQuestionContext } from "../../../../contexts/chosenQuestionContext";
 
 function QuestionChoosingSection({
   questionList,
 }: {
   questionList: IQuestion[];
 }) {
-  const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
-    questionList[questionList.length - 1]
-  );
+  // const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
+  //   questionList[questionList.length - 1]
+  // );
+
+  let chosenQuestion = useContext(chosenQuestionContext);
 
   return (
     <Card className="question-choosing-section-main">

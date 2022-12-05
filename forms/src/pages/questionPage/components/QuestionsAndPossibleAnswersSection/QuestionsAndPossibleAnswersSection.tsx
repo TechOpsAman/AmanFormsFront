@@ -1,20 +1,23 @@
 import "./QuestionsAndPossibleAnswersSection.scss";
 import { Card } from "@material-ui/core";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IQuestion, QuestionType } from "../../../../interfaces/iQuestion";
 import { IAnswer } from "../../../../interfaces/iAnswer";
 import CheckboxAnswer from "./CheckboxAnswer/CheckboxAnswer";
 import RadioAnswer from "./RadioAnswer/RadioAnswer";
 import DisplayOptions from "./DisplayOptions/DisplayOptions";
+import { chosenQuestionContext } from "../../../../contexts/chosenQuestionContext";
 
 function QuestionsAndPossibleAnswersSection({
   questionList,
 }: {
   questionList: IQuestion[];
 }) {
-  const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
-    questionList[questionList.length - 1]
-  );
+  // const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
+  //   questionList[questionList.length - 1]
+  // );
+
+  let chosenQuestion = useContext(chosenQuestionContext);
 
   const [areAnswersDisplayed, setAreAnswersDisplayed] =
     useState<boolean>(false);

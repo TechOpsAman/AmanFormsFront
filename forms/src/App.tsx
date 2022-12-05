@@ -2,8 +2,6 @@ import "./App.css";
 import { useState } from "react";
 import { IQuestion, QuestionType } from "./interfaces/iQuestion";
 import { Route, Routes } from "react-router-dom";
-import QuestionsAndPossibleAnswersSection from "./pages/questionPage/components/QuestionsAndPossibleAnswersSection/QuestionsAndPossibleAnswersSection";
-import QuestionChoosingSection from "./pages/questionPage/components/QuestionChoosingSection/QuestionChoosingSection";
 import CommentsQuestionPage from "./pages/questionPage/CommentsQuesionPage";
 
 function App() {
@@ -37,16 +35,6 @@ function App() {
   return (
     <div className="comments-question-page-container">
       <Routes>
-        <Route
-          path="/2"
-          element={
-            <QuestionsAndPossibleAnswersSection questionList={questionList} />
-          }
-        />
-        <Route
-          path="/1"
-          element={<QuestionChoosingSection questionList={questionList} />}
-        />
         <Route
           path="/"
           element={<CommentsQuestionPage questionList={questionList} />}
