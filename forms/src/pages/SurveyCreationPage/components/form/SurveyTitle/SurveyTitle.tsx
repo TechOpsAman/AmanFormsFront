@@ -1,13 +1,16 @@
 import "./SurveyTitle.scss";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { updateSurvey } from "../../../../../data/axios/questionsService";
 
 function SurveyTitle({
   surveyName,
   surveyDescription,
+  surveyId,
 }: {
   surveyName: string;
   surveyDescription: string;
+  surveyId: string;
 }) {
   const { t } = useTranslation();
 
@@ -29,6 +32,7 @@ function SurveyTitle({
         value={newSurveyName}
         onChange={(e) => {
           setNewSurveyName(e.target.value);
+          updateSurvey(surveyId, (surveyName = e.target.value));
         }}
       />
       <input
@@ -37,6 +41,11 @@ function SurveyTitle({
         value={newSurveyDescription}
         onChange={(e) => {
           setNewSurveyDescription(e.target.value);
+          updateSurvey(
+            surveyId,
+            (surveyName = newSurveyName),
+            (surveyDescription = e.target.value)
+          );
         }}
       />
     </div>

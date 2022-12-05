@@ -22,7 +22,7 @@ export default function HomePage() {
 
   const [surveys, setSurveys] = useState<iSurvey[]>([]);
 
-  const [currSurveys, setCurrSurveys] = useState<iSurvey[]>(surveys);
+  const [currSurveys, setCurrSurveys] = useState<any[]>(surveys);
 
   const filterSurveys = (filter: any): void => {
     if (filter.length === 0) setCurrSurveys(surveys);
@@ -164,7 +164,7 @@ export default function HomePage() {
                   color="text.secondary"
                   sx={{ textAlign: "right" }}
                 >
-                  פתחתי לאחרונה 9 בנוב׳ 2022
+                  {survey.createdAt}
                 </Typography>
               </CardContent>
             </Card>

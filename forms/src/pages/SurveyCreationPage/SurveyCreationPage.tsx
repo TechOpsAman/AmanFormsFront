@@ -7,6 +7,7 @@ import { iQuestion, QuestionType } from "../../interfaces/iQuestion";
 import { sectionsContext } from "../../context/sectionsContext";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { getById, updateContent, updateSurvey } from "../../data/axios/questionsService";
 
 function SurveyCreationPage() {
   const location = useLocation();
@@ -14,26 +15,25 @@ function SurveyCreationPage() {
   const [render, setRender] = useState(false);
   const [addQuestionorTitle, setAddQuestionorTitle] = useState<boolean[]>([]);
 
-  const [sections, setSections] = useState<iQuestion[]>([
-    {
-      questionName: t("newQuestion") as string,
-      questionType: QuestionType.radio,
-      answers: [],
-      required: true,
-    },
-  ]);
+  const [sections, setSections] = useState<iQuestion[]>([]);
+
+  const swapContent = async (temp: iQuestion[]) => {
+    updateContent(location.state.survey.id, temp);
+    const newSurvey = await getById(location.state.survey.id);
+    setSections(newSurvey.content);
+  }
 
   const addSection = (questionIndex: number) => {
     const temp = sections;
-    const recordedItems = temp.splice(questionIndex, 1);
+    const recordedItems: any[] = temp.splice(questionIndex, 1);
     recordedItems.push({
       questionName: t("newQuestion") as string,
-      questionType: QuestionType.radio,
+      questionType: QuestionType.radio as string,
       answers: [],
       required: true,
     });
     temp.splice(questionIndex, 0, ...recordedItems);
-    setSections(temp);
+    swapContent(temp);
     setRender(!render);
   };
 
@@ -47,11 +47,11 @@ function SurveyCreationPage() {
       required: false,
     });
     temp.splice(questionIndex, 0, ...recordedItems);
-    setSections(temp);
+    swapContent(temp);
     setRender(!render);
   };
 
-  const addSectionWithParams = (
+  const addSectionWithParams = async (
     section: iQuestion,
     questionIndex: number,
     isSwitch: boolean
@@ -65,7 +65,7 @@ function SurveyCreationPage() {
       required: isSwitch,
     });
     temp.splice(questionIndex, 0, ...recordedItems);
-    setSections(temp);
+    swapContent(temp);
     setRender(!render);
   };
 
@@ -74,7 +74,7 @@ function SurveyCreationPage() {
     const recordedItems = temp.splice(questionIndex, 1);
     recordedItems.pop();
     temp.splice(questionIndex, 0, ...recordedItems);
-    setSections(temp);
+    swapContent(temp);
     setRender(!render);
   };
 
@@ -83,14 +83,31 @@ function SurveyCreationPage() {
     const items = sections;
     const [recordedItems] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, recordedItems);
-    setSections(items);
+    swapContent(items);
   };
 
   useEffect(() => {
-    if (location.state?.survey.content.length > 0) {
-      setSections(location.state.survey.content);
-    }
-  }, [location.state.survey.content, render]);
+    const getSurvey = async () => {
+      const currSurvey = await getById(location.state.survey.id);
+      if (currSurvey.content.length > 0) {
+        setSections(currSurvey.content);
+      } else {
+        const tempSections = [
+          {
+            questionName: t("newQuestion") as string,
+            questionType: QuestionType.radio,
+            answers: [],
+            required: true,
+          }, 
+        ];
+
+        await updateSurvey(location.state.survey.id, "", "", tempSections);
+        const newSurvey = await getById(location.state.survey.id);
+        setSections(newSurvey.content);
+      }
+    };
+    getSurvey();
+  }, [location, render, t]);
 
   return (
     <div className="survey-creation-page-container">
@@ -99,6 +116,7 @@ function SurveyCreationPage() {
           <SurveyTitle
             surveyName={location.state.survey.surveyName}
             surveyDescription={location.state.survey.surveyDescription}
+            surveyId={location.state.survey.id}
           />
         </div>
         <div className="survey-creation-page-section-container">
