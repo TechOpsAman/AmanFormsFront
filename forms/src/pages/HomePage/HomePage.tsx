@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useTranslation } from "react-i18next";
-import { getAll } from "../../data/axios/questionsService";
+import { getAll, postSurvey } from "../../data/axios/questionsService";
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -40,15 +40,16 @@ export default function HomePage() {
     });
   };
 
-  const handleAddSurvey = () => {
-    const newSurvey = {
+  const handleAddSurvey = async () => {
+    const newSurvey = await postSurvey({
       id: "123456123456123456123456",
       creatorId: "123456123456123456123456",
-      surveyName: "",
+      surveyName: t("newSurvey"),
       content: [],
-      surveyDescription: "",
-    };
-    surveys.push(newSurvey); //add survey to backend effect
+      surveyDescription: t("surveyDescription"),
+    });
+    console.log(newSurvey);
+    await surveys.push(newSurvey);
     navigate("/createSurvey", {
       state: {
         survey: newSurvey,
@@ -60,7 +61,7 @@ export default function HomePage() {
     const getSurveys = async () => {
       const groups = (await getAll()) || [];
       setSurveys(groups);
-      setCurrSurveys(groups)
+      setCurrSurveys(groups);
     };
 
     getSurveys();
@@ -119,58 +120,58 @@ export default function HomePage() {
           {t("lastSurveys")}
         </Box>
       </Box>
-      
-        <Box
-          sx={{
-            display: "flex",
-            gap: "20px",
-            flexWrap: "wrap",
-            justifyContent: "right",
-            mx: 10,
-          }}
-        >
-          {currSurveys.map((survey, index) => {
-            return (
-              <Card
-                key={index}
-                sx={{
-                  width: 200,
-                  minHeight: 250,
-                  boxShadow: 4,
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  handleCardClick(survey);
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={pic}
-                  alt="green iguana"
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                    sx={{ textAlign: "center" }}
-                  >
-                    {survey.surveyName}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ textAlign: "right" }}
-                  >
-                    פתחתי לאחרונה 9 בנוב׳ 2022
-                  </Typography>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </Box>
-      
+
+      <Box
+        sx={{
+          display: "flex",
+          gap: "20px",
+          flexWrap: "wrap",
+          justifyContent: "right",
+          mx: 10,
+        }}
+      >
+        {currSurveys.map((survey, index) => {
+          return (
+            <Card
+              key={index}
+              sx={{
+                width: 200,
+                minHeight: 250,
+                boxShadow: 4,
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                handleCardClick(survey);
+              }}
+            >
+              <CardMedia
+                component="img"
+                height="140"
+                image={pic}
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{ textAlign: "center" }}
+                >
+                  {survey.surveyName}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ textAlign: "right" }}
+                >
+                  פתחתי לאחרונה 9 בנוב׳ 2022
+                </Typography>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </Box>
+
       <IconButton
         sx={{
           boxShadow: 7,

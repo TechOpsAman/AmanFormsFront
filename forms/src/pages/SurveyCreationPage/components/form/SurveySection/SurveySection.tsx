@@ -43,7 +43,7 @@ function SurveySection({
   const label = { inputProps: { "aria-label": "must" } };
   const { t } = useTranslation();
 
-  let isSwitch = section.mustAnswer;
+  let isSwitch = section.required;
   const [questionType, setQuestionType] = useState(section.questionType);
   const [questionName, setQuestionName] = useState(section.questionName);
   const [answers, setAnswers] = useState(section.answers);
@@ -72,8 +72,8 @@ function SurveySection({
     setQuestionType(newType);
   };
 
-  const handleMustAnswerChange = () => {
-    sections[questionIndex].mustAnswer = !sections[questionIndex].mustAnswer;
+  const handlerequiredChange = () => {
+    sections[questionIndex].required = !sections[questionIndex].required;
     isSwitch = !isSwitch;
     setRender(!render);
   };
@@ -144,13 +144,13 @@ function SurveySection({
                 <div className="switch">
                   <Switch
                     {...label}
-                    onChange={handleMustAnswerChange}
+                    onChange={handlerequiredChange}
                     size="medium"
                     checked={isSwitch}
                   />
                 </div>
                 <div className="bottom-container-must">
-                  <span>{t("mustAnswer")}</span>
+                  <span>{t("required")}</span>
                 </div>
                 <div className="bottom-container-icons">
                   <DeleteForeverOutlinedIcon

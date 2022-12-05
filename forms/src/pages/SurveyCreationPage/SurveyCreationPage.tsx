@@ -19,7 +19,7 @@ function SurveyCreationPage() {
       questionName: t("newQuestion") as string,
       questionType: QuestionType.radio,
       answers: [],
-      mustAnswer: true,
+      required: true,
     },
   ]);
 
@@ -30,7 +30,7 @@ function SurveyCreationPage() {
       questionName: t("newQuestion") as string,
       questionType: QuestionType.radio,
       answers: [],
-      mustAnswer: true,
+      required: true,
     });
     temp.splice(questionIndex, 0, ...recordedItems);
     setSections(temp);
@@ -44,7 +44,7 @@ function SurveyCreationPage() {
       questionName: t("newTitle") as string,
       questionType: QuestionType.title,
       answers: [],
-      mustAnswer: false,
+      required: false,
     });
     temp.splice(questionIndex, 0, ...recordedItems);
     setSections(temp);
@@ -62,7 +62,7 @@ function SurveyCreationPage() {
       questionName: section.questionName,
       questionType: section.questionType,
       answers: section.answers,
-      mustAnswer: isSwitch,
+      required: isSwitch,
     });
     temp.splice(questionIndex, 0, ...recordedItems);
     setSections(temp);
@@ -87,15 +87,19 @@ function SurveyCreationPage() {
   };
 
   useEffect(() => {
-    if (location.state.survey.content.length > 0)
+    if (location.state?.survey.content.length > 0) {
       setSections(location.state.survey.content);
+    }
   }, [location.state.survey.content, render]);
 
   return (
     <div className="survey-creation-page-container">
       <div className="survey-creation-page-container-without-plus_svg">
         <div className="survey-creation-page-title-container">
-          <SurveyTitle surveyName={location.state.survey.surveyName} surveyDescription={location.state.survey.surveyDescription} />
+          <SurveyTitle
+            surveyName={location.state.survey.surveyName}
+            surveyDescription={location.state.survey.surveyDescription}
+          />
         </div>
         <div className="survey-creation-page-section-container">
           <DragDropContext onDragEnd={handleDrag}>
