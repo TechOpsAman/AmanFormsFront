@@ -11,10 +11,6 @@ function QuestionChoosingSection({
 }: {
   questionList: IQuestion[];
 }) {
-  // const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
-  //   questionList[questionList.length - 1]
-  // );
-
   let chosenQuestion = useContext(chosenQuestionContext);
 
   return (

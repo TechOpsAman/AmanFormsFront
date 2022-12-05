@@ -2,14 +2,16 @@
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IQuestion } from "../../../../../interfaces/iQuestion";
+import { chosenQuestionContext } from "../../../../../contexts/chosenQuestionContext";
 
 function QuestionChoosingByNameSection({
   questionList,
 }: {
   questionList: IQuestion[];
 }) {
+  // let chosenQuestion = useContext(chosenQuestionContext);
   const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
     questionList[questionList.length - 1]
   );
@@ -31,7 +33,7 @@ function QuestionChoosingByNameSection({
         inputProps={{ "aria-label": "Without label" }}
       >
         {questionList
-          ? questionList.map((question: IQuestion, index:number) => (
+          ? questionList.map((question: IQuestion, index: number) => (
               <MenuItem value={question.questionName} key={index}>
                 {question.questionName}
               </MenuItem>
