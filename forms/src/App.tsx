@@ -23,7 +23,7 @@ function App() {
     {
       id: "654321654321654321654321",
       questionName: "boolean",
-      questionType: QuestionType.shortAnswer,
+      questionType: QuestionType.checkbox,
       answers: [
         { answer: "xaddadas" },
         { answer: "xaddadas" },

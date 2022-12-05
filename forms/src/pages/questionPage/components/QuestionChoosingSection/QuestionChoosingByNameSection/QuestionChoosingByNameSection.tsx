@@ -31,8 +31,8 @@ function QuestionChoosingByNameSection({
         inputProps={{ "aria-label": "Without label" }}
       >
         {questionList
-          ? questionList.map((question: IQuestion) => (
-              <MenuItem value={question.questionName}>
+          ? questionList.map((question: IQuestion, index:number) => (
+              <MenuItem value={question.questionName} key={index}>
                 {question.questionName}
               </MenuItem>
             ))

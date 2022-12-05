@@ -19,24 +19,6 @@ function QuestionsAndPossibleAnswersSection({
   const [areAnswersDisplayed, setAreAnswersDisplayed] =
     useState<boolean>(false);
 
-  // const returnListOfSpecificQuestionType = ( // TODO: ask daniel how to pass props of a component in a function!!!
-  //   chosenQuestion: IQuestion,
-  //   answerComponent: JSX.Element,
-  //   prop: React.ReactNode
-  // ): JSX.Element => {
-  //   return (
-  //     <div>
-  //       <ul>
-  //         {chosenQuestion.answers?.map((answer: IAnswer) => (
-  //           <li>
-  //             <answerComponent prop={answer}></answerComponent>
-  //           </li>
-  //         ))}
-  //       </ul>
-  //     </div>
-  //   );
-  // };
-
   const returnFullSection = (chosenQuestion: IQuestion): JSX.Element => {
     switch (chosenQuestion.questionType) {
       case QuestionType.radio:
@@ -50,9 +32,17 @@ function QuestionsAndPossibleAnswersSection({
                 areAnswersDisplayed={areAnswersDisplayed}
                 setAreAnswersDisplayed={setAreAnswersDisplayed}
               ></DisplayOptions>
-              {areAnswersDisplayed
-                ? getPossibleAnswersList(chosenQuestion)
-                : null}
+              {areAnswersDisplayed ? (
+                <div>
+                  <ul>
+                    {chosenQuestion.answers?.map(
+                      (answer: IAnswer, index: number) => (
+                        <li key={index}>{getPossibleAnswersList(answer)}</li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              ) : null}
             </div>
           </Card>
         );
@@ -72,44 +62,17 @@ function QuestionsAndPossibleAnswersSection({
     }
   };
 
-  const getPossibleAnswersList = (
-    chosenQuestion: IQuestion
-  ): JSX.Element | undefined => {
+  const getPossibleAnswersList = (answer: IAnswer): JSX.Element | undefined => {
     switch (chosenQuestion.questionType) {
       case QuestionType.checkbox:
-        return (
-          <div>
-            <ul>
-              {chosenQuestion.answers?.map((answer: IAnswer) => (
-                <li>
-                  <CheckboxAnswer checkboxAnswer={answer}></CheckboxAnswer>
-                </li>
-              ))}
-            </ul>
-          </div>
-        );
+        return <CheckboxAnswer checkboxAnswer={answer}></CheckboxAnswer>;
+
       case QuestionType.radio:
-        return (
-          <div>
-            <ul>
-              {chosenQuestion.answers?.map((answer: IAnswer) => (
-                <li>
-                  <RadioAnswer radioAnswer={answer}></RadioAnswer>
-                </li>
-              ))}
-            </ul>
-          </div>
-        );
+        return <RadioAnswer radioAnswer={answer}></RadioAnswer>;
       case QuestionType.select:
         return (
           <div>
-            <ul>
-              {chosenQuestion.answers?.map((answer: IAnswer) => (
-                <li>
-                  {answer.answer} .{chosenQuestion.answers?.indexOf(answer)}
-                </li>
-              ))}
-            </ul>
+            {answer.answer} .{chosenQuestion.answers?.indexOf(answer)}
           </div>
         );
     }
