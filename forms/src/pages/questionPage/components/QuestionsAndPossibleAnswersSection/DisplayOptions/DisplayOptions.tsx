@@ -1,39 +1,50 @@
 import "./DisplayOptions.scss";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Card, IconButton } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import { useState } from "react";
 import { IQuestion } from "../../../../../interfaces/iQuestion";
 
-function DisplayOptions({ questionList }: { questionList: IQuestion[] }) {
+function DisplayOptions({
+  questionList,
+  areAnswersDisplayed,
+  setAreAnswersDisplayed,
+}: {
+  questionList: IQuestion[];
+  areAnswersDisplayed: boolean;
+  setAreAnswersDisplayed: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
     questionList[questionList.length - 1]
   );
-
-  const [areAnswersDisplayed, setAreAnswersDisplayed] =
-    useState<boolean>(false);
 
   const changeDisplayState = () => {
     setAreAnswersDisplayed(!areAnswersDisplayed);
   };
 
   return (
-    <Card className="display-options-container">
+    <div className="display-options-container">
       <IconButton onClick={changeDisplayState}>
         {!areAnswersDisplayed ? (
           <>
-            <KeyboardArrowDownIcon fontSize="small"></KeyboardArrowDownIcon>
+            <KeyboardArrowDownIcon
+              fontSize="small"
+              style={{ color: "blue" }}
+            ></KeyboardArrowDownIcon>
             <span className="display-options-text">אפשרויות תצוגה</span>
           </>
         ) : (
           <>
-            <KeyboardArrowUpIcon fontSize="small"></KeyboardArrowUpIcon>
+            <KeyboardArrowUpIcon
+              fontSize="small"
+              style={{ color: "blue" }}
+            ></KeyboardArrowUpIcon>
             <span className="display-options-text">הסתרת אפשרויות</span>
           </>
         )}
       </IconButton>
       <span className="question-name">{chosenQuestion.questionName}</span>
-    </Card>
+    </div>
   );
 }
 

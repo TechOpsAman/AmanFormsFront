@@ -4,7 +4,7 @@ import { IQuestion, QuestionType } from "./interfaces/iQuestion";
 import { Route, Routes } from "react-router-dom";
 import QuestionChoosingByIndexSection from "./pages/questionPage/components/QuestionChoosingSection/QuestionChoosingByIndexSection/QuestionChoosingByIndexSection";
 import QuestionChoosingByNameSection from "./pages/questionPage/components/QuestionChoosingSection/QuestionChoosingByNameSection/QuestionChoosingByNameSection";
-import DisplayOptions from "./pages/questionPage/components/QuestionsAndPossibleAnswersSection/DisplayOptions/DisplayOptions";
+import QuestionsAndPossibleAnswersSection from "./pages/questionPage/components/QuestionsAndPossibleAnswersSection/QuestionsAndPossibleAnswersSection";
 
 function App() {
   const [questionList, setQuestionList] = useState<IQuestion[]>([
@@ -12,7 +12,11 @@ function App() {
       id: "123456123456123456123456",
       questionName: "string",
       questionType: QuestionType.select,
-      answers: [],
+      answers: [
+        { answer: "xaddadas" },
+        { answer: "xaddadas" },
+        { answer: "xaddadas" },
+      ],
       selectedAnswers: [],
       mustAnswer: true,
     },
@@ -20,7 +24,11 @@ function App() {
       id: "654321654321654321654321",
       questionName: "boolean",
       questionType: QuestionType.select,
-      answers: [],
+      answers: [
+        { answer: "xaddadas" },
+        { answer: "xaddadas" },
+        { answer: "xaddadas" },
+      ],
       selectedAnswers: [],
       mustAnswer: false,
     },
@@ -43,7 +51,9 @@ function App() {
         />
         <Route
           path="/2"
-          element={<DisplayOptions questionList={questionList} />}
+          element={
+            <QuestionsAndPossibleAnswersSection questionList={questionList} />
+          }
         />
       </Routes>
     </div>

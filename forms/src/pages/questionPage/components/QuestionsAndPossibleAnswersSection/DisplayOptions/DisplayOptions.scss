@@ -1,16 +1,17 @@
 .display-options-container {
   height: 10%;
-  width: 80%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .question-name {
-  font-size: small;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .display-options-text {
   font-size: small;
-  color: black;
+  color: blue;
 }

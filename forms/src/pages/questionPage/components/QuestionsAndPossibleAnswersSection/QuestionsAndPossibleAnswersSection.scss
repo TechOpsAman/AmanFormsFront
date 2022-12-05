@@ -1,4 +1,40 @@
+.main-container {
+  height: auto;
+  width: 90%;
+  margin-top: 2rem;
+}
+
+.questions-and-possible-answers-container {
+  display: block;
+  height: inherit;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding-top: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.display-button-and-title {
+  width: 100%;
+  padding: 1rem;
+}
+
 .question-name {
   font-size: large;
   color: black;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin-top: 10%;
+}
+
+li {
+  align-self: flex-end;
+  padding-bottom: 1rem;
 }
