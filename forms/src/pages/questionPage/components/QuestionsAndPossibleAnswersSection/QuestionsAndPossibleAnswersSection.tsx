@@ -62,7 +62,11 @@ function QuestionsAndPossibleAnswersSection({
       case QuestionType.title:
         return (
           <Card className="questions-and-possible-answers-container">
-            <span className="question-name">{chosenQuestion.questionName}</span>
+            <div className="only-title">
+              <span className="question-name">
+                {chosenQuestion.questionName}
+              </span>
+            </div>
           </Card>
         );
     }
@@ -112,7 +116,9 @@ function QuestionsAndPossibleAnswersSection({
   };
 
   return (
-    <div className="main-container">{returnFullSection(chosenQuestion)}</div>
+    <div className="questions-and-possible-answers-section-main">
+      {returnFullSection(chosenQuestion)}
+    </div>
   );
 }
 
