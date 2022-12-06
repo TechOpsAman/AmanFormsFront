@@ -19,8 +19,6 @@ function SurveyCreationPage() {
 
   const swapContent = async (temp: iQuestion[]) => {
     updateContent(location.state.survey.id, temp);
-    const newSurvey = await getById(location.state.survey.id);
-    setSections(newSurvey.content);
   }
 
   const addSection = (questionIndex: number) => {

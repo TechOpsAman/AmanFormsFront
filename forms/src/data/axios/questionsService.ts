@@ -24,7 +24,6 @@ export const getById = async (surveyId: string) => {
 };
 
 export const updateContent = async (surveyId: string, content: iQuestion[]) => {
-  console.log(content);
   return axios
     .put(
       `${config.questionsService.questionsCrudConnectionString}/updateContent`,

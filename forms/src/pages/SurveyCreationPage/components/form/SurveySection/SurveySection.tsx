@@ -13,6 +13,8 @@ import CopyAllIcon from "@mui/icons-material/CopyAll";
 import Switch from "@mui/material/Switch";
 import AddCircleOutlineTwoToneIcon from "@mui/icons-material/AddCircleOutlineTwoTone";
 import TextFieldsTwoToneIcon from "@mui/icons-material/TextFieldsTwoTone";
+import { useLocation } from "react-router-dom";
+import { updateContent } from "../../../../../data/axios/questionsService";
 
 function SurveySection({
   section,
@@ -47,10 +49,12 @@ function SurveySection({
   const [questionType, setQuestionType] = useState(section.questionType);
   const [questionName, setQuestionName] = useState(section.questionName);
   const [answers, setAnswers] = useState(section.answers);
+  const location = useLocation();
 
   const handleQuestionNameCallBack = (e: ChangeEvent<HTMLInputElement>) => {
     setQuestionName(e.target.value);
     sections[questionIndex].questionName = e.target.value;
+    updateContent(location.state.survey.id, sections);
   };
 
   const handleAddAnswer = () => {
@@ -59,22 +63,31 @@ function SurveySection({
       { answer: "" },
     ];
     setAnswers([...(answers as iAnswer[]), { answer: "" }]);
+    updateContent(location.state.survey.id, sections);
   };
 
   const handleRemoveAnswer = (answerIndex: number) => {
+    sections[questionIndex].answers = [
+      ...(answers as iAnswer[]).slice(0, answerIndex),
+      ...(answers as iAnswer[]).slice(answerIndex + 1),
+    ];
     setAnswers([
       ...(answers as iAnswer[]).slice(0, answerIndex),
       ...(answers as iAnswer[]).slice(answerIndex + 1),
     ]);
+    updateContent(location.state.survey.id, sections);
   };
 
   const handleQuestionTypeChange = (newType: QuestionType) => {
     setQuestionType(newType);
+    sections[questionIndex].questionType = newType;
+    updateContent(location.state.survey.id, sections);
   };
 
   const handlerequiredChange = () => {
     sections[questionIndex].required = !sections[questionIndex].required;
     isSwitch = !isSwitch;
+    updateContent(location.state.survey.id, sections);
     setRender(!render);
   };
 

@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { iAnswer } from "../../../../../../interfaces/iAnswer";
 import Checkbox from "@mui/material/Checkbox";
 import { sectionsContext } from "../../../../../../context/sectionsContext";
+import { updateContent } from "../../../../../../data/axios/questionsService";
+import { useLocation } from "react-router-dom";
 
 function CheckBoxAnswer({
   answer,
@@ -16,6 +18,7 @@ function CheckBoxAnswer({
 }) {
   const sections = useContext(sectionsContext);
 
+  const location = useLocation();
   const { t } = useTranslation();
   const [newAnswer, setNewAnswer] = useState(answer.answer);
 
@@ -37,6 +40,7 @@ function CheckBoxAnswer({
             const temp = sections[questionIndex].answers as iAnswer[];
             temp[index].answer = e.target.value;
             sections[questionIndex].answers = temp;
+            updateContent(location.state.survey.id, sections);
           }}
         />
       </div>
