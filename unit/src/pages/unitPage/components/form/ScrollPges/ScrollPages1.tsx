@@ -5,7 +5,7 @@ import "./ScrollPages.scss";
 import { iSurveyQuestions } from "../../../../../interfaces/iSurveyQuestions";
 import { useState } from "react";
 import { Box, TextField } from "@material-ui/core";
-import AnswerType from "../AnswerType/AnswerType";
+import QuestionName from "../QuestionName/QuestionName";
 import { iSurvey } from "../../../../../interfaces/iSurvey";
 
 function ScrollPages({
@@ -62,13 +62,13 @@ function ScrollPages({
 
       <Box className="survey-answer-unit_questions_and_answers">
         {changePage ? (
-          <AnswerType
+          <QuestionName
             questionsAndAnswers={questionsAndAnswers as iSurveyQuestions[]}
             survey={survey as iSurvey}
             currPage={(currPage - 1) as number}
           />
         ) : (
-          <AnswerType
+          <QuestionName
             questionsAndAnswers={questionsAndAnswers as iSurveyQuestions[]}
             survey={survey as iSurvey}
             currPage={0}

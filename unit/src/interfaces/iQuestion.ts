@@ -1,6 +1,8 @@
 export interface Question {
   id: string;
   questionId: string;
+  questionName: string,
+  questionType: string,
   required: boolean;
   createdAt: string;
   answers?: Array<String>;
