@@ -1,5 +1,5 @@
 export interface Question {
-  id?: string;
+  id: string;
   questionId: string;
   required: boolean;
   createdAt: string;
