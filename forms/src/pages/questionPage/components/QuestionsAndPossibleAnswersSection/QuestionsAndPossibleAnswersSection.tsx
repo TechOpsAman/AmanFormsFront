@@ -1,8 +1,8 @@
 import "./QuestionsAndPossibleAnswersSection.scss";
 import { Card } from "@material-ui/core";
 import { useState } from "react";
-import { IQuestion, QuestionType } from "../../../../interfaces/iQuestion";
-import { IAnswer } from "../../../../interfaces/iAnswer";
+import { IQuestion, QuestionType } from "../../../../interfaces/questions/iQuestion";
+import { IAnswer } from "../../../../interfaces/questions/iAnswer";
 import CheckboxAnswer from "./CheckboxAnswer/CheckboxAnswer";
 import RadioAnswer from "./RadioAnswer/RadioAnswer";
 import DisplayOptions from "./DisplayOptions/DisplayOptions";

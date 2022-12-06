@@ -2,7 +2,7 @@ import "./QuestionChoosingByIndexSection.scss";
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { IQuestion } from "../../../../../interfaces/iQuestion";
+import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
 
 function QuestionChoosingByIndexSection({
   questionList,

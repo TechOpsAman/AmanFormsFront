@@ -1,6 +1,6 @@
 import "./QuestionChoosingSection.scss";
 import { Card } from "@material-ui/core";
-import { IQuestion } from "../../../../interfaces/iQuestion";
+import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import QuestionChoosingByIndexSection from "./QuestionChoosingByIndexSection/QuestionChoosingByIndexSection";
 import QuestionChoosingByNameSection from "./QuestionChoosingByNameSection/QuestionChoosingByNameSection";
 

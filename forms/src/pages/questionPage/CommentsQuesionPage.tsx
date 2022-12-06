@@ -1,5 +1,5 @@
 import "./CommentsQuesionPage.scss";
-import { IQuestion } from "../../interfaces/iQuestion";
+import { IQuestion } from "../../interfaces/questions/iQuestion";
 import { useState } from "react";
 import QuestionChoosingSection from "./components/QuestionChoosingSection/QuestionChoosingSection";
 import QuestionsAndPossibleAnswersSection from "./components/QuestionsAndPossibleAnswersSection/QuestionsAndPossibleAnswersSection";

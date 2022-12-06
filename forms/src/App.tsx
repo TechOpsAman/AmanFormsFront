@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import { IQuestion, QuestionType } from "./interfaces/iQuestion";
+import { IQuestion, QuestionType } from "./interfaces/questions/iQuestion";
 import { Route, Routes } from "react-router-dom";
 import CommentsQuestionPage from "./pages/questionPage/CommentsQuesionPage";
 
@@ -10,25 +10,23 @@ function App() {
       id: "123456123456123456123456",
       questionName: "string",
       questionType: QuestionType.radio,
+      required: true,
       answers: [
         { answer: "xaddadas" },
         { answer: "xaddadas" },
         { answer: "xaddadas" },
       ],
-      selectedAnswers: [],
-      mustAnswer: true,
     },
     {
       id: "654321654321654321654321",
       questionName: "boolean",
       questionType: QuestionType.checkbox,
+      required: true,
       answers: [
         { answer: "11111" },
         { answer: "111111" },
         { answer: "111111" },
       ],
-      selectedAnswers: [],
-      mustAnswer: false,
     },
   ]); // TODO: change to [] (empty array) and get date from DB.
 

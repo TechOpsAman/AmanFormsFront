@@ -4,9 +4,8 @@ export interface IQuestion {
   id?: string;
   questionName: string;
   questionType: QuestionType;
+  required: boolean;
   answers?: Array<IAnswer>;
-  selectedAnswers?: Array<IAnswer>;
-  mustAnswer?: boolean;
 }
 
 export enum QuestionType {

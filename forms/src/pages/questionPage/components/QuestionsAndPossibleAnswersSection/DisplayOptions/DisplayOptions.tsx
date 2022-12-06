@@ -2,7 +2,7 @@ import "./DisplayOptions.scss";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { IconButton } from "@material-ui/core";
-import { IQuestion } from "../../../../../interfaces/iQuestion";
+import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
 
 function DisplayOptions({
   questionList,
