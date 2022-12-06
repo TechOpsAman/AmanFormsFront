@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ArticleIcon from "@mui/icons-material/Article";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import pic from "../../assets/profilePic.png";
+import logo from "../../assets/whiteforms.png";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
@@ -51,33 +52,14 @@ export function Navbar({
   };
 
   return (
-    <Box sx={{ bgcolor: "secondary.main" }}>
+    <Box sx={{ bgcolor: "secondary.main" }} width='100%' minWidth='90rem'>
       <AppBar
         position="sticky"
         sx={{ borderBottomRightRadius: "30px", borderBottomLeftRadius: "30px" }}
       >
         <Container>
           <Toolbar disableGutters>
-            <ArticleIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              AMAN FORMS
-            </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 1,  }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -103,7 +85,7 @@ export function Navbar({
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: "block",
                 }}
               >
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -117,15 +99,13 @@ export function Navbar({
                 </MenuItem>
               </Menu>
             </Box>
-            <ArticleIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <ArticleIcon sx={{ mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
               component="a"
               href=""
               sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
                 flexGrow: 1,
                 fontFamily: "monospace",
                 fontWeight: 700,
@@ -136,18 +116,6 @@ export function Navbar({
             >
               AMAN FORMS
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {location.pathname === "/createSurvey" && (
-                <Tooltip title={t("firstShow")} placement="right" arrow>
-                  <IconButton
-                    onClick={handleCloseNavMenu}
-                    sx={{ mt: 0.6, color: "white", display: "block" }}
-                  >
-                    <VisibilityIcon />
-                  </IconButton>
-                </Tooltip>
-              )}
-            </Box>
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">

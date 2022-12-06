@@ -29,7 +29,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Navbar {...user} />
-      <Box sx={{ bgcolor: "secondary.main", minHeight: "93vh" }}>
+      <Box sx={{ bgcolor: "secondary.main", minHeight: "93vh", minWidth: "90rem" }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route

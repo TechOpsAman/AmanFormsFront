@@ -26,6 +26,7 @@ const resources = {
       searchSurveys: 'seach surveys',
       lastSurveys: 'last surveys',
       lastOpened: 'last opened',
+      atTime: 'at',
     },
   },
   he: {
@@ -48,7 +49,8 @@ const resources = {
       firstShow: "תצוגה מקדימה",
       searchSurveys: 'חיפוש סקרים',
       lastSurveys: 'סקרים אחרונים',
-      lastOpened: 'נפתח לאחרונה',
+      lastOpened: 'נפתח לאחרונה ב',
+      atTime: 'בשעה',
     },
   },
 };

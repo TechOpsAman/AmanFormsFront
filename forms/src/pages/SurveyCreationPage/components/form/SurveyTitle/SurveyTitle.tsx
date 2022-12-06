@@ -28,6 +28,7 @@ function SurveyTitle({
     <div className="survey-title-container">
       <input
         type="text"
+        maxLength={25}
         className="survey-title-text-input_survey_name"
         value={newSurveyName}
         onChange={(e) => {
