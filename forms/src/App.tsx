@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IQuestion, QuestionType } from "./interfaces/questions/iQuestion";
 import { Route, Routes } from "react-router-dom";
 import CommentsQuestionPage from "./pages/questionPage/CommentsQuesionPage";
+import { ISurvey } from "./interfaces/answers/iSurvey";
 
 function App() {
   const [questionList, setQuestionList] = useState<IQuestion[]>([
@@ -29,6 +30,13 @@ function App() {
       ],
     },
   ]); // TODO: change to [] (empty array) and get date from DB.
+
+  // TODO: add fictional values in order to check UI!!!
+  //                                                 ||
+  //                                                 ||
+  //                                                \  /
+  //                                                 \/
+  const [answerList, setAnswerList] = useState<ISurvey[]>([]); // TODO: change to [] (empty array) and get date from DB.
 
   return (
     <div className="comments-question-page-container">
