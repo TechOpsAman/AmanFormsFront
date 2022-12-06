@@ -2,20 +2,17 @@
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { useContext, useState } from "react";
 import { IQuestion } from "../../../../../interfaces/iQuestion";
-import { chosenQuestionContext } from "../../../../../contexts/chosenQuestionContext";
 
 function QuestionChoosingByNameSection({
   questionList,
+  chosenQuestion,
+  setChosenQuestion,
 }: {
   questionList: IQuestion[];
+  chosenQuestion: IQuestion;
+  setChosenQuestion: React.Dispatch<React.SetStateAction<IQuestion>>;
 }) {
-  // let chosenQuestion = useContext(chosenQuestionContext);
-  const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
-    questionList[questionList.length - 1]
-  );
-
   const handleChange = (event: SelectChangeEvent) => {
     setChosenQuestion(
       questionList.find(

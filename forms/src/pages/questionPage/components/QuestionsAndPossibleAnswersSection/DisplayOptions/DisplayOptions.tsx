@@ -2,22 +2,19 @@ import "./DisplayOptions.scss";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { IconButton } from "@material-ui/core";
-import { useState } from "react";
 import { IQuestion } from "../../../../../interfaces/iQuestion";
 
 function DisplayOptions({
   questionList,
   areAnswersDisplayed,
   setAreAnswersDisplayed,
+  chosenQuestion,
 }: {
   questionList: IQuestion[];
   areAnswersDisplayed: boolean;
   setAreAnswersDisplayed: React.Dispatch<React.SetStateAction<boolean>>;
+  chosenQuestion: IQuestion;
 }) {
-  const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
-    questionList[questionList.length - 1]
-  );
-
   const changeDisplayState = () => {
     setAreAnswersDisplayed(!areAnswersDisplayed);
   };

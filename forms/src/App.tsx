@@ -21,11 +21,11 @@ function App() {
     {
       id: "654321654321654321654321",
       questionName: "boolean",
-      questionType: QuestionType.radio,
+      questionType: QuestionType.checkbox,
       answers: [
-        { answer: "xaddadas" },
-        { answer: "xaddadas" },
-        { answer: "xaddadas" },
+        { answer: "11111" },
+        { answer: "111111" },
+        { answer: "111111" },
       ],
       selectedAnswers: [],
       mustAnswer: false,

@@ -2,20 +2,17 @@ import "./QuestionChoosingByIndexSection.scss";
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { useContext, useState } from "react";
 import { IQuestion } from "../../../../../interfaces/iQuestion";
-import { chosenQuestionContext } from "../../../../../contexts/chosenQuestionContext";
 
 function QuestionChoosingByIndexSection({
   questionList,
+  chosenQuestion,
+  setChosenQuestion,
 }: {
   questionList: IQuestion[];
+  chosenQuestion: IQuestion;
+  setChosenQuestion: React.Dispatch<React.SetStateAction<IQuestion>>;
 }) {
-  // let chosenQuestion = useContext(chosenQuestionContext);
-  const [chosenQuestion, setChosenQuestion] = useState<IQuestion>(
-    questionList[questionList.length - 1]
-  );
-
   const changeQuestion = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChosenQuestion(questionList[Number(event.target.value) - 1]);
   };
