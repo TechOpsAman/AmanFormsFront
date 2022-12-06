@@ -15,20 +15,16 @@ function QuestionChoosingSection({
 }) {
   return (
     <Card className="question-choosing-section-main">
-      <div className="choose-by-index-section">
-        <QuestionChoosingByIndexSection
-          questionList={questionList}
-          chosenQuestion={chosenQuestion}
-          setChosenQuestion={setChosenQuestion}
-        ></QuestionChoosingByIndexSection>
-      </div>
-      <div className="choose-by-name-section">
-        <QuestionChoosingByNameSection
-          questionList={questionList}
-          chosenQuestion={chosenQuestion}
-          setChosenQuestion={setChosenQuestion}
-        ></QuestionChoosingByNameSection>
-      </div>
+      <QuestionChoosingByIndexSection
+        questionList={questionList}
+        chosenQuestion={chosenQuestion}
+        setChosenQuestion={setChosenQuestion}
+      ></QuestionChoosingByIndexSection>
+      <QuestionChoosingByNameSection
+        questionList={questionList}
+        chosenQuestion={chosenQuestion}
+        setChosenQuestion={setChosenQuestion}
+      ></QuestionChoosingByNameSection>
     </Card>
   );
 }

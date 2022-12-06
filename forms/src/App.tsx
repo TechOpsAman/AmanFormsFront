@@ -3,7 +3,7 @@ import { useState } from "react";
 import { IQuestion, QuestionType } from "./interfaces/questions/iQuestion";
 import { Route, Routes } from "react-router-dom";
 import CommentsQuestionPage from "./pages/questionPage/CommentsQuesionPage";
-import { ISurvey } from "./interfaces/answers/iSurvey";
+import { ISurveyAnswers } from "./interfaces/answers/iSurvey";
 
 function App() {
   const [questionList, setQuestionList] = useState<IQuestion[]>([
@@ -13,9 +13,9 @@ function App() {
       questionType: QuestionType.radio,
       required: true,
       answers: [
-        { answer: "xaddadas" },
-        { answer: "xaddadas" },
-        { answer: "xaddadas" },
+        { answer: "xadddsfsgadas" },
+        { answer: "xaddadassdfsg" },
+        { answer: "xaddadasert" },
       ],
     },
     {
@@ -26,7 +26,7 @@ function App() {
       answers: [
         { answer: "11111" },
         { answer: "111111" },
-        { answer: "111111" },
+        { answer: "1111111" },
       ],
     },
   ]); // TODO: change to [] (empty array) and get date from DB.
@@ -36,14 +36,38 @@ function App() {
   //                                                 ||
   //                                                \  /
   //                                                 \/
-  const [answerList, setAnswerList] = useState<ISurvey[]>([]); // TODO: change to [] (empty array) and get date from DB.
+  const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([
+    {
+      surveyId: "111111111111111111111111",
+      userId: "121212121212121212121212",
+      content: [
+        {
+          questionName: "string",
+          questionType: QuestionType.radio,
+          required: true,
+          answers: ["xaddadasert"],
+        },
+        {
+          questionName: "boolean",
+          questionType: QuestionType.checkbox,
+          required: true,
+          answers: ["11111", "1111111"],
+        },
+      ],
+    },
+  ]); // TODO: change to [] (empty array) and get date from DB.
 
   return (
     <div className="comments-question-page-container">
       <Routes>
         <Route
           path="/"
-          element={<CommentsQuestionPage questionList={questionList} />}
+          element={
+            <CommentsQuestionPage
+              questionList={questionList}
+              answerList={answerList}
+            />
+          }
         />
       </Routes>
     </div>

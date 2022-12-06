@@ -5,12 +5,10 @@ import { IconButton } from "@material-ui/core";
 import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
 
 function DisplayOptions({
-  questionList,
   areAnswersDisplayed,
   setAreAnswersDisplayed,
   chosenQuestion,
 }: {
-  questionList: IQuestion[];
   areAnswersDisplayed: boolean;
   setAreAnswersDisplayed: React.Dispatch<React.SetStateAction<boolean>>;
   chosenQuestion: IQuestion;

@@ -1,6 +1,6 @@
 import { IQuestion } from "./iQuestion";
 
-export interface ISurvey {
+export interface ISurveyQuestions {
   id?: string;
   creatorId: string;
   surveyName: string;

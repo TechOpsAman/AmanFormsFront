@@ -1,6 +1,6 @@
 import { ISection } from "./iSection";
 
-export interface ISurvey {
+export interface ISurveyAnswers {
   surveyId: string;
   userId: string;
   content: Array<ISection>;

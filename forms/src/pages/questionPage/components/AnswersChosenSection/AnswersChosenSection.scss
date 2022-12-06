@@ -1,0 +1,21 @@
+.answer-card {
+  height: 10%;
+  width: 50rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.answer-section {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.answer {
+  margin-right: 0.5rem;
+}

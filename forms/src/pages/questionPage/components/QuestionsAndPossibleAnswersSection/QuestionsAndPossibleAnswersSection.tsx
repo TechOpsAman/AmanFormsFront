@@ -1,7 +1,10 @@
 import "./QuestionsAndPossibleAnswersSection.scss";
 import { Card } from "@material-ui/core";
 import { useState } from "react";
-import { IQuestion, QuestionType } from "../../../../interfaces/questions/iQuestion";
+import {
+  IQuestion,
+  QuestionType,
+} from "../../../../interfaces/questions/iQuestion";
 import { IAnswer } from "../../../../interfaces/questions/iAnswer";
 import CheckboxAnswer from "./CheckboxAnswer/CheckboxAnswer";
 import RadioAnswer from "./RadioAnswer/RadioAnswer";
@@ -28,7 +31,6 @@ function QuestionsAndPossibleAnswersSection({
           <Card className="questions-and-possible-answers-container">
             <div className="display-button-and-title">
               <DisplayOptions
-                questionList={questionList}
                 areAnswersDisplayed={areAnswersDisplayed}
                 setAreAnswersDisplayed={setAreAnswersDisplayed}
                 chosenQuestion={chosenQuestion}
@@ -63,7 +65,7 @@ function QuestionsAndPossibleAnswersSection({
     }
   };
 
-  const getPossibleAnswersList = (answer: IAnswer): JSX.Element | undefined => {
+  const getPossibleAnswersList = (answer: IAnswer): JSX.Element | null => {
     switch (chosenQuestion.questionType) {
       case QuestionType.checkbox:
         return <CheckboxAnswer checkboxAnswer={answer}></CheckboxAnswer>;
@@ -76,6 +78,8 @@ function QuestionsAndPossibleAnswersSection({
             {answer.answer} .{chosenQuestion.answers?.indexOf(answer)}
           </div>
         );
+      default:
+        return null;
     }
   };
 
