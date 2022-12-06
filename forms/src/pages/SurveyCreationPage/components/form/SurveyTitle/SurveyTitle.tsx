@@ -1,7 +1,7 @@
 import "./SurveyTitle.scss";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { updateSurvey } from "../../../../../data/axios/questionsService";
+import { updateSurvey } from "../../../../../services/questionsService";
 
 function SurveyTitle({
   surveyName,

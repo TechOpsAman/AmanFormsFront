@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useTranslation } from "react-i18next";
-import { getAll, postSurvey } from "../../data/axios/questionsService";
+import { getAll, postSurvey } from "../../services/questionsService";
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -164,7 +164,7 @@ export default function HomePage() {
                   color="text.secondary"
                   sx={{ textAlign: "right" }}
                 >
-                  {survey.createdAt}
+                  {survey.lastUpdated}
                 </Typography>
               </CardContent>
             </Card>

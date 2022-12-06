@@ -1,7 +1,7 @@
-import { config } from "../config/config";
+import { config } from "../data/config/config";
 import axios from "axios";
-import { iSurvey } from "../../interfaces/iSurvey";
-import { iQuestion } from "../../interfaces/iQuestion";
+import { iSurvey } from "../interfaces/iSurvey";
+import { iQuestion } from "../interfaces/iQuestion";
 
 export const getAll = async () => {
   return axios
@@ -31,6 +31,17 @@ export const updateContent = async (surveyId: string, content: iQuestion[]) => {
         surveyId: surveyId,
         content: content,
       }
+    )
+    .then((res) => res.data)
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const updateLastUpdated = async (surveyId: string) => {
+  return axios
+    .put(
+      `${config.questionsService.questionsCrudConnectionString}/updateLastUpdated?id=${surveyId}`
     )
     .then((res) => res.data)
     .catch((err) => {

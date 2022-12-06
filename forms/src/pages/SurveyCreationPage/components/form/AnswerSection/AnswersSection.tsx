@@ -11,7 +11,7 @@ import { sectionsContext } from "../../../../../context/sectionsContext";
 import { useContext } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import DragIndicatorRoundedIcon from "@mui/icons-material/DragIndicatorRounded";
-import { updateContent } from "../../../../../data/axios/questionsService";
+import { updateContent } from "../../../../../services/questionsService";
 import { useLocation } from "react-router-dom";
 
 function AnswersSection({

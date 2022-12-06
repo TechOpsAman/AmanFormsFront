@@ -14,7 +14,7 @@ import Switch from "@mui/material/Switch";
 import AddCircleOutlineTwoToneIcon from "@mui/icons-material/AddCircleOutlineTwoTone";
 import TextFieldsTwoToneIcon from "@mui/icons-material/TextFieldsTwoTone";
 import { useLocation } from "react-router-dom";
-import { updateContent } from "../../../../../data/axios/questionsService";
+import { updateContent } from "../../../../../services/questionsService";
 
 function SurveySection({
   section,
@@ -54,7 +54,7 @@ function SurveySection({
   const handleQuestionNameCallBack = (e: ChangeEvent<HTMLInputElement>) => {
     setQuestionName(e.target.value);
     sections[questionIndex].questionName = e.target.value;
-    updateContent(location.state.survey.id, sections);
+    // updateContent(location.state.survey.id, sections);
   };
 
   const handleAddAnswer = () => {

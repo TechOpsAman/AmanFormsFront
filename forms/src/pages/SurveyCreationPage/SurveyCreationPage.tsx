@@ -7,7 +7,7 @@ import { iQuestion, QuestionType } from "../../interfaces/iQuestion";
 import { sectionsContext } from "../../context/sectionsContext";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { getById, updateContent, updateSurvey } from "../../data/axios/questionsService";
+import { getById, updateContent, updateLastUpdated, updateSurvey } from "../../services/questionsService";
 
 function SurveyCreationPage() {
   const location = useLocation();
@@ -103,6 +103,7 @@ function SurveyCreationPage() {
         const newSurvey = await getById(location.state.survey.id);
         setSections(newSurvey.content);
       }
+      updateLastUpdated(location.state.survey.id);
     };
     getSurvey();
   }, [location, render, t]);

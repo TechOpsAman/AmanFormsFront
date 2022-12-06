@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { iAnswer } from "../../../../../../interfaces/iAnswer";
 import Checkbox from "@mui/material/Checkbox";
 import { sectionsContext } from "../../../../../../context/sectionsContext";
-import { updateContent } from "../../../../../../data/axios/questionsService";
+import { updateContent } from "../../../../../../services/questionsService";
 import { useLocation } from "react-router-dom";
 
 function CheckBoxAnswer({
