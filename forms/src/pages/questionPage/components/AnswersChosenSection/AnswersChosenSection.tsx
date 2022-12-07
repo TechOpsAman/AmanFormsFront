@@ -104,16 +104,18 @@ function AnswersChosenSection({
   return (
     <div>
       <>
-        {answerList
-          ? answerList[0].content.map(
-              (section: ISection, sectionIndex: number) => {
+        {answerList // TODO: change answerList[0] to selected survey answers by id (surveyId)!!!
+          ? answerList[0].content
+              .filter((section) => {
+                return section.questionName === chosenQuestion.questionName;
+              })
+              .map((section: ISection, sectionIndex: number) => {
                 return (
                   <Card className="answer-card">
                     {returnQuestionAccordingToType(section)}
                   </Card>
                 );
-              }
-            )
+              })
           : null}
       </>
     </div>
