@@ -41,7 +41,7 @@ function QuestionName({
           return (
             <div key={index}>
               <h1>{questionInfo(question).questionName}</h1>
-              <AnswerSection answers={questionInfo(question).answers as Answer[]} questionType={questionInfo(question).questionType as string}/>
+              <AnswerSection answers={questionInfo(question).answers as Answer[]} questionType={questionInfo(question).questionType as string} selectedAnswerId={question.answers as string[]}/>
             </div>
           );
         })}

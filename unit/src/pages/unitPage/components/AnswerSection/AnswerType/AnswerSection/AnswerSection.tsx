@@ -1,25 +1,24 @@
 import { Box } from "@material-ui/core";
 import { Answer } from "../../../../../../interfaces/iAnswer";
 import CheckboxAnswer from "../CheckboxAnswer/CheckboxAnswer";
+import SelectAnswer from "../SelectAnswer/SelectAnswer";
 
-function AnswerSection({ answers, questionType }: { answers: Answer[], questionType: string }) {
-const handelAnswers = (selectedAnswer: string) => {
+function AnswerSection({ answers, questionType, selectedAnswerId }: { answers: Answer[], questionType: string, selectedAnswerId: string[] }) {
+const handelAnswers = () => {
     switch (questionType) {
         case "checkbox":
-            return (<Box className="survey-answer-unit_checkbox_question"> {<CheckboxAnswer answers={answers as Answer[]} />} </Box>)
-         break;
+            return (<Box className="survey-answer-unit_checkbox_question"> {<CheckboxAnswer answers={answers as Answer[]} selectedAnswerId={selectedAnswerId as string[]}/>} </Box>)
+        case "select":
+            return(<Box className="survey-answer-unit_checkbox_question">{<SelectAnswer answers={answers as Answer[]} selectedAnswerId={selectedAnswerId as string[]} />}</Box>)
     
         default:
-            break;
+            
     }
 }
 
   return (
     <Box>
-      <>{handelAnswers('123')}</>
-      {answers.map((answer, index) => 
-        <>{answer.answer}</>
-      )}
+      <>{handelAnswers()}</>
     </Box>
   );
 }
