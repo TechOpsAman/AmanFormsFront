@@ -51,9 +51,9 @@ function AnswersChosenSection({
         })}
         <hr />
         {checkAmountOfIdenticalAnswers(section.answers, "boolean") === 1 ? (
-          <span dir="rtl">תשובה אחת</span>
+          <span className="answer-counter">תשובה אחת</span>
         ) : (
-          <span dir="rtl">
+          <span className="answer-counter" dir="rtl">
             {checkAmountOfIdenticalAnswers(section.answers, "boolean")} תשובות
           </span>
         )}
@@ -72,9 +72,9 @@ function AnswersChosenSection({
         </div>
         <hr />
         {checkAmountOfIdenticalAnswers(section.answers, "boolean") === 1 ? (
-          <span dir="rtl">תשובה אחת</span>
+          <span className="answer-counter">תשובה אחת</span>
         ) : (
-          <span dir="rtl">
+          <span className="answer-counter" dir="rtl">
             {checkAmountOfIdenticalAnswers(section.answers, "boolean")} תשובות
           </span>
         )}
