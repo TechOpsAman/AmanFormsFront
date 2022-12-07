@@ -1,10 +1,11 @@
 import "./CommentsQuesionPage.scss";
 import { IQuestion } from "../../interfaces/questions/iQuestion";
 import { useState } from "react";
-import QuestionChoosingSection from "./components/QuestionChoosingSection/QuestionChoosingSection";
+import QuestionChoosingSectionUpperPart from "./components/QuestionChoosingSectionUpperPart/QuestionChoosingSectionUpperPart";
 import QuestionsAndPossibleAnswersSection from "./components/QuestionsAndPossibleAnswersSection/QuestionsAndPossibleAnswersSection";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import AnswersChosenSection from "./components/AnswersChosenSection/AnswersChosenSection";
+import QuestionChoosingSectionBottom from "./components/QuestionChoosingSectionBottom/QuestionChoosingSectionBottom";
 
 function CommentsQuestionPage({
   questionList,
@@ -19,7 +20,7 @@ function CommentsQuestionPage({
 
   return (
     <div className="comments-question-page-main">
-      <QuestionChoosingSection
+      <QuestionChoosingSectionUpperPart
         questionList={questionList}
         chosenQuestion={chosenQuestion}
         setChosenQuestion={setChosenQuestion}
@@ -34,6 +35,11 @@ function CommentsQuestionPage({
         answerList={answerList}
         chosenQuestion={chosenQuestion}
       />
+      <QuestionChoosingSectionBottom
+        questionList={questionList}
+        chosenQuestion={chosenQuestion}
+        setChosenQuestion={setChosenQuestion}
+      ></QuestionChoosingSectionBottom>
     </div>
   );
 }

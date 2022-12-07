@@ -1,10 +1,10 @@
-import "./QuestionChoosingSection.scss";
+import "./QuestionChoosingSectionUpperPart.scss";
 import { Card } from "@material-ui/core";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import QuestionChoosingByIndexSection from "./QuestionChoosingByIndexSection/QuestionChoosingByIndexSection";
 import QuestionChoosingByNameSection from "./QuestionChoosingByNameSection/QuestionChoosingByNameSection";
 
-function QuestionChoosingSection({
+function QuestionChoosingSectionUpperPart({
   questionList,
   chosenQuestion,
   setChosenQuestion,
@@ -14,7 +14,7 @@ function QuestionChoosingSection({
   setChosenQuestion: React.Dispatch<React.SetStateAction<IQuestion>>;
 }) {
   return (
-    <Card className="question-choosing-section-main">
+    <Card className="question-choosing-section-upper-part-main">
       <QuestionChoosingByIndexSection
         questionList={questionList}
         chosenQuestion={chosenQuestion}
@@ -29,4 +29,4 @@ function QuestionChoosingSection({
   );
 }
 
-export default QuestionChoosingSection;
+export default QuestionChoosingSectionUpperPart;
