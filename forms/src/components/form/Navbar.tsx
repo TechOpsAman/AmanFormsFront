@@ -52,14 +52,22 @@ export function Navbar({
   };
 
   return (
-    <Box sx={{ bgcolor: "secondary.main" }} width='100%' minWidth='90rem'>
+    <Box sx={{ bgcolor: "secondary.main" }} minWidth="90rem">
       <AppBar
         position="sticky"
-        sx={{ borderBottomRightRadius: "30px", borderBottomLeftRadius: "30px" }}
+        sx={{
+          borderBottomRightRadius: "30px",
+          borderBottomLeftRadius: "30px",
+          width: "100%",
+          height: '4rem',
+          display: "flex",
+          flexDirection: 'row',
+          justifyContent: 'center',
+        }}
       >
-        <Container>
-          <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1,  }}>
+        <Box sx={{ p: 0, m: 0, width: "100%", display: "flex", justifyContent: "center" }}>
+          <Toolbar disableGutters sx={{ width: "90%" }}>
+            <Box sx={{ flexGrow: 1 }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -104,7 +112,7 @@ export function Navbar({
               variant="h5"
               noWrap
               component="a"
-              href=""
+              href="/"
               sx={{
                 flexGrow: 1,
                 fontFamily: "monospace",
@@ -147,7 +155,7 @@ export function Navbar({
               </Menu>
             </Box>
           </Toolbar>
-        </Container>
+        </Box>
       </AppBar>
     </Box>
   );

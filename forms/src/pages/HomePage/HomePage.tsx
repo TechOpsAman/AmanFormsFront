@@ -98,14 +98,13 @@ export default function HomePage() {
   }, []);
 
   return (
-    <Box width="100vh" minWidth="90rem">
-      <Box >
+    <Box>
+      <Box sx={{mr: 10}}>
         <Box
           sx={{
             mt: 0,
             display: "flex",
             justifyContent: "right",
-            mr: 10,
             ml: 30,
             pt: 5,
             fontSize: "2rem",
@@ -116,7 +115,7 @@ export default function HomePage() {
             freeSolo
             disablePortal
             options={surveys.map((survey) => survey.surveyName)}
-            sx={{ width: 300, mr: 1 }}
+            sx={{ width: 300 }}
             onInputChange={(event, inputValue) => {
               filterSurveys(inputValue);
             }}
@@ -197,7 +196,6 @@ export default function HomePage() {
                     <ArticleIcon
                       sx={{
                         pt: 0.5,
-                        display: { xs: "none", md: "flex" },
                         color: "#4491fd",
                       }}
                       fontSize="large"
