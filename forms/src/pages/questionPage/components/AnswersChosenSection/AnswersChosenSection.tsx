@@ -1,3 +1,4 @@
+import "./AnswersChosenSection.scss";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { Card } from "@material-ui/core";
@@ -17,53 +18,86 @@ function AnswersChosenSection({
   answerList: ISurveyAnswers[];
   chosenQuestion: IQuestion;
 }) {
-  const getCheckBoxAnswerSectionWrap = (
-    section: ISection,
-    answerIndex: number
-  ): JSX.Element => {
+  const checkAmountOfIdenticalAnswers = (
+    answer: string[],
+    chosenQuestionName: string
+  ): number => {
+    let counter = 0;
+    answerList.forEach((answerSurvey: ISurveyAnswers) => {
+      const questionToCompare: ISection | undefined = answerSurvey.content.find(
+        (section) => {
+          return section.questionName === chosenQuestionName;
+        }
+      );
+      if (answer === questionToCompare?.answers) counter++;
+    });
+    console.log(counter);
+
+    return counter;
+  };
+
+  const getCheckboxAnswerSectionWrap = (section: ISection): JSX.Element => {
     return (
-      <div className="answer-section">
-        <span className="answer">{section.answers[answerIndex]}</span>;
-        <div>
-          <CheckBoxIcon />
-        </div>
+      <div className="checkbox-answer-section">
+        {section.answers.map((answer: string, answerIndex: number) => {
+          return (
+            <div className="checkbox-answer">
+              <span className="answer">{section.answers[answerIndex]}</span>
+              <div>
+                <CheckBoxIcon />
+              </div>
+            </div>
+          );
+        })}
+        <hr />
+        {checkAmountOfIdenticalAnswers(section.answers, "boolean") === 1 ? (
+          <span dir="rtl">תשובה אחת</span>
+        ) : (
+          <span dir="rtl">
+            {checkAmountOfIdenticalAnswers(section.answers, "boolean")} תשובות
+          </span>
+        )}
       </div>
     );
   };
 
-  const getRadioAnswerSectionWrap = (
-    section: ISection,
-    answerIndex: number
-  ): JSX.Element => {
+  const getRadioAnswerSectionWrap = (section: ISection): JSX.Element => {
     return (
-      <div className="answer-section">
-        <span className="answer">{section.answers[answerIndex]}</span>;
-        <div>
-          <RadioButtonCheckedIcon />
+      <div className="radio-answer-section">
+        <div className="radio-answer">
+          <span className="answer">{section.answers[0]}</span>
+          <div>
+            <RadioButtonCheckedIcon />
+          </div>
         </div>
+        <hr />
+        {checkAmountOfIdenticalAnswers(section.answers, "boolean") === 1 ? (
+          <span dir="rtl">תשובה אחת</span>
+        ) : (
+          <span dir="rtl">
+            {checkAmountOfIdenticalAnswers(section.answers, "boolean")} תשובות
+          </span>
+        )}
       </div>
     );
   };
 
-  const returnQuestionAccordingToType = (
-    section: ISection,
-    answerIndex: number
-  ): JSX.Element | null => {
+  const returnQuestionAccordingToType = (section: ISection): JSX.Element => {
     switch (section.questionType) {
       case QuestionType.checkbox:
-        return getCheckBoxAnswerSectionWrap(section, answerIndex);
+        return getCheckboxAnswerSectionWrap(section);
 
       case QuestionType.radio:
-        return getRadioAnswerSectionWrap(section, answerIndex);
+        return getRadioAnswerSectionWrap(section);
 
       case QuestionType.select:
-        return <div>{section.answers[answerIndex]}</div>;
+        return <div>{section.answers[0]}</div>;
       case QuestionType.shortAnswer:
       case QuestionType.longAnswer:
       case QuestionType.title:
-        return <h2>{section.answers[answerIndex]}</h2>;
+        return <h2>{section.answers[0]}</h2>;
       default:
-        return null;
+        return <div></div>;
     }
   };
 
@@ -73,11 +107,11 @@ function AnswersChosenSection({
         {answerList
           ? answerList[0].content.map(
               (section: ISection, sectionIndex: number) => {
-                section.answers.map((answer: string, answerIndex: number) => {
+                return (
                   <Card className="answer-card">
-                    {returnQuestionAccordingToType(section, answerIndex)}
-                  </Card>;
-                });
+                    {returnQuestionAccordingToType(section)}
+                  </Card>
+                );
               }
             )
           : null}

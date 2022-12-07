@@ -1,5 +1,5 @@
 .answer-card {
-  height: 10%;
+  height: auto;
   width: 50rem;
   margin-top: 1rem;
   padding: 1rem;
@@ -9,13 +9,46 @@
   align-items: center;
 }
 
-.answer-section {
+.radio-answer-section {
+  padding-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.checkbox-answer-section {
+  padding-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.radio-answer {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: right;
+  margin-bottom: 1rem;
 }
 
-.answer {
-  margin-right: 0.5rem;
+.checkbox-answer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: right;
+  margin-bottom: 1rem;
+}
+
+hr {
+  width: 50rem;
+  color: black;
+  size: 3;
+}
+
+span {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: right;
+  margin-bottom: 1rem;
 }

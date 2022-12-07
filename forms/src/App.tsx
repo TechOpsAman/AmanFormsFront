@@ -51,7 +51,7 @@ function App() {
           questionName: "boolean",
           questionType: QuestionType.checkbox,
           required: true,
-          answers: ["11111", "1111111"],
+          answers: ["11111", "1111111", "11111111", "111111111"],
         },
       ],
     },
