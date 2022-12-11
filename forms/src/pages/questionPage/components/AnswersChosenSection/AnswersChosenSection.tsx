@@ -10,7 +10,6 @@ import {
 } from "../../../../interfaces/questions/iQuestion";
 
 function AnswersChosenSection({
-  questionList,
   answerList,
   chosenQuestion,
 }: {

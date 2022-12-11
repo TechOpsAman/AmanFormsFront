@@ -18,6 +18,8 @@ function CommentsQuestionPage({
     questionList[questionList.length - 1]
   );
 
+  console.log(questionList, answerList, chosenQuestion);
+
   return (
     <div className="comments-question-page-main">
       <QuestionChoosingSectionUpperPart

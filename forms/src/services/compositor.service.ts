@@ -3,7 +3,7 @@ import { ISurveyAnswers } from "../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../interfaces/questions/iSurvey";
 
 export default class CompositorService {
-  static api = "http://compositor:3003/api/compositor";
+  static api = "http://localhost:3003/api/compositor";
 
   static async getSurveyQuestionsAndUsersAnswers(
     surveyId: string

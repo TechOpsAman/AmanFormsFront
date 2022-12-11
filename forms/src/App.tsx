@@ -1,6 +1,6 @@
 import "./App.css";
-import { useState } from "react";
-import { IQuestion } from "./interfaces/questions/iQuestion";
+import { useEffect, useState } from "react";
+import { IQuestion, QuestionType } from "./interfaces/questions/iQuestion";
 import { Route, Routes } from "react-router-dom";
 import CommentsQuestionPage from "./pages/questionPage/CommentsQuesionPage";
 import { ISurveyAnswers } from "./interfaces/answers/iSurvey";
@@ -8,17 +8,56 @@ import CompositorService from "./services/compositor.service";
 import { ISurveyQuestions } from "./interfaces/questions/iSurvey";
 
 function App() {
-  const [questionList, setQuestionList] = useState<IQuestion[]>([]);
-  const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
+  const [questionList, setQuestionList] = useState<IQuestion[]>([
+    // {
+    //   id: "123456123456123456123456",
+    //   questionName: "string",
+    //   questionType: QuestionType.radio,
+    //   required: true,
+    //   answers: [
+    //     { answer: "xadddsfsgadas" },
+    //     { answer: "xaddadassdfsg" },
+    //     { answer: "xaddadasert" },
+    //   ],
+    // },
+  ]);
+  const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([
+    // {
+    //   surveyId: "111111111111111111111111",
+    //   userId: "121212121212121212121212",
+    //   content: [
+    //     {
+    //       questionName: "string",
+    //       questionType: QuestionType.radio,
+    //       required: true,
+    //       answers: ["xaddadasert"],
+    //     },
+    //     {
+    //       questionName: "boolean",
+    //       questionType: QuestionType.checkbox,
+    //       required: true,
+    //       answers: ["11111", "1111111", "11111111", "111111111"],
+    //     },
+    //   ],
+    // },
+  ]);
 
-  const surveyId: string = "123456123456123456123456";
+  const surveyId: string = "6395e7bc9821e79971898be3";
 
-  CompositorService.getSurveyQuestionsAndUsersAnswers(surveyId).then(
-    (result) => {
-      setQuestionList((result[0] as ISurveyQuestions).content);
-      setAnswerList(result[1] as ISurveyAnswers[]);
-    }
-  );
+  const fetchData = async () => {
+    const surveyQuestionsAndUsersAnswers =
+      await CompositorService.getSurveyQuestionsAndUsersAnswers(surveyId);
+    setQuestionList(
+      (surveyQuestionsAndUsersAnswers[0] as ISurveyQuestions).content
+    );
+
+    setAnswerList(surveyQuestionsAndUsersAnswers[1] as ISurveyAnswers[]);
+  };
+
+  useEffect(() => {
+    console.log("hi");
+    fetchData();
+  }, []);
 
   //   [
   //   {
