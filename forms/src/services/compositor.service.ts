@@ -7,7 +7,7 @@ export default class CompositorService {
 
   static async getSurveyQuestionsAndUsersAnswers(
     surveyId: string
-  ): Promise<(ISurveyQuestions | ISurveyAnswers)[]> {
+  ): Promise<(ISurveyQuestions | ISurveyAnswers[])[]> {
     const surveyQuestionsAndUsersAnswers = await axios
       .get(`${CompositorService.api}/getSurveyResults?surveyId=${surveyId}`)
       .then((res) => res.data);
