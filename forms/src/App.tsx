@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import { IQuestion, QuestionType } from "./interfaces/questions/iQuestion";
+import { IQuestion } from "./interfaces/questions/iQuestion";
 import { Route, Routes } from "react-router-dom";
 import CommentsQuestionPage from "./pages/questionPage/CommentsQuesionPage";
 import { ISurveyAnswers } from "./interfaces/answers/iSurvey";
