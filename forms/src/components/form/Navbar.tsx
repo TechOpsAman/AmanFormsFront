@@ -6,11 +6,9 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import ArticleIcon from "@mui/icons-material/Article";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import pic from "../../assets/profilePic.png";
 import logo from "../../assets/whiteforms.png";
@@ -107,7 +105,6 @@ export function Navbar({
                 </MenuItem>
               </Menu>
             </Box>
-            <ArticleIcon sx={{ mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
@@ -122,7 +119,7 @@ export function Navbar({
                 textDecoration: "none",
               }}
             >
-              AMAN FORMS
+              <img src={logo} alt="logo" width='200'/>
             </Typography>
 
             <Box sx={{ flexGrow: 0 }}>
@@ -134,7 +131,6 @@ export function Navbar({
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"
-                anchorEl={anchorElUser}
                 anchorOrigin={{
                   vertical: "top",
                   horizontal: "right",
@@ -144,6 +140,7 @@ export function Navbar({
                   vertical: "top",
                   horizontal: "right",
                 }}
+                anchorEl={anchorElUser}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >

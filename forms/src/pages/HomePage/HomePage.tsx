@@ -1,13 +1,16 @@
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardMedia,
+  Dialog,
+  DialogActions,
+  DialogTitle,
   IconButton,
   Menu,
   MenuItem,
   Stack,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import { iSurvey } from "../../interfaces/iSurvey";
@@ -16,20 +19,25 @@ import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import MenuIcon from "@mui/icons-material/Menu";
 import { useTranslation } from "react-i18next";
 import { getAll, postSurvey } from "../../services/questionsService";
 import ArticleIcon from "@mui/icons-material/Article";
 import pic from "../../assets/forms.png";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { deleteSurveyById } from "../../services/compositorService";
 
 export default function HomePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-
+  const [menu, setMenu] = useState<null | HTMLElement>(null);
+  const [currSurvey, setCurrSurvey] = useState<iSurvey>();
+  const menuOpen = Boolean(menu);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const handleDialogOpen = () => setDialogOpen(true);
+  const handleDialogClose = () => setDialogOpen(false);
   const [surveys, setSurveys] = useState<iSurvey[]>([]);
-
   const [currSurveys, setCurrSurveys] = useState<any[]>(surveys);
+  const [render, setRender] = useState(false);
 
   const filterSurveys = (filter: any): void => {
     if (filter.length === 0) setCurrSurveys(surveys);
@@ -55,7 +63,6 @@ export default function HomePage() {
       content: [],
       surveyDescription: t("surveyDescription"),
     });
-    console.log(newSurvey);
     await surveys.push(newSurvey);
     navigate("/createSurvey", {
       state: {
@@ -79,12 +86,18 @@ export default function HomePage() {
     return [`${day}.${month}.${year}`, `${hour}:${minute}:${seconds}`];
   };
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setMenu(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleCloseMenu = () => {
+    setMenu(null);
+  };
+
+  const handleDeleteSurvey = () => {
+    deleteSurveyById((currSurvey as iSurvey).id as string);
+    setCurrSurvey(undefined);
+    setRender(!render);
   };
 
   useEffect(() => {
@@ -95,11 +108,11 @@ export default function HomePage() {
     };
 
     getSurveys();
-  }, []);
+  }, [render]);
 
   return (
     <Box>
-      <Box sx={{mr: 10}}>
+      <Box sx={{ mr: 10 }}>
         <Box
           sx={{
             mt: 0,
@@ -171,9 +184,6 @@ export default function HomePage() {
                   cursor: "pointer",
                   borderRadius: 3,
                 }}
-                onClick={() => {
-                  handleCardClick(survey);
-                }}
               >
                 <CardContent>
                   <CardMedia
@@ -187,8 +197,14 @@ export default function HomePage() {
                       borderColor: "#568ea8",
                       mb: 3,
                     }}
+                    onClick={() => {
+                      handleCardClick(survey);
+                    }}
                   />
                   <Stack
+                    onClick={() => {
+                      handleCardClick(survey);
+                    }}
                     direction="row-reverse"
                     spacing={1}
                     sx={{ height: 75 }}
@@ -211,60 +227,104 @@ export default function HomePage() {
                   </Stack>
 
                   <hr />
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ textAlign: "right" }}
-                  >
-                    {t("lastOpened") + " "}
-                    {getDate(survey.lastUpdated)[0]}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ textAlign: "right" }}
-                  >
-                    {t("atTime")}
-                    {getDate(survey.lastUpdated)[1]}
-                  </Typography>
-                  {/* <Typography>
-                  <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
-                    color="inherit"
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElNav}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "left",
-                    }}
-                    open={Boolean(anchorElNav)}
-                    onClose={handleCloseNavMenu}
-                    sx={{
-                      display: { xs: "block", md: "none" },
-                    }}
-                  >
-                    <MenuItem onClick={handleCloseNavMenu}></MenuItem>
-                  </Menu>
-                </Typography> */}
+                  <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+                    <Typography>
+                      <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        color="inherit"
+                        onClick={(event) => {
+                          handleOpenMenu(event);
+                          setCurrSurvey(survey);
+                        }}
+                      >
+                        <MoreVertIcon />
+                      </IconButton>
+                    </Typography>
+                    <Box>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ textAlign: "right" }}
+                      >
+                        {t("lastOpened") + " "}
+                        {getDate(survey.lastUpdated)[0]}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ textAlign: "right" }}
+                      >
+                        {t("atTime")}
+                        {getDate(survey.lastUpdated)[1]}
+                      </Typography>
+                    </Box>
+                  </Box>
                 </CardContent>
               </Card>
             );
           })}
         </Box>
-
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          anchorEl={menu}
+          open={menuOpen}
+          onClose={handleCloseMenu}
+        >
+          <MenuItem
+            onClick={() => {
+              handleCloseMenu();
+              handleCardClick(currSurvey as iSurvey);
+            }}
+          >
+            {t("editSurvey")}
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleCloseMenu();
+              handleDialogOpen();
+            }}
+          >
+            {t("deleteSurvey")}
+          </MenuItem>
+        </Menu>
+        <Dialog
+          open={dialogOpen}
+          onClose={handleDialogClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title" sx={{ direction: "rtl" }}>
+            {t("removeSurveyDialog")}
+          </DialogTitle>
+          <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
+            <Button onClick={handleDialogClose} variant="outlined">
+              {t("no")}
+            </Button>
+            <Button
+              onClick={() => {
+                handleDialogClose();
+                handleDeleteSurvey();
+              }}
+              variant="outlined"
+              autoFocus
+            >
+              {t("yes")}
+            </Button>
+          </DialogActions>
+        </Dialog>
         <IconButton
           sx={{
             boxShadow: 7,
