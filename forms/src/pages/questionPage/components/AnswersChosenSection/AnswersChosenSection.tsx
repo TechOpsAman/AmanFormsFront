@@ -13,7 +13,6 @@ function AnswersChosenSection({
   answerList,
   chosenQuestion,
 }: {
-  questionList: IQuestion[];
   answerList: ISurveyAnswers[];
   chosenQuestion: IQuestion;
 }) {
@@ -30,7 +29,6 @@ function AnswersChosenSection({
       );
       if (answer === questionToCompare?.answers) counter++;
     });
-    console.log(counter);
 
     return counter;
   };
@@ -103,14 +101,14 @@ function AnswersChosenSection({
   return (
     <div>
       <>
-        {answerList // TODO: change answerList[0] to selected survey answers by id (surveyId)!!!
+        {answerList 
           ? answerList[0].content
               .filter((section) => {
                 return section.questionName === chosenQuestion.questionName;
               })
               .map((section: ISection, sectionIndex: number) => {
                 return (
-                  <Card className="answer-card">
+                  <Card className="answer-card" key={sectionIndex}>
                     {returnQuestionAccordingToType(section)}
                   </Card>
                 );
