@@ -1,0 +1,17 @@
+.display-options-container {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.question-name {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.display-options-text {
+  font-size: small;
+  color: blue;
+}
