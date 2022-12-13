@@ -5,3 +5,21 @@
   flex-direction: column;
   align-items: center;
 }
+
+.short-answer-stats-section-upper-section {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.question-name {
+  font-size: large;
+  font-weight: bold;
+}
+
+.number-of-comments-text {
+  align-self: flex-end;
+  font-size: small;
+}

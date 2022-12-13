@@ -15,7 +15,19 @@ function CommentsSummaryPage() {
   const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
   const graphToCopy = createRef();
 
-  const surveyId: string = "6395e7bc9821e79971898be3";
+  const surveyId: string = "639888699821e79971899071";
+
+  const getNumberOfCommentsText = (): JSX.Element => {
+    return (
+      <div className="number-of-comments-text">
+        {answerList.length === 1 ? (
+          <span dir="rtl">תגובה אחת</span>
+        ) : (
+          <span dir="rtl">{answerList.length} תגובות</span>
+        )}
+      </div>
+    );
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,44 +42,52 @@ function CommentsSummaryPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const returnMatchingComponentToQuestion = (question: IQuestion) => {
+  const returnMatchingComponentToQuestion = (
+    question: IQuestion
+  ): JSX.Element => {
     switch (question.questionType) {
       case QuestionType.checkbox:
         return (
           <CheckboxAnswerStatsSection
+            questionName={question.questionName}
             graphToCopy={graphToCopy}
-            questionList={questionList}
             answerList={answerList}
+            getNumberOfCommentsText={getNumberOfCommentsText}
           />
         );
 
       case QuestionType.radio:
         return (
           <RadioAnswerStatsSection
+            questionName={question.questionName}
             graphToCopy={graphToCopy}
-            questionList={questionList}
             answerList={answerList}
+            getNumberOfCommentsText={getNumberOfCommentsText}
           />
         );
 
       case QuestionType.select:
         return (
           <SelectAnswerStatsSection
+            questionName={question.questionName}
             graphToCopy={graphToCopy}
-            questionList={questionList}
             answerList={answerList}
+            getNumberOfCommentsText={getNumberOfCommentsText}
           />
         );
       case QuestionType.shortAnswer:
         return (
           <ShortAnswerStatsSection
+            questionName={question.questionName}
             graphToCopy={graphToCopy}
-            questionList={questionList}
             answerList={answerList}
+            getNumberOfCommentsText={getNumberOfCommentsText}
           />
         );
       case QuestionType.longAnswer:
-        return <LongAnswerStatsSection />;
+        return <LongAnswerStatsSection questionName={question.questionName} />;
+      default:
+        return <div></div>;
     }
   };
 

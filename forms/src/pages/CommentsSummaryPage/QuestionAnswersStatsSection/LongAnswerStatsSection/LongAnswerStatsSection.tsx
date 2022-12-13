@@ -1,6 +1,6 @@
 import "./LongAnswerStatsSection.scss";
 
-function LongAnswerStatsSection() {
+function LongAnswerStatsSection({ questionName }: { questionName: string }) {
   return <div className="long-answer-stats-section-main"></div>;
 }
 

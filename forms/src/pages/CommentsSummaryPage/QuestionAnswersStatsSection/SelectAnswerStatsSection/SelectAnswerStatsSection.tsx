@@ -1,17 +1,30 @@
+import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
-import { IQuestion } from "../../../../interfaces/questions/iQuestion";
+import CheckboxAnswerGraphSection from "../CheckboxAnswerStatsSection/CheckboxAnswerGraphSection/CheckboxAnswerGraphSection";
+import CopyButtonGraphComponent from "../CopyButtonGraphComponent";
 import "./SelectAnswerStatsSection.scss";
 
 function SelectAnswerStatsSection({
+  questionName,
   graphToCopy,
-  questionList,
   answerList,
+  getNumberOfCommentsText,
 }: {
+  questionName: string;
   graphToCopy: React.RefObject<unknown>;
-  questionList: IQuestion[];
   answerList: ISurveyAnswers[];
+  getNumberOfCommentsText: () => JSX.Element;
 }) {
-  return <div className="select-answer-stats-section-main"></div>;
+  return (
+    <Card className="select-answer-stats-section-main">
+      <div className="select-answer-stats-section-upper-section">
+        <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
+        <span className="question-name">{questionName}</span>
+      </div>
+      {getNumberOfCommentsText()}
+      <CheckboxAnswerGraphSection />
+    </Card>
+  );
 }
 
 export default SelectAnswerStatsSection;
