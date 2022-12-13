@@ -1,10 +1,23 @@
 import "./CopyButtonGraphComponent.scss";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { IconButton } from "@material-ui/core";
 
-function CopyButtonGraphComponent() {
-  // TODO: search if can be executed (copying the graph), if not just delete the component and skip the
-  // copy button part (the user can copy it by himself by screenshotting the graph area).
-  return <div className="copy-button-graph-component-main"></div>;
+function CopyButtonGraphComponent({
+  graphToCopyRef,
+}: {
+  graphToCopyRef: React.RefObject<unknown>;
+}) {
+  return (
+    <div className="copy-button-graph-component-main">
+      <IconButton>
+        <span className="copy-graph-text">העתקה</span>
+        <ContentCopyIcon
+          fontSize="small"
+          style={{ color: "blue" }}
+        ></ContentCopyIcon>
+      </IconButton>
+    </div>
+  );
 }
 
 export default CopyButtonGraphComponent;

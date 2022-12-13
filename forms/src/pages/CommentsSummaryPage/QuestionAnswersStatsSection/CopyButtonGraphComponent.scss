@@ -1,8 +1,12 @@
 .copy-button-graph-component-main {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+}
+
+.copy-graph-text {
+  margin-right: 0.5rem;
+  color: blue;
 }
