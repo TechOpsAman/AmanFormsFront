@@ -45,8 +45,6 @@ function CommentsQuestionPage() {
           />
           <QuestionsAndPossibleAnswersSection
             chosenQuestion={questionList[questionList.length - 1]}
-            setChosenQuestion={setChosenQuestion}
-            questionList={questionList}
           />
           <AnswersChosenSection
             answerList={answerList}

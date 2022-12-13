@@ -1,6 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import CommentsQuestionPage from "./pages/questionPage/CommentsQuesionPage";
+import CommentsQuestionPage from "./pages/CommentsQuestionPage/CommentsQuesionPage";
 
 function App() {
   return (

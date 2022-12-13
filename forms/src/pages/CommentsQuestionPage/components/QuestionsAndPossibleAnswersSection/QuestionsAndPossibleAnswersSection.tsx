@@ -11,13 +11,9 @@ import RadioAnswer from "./RadioAnswer/RadioAnswer";
 import DisplayOptions from "./DisplayOptions/DisplayOptions";
 
 function QuestionsAndPossibleAnswersSection({
-  questionList,
   chosenQuestion,
-  setChosenQuestion,
 }: {
-  questionList: IQuestion[];
   chosenQuestion: IQuestion;
-  setChosenQuestion: React.Dispatch<React.SetStateAction<IQuestion>>;
 }) {
   const [areAnswersDisplayed, setAreAnswersDisplayed] =
     useState<boolean>(false);
