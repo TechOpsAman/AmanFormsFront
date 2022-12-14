@@ -1,10 +1,10 @@
 import { Box, Checkbox, FormControlLabel, FormGroup } from "@material-ui/core";
-import { Answer } from "../../../../../../interfaces/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
 
-function CheckboxAnswer({ answers, selectedAnswerId }: { answers: Answer[], selectedAnswerId: string[] }) {
+function CheckboxAnswer({ answers, selectedAnswerId }: { answers: IAnswer[], selectedAnswerId: string[] }) {
   return (
     <FormGroup>
-      {answers.map((answerInfo: Answer, answerIndex: number) => {
+      {answers.map((answerInfo: IAnswer, answerIndex: number) => {
         if(selectedAnswerId.includes((answerInfo.id as string))) {
           return(
             <Box key={answerIndex}>

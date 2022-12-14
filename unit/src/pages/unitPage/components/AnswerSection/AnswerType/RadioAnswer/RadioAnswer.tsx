@@ -1,13 +1,13 @@
 import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
-import { Answer } from "../../../../../../interfaces/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
 
-function RadioAnswer({ answers, selectedAnswerId }: { answers: Answer[], selectedAnswerId: string[] }) {
+function RadioAnswer({ answers, selectedAnswerId }: { answers: IAnswer[], selectedAnswerId: string[] }) {
     return (
         <RadioGroup
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
         >
-            {answers.map((answerInfo: Answer, answerIndex: number) => {
+            {answers.map((answerInfo: IAnswer, answerIndex: number) => {
                     if (selectedAnswerId.includes((answerInfo.id as string))) {
                         return (
                             <Box key={`radio-button${answerIndex}`}>

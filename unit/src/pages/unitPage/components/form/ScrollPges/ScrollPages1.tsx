@@ -2,16 +2,16 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import IconButton from "@mui/material/IconButton";
 import "./ScrollPages.scss";
-import { iSurveyQuestions } from "../../../../../interfaces/iSurveyQuestions";
 import { useState } from "react";
 import { Box, TextField } from "@material-ui/core";
 import QuestionName from "../QuestionName/QuestionName";
-import { iSurvey } from "../../../../../interfaces/iSurvey";
+import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
+import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
 
 function ScrollPages({
   questionsAndAnswers, survey,
 }: {
-  questionsAndAnswers: iSurveyQuestions[], survey: iSurvey;
+  questionsAndAnswers: ISurveyAnswers[], survey: ISurveyQuestions;
 }) {
   const numOfPages = questionsAndAnswers.length;
   const [currPage, setCurrPage] = useState(1);
@@ -63,14 +63,14 @@ function ScrollPages({
       <Box className="survey-answer-unit_questions_and_answers">
         {changePage ? (
           <QuestionName
-            questionsAndAnswers={questionsAndAnswers as iSurveyQuestions[]}
-            survey={survey as iSurvey}
+            questionsAndAnswers={questionsAndAnswers}
+            survey={survey}
             currPage={(currPage - 1) as number}
           />
         ) : (
           <QuestionName
-            questionsAndAnswers={questionsAndAnswers as iSurveyQuestions[]}
-            survey={survey as iSurvey}
+            questionsAndAnswers={questionsAndAnswers}
+            survey={survey}     
             currPage={0}
           />
         )}

@@ -8,19 +8,19 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
-import { Answer } from "../../../../../../interfaces/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
 
 function SelectAnswer({
   answers,
   selectedAnswerId,
 }: {
-  answers: Answer[];
+  answers: IAnswer[];
   selectedAnswerId: string[];
 }) {
   return (
     <RtlProvider>
       <Box>
-        {answers.map((answerInfo: Answer, answerIndex: number) => {
+        {answers.map((answerInfo: IAnswer, answerIndex: number) => {
           if (selectedAnswerId.includes(answerInfo.id as string)) {
             return (
               <Box key={`select${answerIndex}`}>
