@@ -1,7 +1,7 @@
 import { Card } from "@material-ui/core";
-import { ISection } from "../../../../interfaces/answers/iSection";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
-import TestsOnArrays from "../../../../utils/testsOnArrays";
+import ISectionActions from "../../../../utils/ISectionActions";
+import ISurveyAnswersActions from "../../../../utils/ISurveyAnswersActions";
 import CheckboxAnswerGraphSection from "../CheckboxAnswerStatsSection/CheckboxAnswerGraphSection/CheckboxAnswerGraphSection";
 import CopyButtonGraphComponent from "../CopyButtonGraphComponent";
 import "./ShortAnswerStatsSection.scss";
@@ -17,21 +17,13 @@ function ShortAnswerStatsSection({
   answerList: ISurveyAnswers[];
   getNumberOfCommentsText: () => JSX.Element;
 }) {
-  const getArrayOfSectionsAccordingToQuestionName = (): ISection[] => {
-    const usersQuestionAnswerAndQuestionName: ISection[] = [];
-    answerList.forEach((surveyAnswers) => {
-      let section = surveyAnswers.content.find((section) => {
-        return section.questionName === questionName;
-      });
-      if (section) usersQuestionAnswerAndQuestionName.push(section);
-    });
-    return usersQuestionAnswerAndQuestionName;
-  };
-
-  const didUsersAnswersSameAnswer = () => {
+  const didUsersAnswerSameAnswer = () => {
     const occurrenceOfAnswerInSectionArray =
-      TestsOnArrays.getOccurrenceOfAnswerInSectionArray(
-        getArrayOfSectionsAccordingToQuestionName()
+      ISectionActions.getOccurrenceOfAnswerInSectionArray(
+        ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
+          answerList,
+          questionName
+        )
       );
     let flag: boolean = false;
 
@@ -44,7 +36,7 @@ function ShortAnswerStatsSection({
 
   return (
     <div>
-      {didUsersAnswersSameAnswer() ? (
+      {didUsersAnswerSameAnswer() ? (
         <Card className="short-answer-stats-section-main">
           <div className="short-answer-stats-section-upper-section">
             <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
@@ -54,7 +46,7 @@ function ShortAnswerStatsSection({
           <CheckboxAnswerGraphSection />
         </Card>
       ) : (
-        <div></div> // TODO: chane to the other shape of info (not graph)!!!
+        <div></div> // TODO: change to the other shape of info (not graph)!!!
       )}
     </div>
   );

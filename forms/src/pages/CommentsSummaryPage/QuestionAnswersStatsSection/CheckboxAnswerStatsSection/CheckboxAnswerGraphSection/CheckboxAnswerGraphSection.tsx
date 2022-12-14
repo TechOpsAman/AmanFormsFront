@@ -1,4 +1,4 @@
-import containsDuplicates from "../../../../../utils/testsOnArrays";
+import containsDuplicates from "../../../../../utils/ArrayActions";
 
 function CheckboxAnswerGraphSection() {
   return <div></div>;
