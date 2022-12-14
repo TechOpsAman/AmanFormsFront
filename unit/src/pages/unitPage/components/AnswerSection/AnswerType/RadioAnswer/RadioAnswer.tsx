@@ -4,7 +4,6 @@ import { Answer } from "../../../../../../interfaces/iAnswer";
 function RadioAnswer({ answers, selectedAnswerId }: { answers: Answer[], selectedAnswerId: string[] }) {
     return (
         <RadioGroup
-            row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
         >

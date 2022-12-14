@@ -13,7 +13,7 @@ function ScrollPages({
 }: {
   questionsAndAnswers: iSurveyQuestions[], survey: iSurvey;
 }) {
-  const numOfPages = questionsAndAnswers.length + 1;
+  const numOfPages = questionsAndAnswers.length;
   const [currPage, setCurrPage] = useState(1);
   const [theme, setTheme] = useState(`  מתוך   ${numOfPages}  `);
   const [changePage, setChangePage] = useState(false);
