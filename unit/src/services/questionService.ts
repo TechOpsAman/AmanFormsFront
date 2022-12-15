@@ -4,7 +4,6 @@ import { ISurveyAnswers } from "../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../interfaces/questions/iSurvey";
 
 
-
   export default class CompositorService {
     static async getSurveyQuestionsAndUsersAnswers(
       surveyId: string
@@ -19,3 +18,4 @@ import { ISurveyQuestions } from "../interfaces/questions/iSurvey";
         });
     }
   }
+

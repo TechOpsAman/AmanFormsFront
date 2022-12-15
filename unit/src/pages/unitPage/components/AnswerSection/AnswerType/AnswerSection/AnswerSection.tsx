@@ -4,10 +4,12 @@ import CheckboxAnswer from "../CheckboxAnswer/CheckboxAnswer";
 import OpenAnswer from "../OpenAnswer/OpenAnswer";
 import RadioAnswer from "../RadioAnswer/RadioAnswer";
 import SelectAnswer from "../SelectAnswer/SelectAnswer";
+import './AnswerSection.scss';
 
 function AnswerSection({ answers, questionType, selectedAnswerId }: { answers: IAnswer[], questionType: string, selectedAnswerId: string[] }) {
 const handelAnswers = () => {
-    switch (questionType) {
+  console.log(questionType)
+    switch (questionType.toLocaleLowerCase()             ) {
         case "checkbox":
             return (<Box className="survey-answer-unit_answers_div"> {<CheckboxAnswer answers={answers as IAnswer[]} selectedAnswerId={selectedAnswerId as string[]}/>} </Box>)
         case "select":
