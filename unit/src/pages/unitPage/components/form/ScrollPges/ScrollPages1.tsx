@@ -9,9 +9,11 @@ import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
 
 function ScrollPages({
-  questionsAndAnswers, survey,
+  questionsAndAnswers,
+  survey,
 }: {
-  questionsAndAnswers: ISurveyAnswers[], survey: ISurveyQuestions;
+  questionsAndAnswers: ISurveyAnswers[];
+  survey: ISurveyQuestions;
 }) {
   const numOfPages = questionsAndAnswers.length;
   const [currPage, setCurrPage] = useState(1);
@@ -19,8 +21,10 @@ function ScrollPages({
   const [changePage, setChangePage] = useState(false);
 
   const handelPages = (pageNum: number) => {
-    setCurrPage(() => pageNum);
-    setChangePage(true);
+    if (pageNum <= numOfPages) {
+      setCurrPage(() => pageNum);
+      setChangePage(true);
+    }
   };
 
   const handelForwardPage = () => {
@@ -32,12 +36,12 @@ function ScrollPages({
     if (currPage !== 1) setCurrPage((prevPage) => prevPage - 1);
     setChangePage(true);
   };
-console.log(survey)
+  console.log(survey);
   return (
     <Box>
       <Box className="survey-answer-unit_scroll_survey_units">
         <IconButton onClick={handelForwardPage}>
-          <ChevronLeftIcon color="primary" fontSize="large" />
+          <ChevronLeftIcon fontSize="large" />
         </IconButton>
         <Box dir="rtl" className="survey-answer-unit_page_conter">
           <TextField
@@ -46,7 +50,7 @@ console.log(survey)
             type="number"
             value={currPage}
             className="survey-answer-unit_text_filed"
-            InputProps={{ inputProps: { min: 1, max: 3 } }}
+            InputProps={{ inputProps: { min: 1, max: numOfPages } }}
             onChange={(event) => {
               handelPages(
                 (event.target as HTMLInputElement).value as unknown as number
@@ -56,7 +60,7 @@ console.log(survey)
           <span>{theme}</span>
         </Box>
         <IconButton onClick={handelBackwardsPage}>
-          <ChevronRightIcon color="primary" fontSize="large" />
+          <ChevronRightIcon fontSize="large" />
         </IconButton>
       </Box>
 
@@ -70,7 +74,7 @@ console.log(survey)
         ) : (
           <QuestionName
             questionsAndAnswers={questionsAndAnswers}
-            survey={survey}     
+            survey={survey}
             currPage={0}
           />
         )}

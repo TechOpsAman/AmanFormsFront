@@ -1,5 +1,6 @@
 import { Box, Checkbox, FormControlLabel, FormGroup } from "@material-ui/core";
 import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
+import './CheckboxAnswer.scss'
 
 function CheckboxAnswer({ answers, selectedAnswerId }: { answers: IAnswer[], selectedAnswerId: string[] }) {
   return (
@@ -8,12 +9,13 @@ function CheckboxAnswer({ answers, selectedAnswerId }: { answers: IAnswer[], sel
         if(selectedAnswerId.includes((answerInfo.id as string))) {
           return(
             <Box key={answerIndex}>
-            <FormControlLabel
+            <FormControlLabel 
               disabled
               checked
-              control={<Checkbox />}
+              control={<Checkbox/>}
               label={answerInfo.answer}
-              labelPlacement="start"
+              labelPlacement="end"
+              className="checkbox-answer-page_form_control"
             />
           </Box>
           )
@@ -24,7 +26,8 @@ function CheckboxAnswer({ answers, selectedAnswerId }: { answers: IAnswer[], sel
               disabled
               control={<Checkbox />}
               label={answerInfo.answer}
-              labelPlacement="start"
+              labelPlacement="end"
+              className="checkbox-answer-page_form_control"
             />
           </Box>
         );

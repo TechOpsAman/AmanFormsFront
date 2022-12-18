@@ -1,5 +1,6 @@
 import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
+import './RadioAnswer.scss'
 
 function RadioAnswer({ answers, selectedAnswerId }: { answers: IAnswer[], selectedAnswerId: string[] }) {
     return (
@@ -19,7 +20,8 @@ function RadioAnswer({ answers, selectedAnswerId }: { answers: IAnswer[], select
                                     checked
                                     control={<Radio />}
                                     label={answerInfo.answer}
-                                    labelPlacement="start"
+                                    labelPlacement="end"
+                                    className="radio-answer-page_form_control"
                                 />
                             </FormControl>
                             </Box>
@@ -35,7 +37,8 @@ function RadioAnswer({ answers, selectedAnswerId }: { answers: IAnswer[], select
                                     disabled
                                     control={<Radio />}
                                     label={answerInfo.answer}
-                                    labelPlacement="start"
+                                    labelPlacement="end"
+                                    className="radio-answer-page_form_control"
                                 />
                             </FormControl>
                             </Box>

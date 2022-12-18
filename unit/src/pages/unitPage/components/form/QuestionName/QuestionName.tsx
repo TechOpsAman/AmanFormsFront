@@ -4,7 +4,7 @@ import { IAnswer } from "../../../../../interfaces/questions/iAnswer";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
 import { ISection } from "../../../../../interfaces/answers/iSection";
-import './QuestionName.scss';
+import "./QuestionName.scss";
 
 function QuestionName({
   questionsAndAnswers,
@@ -26,17 +26,23 @@ function QuestionName({
 
   return (
     <Box>
-      <h3 className="bdd">{survey.surveyName}</h3>
+      <h1 className="survey-answer-unit_titel_div">{survey.surveyName}</h1>
       <>
         {questionsAndAnswers[currPage].content.map((question, index) => {
           return (
-            <Box sx={{ borderRadius: '16px' }} key={index} className="may">
-              <h1>{questionInfo(question).questionName}</h1>
-              <AnswerSection
-                answers={questionInfo(question).answers as IAnswer[]}
-                questionType={questionInfo(question).questionType as string}
-                selectedAnswerId={question.answers as string[]}
-              />
+            <Box
+              sx={{ borderRadius: "16px" }}
+              key={index}
+              className="survey-answer-unit_answers_box"
+            >
+              <h3 className="survey-answer-unit_question_name">{questionInfo(question).questionName}</h3>
+              <Box sx={{ height: '75%' }} className="survey-answer-unit_correct_answer">
+                <AnswerSection
+                  answers={questionInfo(question).answers as IAnswer[]}
+                  questionType={questionInfo(question).questionType as string}
+                  selectedAnswerId={question.answers as string[]}
+                />
+              </Box>
             </Box>
           );
         })}
