@@ -64,6 +64,7 @@ function CommentsSummaryPage() {
             graphToCopy={graphToCopy}
             answerList={answerList}
             getNumberOfCommentsText={getNumberOfCommentsText}
+            questionList={questionList}
           />
         );
 
@@ -74,6 +75,7 @@ function CommentsSummaryPage() {
             graphToCopy={graphToCopy}
             answerList={answerList}
             getNumberOfCommentsText={getNumberOfCommentsText}
+            questionList={questionList}
           />
         );
       case QuestionType.shortAnswer:
@@ -83,6 +85,7 @@ function CommentsSummaryPage() {
             graphToCopy={graphToCopy}
             answerList={answerList}
             getNumberOfCommentsText={getNumberOfCommentsText}
+            questionList={questionList}
           />
         );
       case QuestionType.longAnswer:

@@ -1,5 +1,6 @@
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
+import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import ISectionActions from "../../../../utils/ISectionActions";
 import ISurveyAnswersActions from "../../../../utils/ISurveyAnswersActions";
 import CopyButtonGraphComponent from "../CopyButtonGraphComponent";
@@ -11,11 +12,13 @@ function ShortAnswerStatsSection({
   questionName,
   graphToCopy,
   answerList,
+  questionList,
   getNumberOfCommentsText,
 }: {
   questionName: string;
   graphToCopy: React.RefObject<unknown>;
   answerList: ISurveyAnswers[];
+  questionList: IQuestion[];
   getNumberOfCommentsText: () => JSX.Element;
 }) {
   const didUsersAnswerSameAnswer = () => {
