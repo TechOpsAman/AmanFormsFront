@@ -15,7 +15,7 @@ function CommentsSummaryPage() {
   const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
   const graphToCopy = createRef();
 
-  const surveyId: string = "639888699821e79971899071";
+  const surveyId: string = "63aafbf7f7ddfee84ad3edf1";
 
   const getNumberOfCommentsText = (): JSX.Element => {
     return (
@@ -53,6 +53,7 @@ function CommentsSummaryPage() {
             graphToCopy={graphToCopy}
             answerList={answerList}
             getNumberOfCommentsText={getNumberOfCommentsText}
+            questionList={questionList}
           />
         );
 

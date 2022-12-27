@@ -2,8 +2,9 @@ import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import ISectionActions from "../../../../utils/ISectionActions";
 import ISurveyAnswersActions from "../../../../utils/ISurveyAnswersActions";
-import CheckboxAnswerGraphSection from "../CheckboxAnswerStatsSection/CheckboxAnswerGraphSection/CheckboxAnswerGraphSection";
 import CopyButtonGraphComponent from "../CopyButtonGraphComponent";
+import ShortAnswerChartSection from "./ShortAnswerGraphSection/ShortAnswerChartSection";
+import ShortAnswerGraphSection from "./ShortAnswerGraphSection/ShortAnswerGraphSection";
 import "./ShortAnswerStatsSection.scss";
 
 function ShortAnswerStatsSection({
@@ -36,18 +37,27 @@ function ShortAnswerStatsSection({
 
   return (
     <div>
-      {didUsersAnswerSameAnswer() ? (
-        <Card className="short-answer-stats-section-main">
-          <div className="short-answer-stats-section-upper-section">
-            <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
-            <span className="question-name">{questionName}</span>
+      <Card className="short-answer-stats-section-main">
+        {didUsersAnswerSameAnswer() ? (
+          <>
+            <div className="short-answer-stats-section-upper-section">
+              <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
+              <span className="question-name">{questionName}</span>
+            </div>
+            {getNumberOfCommentsText()}
+            <ShortAnswerGraphSection /> {/* גרף עמודות אנכי */}
+          </>
+        ) : (
+          <div>
+            <div className="short-answer-stats-section-upper-section">
+              <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
+              <span className="question-name">{questionName}</span>
+            </div>
+            {getNumberOfCommentsText()}
+            <ShortAnswerChartSection /> {/* עמודות אופקיות */}
           </div>
-          {getNumberOfCommentsText()}
-          <CheckboxAnswerGraphSection />
-        </Card>
-      ) : (
-        <div></div> // TODO: change to the other shape of info (not graph)!!!
-      )}
+        )}
+      </Card>
     </div>
   );
 }

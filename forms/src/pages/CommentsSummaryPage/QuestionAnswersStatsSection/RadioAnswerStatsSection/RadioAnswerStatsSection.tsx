@@ -22,7 +22,10 @@ function RadioAnswerStatsSection({
         <span className="question-name">{questionName}</span>
       </div>
       {getNumberOfCommentsText()}
-      <CheckboxAnswerGraphSection />
+      <CheckboxAnswerGraphSection
+        answerList={answerList}
+        questionName={questionName}
+      />
     </Card>
   );
 }

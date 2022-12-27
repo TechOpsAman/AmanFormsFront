@@ -1,5 +1,6 @@
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
+import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import CopyButtonGraphComponent from "../CopyButtonGraphComponent";
 import CheckboxAnswerGraphSection from "./CheckboxAnswerGraphSection/CheckboxAnswerGraphSection";
 import "./CheckboxAnswerStatsSection.scss";
@@ -8,11 +9,13 @@ function CheckboxAnswerStatsSection({
   questionName,
   graphToCopy,
   answerList,
+  questionList,
   getNumberOfCommentsText,
 }: {
   questionName: string;
   graphToCopy: React.RefObject<unknown>;
   answerList: ISurveyAnswers[];
+  questionList: IQuestion[];
   getNumberOfCommentsText: () => JSX.Element;
 }) {
   return (
@@ -22,7 +25,11 @@ function CheckboxAnswerStatsSection({
         <span className="question-name">{questionName}</span>
       </div>
       {getNumberOfCommentsText()}
-      <CheckboxAnswerGraphSection />
+      <CheckboxAnswerGraphSection
+        questionList={questionList}
+        answerList={answerList}
+        questionName={questionName}
+      />
     </Card>
   );
 }
