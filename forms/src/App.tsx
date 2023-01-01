@@ -37,7 +37,7 @@ function App() {
             path="/createSurvey"
             element={<SurveyCreationPage />}
           />
-          <Route path="/surveyUnit" element={<UnitPage />} /> 
+          <Route path="/surveyUnit/:id" element={<UnitPage />} /> 
         </Routes>
       </Box>
     </ThemeProvider>
