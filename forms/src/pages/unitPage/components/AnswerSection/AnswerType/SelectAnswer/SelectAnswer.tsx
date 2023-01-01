@@ -1,12 +1,10 @@
 import {
   Box,
   FormControl,
-  FormHelperText,
   InputLabel,
   MenuItem,
   Select,
 } from "@mui/material";
-import { useEffect, useState } from "react";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
 import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
 
@@ -42,6 +40,7 @@ function SelectAnswer({
               </Box>
             );
           }
+          return null;
         })}
       </Box>
     </RtlProvider>

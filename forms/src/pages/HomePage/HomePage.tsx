@@ -147,7 +147,7 @@ export default function HomePage() {
               >
                 <TextField
                   {...params}
-                  placeholder={t("searchSurveys")}
+                  placeholder={t("searchSurveys") as string}
                   variant="standard"
                   InputProps={{
                     ...params.InputProps,
