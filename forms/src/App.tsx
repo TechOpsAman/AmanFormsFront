@@ -1,5 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import UnitPage from "./pages/unitPage/unitPage";
 import SurveyCreationPage from "./pages/SurveyCreationPage/SurveyCreationPage";
 import HomePage from "./pages/HomePage/HomePage";
 import { Navbar } from "./components/form/Navbar";
@@ -36,6 +37,7 @@ function App() {
             path="/createSurvey"
             element={<SurveyCreationPage />}
           />
+          <Route path="/surveyUnit" element={<UnitPage />} /> 
         </Routes>
       </Box>
     </ThemeProvider>
