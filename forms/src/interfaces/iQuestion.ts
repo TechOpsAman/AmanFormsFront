@@ -6,7 +6,7 @@ export interface iQuestion {
   questionType: QuestionType;
   answers?: Array<iAnswer>;
   selectedAnswers?: Array<iAnswer>;
-  mustAnswer?: boolean;
+  required?: boolean;
 }
 export enum QuestionType {
   shortAnswer = "SHORT_ANSWER",

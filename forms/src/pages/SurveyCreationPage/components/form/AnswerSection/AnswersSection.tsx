@@ -11,6 +11,8 @@ import { sectionsContext } from "../../../../../context/sectionsContext";
 import { useContext } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import DragIndicatorRoundedIcon from "@mui/icons-material/DragIndicatorRounded";
+import { updateContent } from "../../../../../services/questionsService";
+import { useLocation } from "react-router-dom";
 
 function AnswersSection({
   answers,
@@ -23,6 +25,7 @@ function AnswersSection({
   handleRemoveAnswer: any;
   questionIndex: number;
 }) {
+  const location = useLocation();
   const sections = useContext(sectionsContext);
 
   const handleDrag = (result: any) => {
@@ -31,6 +34,7 @@ function AnswersSection({
     const [recordedItems] = (items as iAnswer[]).splice(result.source.index, 1);
     (items as iAnswer[]).splice(result.destination.index, 0, recordedItems);
     sections[questionIndex].answers = items;
+    updateContent(location.state.survey.id, sections);
   };
 
   const detectAnswer = () => {
