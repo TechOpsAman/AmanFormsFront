@@ -57,54 +57,62 @@ export function Navbar({
           borderBottomRightRadius: "30px",
           borderBottomLeftRadius: "30px",
           width: "100%",
-          height: '4rem',
+          height: "4rem",
           display: "flex",
-          flexDirection: 'row',
-          justifyContent: 'center',
+          flexDirection: "row",
+          justifyContent: "center",
         }}
       >
-        <Box sx={{ p: 0, m: 0, width: "100%", display: "flex", justifyContent: "center" }}>
+        <Box
+          sx={{
+            p: 0,
+            m: 0,
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Toolbar disableGutters sx={{ width: "90%" }}>
-            <Box sx={{ flexGrow: 1 }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: "block",
-                }}
-              >
-                <MenuItem onClick={handleCloseNavMenu}>
-                  {location.pathname === "/createSurvey" && (
+            {location.pathname === "/createSurvey" && (
+              <Box sx={{ flexGrow: 1 }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: "block",
+                  }}
+                >
+                  <MenuItem onClick={handleCloseNavMenu}>
                     <Tooltip title={t("firstShow")} placement="right" arrow>
                       <IconButton>
                         <VisibilityIcon />
                       </IconButton>
                     </Tooltip>
-                  )}
-                </MenuItem>
-              </Menu>
-            </Box>
+                  </MenuItem>
+                </Menu>
+              </Box>
+            )}
             <Typography
               variant="h5"
               noWrap
@@ -119,7 +127,7 @@ export function Navbar({
                 textDecoration: "none",
               }}
             >
-              <img src={logo} alt="logo" width='200'/>
+              <img src={logo} alt="logo" width="200" />
             </Typography>
 
             <Box sx={{ flexGrow: 0 }}>
