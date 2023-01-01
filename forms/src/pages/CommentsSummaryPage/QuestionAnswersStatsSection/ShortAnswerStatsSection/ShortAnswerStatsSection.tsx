@@ -48,7 +48,12 @@ function ShortAnswerStatsSection({
               <span className="question-name">{questionName}</span>
             </div>
             {getNumberOfCommentsText()}
-            <ShortAnswerGraphSection /> {/* גרף עמודות אנכי */}
+            <ShortAnswerGraphSection
+              answerList={answerList}
+              questionName={questionName}
+              questionList={questionList}
+            />
+            {/* גרף עמודות אנכי */}
           </>
         ) : (
           <div>

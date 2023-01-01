@@ -15,7 +15,7 @@ function CommentsSummaryPage() {
   const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
   const graphToCopy = createRef();
 
-  const surveyId: string = "63aafbf7f7ddfee84ad3edf1";
+  const surveyId: string = "63b18a74f7ddfee84ad3ef50";
 
   const getNumberOfCommentsText = (): JSX.Element => {
     return (
@@ -99,6 +99,8 @@ function CommentsSummaryPage() {
     <div className="comments-summary-page-main">
       {questionList.length > 0
         ? questionList.map((question: IQuestion, questionIndex: number) => {
+            console.log(questionList);
+
             return (
               <div key={questionIndex}>
                 {returnMatchingComponentToQuestion(question)}

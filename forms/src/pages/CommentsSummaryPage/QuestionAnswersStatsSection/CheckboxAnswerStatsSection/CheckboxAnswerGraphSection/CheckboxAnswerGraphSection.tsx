@@ -18,22 +18,59 @@ function CheckboxAnswerGraphSection({
     const possibleAnswers = IQuestionActions.getQuestionAccordingToName(
       questionName,
       questionList
-    )?.answers;
+    )?.answers?.map((answer) => answer.answer);
 
     return possibleAnswers;
   };
 
   const getData = () => {
-    // מחזירה מערך שבכל תא יש שם שאלה ומספר המשתמשים שבחרו בתשובה
-    const data = [];
+    const data: Map<string, number> = new Map<string, number>();
 
     const arrayOfSectionsAccordingToQuestionName =
       ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
         answerList,
         questionName
       );
-    arrayOfSectionsAccordingToQuestionName.forEach((section) => {});
+
+    const possibleAnswers = getPossibleAnswers();
+    possibleAnswers?.forEach((answer) => {
+      data.set(answer, 0);
+    });
+
+    arrayOfSectionsAccordingToQuestionName.forEach((section) => {
+      section.answers.forEach((answer) => {
+        data.set(answer, data.get(answer)! + 1);
+      });
+    });
+
+    return data;
   };
+
+  // const getPrecentagesFromAllAnswers = () => {
+  //   const data = getData();
+  //   let sum = 0;
+  //   const answersAndPrecentage: Map<string, number> = new Map<string, number>();
+
+  //   data.forEach((value) => {
+  //     sum += value;
+  //   });
+
+  //   const answers = Array.from(data.keys());
+  //   const values = Array.from(data.values());
+
+  //   answers.forEach((answer: string, index: number) => {
+  //     answersAndPrecentage.set(
+  //       answer,
+  //       decimalToPercentage(values[index] / sum)
+  //     );
+  //   });
+
+  //   return answersAndPrecentage;
+  // };
+
+  // const decimalToPercentage = (decimal: number) => {
+  //   return decimal * 100;
+  // };
 
   return (
     <React.Fragment>
@@ -46,8 +83,12 @@ function CheckboxAnswerGraphSection({
           series={[
             {
               name: "answered",
-              data: [6578, 6787, 3245, 9876, 2324, 5123, 2435], // לשנות לתשובות של כל אחד מהמשתמשים
+              data: Array.from(getData().values()),
             },
+            // {
+            //   name: "precent from all answers",
+            //   data: Array.from(getPrecentagesFromAllAnswers().values()),
+            // },
           ]}
           options={{
             plotOptions: {
@@ -60,15 +101,7 @@ function CheckboxAnswerGraphSection({
               enabled: false,
             },
             xaxis: {
-              categories: [
-                "South Korea",
-                "Canada",
-                "United Kingdom",
-                "Netherlands",
-                "Italy",
-                "France",
-                "Japan",
-              ], // לשנות לתשובות אפשריות לשאלה
+              categories: getPossibleAnswers(),
             },
           }}
         ></Chart>
