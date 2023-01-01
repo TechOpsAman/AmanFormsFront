@@ -32,7 +32,7 @@ function CheckboxAnswer({ answers, questionIndex }: { answers: any, questionInde
           }}
           control={<Checkbox color="primary" />}
           label={element.answer}
-          labelPlacement="start" />
+          labelPlacement="end" />
       )
     })
   )

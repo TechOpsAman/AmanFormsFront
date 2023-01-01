@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { iSurvey } from '../interfaces/iSurvey';
-import { iSection } from '../interfaces/iSection';
+import { ISurveyAnswers } from '../interfaces/answers/iSurvey';
+import { ISection } from '../interfaces/answers/iSection';
 
-export const AnswerContext = createContext<iSurvey>({ surveyId: '', userId: '', content: [] as iSection[]  });
+export const AnswerContext = createContext<ISurveyAnswers>({ surveyId: '', userId: '', content: [] as ISection[]  });

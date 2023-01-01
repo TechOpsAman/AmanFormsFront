@@ -21,7 +21,7 @@ function RadioAnswer({ answers, questionIndex }: { answers: string[], questionIn
                             }}
                             control={<Radio color="primary" />}
                             label={element.answer}
-                            labelPlacement="start"
+                            labelPlacement="end"
                         />
                     )
                 })

@@ -1,26 +1,41 @@
 body {
     margin: 10px auto;
     max-width: 800px;
-    background-color: aqua;
+    background-color: #AFDBF5;
 }
 
 .survey-answer-type_answers_div {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: plum;
     flex-shrink: 6;
+    margin-bottom: 2rem;
 }
 
 .survey-answer-type_questions_div {
     background-color: white;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
     width: 85%;
-    height: 250px;
+    height: 110%;
     border-radius: 25px;
-    text-align: center;
     display: flex;
     flex-direction: column;
+    box-shadow: 0.2rem 0.2rem 0.5rem gray;
+    justify-content: center;
+}
+
+.survey-answer-type_question_name {
+    margin-right: 2rem;
+}
+
+.survey-answer-type_survey_titel {
+    background-color: white;
+    margin-bottom: 15px;
+    width: 85%;
+    height: 110%;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0.2rem 0.2rem 0.5rem gray;
+    justify-content: center;
 }
 
