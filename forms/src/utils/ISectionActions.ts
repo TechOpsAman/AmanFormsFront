@@ -8,15 +8,15 @@ export default class ISectionActions {
       this.getAnswersArrayFromSectionArray(sections) //
     ).forEach((answer) => {
       console.log(answer);
-      console.log(
-        Number(
-          ArrayActions.getOccurrence(
-            this.getAnswersArrayFromSectionArray(sections),
-            answer
-          )
-        )
-      );
-      console.log(this.getAnswersArrayFromSectionArray(sections));
+      // console.log(
+      //   Number(
+      //     ArrayActions.getOccurrence(
+      //       this.getAnswersArrayFromSectionArray(sections),
+      //       answer
+      //     )
+      //   )
+      // );
+      // console.log(this.getAnswersArrayFromSectionArray(sections));
 
       occurrenceOfEveryAnswerArray.push([
         answer,

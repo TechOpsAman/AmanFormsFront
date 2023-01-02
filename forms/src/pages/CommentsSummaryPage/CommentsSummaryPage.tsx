@@ -99,8 +99,6 @@ function CommentsSummaryPage() {
     <div className="comments-summary-page-main">
       {questionList.length > 0
         ? questionList.map((question: IQuestion, questionIndex: number) => {
-            console.log(questionList);
-
             return (
               <div key={questionIndex}>
                 {returnMatchingComponentToQuestion(question)}

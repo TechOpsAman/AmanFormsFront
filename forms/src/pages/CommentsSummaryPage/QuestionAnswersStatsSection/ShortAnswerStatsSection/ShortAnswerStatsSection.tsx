@@ -1,4 +1,6 @@
+import * as Lodash from "lodash";
 import { Card } from "@material-ui/core";
+import { ISection } from "../../../../interfaces/answers/iSection";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import ISectionActions from "../../../../utils/ISectionActions";
@@ -22,24 +24,19 @@ function ShortAnswerStatsSection({
   getNumberOfCommentsText: () => JSX.Element;
 }) {
   const didUsersAnswerSameAnswer = () => {
-    const occurrenceOfAnswerInSectionArray =
-      ISectionActions.getOccurrenceOfAnswerInSectionArray(
-        ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
-          answerList,
-          questionName
-        )
-      );
+    const answers: Array<string[]> = [];
     let flag = false;
-    console.log(
+
+    const sectionsOfQuestion =
       ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
         answerList,
         questionName
-      )
-    );
-    // console.log(occurrenceOfAnswerInSectionArray);
+      );
 
-    occurrenceOfAnswerInSectionArray.forEach((occurrenceOfAnswerInSection) => {
-      if (occurrenceOfAnswerInSection[1] > 1) flag = true;
+    sectionsOfQuestion.forEach((section) => {
+      if (answers.some((answer) => Lodash.isEqual(answer, section.answers)))
+        flag = true;
+      else answers.push(section.answers);
     });
 
     return flag;

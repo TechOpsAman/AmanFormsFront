@@ -1,5 +1,3 @@
-import * as Lodash from "lodash";
-
 export default class ArrayActions {
   // static getAnswersArrayWithoutSimilarities = ( // specific on answers - changed to generic.
   //   answersArray: Array<string[]>
