@@ -15,10 +15,17 @@ function ShortAnswerGraphSection({
   questionList: IQuestion[];
 }) {
   const getPossibleAnswers = () => {
-    const possibleAnswers = IQuestionActions.getQuestionAccordingToName(
-      questionName,
-      questionList
-    )?.answers?.map((answer) => answer.answer);
+    const possibleAnswers: string[] = [];
+    const arrayOfSectionsAccordingToQuestionName =
+      ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
+        answerList,
+        questionName
+      );
+
+    arrayOfSectionsAccordingToQuestionName.forEach((answer) => {
+      if (!possibleAnswers.includes(answer.answers[0]))
+        possibleAnswers.push(answer.answers[0]);
+    });
 
     return possibleAnswers;
   };
@@ -42,6 +49,8 @@ function ShortAnswerGraphSection({
         data.set(answer, data.get(answer)! + 1);
       });
     });
+
+    console.log(data.values);
 
     return data;
   };
@@ -72,6 +81,7 @@ function ShortAnswerGraphSection({
             },
             xaxis: {
               categories: getPossibleAnswers(),
+              position: "bottom",
             },
           }}
         ></Chart>

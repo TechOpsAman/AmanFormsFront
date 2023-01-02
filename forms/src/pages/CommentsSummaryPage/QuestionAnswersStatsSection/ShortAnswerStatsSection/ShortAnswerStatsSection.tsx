@@ -71,6 +71,8 @@ function ShortAnswerStatsSection({
             <ShortAnswerChartSection /> {/* עמודות אופקיות */}
           </div>
         )}
+
+        
       </Card>
     </div>
   );
