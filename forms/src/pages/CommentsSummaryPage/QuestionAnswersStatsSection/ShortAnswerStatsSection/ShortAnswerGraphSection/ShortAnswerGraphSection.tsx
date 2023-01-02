@@ -50,8 +50,6 @@ function ShortAnswerGraphSection({
       });
     });
 
-    console.log(data.values);
-
     return data;
   };
 
@@ -82,6 +80,9 @@ function ShortAnswerGraphSection({
             xaxis: {
               categories: getPossibleAnswers(),
               position: "bottom",
+            },
+            yaxis: {
+              tickAmount: Math.max(...Array.from(getData().values())),
             },
           }}
         ></Chart>

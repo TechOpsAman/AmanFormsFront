@@ -102,6 +102,7 @@ function CheckboxAnswerGraphSection({
             },
             xaxis: {
               categories: getPossibleAnswers(),
+              tickAmount: Math.max(...Array.from(getData().values())),
             },
           }}
         ></Chart>

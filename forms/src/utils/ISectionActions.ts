@@ -7,7 +7,6 @@ export default class ISectionActions {
     ArrayActions.getArrayWithoutSimilarities(
       this.getAnswersArrayFromSectionArray(sections) //
     ).forEach((answer) => {
-      console.log(answer);
       // console.log(
       //   Number(
       //     ArrayActions.getOccurrence(

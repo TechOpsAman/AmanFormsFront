@@ -64,15 +64,17 @@ function ShortAnswerStatsSection({
           <div>
             <>{console.log(didUsersAnswerSameAnswer())}</>
             <div className="short-answer-stats-section-upper-section">
-              <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
               <span className="question-name">{questionName}</span>
             </div>
             {getNumberOfCommentsText()}
-            <ShortAnswerChartSection /> {/* עמודות אופקיות */}
+            <ShortAnswerChartSection
+              answerList={answerList}
+              questionName={questionName}
+              questionList={questionList}
+            />
+            {/* עמודות אופקיות */}
           </div>
         )}
-
-        
       </Card>
     </div>
   );
