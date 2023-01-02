@@ -5,8 +5,19 @@ export default class ISectionActions {
   static getOccurrenceOfAnswerInSectionArray(sections: ISection[]) {
     const occurrenceOfEveryAnswerArray: Array<(string[] | number)[]> = [];
     ArrayActions.getArrayWithoutSimilarities(
-      this.getAnswersArrayFromSectionArray(sections)
+      this.getAnswersArrayFromSectionArray(sections) //
     ).forEach((answer) => {
+      console.log(answer);
+      console.log(
+        Number(
+          ArrayActions.getOccurrence(
+            this.getAnswersArrayFromSectionArray(sections),
+            answer
+          )
+        )
+      );
+      console.log(this.getAnswersArrayFromSectionArray(sections));
+
       occurrenceOfEveryAnswerArray.push([
         answer,
         Number(
@@ -17,6 +28,7 @@ export default class ISectionActions {
         ),
       ]);
     });
+
     return occurrenceOfEveryAnswerArray;
   }
 

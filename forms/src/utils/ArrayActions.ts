@@ -1,3 +1,5 @@
+import * as Lodash from "lodash";
+
 export default class ArrayActions {
   // static getAnswersArrayWithoutSimilarities = ( // specific on answers - changed to generic.
   //   answersArray: Array<string[]>
@@ -10,18 +12,33 @@ export default class ArrayActions {
   //   return noSimilaritiesArray;
   // };
 
+  // [
+  //   ["df", "dfdf", "dfdfd"],
+  //   ["dfddg", "Dgfgs"],
+  //   ["df", "dfdf", "dfdfd"]
+  // ]
+
   static getArrayWithoutSimilarities<T>(answersArray: Array<T[]>) {
-    const arraySet = new Set(answersArray);
     const noSimilaritiesArray: Array<T[]> = [];
-    arraySet.forEach((val) => {
-      noSimilaritiesArray.push(val); // 👉️ one, two, three, four
-    });
+
+    for (const answer of answersArray) {
+      if (
+        !noSimilaritiesArray.some(
+          (x) =>
+            x.length === answer.length && x.every((v, i) => v === answer[i])
+        )
+      )
+        noSimilaritiesArray.push(answer);
+    }
+
     return noSimilaritiesArray;
   }
 
   static getOccurrence<T>(array: T[], value: T): number {
     var count = 0;
-    array.forEach((v) => v === value && count++);
+    array.forEach((val) => {
+      if (val === value) count++;
+    });
     return count;
   }
 }

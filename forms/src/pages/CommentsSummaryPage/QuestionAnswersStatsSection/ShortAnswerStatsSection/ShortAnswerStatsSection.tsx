@@ -29,7 +29,14 @@ function ShortAnswerStatsSection({
           questionName
         )
       );
-    let flag: boolean = false;
+    let flag = false;
+    console.log(
+      ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
+        answerList,
+        questionName
+      )
+    );
+    // console.log(occurrenceOfAnswerInSectionArray);
 
     occurrenceOfAnswerInSectionArray.forEach((occurrenceOfAnswerInSection) => {
       if (occurrenceOfAnswerInSection[1] > 1) flag = true;
@@ -43,6 +50,7 @@ function ShortAnswerStatsSection({
       <Card className="short-answer-stats-section-main">
         {didUsersAnswerSameAnswer() ? (
           <>
+            {console.log(didUsersAnswerSameAnswer())}
             <div className="short-answer-stats-section-upper-section">
               <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
               <span className="question-name">{questionName}</span>
@@ -57,6 +65,7 @@ function ShortAnswerStatsSection({
           </>
         ) : (
           <div>
+            <>{console.log(didUsersAnswerSameAnswer())}</>
             <div className="short-answer-stats-section-upper-section">
               <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
               <span className="question-name">{questionName}</span>
