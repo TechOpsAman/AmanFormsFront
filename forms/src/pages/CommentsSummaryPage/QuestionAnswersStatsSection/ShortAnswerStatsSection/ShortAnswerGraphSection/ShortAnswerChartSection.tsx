@@ -5,6 +5,7 @@ import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
 import ISurveyAnswersActions from "../../../../../utils/ISurveyAnswersActions";
 import IQuestionActions from "../../../../../utils/IQuestionActions";
 import { ISection } from "../../../../../interfaces/answers/iSection";
+import "./ShortAnswerChartSection.scss";
 
 function ShortAnswerChartSection({
   answerList,
@@ -55,7 +56,7 @@ function ShortAnswerChartSection({
   };
 
   return (
-    <Card className="short-answer-chart-section-main">
+    <div className="short-answer-chart-section-main">
       <>
         {getPossibleAnswers()
           ? ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
@@ -63,14 +64,19 @@ function ShortAnswerChartSection({
               questionName
             ).map((section: ISection, sectionIndex: number) => {
               return (
-                <div key={sectionIndex}>
+                <Card
+                  dir="rtl"
+                  className="answer-card"
+                  style={{ backgroundColor: "#ebecf0" }}
+                  key={sectionIndex}
+                >
                   <span>{section.answers[0]}</span>
-                </div>
+                </Card>
               );
             })
           : null}
       </>
-    </Card>
+    </div>
   );
 }
 export default ShortAnswerChartSection;

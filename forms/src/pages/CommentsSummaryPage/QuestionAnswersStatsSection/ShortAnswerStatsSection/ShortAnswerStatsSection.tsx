@@ -48,7 +48,7 @@ function ShortAnswerStatsSection({
         {didUsersAnswerSameAnswer() ? (
           <>
             {console.log(didUsersAnswerSameAnswer())}
-            <div className="short-answer-stats-section-upper-section">
+            <div className="short-answer-stats-section-upper-section-graph">
               <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
               <span className="question-name">{questionName}</span>
             </div>
@@ -63,10 +63,13 @@ function ShortAnswerStatsSection({
         ) : (
           <div>
             <>{console.log(didUsersAnswerSameAnswer())}</>
-            <div className="short-answer-stats-section-upper-section">
+            <div className="short-answer-stats-section-upper-section-chart">
               <span className="question-name">{questionName}</span>
             </div>
-            {getNumberOfCommentsText()}
+            <div className="comments-number-div">
+              {getNumberOfCommentsText()}
+            </div>
+            <br />
             <ShortAnswerChartSection
               answerList={answerList}
               questionName={questionName}
