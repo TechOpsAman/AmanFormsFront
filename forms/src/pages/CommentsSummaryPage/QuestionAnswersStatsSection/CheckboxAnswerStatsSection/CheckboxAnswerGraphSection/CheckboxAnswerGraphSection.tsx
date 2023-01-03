@@ -4,6 +4,7 @@ import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
 import ISurveyAnswersActions from "../../../../../utils/ISurveyAnswersActions";
 import IQuestionActions from "../../../../../utils/IQuestionActions";
+import ValuesGenerator from "../../../../../utils/GraphActions/ValuesGenerator";
 
 function CheckboxAnswerGraphSection({
   answerList,
@@ -102,7 +103,9 @@ function CheckboxAnswerGraphSection({
             },
             xaxis: {
               categories: getPossibleAnswers(),
-              tickAmount: Math.max(...Array.from(getData().values())),
+              tickAmount: ValuesGenerator.generateTiksAmount(
+                Array.from(getData().values())
+              ),
             },
           }}
         ></Chart>

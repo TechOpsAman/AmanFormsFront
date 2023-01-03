@@ -128,10 +128,6 @@ function CommentsSummaryPage() {
         ? questionList.map((question: IQuestion, questionIndex: number) => {
             return (
               <div key={questionIndex}>
-                <>
-                  {console.log(questionList)}
-                  {console.log(answerList)}
-                </>
                 {returnMatchingComponentToQuestion(question)}
               </div>
             );

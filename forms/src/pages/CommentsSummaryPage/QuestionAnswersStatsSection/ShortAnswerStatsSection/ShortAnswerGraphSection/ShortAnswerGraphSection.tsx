@@ -3,6 +3,7 @@ import Chart from "react-apexcharts";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
 import ISurveyAnswersActions from "../../../../../utils/ISurveyAnswersActions";
+import ValuesGenerator from "../../../../../utils/GraphActions/ValuesGenerator";
 
 function ShortAnswerGraphSection({
   answerList,
@@ -81,7 +82,9 @@ function ShortAnswerGraphSection({
               position: "bottom",
             },
             yaxis: {
-              tickAmount: Math.max(...Array.from(getData().values())),
+              tickAmount: ValuesGenerator.generateTiksAmount(
+                Array.from(getData().values())
+              ),
             },
           }}
         ></Chart>
