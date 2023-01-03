@@ -1,8 +1,8 @@
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
-import CheckboxAnswerGraphSection from "../CheckboxAnswerStatsSection/CheckboxAnswerGraphSection/CheckboxAnswerGraphSection";
 import CopyButtonGraphComponent from "../CopyButtonGraphComponent";
+import SelectAnswerGraphSection from "./SelectAnswerGraphSection/SelectAnswerGraphSection";
 import "./SelectAnswerStatsSection.scss";
 
 function SelectAnswerStatsSection({
@@ -25,7 +25,7 @@ function SelectAnswerStatsSection({
         <span className="question-name">{questionName}</span>
       </div>
       {getNumberOfCommentsText}
-      <CheckboxAnswerGraphSection
+      <SelectAnswerGraphSection
         questionList={questionList}
         answerList={answerList}
         questionName={questionName}
