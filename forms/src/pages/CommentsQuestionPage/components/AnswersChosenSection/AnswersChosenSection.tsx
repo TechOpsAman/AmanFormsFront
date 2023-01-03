@@ -101,7 +101,7 @@ function AnswersChosenSection({
   return (
     <div>
       <>
-        {answerList 
+        {answerList
           ? answerList[0].content
               .filter((section) => {
                 return section.questionName === chosenQuestion.questionName;
