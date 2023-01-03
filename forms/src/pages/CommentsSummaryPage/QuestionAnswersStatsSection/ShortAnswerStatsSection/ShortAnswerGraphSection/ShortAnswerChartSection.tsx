@@ -41,7 +41,7 @@ function ShortAnswerChartSection({
               return (
                 <Card
                   dir="rtl"
-                  className="answer-card"
+                  className="answer-card-short"
                   style={{ backgroundColor: "#ebecf0" }}
                   key={sectionIndex}
                 >
