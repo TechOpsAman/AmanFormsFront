@@ -16,7 +16,7 @@ function SelectAnswerStatsSection({
   graphToCopy: React.RefObject<unknown>;
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
-  getNumberOfCommentsText: () => JSX.Element;
+  getNumberOfCommentsText: JSX.Element;
 }) {
   return (
     <Card className="select-answer-stats-section-main">
@@ -24,7 +24,7 @@ function SelectAnswerStatsSection({
         <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
         <span className="question-name">{questionName}</span>
       </div>
-      {getNumberOfCommentsText()}
+      {getNumberOfCommentsText}
       <CheckboxAnswerGraphSection
         questionList={questionList}
         answerList={answerList}

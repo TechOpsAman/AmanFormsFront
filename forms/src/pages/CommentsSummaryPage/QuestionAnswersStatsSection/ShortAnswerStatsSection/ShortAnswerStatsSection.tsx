@@ -1,9 +1,7 @@
 import * as Lodash from "lodash";
 import { Card } from "@material-ui/core";
-import { ISection } from "../../../../interfaces/answers/iSection";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
-import ISectionActions from "../../../../utils/ISectionActions";
 import ISurveyAnswersActions from "../../../../utils/ISurveyAnswersActions";
 import CopyButtonGraphComponent from "../CopyButtonGraphComponent";
 import ShortAnswerChartSection from "./ShortAnswerGraphSection/ShortAnswerChartSection";
@@ -21,7 +19,7 @@ function ShortAnswerStatsSection({
   graphToCopy: React.RefObject<unknown>;
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
-  getNumberOfCommentsText: () => JSX.Element;
+  getNumberOfCommentsText: JSX.Element;
 }) {
   const didUsersAnswerSameAnswer = () => {
     const answers: Array<string[]> = [];
@@ -52,7 +50,7 @@ function ShortAnswerStatsSection({
               <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
               <span className="question-name">{questionName}</span>
             </div>
-            {getNumberOfCommentsText()}
+            {getNumberOfCommentsText}
             <ShortAnswerGraphSection
               answerList={answerList}
               questionName={questionName}
@@ -66,9 +64,7 @@ function ShortAnswerStatsSection({
             <div className="short-answer-stats-section-upper-section-chart">
               <span className="question-name">{questionName}</span>
             </div>
-            <div className="comments-number-div">
-              {getNumberOfCommentsText()}
-            </div>
+            <div className="comments-number-div">{getNumberOfCommentsText}</div>
             <br />
             <ShortAnswerChartSection
               answerList={answerList}

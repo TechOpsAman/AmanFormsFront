@@ -3,6 +3,7 @@ import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import CompositorService from "../../services/compositor.service";
+import ISurveyAnswersActions from "../../utils/ISurveyAnswersActions";
 import "./CommentsSummaryPage.scss";
 import CheckboxAnswerStatsSection from "./QuestionAnswersStatsSection/CheckboxAnswerStatsSection/CheckboxAnswerStatsSection";
 import LongAnswerStatsSection from "./QuestionAnswersStatsSection/LongAnswerStatsSection/LongAnswerStatsSection";
@@ -17,13 +18,22 @@ function CommentsSummaryPage() {
 
   const surveyId: string = "63b2eb48f7ddfee84ad3f338";
 
-  const getNumberOfCommentsText = (): JSX.Element => {
+  const getNumberOfCommentsText = (questionName: string): JSX.Element => {
     return (
       <div className="number-of-comments-text">
-        {answerList.length === 1 ? (
+        {ISurveyAnswersActions.getNumberOfCommentsAccordingToQuestion(
+          answerList,
+          questionName
+        ) === 1 ? (
           <span dir="rtl">תגובה אחת</span>
         ) : (
-          <span dir="rtl">{answerList.length} תגובות</span>
+          <span dir="rtl">
+            {ISurveyAnswersActions.getNumberOfCommentsAccordingToQuestion(
+              answerList,
+              questionName
+            )}{" "}
+            תגובות
+          </span>
         )}
       </div>
     );
@@ -52,7 +62,9 @@ function CommentsSummaryPage() {
             questionName={question.questionName}
             graphToCopy={graphToCopy}
             answerList={answerList}
-            getNumberOfCommentsText={getNumberOfCommentsText}
+            getNumberOfCommentsText={getNumberOfCommentsText(
+              question.questionName
+            )}
             questionList={questionList}
           />
         );
@@ -63,7 +75,9 @@ function CommentsSummaryPage() {
             questionName={question.questionName}
             graphToCopy={graphToCopy}
             answerList={answerList}
-            getNumberOfCommentsText={getNumberOfCommentsText}
+            getNumberOfCommentsText={getNumberOfCommentsText(
+              question.questionName
+            )}
             questionList={questionList}
           />
         );
@@ -74,7 +88,9 @@ function CommentsSummaryPage() {
             questionName={question.questionName}
             graphToCopy={graphToCopy}
             answerList={answerList}
-            getNumberOfCommentsText={getNumberOfCommentsText}
+            getNumberOfCommentsText={getNumberOfCommentsText(
+              question.questionName
+            )}
             questionList={questionList}
           />
         );
@@ -84,12 +100,23 @@ function CommentsSummaryPage() {
             questionName={question.questionName}
             graphToCopy={graphToCopy}
             answerList={answerList}
-            getNumberOfCommentsText={getNumberOfCommentsText}
+            getNumberOfCommentsText={getNumberOfCommentsText(
+              question.questionName
+            )}
             questionList={questionList}
           />
         );
       case QuestionType.longAnswer:
-        return <LongAnswerStatsSection questionName={question.questionName} />;
+        return (
+          <LongAnswerStatsSection
+            questionName={question.questionName}
+            answerList={answerList}
+            getNumberOfCommentsText={getNumberOfCommentsText(
+              question.questionName
+            )}
+            questionList={questionList}
+          />
+        );
       default:
         return <div></div>;
     }

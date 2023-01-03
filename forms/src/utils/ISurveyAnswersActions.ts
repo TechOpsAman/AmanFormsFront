@@ -17,4 +17,14 @@ export default class ISurveyAnswersActions {
     });
     return sectionsAccordingToQuestionName;
   }
+
+  static getNumberOfCommentsAccordingToQuestion(
+    answerList: ISurveyAnswers[],
+    questionName: string
+  ): number {
+    return this.getArrayOfSectionsAccordingToQuestionName(
+      answerList,
+      questionName
+    ).length;
+  }
 }

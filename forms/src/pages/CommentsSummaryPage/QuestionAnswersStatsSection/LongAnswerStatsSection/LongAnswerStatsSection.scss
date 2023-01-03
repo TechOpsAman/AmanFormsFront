@@ -7,3 +7,40 @@
   margin-top: 1rem;
   padding: 1rem;
 }
+
+.short-answer-stats-section-upper-section-graph {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.long-answer-stats-section-upper-section-chart {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.question-name {
+  font-size: large;
+  font-weight: bold;
+}
+
+.number-of-comments-text {
+  font-size: small;
+  align-self: flex-end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.comments-number-div {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
