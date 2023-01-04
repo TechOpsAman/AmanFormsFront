@@ -11,12 +11,14 @@ function SelectAnswerStatsSection({
   answerList,
   questionList,
   getNumberOfCommentsText,
+  takeScreenshot,
 }: {
   questionName: string;
   graphToCopy: React.RefObject<unknown>;
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
+  takeScreenshot: () => void;
 }) {
   return (
     <Card className="select-answer-stats-section-main">

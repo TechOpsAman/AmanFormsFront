@@ -11,17 +11,22 @@ function CheckboxAnswerStatsSection({
   answerList,
   questionList,
   getNumberOfCommentsText,
+  takeScreenshot,
 }: {
   questionName: string;
   graphToCopy: React.RefObject<unknown>;
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
+  takeScreenshot: () => void;
 }) {
   return (
     <Card className="checkbox-answer-stats-section-main">
       <div className="checkbox-answer-stats-section-upper-section">
-        <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
+        <CopyButtonGraphComponent
+          graphToCopyRef={graphToCopy}
+          takeScreenshot={takeScreenshot}
+        />
         <span className="question-name">{questionName}</span>
       </div>
       {getNumberOfCommentsText}

@@ -1,4 +1,5 @@
-import { createRef, useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import html2canvas from "html2canvas";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
@@ -14,9 +15,26 @@ import ShortAnswerStatsSection from "./QuestionAnswersStatsSection/ShortAnswerSt
 function CommentsSummaryPage() {
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
   const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
-  const graphToCopy = createRef();
+  const [currentScreenShot, setCurrentScreenShot] =
+    useState<HTMLCanvasElement>();
+
+  let element: HTMLElement;
+
+  element = document.getElementById("number-of-comments-text") as HTMLElement;
+
+  const graphToCopy = useRef<HTMLElement>(element);
 
   const surveyId: string = "63b41b59f7ddfee84ad409ca";
+
+  const takeScreenshot = () => {
+    html2canvas(graphToCopy.current).then((canvas) => {
+      setCurrentScreenShot(canvas);
+      const dataURL = currentScreenShot.toDataURL();
+      const link = document.createElement("a");
+      link.href = dataURL;
+      link.download = "screenshot.png";
+    });
+  };
 
   const getNumberOfCommentsText = (questionName: string): JSX.Element => {
     return (
@@ -66,6 +84,7 @@ function CommentsSummaryPage() {
               question.questionName
             )}
             questionList={questionList}
+            takeScreenshot={takeScreenshot}
           />
         );
 
@@ -79,6 +98,7 @@ function CommentsSummaryPage() {
               question.questionName
             )}
             questionList={questionList}
+            takeScreenshot={takeScreenshot}
           />
         );
 
@@ -92,6 +112,7 @@ function CommentsSummaryPage() {
               question.questionName
             )}
             questionList={questionList}
+            takeScreenshot={takeScreenshot}
           />
         );
       case QuestionType.shortAnswer:
@@ -104,6 +125,7 @@ function CommentsSummaryPage() {
               question.questionName
             )}
             questionList={questionList}
+            takeScreenshot={takeScreenshot}
           />
         );
       case QuestionType.longAnswer:

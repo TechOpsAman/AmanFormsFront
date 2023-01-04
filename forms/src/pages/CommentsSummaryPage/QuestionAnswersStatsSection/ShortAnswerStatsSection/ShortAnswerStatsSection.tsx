@@ -14,12 +14,14 @@ function ShortAnswerStatsSection({
   answerList,
   questionList,
   getNumberOfCommentsText,
+  takeScreenshot,
 }: {
   questionName: string;
   graphToCopy: React.RefObject<unknown>;
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
+  takeScreenshot: () => void;
 }) {
   const didUsersAnswerSameAnswer = () => {
     const answers: Array<string[]> = [];
