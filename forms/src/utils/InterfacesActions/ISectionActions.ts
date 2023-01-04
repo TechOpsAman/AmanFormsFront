@@ -1,22 +1,13 @@
-import { ISection } from "../interfaces/answers/iSection";
-import ArrayActions from "./ArrayActions";
+import { ISection } from "../../interfaces/answers/iSection";
+import ArrayActions from "../DataStructuresActions/ArrayActions";
+import MatrixActions from "../DataStructuresActions/MatrixActions";
 
 export default class ISectionActions {
   static getOccurrenceOfAnswerInSectionArray(sections: ISection[]) {
     const occurrenceOfEveryAnswerArray: Array<(string[] | number)[]> = [];
-    ArrayActions.getArrayWithoutSimilarities(
+    MatrixActions.getMatrixWithoutSimilarities(
       this.getAnswersArrayFromSectionArray(sections) //
     ).forEach((answer) => {
-      // console.log(
-      //   Number(
-      //     ArrayActions.getOccurrence(
-      //       this.getAnswersArrayFromSectionArray(sections),
-      //       answer
-      //     )
-      //   )
-      // );
-      // console.log(this.getAnswersArrayFromSectionArray(sections));
-
       occurrenceOfEveryAnswerArray.push([
         answer,
         Number(

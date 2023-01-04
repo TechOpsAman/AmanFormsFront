@@ -1,7 +1,7 @@
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
-import ISurveyAnswersActions from "../../../../../utils/ISurveyAnswersActions";
+import ISurveyAnswersActions from "../../../../../utils/InterfacesActions/ISurveyAnswersActions";
 import { ISection } from "../../../../../interfaces/answers/iSection";
 import "./ShortAnswerChartSection.scss";
 

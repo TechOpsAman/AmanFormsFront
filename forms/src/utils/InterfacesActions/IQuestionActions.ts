@@ -1,4 +1,4 @@
-import { IQuestion } from "../interfaces/questions/iQuestion";
+import { IQuestion } from "../../interfaces/questions/iQuestion";
 
 export default class IQuestionActions {
   static getQuestionAccordingToName(

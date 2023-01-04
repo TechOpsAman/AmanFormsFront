@@ -3,7 +3,7 @@ import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import CompositorService from "../../services/compositor.service";
-import ISurveyAnswersActions from "../../utils/ISurveyAnswersActions";
+import ISurveyAnswersActions from "../../utils/InterfacesActions/ISurveyAnswersActions";
 import "./CommentsSummaryPage.scss";
 import CheckboxAnswerStatsSection from "./QuestionAnswersStatsSection/CheckboxAnswerStatsSection/CheckboxAnswerStatsSection";
 import LongAnswerStatsSection from "./QuestionAnswersStatsSection/LongAnswerStatsSection/LongAnswerStatsSection";

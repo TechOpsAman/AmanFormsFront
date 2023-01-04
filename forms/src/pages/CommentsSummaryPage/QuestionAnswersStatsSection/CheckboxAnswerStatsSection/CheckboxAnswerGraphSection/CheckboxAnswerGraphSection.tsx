@@ -2,8 +2,8 @@ import React from "react";
 import Chart from "react-apexcharts";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
-import ISurveyAnswersActions from "../../../../../utils/ISurveyAnswersActions";
-import IQuestionActions from "../../../../../utils/IQuestionActions";
+import ISurveyAnswersActions from "../../../../../utils/InterfacesActions/ISurveyAnswersActions";
+import IQuestionActions from "../../../../../utils/InterfacesActions/IQuestionActions";
 import ValuesGenerator from "../../../../../utils/GraphActions/ValuesGenerator";
 
 function CheckboxAnswerGraphSection({

@@ -1,5 +1,5 @@
-import { ISection } from "../interfaces/answers/iSection";
-import { ISurveyAnswers } from "../interfaces/answers/iSurvey";
+import { ISection } from "../../interfaces/answers/iSection";
+import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 
 export default class ISurveyAnswersActions {
   static getArrayOfSectionsAccordingToQuestionName(

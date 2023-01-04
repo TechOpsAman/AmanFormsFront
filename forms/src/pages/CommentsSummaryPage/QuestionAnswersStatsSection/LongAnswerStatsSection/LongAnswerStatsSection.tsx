@@ -2,7 +2,7 @@ import * as Lodash from "lodash";
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
-import ISurveyAnswersActions from "../../../../utils/ISurveyAnswersActions";
+import ISurveyAnswersActions from "../../../../utils/InterfacesActions/ISurveyAnswersActions";
 import LongAnswerGraphSection from "./LongAnswerGraphSection/LongAnswerGraphSection";
 import "./LongAnswerStatsSection.scss";
 
