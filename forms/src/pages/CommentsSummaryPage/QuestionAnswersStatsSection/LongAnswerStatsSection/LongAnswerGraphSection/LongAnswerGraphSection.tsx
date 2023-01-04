@@ -26,6 +26,7 @@ function LongAnswerGraphSection({
       if (!possibleAnswers.includes(answer.answers[0]))
         possibleAnswers.push(answer.answers[0]);
     });
+    console.log(possibleAnswers);
 
     return possibleAnswers;
   };
@@ -34,18 +35,15 @@ function LongAnswerGraphSection({
     <div className="long-answer-chart-section-main">
       <>
         {getPossibleAnswers()
-          ? ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
-              answerList,
-              questionName
-            ).map((section: ISection, sectionIndex: number) => {
+          ? getPossibleAnswers().map((answer: string, answerIndex: number) => {
               return (
                 <Card
                   dir="rtl"
                   className="answer-card-long"
                   style={{ backgroundColor: "#ebecf0" }}
-                  key={sectionIndex}
+                  key={answerIndex}
                 >
-                  <span>{section.answers[0]}</span>
+                  <span>{answer}</span>
                 </Card>
               );
             })
