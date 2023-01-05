@@ -12,7 +12,6 @@ export default class AnswerService {
         content: survey.content,
       }
     );
-
     return data;
   };
 }

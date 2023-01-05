@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="survey-answers-name-container">
       <Routes>
-        <Route path="/answerSurvey" element={<SubmitAnswerPage />} /> 
+        <Route path="/answerSurvey/:id" element={<SubmitAnswerPage />} /> 
       </Routes>
     </div>
   );

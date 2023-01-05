@@ -23,11 +23,7 @@ body {
     justify-content: center;
 }
 
-.survey-answer-type_question_name {
-    margin-right: 2rem;
-}
-
-.survey-answer-type_survey_titel {
+.survey-answer-type_questions_div_required {
     background-color: white;
     margin-bottom: 15px;
     width: 85%;
@@ -37,5 +33,30 @@ body {
     flex-direction: column;
     box-shadow: 0.2rem 0.2rem 0.5rem gray;
     justify-content: center;
+    border:1px solid red;
+}
+
+.survey-answer-type_question_name {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.survey-answer-type_survey_titel {
+    background-color: white;
+    margin-bottom: 15px;
+    margin-left: 7.3rem;
+    width: 77%;
+    height: 110%;
+    border-radius: 25px;
+    display: flex;
+    box-shadow: 0.2rem 0.2rem 0.5rem gray;
+    padding: 2rem;
+    border-top: 25px solid #7cbddb;
+    flex-direction: column;
+}
+
+.bdiks{
+    color: red;
 }
 
