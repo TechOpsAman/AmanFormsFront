@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import { Navbar } from "./components/form/Navbar";
 import { useEffect, useState } from "react";
 import { createTheme, Box, ThemeProvider } from "@mui/material";
+import { AuthService } from "./services/authService";
+import { useUser } from "./context/userContext";
 
 const theme = createTheme({
   palette: {
@@ -16,28 +18,41 @@ const theme = createTheme({
 });
 
 function App() {
-  const [user, setUser] = useState({
+  const { user, setNewUser } = useUser();
+
+  const [auser, setaUser] = useState({
     name: "noName",
-    id: "noId",
     tNumber: "noT",
   });
 
+  const [isLoadingUser, setIsLoadingUser] = useState(true);
+
   useEffect(() => {
-    //temp - should be get details from shraga
-    setUser({ name: "דניאל ונטורה", id: "8599492", tNumber: "T87475544" });
+    const initUser = async () => {
+      const newUser = AuthService.getUser();
+      if (user) {
+        setNewUser(newUser);
+        setIsLoadingUser(false);
+        setaUser({
+          name: newUser?.name.firstName + " " + newUser?.name.lastName,
+          tNumber: newUser?.displayName.split("@")[0] as string,
+        });
+      }
+    };
+
+    initUser();
   }, []);
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar {...user} />
-      <Box sx={{ bgcolor: "secondary.main", minHeight: "93vh", minWidth: "90rem" }}>
+      <Navbar {...auser} />
+      <Box
+        sx={{ bgcolor: "secondary.main", minHeight: "93vh", minWidth: "90rem" }}
+      >
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route
-            path="/createSurvey"
-            element={<SurveyCreationPage />}
-          />
-          <Route path="/surveyUnit/:id" element={<UnitPage />} /> 
+          <Route path="/createSurvey" element={<SurveyCreationPage />} />
+          <Route path="/surveyUnit/:id" element={<UnitPage />} />
         </Routes>
       </Box>
     </ThemeProvider>

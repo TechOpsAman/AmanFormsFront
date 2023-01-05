@@ -17,16 +17,14 @@ import { useLocation } from "react-router-dom";
 
 export function Navbar({
   name,
-  id,
   tNumber,
 }: {
   name: string;
-  id: string;
   tNumber: string;
 }) {
   const location = useLocation();
   const { t } = useTranslation();
-  const settings = [name, id, tNumber];
+  const settings = [name, tNumber];
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -152,8 +150,8 @@ export function Navbar({
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                {settings.map((setting, index) => (
+                  <MenuItem key={index} onClick={handleCloseUserMenu}>
                     <Typography textAlign="right">{setting}</Typography>
                   </MenuItem>
                 ))}
