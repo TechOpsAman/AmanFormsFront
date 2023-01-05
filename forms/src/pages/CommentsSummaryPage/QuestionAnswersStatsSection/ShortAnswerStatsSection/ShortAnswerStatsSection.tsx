@@ -21,7 +21,7 @@ function ShortAnswerStatsSection({
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
-  takeScreenshot: () => void;
+  takeScreenshot: (graphToCopy: React.MutableRefObject<HTMLElement>) => void;
 }) {
   const didUsersAnswerSameAnswer = () => {
     const answers: Array<string[]> = [];
@@ -41,6 +41,10 @@ function ShortAnswerStatsSection({
 
     return flag;
   };
+  const onClickFunc = (newGraphToCopy: React.RefObject<any>) => {
+    // graphToCopy = newGraphToCopy;
+    // takeScreenshot();
+  };
 
   return (
     <div>
@@ -49,7 +53,11 @@ function ShortAnswerStatsSection({
           <>
             {console.log(didUsersAnswerSameAnswer())}
             <div className="short-answer-stats-section-upper-section-graph">
-              <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
+              <CopyButtonGraphComponent
+                graphToCopyRef={graphToCopy}
+                takeScreenshot={takeScreenshot}
+                onClickFunc={onClickFunc}
+              />
               <span className="question-name">{questionName}</span>
             </div>
             {getNumberOfCommentsText}

@@ -26,10 +26,12 @@ function CommentsSummaryPage() {
 
   const surveyId: string = "63b41b59f7ddfee84ad409ca";
 
-  const takeScreenshot = () => {
+  const takeScreenshot = (graphToCopy: React.MutableRefObject<HTMLElement>) => {
+    console.log(currentScreenShot);
+    console.log("hi");
+
     html2canvas(graphToCopy.current).then((canvas) => {
-      setCurrentScreenShot(canvas);
-      const dataURL = currentScreenShot.toDataURL();
+      const dataURL = (canvas).toDataURL();
       const link = document.createElement("a");
       link.href = dataURL;
       link.download = "screenshot.png";
@@ -106,13 +108,13 @@ function CommentsSummaryPage() {
         return (
           <SelectAnswerStatsSection
             questionName={question.questionName}
-            graphToCopy={graphToCopy}
+            // graphToCopy={graphToCopy}
             answerList={answerList}
             getNumberOfCommentsText={getNumberOfCommentsText(
               question.questionName
             )}
             questionList={questionList}
-            takeScreenshot={takeScreenshot}
+            // takeScreenshot={takeScreenshot}
           />
         );
       case QuestionType.shortAnswer:

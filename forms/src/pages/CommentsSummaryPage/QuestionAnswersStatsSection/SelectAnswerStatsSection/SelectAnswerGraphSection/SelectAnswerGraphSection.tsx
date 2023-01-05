@@ -8,10 +8,14 @@ function SelectAnswerGraphSection({
   answerList,
   questionName,
   questionList,
+  graphToCopy,
+  onClickFunc,
 }: {
   answerList: ISurveyAnswers[];
   questionName: string;
   questionList: IQuestion[];
+  graphToCopy: React.RefObject<any>;
+  onClickFunc: (newGraphToCopy: React.RefObject<any>) => void;
 }) {
   const getPossibleAnswers = () => {
     const possibleAnswers: string[] = [];
@@ -54,7 +58,7 @@ function SelectAnswerGraphSection({
 
   return (
     <React.Fragment>
-      <div className="container-fluid mb-5">
+      <div className="container-fluid mb-5" ref={graphToCopy}>
         <br />
         <Chart
           type="pie"

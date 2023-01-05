@@ -18,12 +18,20 @@ function RadioAnswerStatsSection({
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
-  takeScreenshot:() => void;
+  takeScreenshot: (graphToCopy: React.MutableRefObject<HTMLElement>) => void;
 }) {
+  const onClickFunc = (newGraphToCopy: React.RefObject<any>) => {
+    // graphToCopy = newGraphToCopy;
+    // takeScreenshot();
+  };
   return (
     <Card className="radio-answer-stats-section-main">
       <div className="radio-answer-stats-section-upper-section">
-        <CopyButtonGraphComponent graphToCopyRef={graphToCopy} />
+        <CopyButtonGraphComponent
+          graphToCopyRef={graphToCopy}
+          takeScreenshot={takeScreenshot}
+          onClickFunc={onClickFunc}
+        />
         <span className="question-name">{questionName}</span>
       </div>
       {getNumberOfCommentsText}

@@ -18,14 +18,19 @@ function CheckboxAnswerStatsSection({
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
-  takeScreenshot: () => void;
+  takeScreenshot: (graphToCopy: React.MutableRefObject<HTMLElement>) => void;
 }) {
+  const onClickFunc = (newGraphToCopy: React.RefObject<any>) => {
+    // graphToCopy = newGraphToCopy;
+    // takeScreenshot();
+  };
   return (
     <Card className="checkbox-answer-stats-section-main">
       <div className="checkbox-answer-stats-section-upper-section">
         <CopyButtonGraphComponent
           graphToCopyRef={graphToCopy}
           takeScreenshot={takeScreenshot}
+          onClickFunc={onClickFunc}
         />
         <span className="question-name">{questionName}</span>
       </div>
