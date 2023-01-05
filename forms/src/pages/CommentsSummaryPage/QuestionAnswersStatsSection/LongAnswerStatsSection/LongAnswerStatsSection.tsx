@@ -1,8 +1,6 @@
-import * as Lodash from "lodash";
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
-import ISurveyAnswersActions from "../../../../utils/InterfacesActions/ISurveyAnswersActions";
 import LongAnswerGraphSection from "./LongAnswerGraphSection/LongAnswerGraphSection";
 import "./LongAnswerStatsSection.scss";
 
@@ -17,25 +15,6 @@ function LongAnswerStatsSection({
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
 }) {
-  const didUsersAnswerSameAnswer = () => {
-    const answers: Array<string[]> = [];
-    let flag = false;
-
-    const sectionsOfQuestion =
-      ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
-        answerList,
-        questionName
-      );
-
-    sectionsOfQuestion.forEach((section) => {
-      if (answers.some((answer) => Lodash.isEqual(answer, section.answers)))
-        flag = true;
-      else answers.push(section.answers);
-    });
-
-    return flag;
-  };
-
   return (
     <div>
       <Card className="long-answer-stats-section-main">
@@ -50,7 +29,6 @@ function LongAnswerStatsSection({
             questionName={questionName}
             questionList={questionList}
           />
-          {/* עמודות אופקיות */}
         </div>
       </Card>
     </div>

@@ -1,16 +1,16 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import html2canvas from "html2canvas";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import CompositorService from "../../services/compositor.service";
 import ISurveyAnswersActions from "../../utils/InterfacesActions/ISurveyAnswersActions";
-import "./CommentsSummaryPage.scss";
 import CheckboxAnswerStatsSection from "./QuestionAnswersStatsSection/CheckboxAnswerStatsSection/CheckboxAnswerStatsSection";
 import LongAnswerStatsSection from "./QuestionAnswersStatsSection/LongAnswerStatsSection/LongAnswerStatsSection";
 import RadioAnswerStatsSection from "./QuestionAnswersStatsSection/RadioAnswerStatsSection/RadioAnswerStatsSection";
 import SelectAnswerStatsSection from "./QuestionAnswersStatsSection/SelectAnswerStatsSection/SelectAnswerStatsSection";
 import ShortAnswerStatsSection from "./QuestionAnswersStatsSection/ShortAnswerStatsSection/ShortAnswerStatsSection";
+import "./CommentsSummaryPage.scss";
 
 function CommentsSummaryPage() {
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
@@ -90,7 +90,6 @@ function CommentsSummaryPage() {
             getNumberOfCommentsText={getNumberOfCommentsText(
               question.questionName
             )}
-            questionList={questionList}
             takeScreenshot={takeScreenshot}
             htmlInitialValue={element}
           />

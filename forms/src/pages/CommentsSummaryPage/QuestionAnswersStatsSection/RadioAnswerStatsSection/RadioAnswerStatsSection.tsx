@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
-import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import CopyButtonGraphComponent from "../CopyButtonGraphComponent";
 import RadioAnswerGraphSection from "./RadioAnswerGraphSection/RadioAnswerGraphSection";
 import "./RadioAnswerStatsSection.scss";
@@ -9,14 +8,12 @@ import "./RadioAnswerStatsSection.scss";
 function RadioAnswerStatsSection({
   questionName,
   answerList,
-  questionList,
   getNumberOfCommentsText,
   htmlInitialValue,
   takeScreenshot,
 }: {
   questionName: string;
   answerList: ISurveyAnswers[];
-  questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
   htmlInitialValue: HTMLElement;
   takeScreenshot: (graphToCopy: React.MutableRefObject<HTMLElement>) => void;
@@ -34,7 +31,6 @@ function RadioAnswerStatsSection({
       </div>
       {getNumberOfCommentsText}
       <RadioAnswerGraphSection
-        questionList={questionList}
         answerList={answerList}
         questionName={questionName}
         graphToCopy={graphToCopy}

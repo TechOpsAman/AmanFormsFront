@@ -7,12 +7,10 @@ import ISurveyAnswersActions from "../../../../../utils/InterfacesActions/ISurve
 function RadioAnswerGraphSection({
   answerList,
   questionName,
-  questionList,
   graphToCopy,
 }: {
   answerList: ISurveyAnswers[];
   questionName: string;
-  questionList: IQuestion[];
   graphToCopy: React.RefObject<any>;
 }) {
   const getPossibleAnswers = () => {

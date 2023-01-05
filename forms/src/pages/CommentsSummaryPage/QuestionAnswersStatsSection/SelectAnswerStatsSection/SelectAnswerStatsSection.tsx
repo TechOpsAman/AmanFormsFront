@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import html2canvas from "html2canvas";
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
