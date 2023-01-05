@@ -8,10 +8,12 @@ function RadioAnswerGraphSection({
   answerList,
   questionName,
   questionList,
+  graphToCopy,
 }: {
   answerList: ISurveyAnswers[];
   questionName: string;
   questionList: IQuestion[];
+  graphToCopy: React.RefObject<any>;
 }) {
   const getPossibleAnswers = () => {
     const possibleAnswers: string[] = [];
@@ -54,7 +56,7 @@ function RadioAnswerGraphSection({
 
   return (
     <React.Fragment>
-      <div className="container-fluid mb-5">
+      <div className="container-fluid mb-5" ref={graphToCopy}>
         <br />
         <Chart
           type="pie"

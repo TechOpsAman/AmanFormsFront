@@ -40,7 +40,6 @@ function LongAnswerStatsSection({
     <div>
       <Card className="long-answer-stats-section-main">
         <div>
-          <>{console.log(didUsersAnswerSameAnswer())}</>
           <div className="long-answer-stats-section-upper-section-chart">
             <span className="question-name">{questionName}</span>
           </div>

@@ -1,4 +1,5 @@
 import * as Lodash from "lodash";
+import { useRef } from "react";
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
@@ -10,19 +11,21 @@ import "./ShortAnswerStatsSection.scss";
 
 function ShortAnswerStatsSection({
   questionName,
-  graphToCopy,
   answerList,
   questionList,
   getNumberOfCommentsText,
+  htmlInitialValue,
   takeScreenshot,
 }: {
   questionName: string;
-  graphToCopy: React.RefObject<unknown>;
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
+  htmlInitialValue: HTMLElement;
   takeScreenshot: (graphToCopy: React.MutableRefObject<HTMLElement>) => void;
 }) {
+  let graphToCopy = useRef<HTMLElement>(htmlInitialValue);
+
   const didUsersAnswerSameAnswer = () => {
     const answers: Array<string[]> = [];
     let flag = false;
@@ -41,22 +44,16 @@ function ShortAnswerStatsSection({
 
     return flag;
   };
-  const onClickFunc = (newGraphToCopy: React.RefObject<any>) => {
-    // graphToCopy = newGraphToCopy;
-    // takeScreenshot();
-  };
 
   return (
     <div>
       <Card className="short-answer-stats-section-main">
         {didUsersAnswerSameAnswer() ? (
           <>
-            {console.log(didUsersAnswerSameAnswer())}
             <div className="short-answer-stats-section-upper-section-graph">
               <CopyButtonGraphComponent
                 graphToCopyRef={graphToCopy}
                 takeScreenshot={takeScreenshot}
-                onClickFunc={onClickFunc}
               />
               <span className="question-name">{questionName}</span>
             </div>
@@ -65,12 +62,12 @@ function ShortAnswerStatsSection({
               answerList={answerList}
               questionName={questionName}
               questionList={questionList}
+              graphToCopy={graphToCopy}
             />
             {/* גרף עמודות אנכי */}
           </>
         ) : (
           <div>
-            <>{console.log(didUsersAnswerSameAnswer())}</>
             <div className="short-answer-stats-section-upper-section-chart">
               <span className="question-name">{questionName}</span>
             </div>

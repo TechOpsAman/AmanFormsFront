@@ -9,44 +9,20 @@ import "./SelectAnswerStatsSection.scss";
 
 function SelectAnswerStatsSection({
   questionName,
-  // graphToCopy,
   answerList,
   questionList,
   getNumberOfCommentsText,
-}: // takeScreenshot,
-{
+  htmlInitialValue,
+  takeScreenshot,
+}: {
   questionName: string;
-  // graphToCopy: React.RefObject<any>;
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
-  // takeScreenshot: (graphToCopy: React.MutableRefObject<HTMLElement>) => void;
+  htmlInitialValue: HTMLElement;
+  takeScreenshot: (graphToCopy: React.MutableRefObject<HTMLElement>) => void;
 }) {
-  let element: HTMLElement;
-
-  element = document.getElementById("number-of-comments-text") as HTMLElement;
-
-  let graphToCopy = useRef<HTMLElement>(element);
-
-  const onClickFunc = (newGraphToCopy: React.RefObject<any>) => {
-    // graphToCopy = newGraphToCopy;
-    // takeScreenshot();
-  };
-  const takeScreenshot = (graphToCopy: React.MutableRefObject<HTMLElement>) => {
-    console.log(graphToCopy.current);
-
-    html2canvas(graphToCopy.current).then((canvas) => {
-      const dataURL = canvas.toDataURL();
-      const link = document.createElement("a");
-      console.log(canvas);
-      console.log(dataURL);
-      console.log(link);
-
-      link.href = dataURL;
-      link.download = "screenshot.png";
-      link.click();
-    });
-  };
+  let graphToCopy = useRef<HTMLElement>(htmlInitialValue);
 
   return (
     <Card className="select-answer-stats-section-main">
@@ -54,7 +30,6 @@ function SelectAnswerStatsSection({
         <CopyButtonGraphComponent
           graphToCopyRef={graphToCopy}
           takeScreenshot={takeScreenshot}
-          onClickFunc={onClickFunc}
         />
         <span className="question-name">{questionName}</span>
       </div>
@@ -63,7 +38,6 @@ function SelectAnswerStatsSection({
         questionList={questionList}
         answerList={answerList}
         questionName={questionName}
-        onClickFunc={onClickFunc}
         graphToCopy={graphToCopy}
       />
     </Card>

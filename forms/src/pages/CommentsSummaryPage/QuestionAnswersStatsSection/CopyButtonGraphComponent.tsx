@@ -1,28 +1,24 @@
 import "./CopyButtonGraphComponent.scss";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import DownloadIcon from "@mui/icons-material/Download";
 import { IconButton } from "@material-ui/core";
 
 function CopyButtonGraphComponent({
   graphToCopyRef,
   takeScreenshot,
-  onClickFunc,
 }: {
   graphToCopyRef: React.RefObject<any>;
   takeScreenshot: (graphToCopy: React.MutableRefObject<HTMLElement>) => void;
-  onClickFunc: any;
 }) {
   return (
     <div className="copy-button-graph-component-main">
       <IconButton
         onClick={() => {
           takeScreenshot(graphToCopyRef);
+          console.log(takeScreenshot(graphToCopyRef));
         }}
       >
-        <span className="copy-graph-text">העתקה</span>
-        <ContentCopyIcon
-          fontSize="small"
-          style={{ color: "blue" }}
-        ></ContentCopyIcon>
+        <span className="copy-graph-text">הורדה</span>
+        <DownloadIcon fontSize="small" style={{ color: "blue" }}></DownloadIcon>
       </IconButton>
     </div>
   );

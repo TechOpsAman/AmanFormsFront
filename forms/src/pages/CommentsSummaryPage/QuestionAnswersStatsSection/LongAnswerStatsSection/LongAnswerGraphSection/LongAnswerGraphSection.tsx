@@ -25,7 +25,6 @@ function LongAnswerGraphSection({
       if (!possibleAnswers.includes(answer.answers[0]))
         possibleAnswers.push(answer.answers[0]);
     });
-    console.log(possibleAnswers);
 
     return possibleAnswers;
   };

@@ -10,10 +10,12 @@ function CheckboxAnswerGraphSection({
   answerList,
   questionName,
   questionList,
+  graphToCopy,
 }: {
   answerList: ISurveyAnswers[];
   questionName: string;
   questionList: IQuestion[];
+  graphToCopy: React.RefObject<any>;
 }) {
   const getPossibleAnswers = () => {
     const possibleAnswers = IQuestionActions.getQuestionAccordingToName(
@@ -47,35 +49,9 @@ function CheckboxAnswerGraphSection({
     return data;
   };
 
-  // const getPrecentagesFromAllAnswers = () => {
-  //   const data = getData();
-  //   let sum = 0;
-  //   const answersAndPrecentage: Map<string, number> = new Map<string, number>();
-
-  //   data.forEach((value) => {
-  //     sum += value;
-  //   });
-
-  //   const answers = Array.from(data.keys());
-  //   const values = Array.from(data.values());
-
-  //   answers.forEach((answer: string, index: number) => {
-  //     answersAndPrecentage.set(
-  //       answer,
-  //       decimalToPercentage(values[index] / sum)
-  //     );
-  //   });
-
-  //   return answersAndPrecentage;
-  // };
-
-  // const decimalToPercentage = (decimal: number) => {
-  //   return decimal * 100;
-  // };
-
   return (
     <React.Fragment>
-      <div className="container-fluid mb-5">
+      <div className="container-fluid mb-5" ref={graphToCopy}>
         <br />
         <Chart
           type="bar"
@@ -86,10 +62,6 @@ function CheckboxAnswerGraphSection({
               name: "answered",
               data: Array.from(getData().values()),
             },
-            // {
-            //   name: "precent from all answers",
-            //   data: Array.from(getPrecentagesFromAllAnswers().values()),
-            // },
           ]}
           options={{
             plotOptions: {

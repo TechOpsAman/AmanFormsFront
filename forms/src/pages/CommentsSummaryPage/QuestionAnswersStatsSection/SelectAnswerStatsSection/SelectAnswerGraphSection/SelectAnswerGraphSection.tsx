@@ -9,13 +9,11 @@ function SelectAnswerGraphSection({
   questionName,
   questionList,
   graphToCopy,
-  onClickFunc,
 }: {
   answerList: ISurveyAnswers[];
   questionName: string;
   questionList: IQuestion[];
   graphToCopy: React.RefObject<any>;
-  onClickFunc: (newGraphToCopy: React.RefObject<any>) => void;
 }) {
   const getPossibleAnswers = () => {
     const possibleAnswers: string[] = [];

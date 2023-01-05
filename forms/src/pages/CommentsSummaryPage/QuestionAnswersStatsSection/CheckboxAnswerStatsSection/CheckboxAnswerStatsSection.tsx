@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
@@ -7,30 +8,27 @@ import "./CheckboxAnswerStatsSection.scss";
 
 function CheckboxAnswerStatsSection({
   questionName,
-  graphToCopy,
   answerList,
   questionList,
   getNumberOfCommentsText,
+  htmlInitialValue,
   takeScreenshot,
 }: {
   questionName: string;
-  graphToCopy: React.RefObject<unknown>;
   answerList: ISurveyAnswers[];
   questionList: IQuestion[];
   getNumberOfCommentsText: JSX.Element;
+  htmlInitialValue: HTMLElement;
   takeScreenshot: (graphToCopy: React.MutableRefObject<HTMLElement>) => void;
 }) {
-  const onClickFunc = (newGraphToCopy: React.RefObject<any>) => {
-    // graphToCopy = newGraphToCopy;
-    // takeScreenshot();
-  };
+  let graphToCopy = useRef<HTMLElement>(htmlInitialValue);
+
   return (
     <Card className="checkbox-answer-stats-section-main">
       <div className="checkbox-answer-stats-section-upper-section">
         <CopyButtonGraphComponent
           graphToCopyRef={graphToCopy}
           takeScreenshot={takeScreenshot}
-          onClickFunc={onClickFunc}
         />
         <span className="question-name">{questionName}</span>
       </div>
@@ -39,6 +37,7 @@ function CheckboxAnswerStatsSection({
         questionList={questionList}
         answerList={answerList}
         questionName={questionName}
+        graphToCopy={graphToCopy}
       />
     </Card>
   );

@@ -15,26 +15,18 @@ import ShortAnswerStatsSection from "./QuestionAnswersStatsSection/ShortAnswerSt
 function CommentsSummaryPage() {
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
   const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
-  const [currentScreenShot, setCurrentScreenShot] =
-    useState<HTMLCanvasElement>();
 
   let element: HTMLElement;
-
-  element = document.getElementById("number-of-comments-text") as HTMLElement;
-
-  const graphToCopy = useRef<HTMLElement>(element);
-
+  element = document.getElementById("") as HTMLElement;
   const surveyId: string = "63b41b59f7ddfee84ad409ca";
 
   const takeScreenshot = (graphToCopy: React.MutableRefObject<HTMLElement>) => {
-    console.log(currentScreenShot);
-    console.log("hi");
-
     html2canvas(graphToCopy.current).then((canvas) => {
-      const dataURL = (canvas).toDataURL();
+      const dataURL = canvas.toDataURL();
       const link = document.createElement("a");
       link.href = dataURL;
       link.download = "screenshot.png";
+      link.click();
     });
   };
 
@@ -80,13 +72,13 @@ function CommentsSummaryPage() {
         return (
           <CheckboxAnswerStatsSection
             questionName={question.questionName}
-            graphToCopy={graphToCopy}
             answerList={answerList}
             getNumberOfCommentsText={getNumberOfCommentsText(
               question.questionName
             )}
             questionList={questionList}
             takeScreenshot={takeScreenshot}
+            htmlInitialValue={element}
           />
         );
 
@@ -94,13 +86,13 @@ function CommentsSummaryPage() {
         return (
           <RadioAnswerStatsSection
             questionName={question.questionName}
-            graphToCopy={graphToCopy}
             answerList={answerList}
             getNumberOfCommentsText={getNumberOfCommentsText(
               question.questionName
             )}
             questionList={questionList}
             takeScreenshot={takeScreenshot}
+            htmlInitialValue={element}
           />
         );
 
@@ -108,26 +100,26 @@ function CommentsSummaryPage() {
         return (
           <SelectAnswerStatsSection
             questionName={question.questionName}
-            // graphToCopy={graphToCopy}
-            answerList={answerList}
-            getNumberOfCommentsText={getNumberOfCommentsText(
-              question.questionName
-            )}
-            questionList={questionList}
-            // takeScreenshot={takeScreenshot}
-          />
-        );
-      case QuestionType.shortAnswer:
-        return (
-          <ShortAnswerStatsSection
-            questionName={question.questionName}
-            graphToCopy={graphToCopy}
             answerList={answerList}
             getNumberOfCommentsText={getNumberOfCommentsText(
               question.questionName
             )}
             questionList={questionList}
             takeScreenshot={takeScreenshot}
+            htmlInitialValue={element}
+          />
+        );
+      case QuestionType.shortAnswer:
+        return (
+          <ShortAnswerStatsSection
+            questionName={question.questionName}
+            answerList={answerList}
+            getNumberOfCommentsText={getNumberOfCommentsText(
+              question.questionName
+            )}
+            questionList={questionList}
+            takeScreenshot={takeScreenshot}
+            htmlInitialValue={element}
           />
         );
       case QuestionType.longAnswer:
