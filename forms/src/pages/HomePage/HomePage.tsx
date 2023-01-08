@@ -94,8 +94,8 @@ export default function HomePage() {
     setMenu(null);
   };
 
-  const handleDeleteSurvey = () => {
-    deleteSurveyById((currSurvey as iSurvey).id as string);
+  const handleDeleteSurvey = async () => {
+    await deleteSurveyById((currSurvey as iSurvey).id as string);
     setCurrSurvey(undefined);
     setRender(!render);
   };
