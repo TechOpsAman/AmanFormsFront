@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="comments-question-page-container">
       <Routes>
-        <Route path="/" element={<CommentsSummaryPage />} />
+        <Route path="/commentsSummary/:id" element={<CommentsSummaryPage />} />
       </Routes>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
@@ -10,15 +11,19 @@ import LongAnswerStatsSection from "./QuestionAnswersStatsSection/LongAnswerStat
 import RadioAnswerStatsSection from "./QuestionAnswersStatsSection/RadioAnswerStatsSection/RadioAnswerStatsSection";
 import SelectAnswerStatsSection from "./QuestionAnswersStatsSection/SelectAnswerStatsSection/SelectAnswerStatsSection";
 import ShortAnswerStatsSection from "./QuestionAnswersStatsSection/ShortAnswerStatsSection/ShortAnswerStatsSection";
+import SurveyNotFoundPage from "./SurveyNotFoundPage";
 import "./CommentsSummaryPage.scss";
 
 function CommentsSummaryPage() {
+  const [surveyFound, setSurveyFound] = useState(false);
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
   const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
 
   let element: HTMLElement;
   element = document.getElementById("") as HTMLElement;
-  const surveyId: string = "63b41b59f7ddfee84ad409ca";
+
+  const location = useLocation();
+  const surveyId: string = location.pathname.split("/")[2];
 
   const takeScreenshot = (graphToCopy: React.MutableRefObject<HTMLElement>) => {
     html2canvas(graphToCopy.current).then((canvas) => {
@@ -53,16 +58,22 @@ function CommentsSummaryPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const temp = await CompositorService.getSurveyQuestionsAndUsersAnswers(
-        surveyId
-      );
-      setQuestionList((temp[0] as ISurveyQuestions).content);
-      setAnswerList(temp[1] as ISurveyAnswers[]);
+      try {
+        const questionsAndUsersAnswers =
+          await CompositorService.getSurveyQuestionsAndUsersAnswers(surveyId);
+        setQuestionList(
+          (questionsAndUsersAnswers[0] as ISurveyQuestions).content
+        );
+        setAnswerList(questionsAndUsersAnswers[1] as ISurveyAnswers[]);
+        setSurveyFound(true);
+      } catch (err) {
+        setSurveyFound(false);
+      }
     };
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [surveyId]);
 
   const returnMatchingComponentToQuestion = (
     question: IQuestion
@@ -139,15 +150,17 @@ function CommentsSummaryPage() {
 
   return (
     <div className="comments-summary-page-main">
-      {questionList.length > 0
-        ? questionList.map((question: IQuestion, questionIndex: number) => {
-            return (
-              <div key={questionIndex}>
-                {returnMatchingComponentToQuestion(question)}
-              </div>
-            );
-          })
-        : null}
+      {surveyFound ? (
+        questionList.map((question: IQuestion, questionIndex: number) => {
+          return (
+            <div key={questionIndex}>
+              {returnMatchingComponentToQuestion(question)}
+            </div>
+          );
+        })
+      ) : (
+        <SurveyNotFoundPage />
+      )}
     </div>
   );
 }
