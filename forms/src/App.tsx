@@ -1,12 +1,12 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import CommentsQuestionPage from "./pages/CommentsQuestionPage/CommentsQuesionPage";
+import CommentsQuesionPage from "./pages/CommentsQuestionPage/CommentsQuesionPage";
 
 function App() {
   return (
     <div className="comments-question-page-container">
       <Routes>
-        <Route path="/" element={<CommentsQuestionPage />} />
+        <Route path="/commentsSummary/:id" element={<CommentsQuesionPage />} />
       </Routes>
     </div>
   );

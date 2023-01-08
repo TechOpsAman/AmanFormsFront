@@ -1,6 +1,7 @@
 import "./CommentsQuesionPage.scss";
 import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import QuestionChoosingSectionUpperPart from "./components/QuestionChoosingSectionUpperPart/QuestionChoosingSectionUpperPart";
 import QuestionsAndPossibleAnswersSection from "./components/QuestionsAndPossibleAnswersSection/QuestionsAndPossibleAnswersSection";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
@@ -8,8 +9,10 @@ import AnswersChosenSection from "./components/AnswersChosenSection/AnswersChose
 import QuestionChoosingSectionBottom from "./components/QuestionChoosingSectionBottom/QuestionChoosingSectionBottom";
 import CompositorService from "../../services/compositor.service";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
+import SurveyNotFoundPage from "./SurveyNotFoundPage/SurveyNotFoundPage";
 
 function CommentsQuestionPage() {
+  const [surveyFound, setSurveyFound] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
   const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
@@ -20,7 +23,11 @@ function CommentsQuestionPage() {
     answers: [],
   });
 
-  const surveyId: string = "63b2eb48f7ddfee84ad3f338";
+  const location = useLocation();
+  const surveyId: string = location.pathname.split("/")[2];
+
+  // const surveyId: string = "63b2eb48f7ddfee84ad3f338";
+
 
   const getChosenQuestion = () => {
     if (
@@ -34,16 +41,20 @@ function CommentsQuestionPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const temp = await CompositorService.getSurveyQuestionsAndUsersAnswers(
-        surveyId
-      );
-      setQuestionList((temp[0] as ISurveyQuestions).content);
-      setAnswerList(temp[1] as ISurveyAnswers[]);
+      try {
+        const temp = await CompositorService.getSurveyQuestionsAndUsersAnswers(
+          surveyId
+        );
+        setQuestionList((temp[0] as ISurveyQuestions).content);
+        setAnswerList(temp[1] as ISurveyAnswers[]);
+      } catch (err) {
+        setSurveyFound(false);
+      }
     };
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [surveyId]);
 
   return (
     <div className="comments-question-page-main">
@@ -70,7 +81,9 @@ function CommentsQuestionPage() {
             ></QuestionChoosingSectionBottom>
           </>
         </>
-      ) : null}
+      ) : (
+        <SurveyNotFoundPage />
+      )}
     </div>
   );
 }
