@@ -11,7 +11,7 @@ import LongAnswerStatsSection from "./QuestionAnswersStatsSection/LongAnswerStat
 import RadioAnswerStatsSection from "./QuestionAnswersStatsSection/RadioAnswerStatsSection/RadioAnswerStatsSection";
 import SelectAnswerStatsSection from "./QuestionAnswersStatsSection/SelectAnswerStatsSection/SelectAnswerStatsSection";
 import ShortAnswerStatsSection from "./QuestionAnswersStatsSection/ShortAnswerStatsSection/ShortAnswerStatsSection";
-import SurveyNotFoundPage from "./SurveyNotFoundPage";
+import SurveyNotFoundPage from "../SurveyNotFoundPage/SurveyNotFoundPage";
 import "./CommentsSummaryPage.scss";
 
 function CommentsSummaryPage() {
