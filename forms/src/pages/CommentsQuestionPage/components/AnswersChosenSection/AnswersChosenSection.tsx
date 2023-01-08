@@ -17,23 +17,16 @@ function AnswersChosenSection({
   chosenQuestion: IQuestion;
 }) {
   const checkAmountOfIdenticalAnswers = (
-    answer: string[],
-    chosenQuestionName: string
-  ): number => {
-    let counter = 0;
-    answerList.forEach((answerSurvey: ISurveyAnswers) => {
-      const questionToCompare: ISection | undefined = answerSurvey.content.find(
-        (section) => {
-          return section.questionName === chosenQuestionName;
-        }
-      );
-      if (answer === questionToCompare?.answers) counter++;
-    });
-
-    return counter;
+    answers: string[],
+    data: Map<string[], number> = new Map<string[], number>()
+  ) => {
+    return data.get(answers);
   };
 
-  const getCheckboxAnswerSectionWrap = (section: ISection): JSX.Element => {
+  const getCheckboxAnswerSectionWrap = (
+    section: ISection,
+    data: Map<string[], number> = new Map<string[], number>()
+  ): JSX.Element => {
     return (
       <div className="checkbox-answer-section">
         {section.answers.map((answer: string, answerIndex: number) => {
@@ -47,11 +40,11 @@ function AnswersChosenSection({
           );
         })}
         <hr />
-        {checkAmountOfIdenticalAnswers(section.answers, "boolean") === 1 ? (
+        {checkAmountOfIdenticalAnswers(answers, data) ? (
           <span className="answer-counter">תשובה אחת</span>
         ) : (
           <span className="answer-counter" dir="rtl">
-            {checkAmountOfIdenticalAnswers(section.answers, "boolean")} תשובות
+            {checkAmountOfIdenticalAnswers(answers, data)} תשובות
           </span>
         )}
       </div>
@@ -101,19 +94,11 @@ function AnswersChosenSection({
   return (
     <div>
       <>
-        {answerList
-          ? answerList[0].content
-              .filter((section) => {
-                return section.questionName === chosenQuestion.questionName;
-              })
-              .map((section: ISection, sectionIndex: number) => {
-                return (
-                  <Card className="answer-card" key={sectionIndex}>
-                    {returnQuestionAccordingToType(section)}
-                  </Card>
-                );
-              })
-          : null}
+        {answerList ? (
+          <Card className="answer-card" key={sectionIndex}>
+            {returnQuestionAccordingToType(section)}
+          </Card>
+        ) : null}
       </>
     </div>
   );

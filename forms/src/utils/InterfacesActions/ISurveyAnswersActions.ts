@@ -18,8 +18,41 @@ export default class ISurveyAnswersActions {
     return sectionsAccordingToQuestionName;
   }
 
-  // Returns and hash map of =>
-  // [key: section,
-  // value: amount of times the section answer exists][][][]...
-  static getMapOfData(answers: ISurveyAnswers) {}
+  static getArrayOfSectionsAccordingToQuestionNameWithoutSimilarities(
+    answerList: ISurveyAnswers[],
+    questionName: string
+  ) {
+    const uniqueSections = new Set();
+    return this.getArrayOfSectionsAccordingToQuestionName(
+      answerList,
+      questionName
+    ).filter((section) => {
+      const isUnique = !uniqueSections.has(section.answers.toString());
+      if (isUnique) {
+        uniqueSections.add(section.answers.toString());
+      }
+      return isUnique;
+    });
+  }
+
+  static getData(answerList: ISurveyAnswers[], questionName: string) {
+    const data: Map<ISection, number> = new Map<ISection, number>();
+    const possibleSections =
+      this.getArrayOfSectionsAccordingToQuestionNameWithoutSimilarities(
+        answerList,
+        questionName
+      );
+    const arrayOfSectionsAccordingToQuestionName =
+      ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
+        answerList,
+        questionName
+      );
+    possibleSections.forEach((section) => {
+      data.set(section, 0);
+    });
+
+    arrayOfSectionsAccordingToQuestionName.forEach((section) => {
+      data.set(section, data.get(section)! + 1);
+    });
+  }
 }
