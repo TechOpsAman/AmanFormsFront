@@ -1,0 +1,43 @@
+.survey-creation-page-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+}
+
+.survey-creation-page-container-without-plus_svg {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 70rem;
+}
+ 
+.survey-creation-page-title-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+ 
+.survey-creation-page-section-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.survey-creation-page-secion-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.survey-creation-page-secion-list li {
+  display: flex;
+  align-items: center;
+}
+
+.survey-creation-page-container {
+  scrollbar-width: none; /* Firefox */
+}
+.survey-creation-page-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}

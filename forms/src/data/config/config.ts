@@ -1,6 +1,16 @@
 import * as env from 'env-var';
 
 export const config = {
+  compositor: {
+    compositorConnectionString: env
+      .get('COMPOSITOR_CONNECTION_URL')
+      .default('http://localhost:3003/api/compositor')
+      .asString(),
+    serviceName: env
+      .get('ANSWERS_SERVICE_NAME')
+      .default('answers-service')
+      .asString(),
+  },
   answersService: {
     answersCrudConnectionString: env
       .get('ANSWERS_CRUD_CONNECTION_URL')
@@ -21,4 +31,5 @@ export const config = {
       .default('questions-service')
       .asString(),
   },
+  
 };

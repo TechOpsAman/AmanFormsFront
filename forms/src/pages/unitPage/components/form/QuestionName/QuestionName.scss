@@ -1,0 +1,31 @@
+body{
+    background-color: rgb(185, 236, 238);
+}
+
+.survey-answer-unit_titel_div{
+    background-color: white;
+    width: 50rem;
+    height: 10rem;
+    border-radius: 20px;  
+    border-top: 25px solid #7cbddb;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 1px 5px gray;
+}
+
+.survey-answer-unit_answers_box{
+    background-color: white;
+    box-shadow: 1px 2px 9px gray;
+}
+
+.survey-answer-unit_question_name{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+
+.survey-answer-unit_correct_answer{
+    display: flex;
+    justify-content: flex-end;
+}
+
