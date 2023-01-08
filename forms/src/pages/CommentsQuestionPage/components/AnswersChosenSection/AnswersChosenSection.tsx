@@ -8,6 +8,7 @@ import {
   IQuestion,
   QuestionType,
 } from "../../../../interfaces/questions/iQuestion";
+import ISurveyAnswersActions from "../../../../utils/InterfacesActions/ISurveyAnswersActions";
 
 function AnswersChosenSection({
   answerList,
@@ -24,68 +25,78 @@ function AnswersChosenSection({
   };
 
   const getCheckboxAnswerSectionWrap = (
-    section: ISection,
-    data: Map<string[], number> = new Map<string[], number>()
+    sectionData: (number | ISection)[]
   ): JSX.Element => {
     return (
       <div className="checkbox-answer-section">
-        {section.answers.map((answer: string, answerIndex: number) => {
-          return (
-            <div className="checkbox-answer">
-              <span className="answer">{section.answers[answerIndex]}</span>
-              <div>
-                <CheckBoxIcon />
+        {(sectionData[0] as ISection).answers.map(
+          (answer: string, answerIndex: number) => {
+            return (
+              <div className="checkbox-answer">
+                <span className="answer">
+                  {(sectionData[0] as ISection).answers[answerIndex]}
+                </span>
+                <div>
+                  <CheckBoxIcon />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          }
+        )}
         <hr />
-        {checkAmountOfIdenticalAnswers(answers, data) ? (
+        {(sectionData[1] as number) === 1 ? (
           <span className="answer-counter">תשובה אחת</span>
         ) : (
           <span className="answer-counter" dir="rtl">
-            {checkAmountOfIdenticalAnswers(answers, data)} תשובות
+            {sectionData[1] as number} תשובות
           </span>
         )}
       </div>
     );
   };
 
-  const getRadioAnswerSectionWrap = (section: ISection): JSX.Element => {
+  const getRadioAnswerSectionWrap = (
+    sectionData: (number | ISection)[]
+  ): JSX.Element => {
     return (
       <div className="radio-answer-section">
         <div className="radio-answer">
-          <span className="answer">{section.answers[0]}</span>
+          <span className="answer">
+            {(sectionData[0] as ISection).answers[0]}
+          </span>
           <div>
             <RadioButtonCheckedIcon />
           </div>
         </div>
         <hr />
-        {checkAmountOfIdenticalAnswers(section.answers, "boolean") === 1 ? (
+        {(sectionData[1] as number) === 1 ? (
           <span className="answer-counter">תשובה אחת</span>
         ) : (
           <span className="answer-counter" dir="rtl">
-            {checkAmountOfIdenticalAnswers(section.answers, "boolean")} תשובות
+            {sectionData[1] as number}
+            תשובות
           </span>
         )}
       </div>
     );
   };
 
-  const returnQuestionAccordingToType = (section: ISection): JSX.Element => {
-    switch (section.questionType) {
+  const returnQuestionAccordingToType = (
+    sectionData: (number | ISection)[]
+  ): JSX.Element => {
+    switch ((sectionData[0] as ISection).questionType) {
       case QuestionType.checkbox:
-        return getCheckboxAnswerSectionWrap(section);
+        return getCheckboxAnswerSectionWrap(sectionData);
 
       case QuestionType.radio:
-        return getRadioAnswerSectionWrap(section);
+        return getRadioAnswerSectionWrap(sectionData);
 
       case QuestionType.select:
-        return <div>{section.answers[0]}</div>;
+        return <div>{(sectionData[0] as ISection).answers[0]}</div>;
       case QuestionType.shortAnswer:
       case QuestionType.longAnswer:
       case QuestionType.title:
-        return <h2>{section.answers[0]}</h2>;
+        return <h2>{(sectionData[0] as ISection).answers[0]}</h2>;
       default:
         return <div></div>;
     }
@@ -94,12 +105,22 @@ function AnswersChosenSection({
   return (
     <div>
       <>
-        {answerList ? (
-          <Card className="answer-card" key={sectionIndex}>
-            {returnQuestionAccordingToType(section)}
-          </Card>
-        ) : null}
+        {/* {console.log(
+          ISurveyAnswersActions.getData(answerList, chosenQuestion.questionName)
+        )} */}
       </>
+      {answerList
+        ? ISurveyAnswersActions.getData(
+            answerList,
+            chosenQuestion.questionName
+          ).map((setionData: Array<ISection | number>, index: number) => {
+            return (
+              <Card className="answer-card" key={index}>
+                {returnQuestionAccordingToType(setionData)}
+              </Card>
+            );
+          })
+        : null}
     </div>
   );
 }
