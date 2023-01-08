@@ -28,7 +28,7 @@ function SurveyCreationPage() {
   return (
     <div className="survey-creation-page-container" >
       {answerAndQuestions? 
-      <AnswerType questionsAndAnswers={answerAndQuestions as unknown as ISurveyQuestions} /> : 'a'}
+      <AnswerType questionsAndAnswers={answerAndQuestions as unknown as ISurveyQuestions} /> : 'Error'}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel } from "@material-ui/core";
+import { Checkbox, FormControlLabel } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 import "./CheckboxAnswer.scss";
@@ -22,7 +22,7 @@ function CheckboxAnswer({
   const [answersIndexArray, setAnswersIndexArray] = useState<number[]>([]);
   const [answersStringsArray, setAnswersStringsArray] = useState<string[]>([]);
 
-  const updateCheckboxAnswer = (answer: string, answerIndex: number) => {
+  const updateCheckboxAnswer = (answer: string, answerIndex: number) => {      
     if (!answersIndexArray.includes(answerIndex)) {
       setAnswersIndexArray([...answersIndexArray, answerIndex]);
       setAnswersStringsArray([...answersStringsArray, answer]);
@@ -44,7 +44,7 @@ function CheckboxAnswer({
     const temp = currAnswers;
     temp[questionIndex] = answersStringsArray;
     setCurrAnswers(temp);
-    setFlag(!flag)
+    setFlag(!flag);
   }, [answersIndexArray]);
 
   return answers.map((element: any, answerIndex: number) => {

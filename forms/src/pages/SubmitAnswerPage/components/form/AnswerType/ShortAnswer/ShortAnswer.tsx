@@ -29,6 +29,9 @@ function ShortAnswer({
       surveySection.content[questionIndex].answers = [
         surveySection.content[questionIndex].answers[0] + answers,
       ];
+
+      console.log(currAnswer)
+      console.log(answers)
   };
 
 
@@ -37,6 +40,7 @@ function ShortAnswer({
     temp[questionIndex] = currAnswer;
     setCurrAnswers(temp);
     setFlag(!flag)
+    console.log(currAnswer)
   }, [currAnswer]);
 
  

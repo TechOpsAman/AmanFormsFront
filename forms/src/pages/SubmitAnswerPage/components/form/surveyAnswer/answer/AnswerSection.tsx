@@ -119,13 +119,14 @@ function AnswerType({
 
   const checkAllRequirments = () => {
     let allRequiredAnswered = true;
-  
+
     questionsAndAnswers.content.forEach((question, index) => {
-      if (question.required && currAnswers[index].length <= 0) {
+      console.log('hh', currAnswers[index][0]?.length)
+      if (question.required && currAnswers[index].length === 0 || currAnswers[index][0]?.length === 0) {
         allRequiredAnswered = false;
       }
     });
-  
+
     setIsAllRequiredAnsewred(allRequiredAnswered);
   };
 
@@ -152,7 +153,6 @@ function AnswerType({
 
   useEffect(() => {
     checkAllRequirments();
-    console.log(checkAllRequirments())
   }, [flag]);
 
   return (
@@ -172,8 +172,6 @@ function AnswerType({
           {questionsAndAnswers.content.map((questions: any, i: number) => {
             return (
               <RtlProvider>
-                {console.log(i)}
-                {console.log(currAnswers[i])}
                 <Box
                   className={
                     questions.required &&
@@ -189,7 +187,9 @@ function AnswerType({
                     {questions.required ? (
                       <Box className="survey-answer-type_question_name">
                         <h3>{questions.questionName}</h3>
-                        <h4 className="bdiks">{"*"}</h4>
+                        <h4 className="survey-answer-type_required_asterisk">
+                          {"*"}
+                        </h4>
                       </Box>
                     ) : (
                       <h3 className="survey-answer-type_question_name">
