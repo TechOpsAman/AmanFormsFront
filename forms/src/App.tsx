@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { createTheme, Box, ThemeProvider } from "@mui/material";
 import { AuthService } from "./services/authService";
 import { useUser } from "./context/userContext";
+import SubmitAnswerPage from "./pages/SubmitAnswerPage/SubmitAnswerPage";
 
 const theme = createTheme({
   palette: {
@@ -53,6 +54,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/createSurvey" element={<SurveyCreationPage />} />
           <Route path="/surveyUnit/:id" element={<UnitPage />} />
+          <Route path="/answerSurvey/:id" element={<SubmitAnswerPage />} />
         </Routes>
       </Box>
     </ThemeProvider>

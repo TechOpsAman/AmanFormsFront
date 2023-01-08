@@ -31,7 +31,8 @@ const resources = {
       no: 'no',
       yes: 'yes',
       editSurvey: 'edit survey',
-      deleteSurvey: 'delete survey'
+      deleteSurvey: 'delete survey',
+      work: 'work'
     },
   },
   he: {

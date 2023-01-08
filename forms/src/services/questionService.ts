@@ -3,8 +3,12 @@ import axios from "axios";
 import { ISurveyAnswers } from "../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../interfaces/questions/iSurvey";
 
+export default class QuestionService {
+    static getSurveyQuestions = async (surveyId: string) => {
+        const { data } = await axios.get(`${config.questionsService.questionsCrudConnectionString}/getSurveyById?id=${surveyId}`);
+        return data;
+    }
 
-  export default class CompositorService {
     static async getSurveyQuestionsAndUsersAnswers(
       surveyId: string
     ): Promise<(ISurveyQuestions | ISurveyAnswers[])[]> { 
@@ -17,6 +21,6 @@ import { ISurveyQuestions } from "../interfaces/questions/iSurvey";
           if (err.response.status !== 404) console.log(err);
         });
     }
-  }
+}
   
 
