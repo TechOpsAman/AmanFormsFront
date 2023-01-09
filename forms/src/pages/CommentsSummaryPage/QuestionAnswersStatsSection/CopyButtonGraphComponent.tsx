@@ -14,7 +14,6 @@ function CopyButtonGraphComponent({
       <IconButton
         onClick={() => {
           takeScreenshot(graphToCopyRef);
-          console.log(takeScreenshot(graphToCopyRef));
         }}
       >
         <span className="copy-graph-text">הורדה</span>
