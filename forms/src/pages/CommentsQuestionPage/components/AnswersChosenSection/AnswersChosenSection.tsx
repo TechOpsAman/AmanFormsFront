@@ -33,9 +33,7 @@ function AnswersChosenSection({
           (answer: string, answerIndex: number) => {
             return (
               <div className="checkbox-answer">
-                <span className="answer">
-                  {(sectionData[0] as ISection).answers[answerIndex]}
-                </span>
+                <span className="answer">{answer}</span>
                 <div>
                   <CheckBoxIcon />
                 </div>
@@ -60,14 +58,18 @@ function AnswersChosenSection({
   ): JSX.Element => {
     return (
       <div className="radio-answer-section">
-        <div className="radio-answer">
-          <span className="answer">
-            {(sectionData[0] as ISection).answers[0]}
-          </span>
-          <div>
-            <RadioButtonCheckedIcon />
-          </div>
-        </div>
+        {(sectionData[0] as ISection).answers.map(
+          (answer: string, answerIndex: number) => {
+            return (
+              <div className="radio-answer">
+                <span className="answer">{answer}</span>
+                <div>
+                  <RadioButtonCheckedIcon />
+                </div>
+              </div>
+            );
+          }
+        )}
         <hr />
         {(sectionData[1] as number) === 1 ? (
           <span className="answer-counter">תשובה אחת</span>
