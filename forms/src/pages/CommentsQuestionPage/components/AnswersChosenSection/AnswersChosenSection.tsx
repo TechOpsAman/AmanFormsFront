@@ -87,11 +87,35 @@ function AnswersChosenSection({
         return getRadioAnswerSectionWrap(sectionData);
 
       case QuestionType.select:
-        return <div>{(sectionData[0] as ISection).answers[0]}</div>;
+        return (
+          <div dir="rtl">
+            <h2>{(sectionData[0] as ISection).answers[0]}</h2>
+            <hr />
+            {(sectionData[1] as number) === 1 ? (
+              <span className="answer-counter">תשובה אחת</span>
+            ) : (
+              <span className="answer-counter" dir="rtl">
+                {sectionData[1] as number} תשובות
+              </span>
+            )}
+          </div>
+        );
       case QuestionType.shortAnswer:
       case QuestionType.longAnswer:
       case QuestionType.title:
-        return <h2>{(sectionData[0] as ISection).answers[0]}</h2>;
+        return (
+          <div dir="rtl">
+            <h2>{(sectionData[0] as ISection).answers[0]}</h2>
+            <hr />
+            {(sectionData[1] as number) === 1 ? (
+              <span className="answer-counter">תשובה אחת</span>
+            ) : (
+              <span className="answer-counter" dir="rtl">
+                {sectionData[1] as number} תשובות
+              </span>
+            )}
+          </div>
+        );
       default:
         return <div></div>;
     }

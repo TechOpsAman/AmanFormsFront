@@ -40,26 +40,6 @@ export default class ISurveyAnswersActions {
     return map;
   }
 
-  // static getArrayOfSectionsAccordingToQuestionNameWithoutSimilarities(
-  //   answerList: ISurveyAnswers[],
-  //   questionName: string
-  // ) {
-  //   const uniqueSections = new Set();
-  //   const arrayOfSectionsAccordingToQuestionNameWithoutSimilarities =
-  //     this.getArrayOfSectionsAccordingToQuestionName(
-  //       answerList,
-  //       questionName
-  //     ).filter((section) => {
-  //       const isUnique = !uniqueSections.has(section.answers.toString());
-  //       if (isUnique) {
-  //         uniqueSections.add(section.answers.toString());
-  //       }
-  //       return isUnique;
-  //     });
-
-  //   return arrayOfSectionsAccordingToQuestionNameWithoutSimilarities;
-  // }
-
   static getData(answerList: ISurveyAnswers[], questionName: string) {
     const data = this.createMapOfSectionsArrayWithNoSimilarities(
       ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
@@ -69,7 +49,6 @@ export default class ISurveyAnswersActions {
     );
 
     const arrayOfData = Array.from(data.entries());
-
     console.log(arrayOfData);
 
     return arrayOfData;
