@@ -49,7 +49,6 @@ export default class ISurveyAnswersActions {
     );
 
     const arrayOfData = Array.from(data.entries());
-    console.log(arrayOfData);
 
     return arrayOfData;
   }
