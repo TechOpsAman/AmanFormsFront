@@ -15,89 +15,61 @@ export default class ISurveyAnswersActions {
 
       if (section) sectionsAccordingToQuestionName.push(section);
     });
-    console.log(sectionsAccordingToQuestionName);
 
     return sectionsAccordingToQuestionName;
   }
 
-  static getArrayOfSectionsAccordingToQuestionNameWithoutSimilarities(
-    answerList: ISurveyAnswers[],
-    questionName: string
-  ) {
-    const uniqueSections = new Set();
-    const arrayOfSectionsAccordingToQuestionNameWithoutSimilarities =
-      this.getArrayOfSectionsAccordingToQuestionName(
-        answerList,
-        questionName
-      ).filter((section) => {
-        const isUnique = !uniqueSections.has(section.answers.toString());
-        if (isUnique) {
-          uniqueSections.add(section.answers.toString());
-        }
-        return isUnique;
-      });
-    // console.log(
-    //   "arrayOfSectionsAccordingToQuestionNameWithoutSimilarities " +
-    //     arrayOfSectionsAccordingToQuestionNameWithoutSimilarities
-    // );
+  static createMapOfSectionsArrayWithNoSimilarities(
+    sections: ISection[]
+  ): Map<ISection, number> {
+    const map = new Map<ISection, number>();
 
-    return arrayOfSectionsAccordingToQuestionNameWithoutSimilarities;
+    for (const section of sections) {
+      let found = false;
+      map.forEach((value, key) => {
+        if (key.answers.toString() === section.answers.toString()) {
+          map.set(key, value + 1);
+          found = true;
+        }
+      });
+      if (!found) {
+        map.set(section, 1);
+      }
+    }
+
+    return map;
   }
 
-  static getData(answerList: ISurveyAnswers[], questionName: string) {
-    const data: Map<ISection, number> = new Map<ISection, number>();
-    const possibleSections =
-      this.getArrayOfSectionsAccordingToQuestionNameWithoutSimilarities(
-        answerList,
-        questionName
-      );
-    // console.log("000000000000000000000: " + possibleSections);
+  // static getArrayOfSectionsAccordingToQuestionNameWithoutSimilarities(
+  //   answerList: ISurveyAnswers[],
+  //   questionName: string
+  // ) {
+  //   const uniqueSections = new Set();
+  //   const arrayOfSectionsAccordingToQuestionNameWithoutSimilarities =
+  //     this.getArrayOfSectionsAccordingToQuestionName(
+  //       answerList,
+  //       questionName
+  //     ).filter((section) => {
+  //       const isUnique = !uniqueSections.has(section.answers.toString());
+  //       if (isUnique) {
+  //         uniqueSections.add(section.answers.toString());
+  //       }
+  //       return isUnique;
+  //     });
 
-    const arrayOfSectionsAccordingToQuestionName =
+  //   return arrayOfSectionsAccordingToQuestionNameWithoutSimilarities;
+  // }
+
+  static getData(answerList: ISurveyAnswers[], questionName: string) {
+    const data = this.createMapOfSectionsArrayWithNoSimilarities(
       ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
         answerList,
         questionName
-      );
-    possibleSections.forEach((section) => {
-      data.set(section, 0);
-    });
-
-    arrayOfSectionsAccordingToQuestionName.forEach((section) => {
-      data.set(section, data.get(section)! + 1);
-    });
+      )
+    );
 
     const arrayOfData = Array.from(data.entries());
-    // console.log("arrayOfData " + arrayOfData);
-    // console.log("data " + data.values());
 
-    return arrayOfData; /* [
-      [
-        {
-          questionName: 'Question 1',
-          questionType: QuestionType.MultipleChoice,
-          required: true,
-          answers: ['Answer 1', 'Answer 2', 'Answer 3']
-        },
-        1
-      ],
-      [
-        {
-          questionName: 'Question 2',
-          questionType: QuestionType.MultipleChoice,
-          required: true,
-          answers: ['Answer 1', 'Answer 2']
-        },
-        2
-      ],
-      [
-        {
-          questionName: 'Question 3',
-          questionType: QuestionType.MultipleChoice,
-          required: false,
-          answers: ['Answer 1']
-        },
-        3
-      ]
-    ] */
+    return arrayOfData;
   }
 }

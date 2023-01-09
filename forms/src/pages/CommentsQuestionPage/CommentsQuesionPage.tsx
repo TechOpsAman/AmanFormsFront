@@ -12,6 +12,7 @@ import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import SurveyNotFoundPage from "./SurveyNotFoundPage/SurveyNotFoundPage";
 
 function CommentsQuestionPage() {
+  const [loading, setLoading] = useState(true);
   const [surveyFound, setSurveyFound] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
@@ -28,7 +29,6 @@ function CommentsQuestionPage() {
 
   // const surveyId: string = "63b2eb48f7ddfee84ad3f338";
 
-
   const getChosenQuestion = () => {
     if (
       chosenQuestion !== questionList[questionList.length - 1] &&
@@ -38,6 +38,15 @@ function CommentsQuestionPage() {
       setIsFirstLoad(false);
     }
   };
+
+  useEffect(() => {
+    async function sleep() {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      setLoading(false);
+    }
+
+    sleep();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,6 +64,10 @@ function CommentsQuestionPage() {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [surveyId]);
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <div className="comments-question-page-main">

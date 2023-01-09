@@ -42,6 +42,7 @@ function AnswersChosenSection({
           }
         )}
         <hr />
+
         {(sectionData[1] as number) === 1 ? (
           <span className="answer-counter">תשובה אחת</span>
         ) : (
@@ -106,11 +107,7 @@ function AnswersChosenSection({
 
   return (
     <div>
-      <>
-        {/* {console.log(
-          ISurveyAnswersActions.getData(answerList, chosenQuestion.questionName)
-        )} */}
-      </>
+      <></>
       {answerList
         ? ISurveyAnswersActions.getData(
             answerList,
