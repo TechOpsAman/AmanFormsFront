@@ -62,6 +62,11 @@ const resources = {
       yes: 'כן',
       editSurvey: 'ערוך סקר',
       deleteSurvey: 'מחק סקר',
+      share: 'שיתוף',
+      copyLink: 'העתיקו קישור זה לשיתוף הסקר',
+      copy: 'העתקה',
+      copiedToClipboard: 'לינק לסקר הועתק בהצלחה!',
+      filedToCopy: 'העתקה נכשלה'
     },
   },
 };

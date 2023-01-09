@@ -21,7 +21,6 @@ function UnitPage() {
         const temp = await CompositorService.getSurveyQuestionsAndUsersAnswers(
           surveyId
         );
-        console.log(temp);
         setAnswerAndQuestions(temp[0] as ISurveyQuestions);
         setSelectedAnswers(temp[1] as ISurveyAnswers[]);
         setSurveyFound(true);
@@ -33,7 +32,6 @@ function UnitPage() {
     fetchData();
   }, [surveyId]);
 
-  console.log(answerAndQuestions);
   return (
     <div>
       {surveyFound ? (
@@ -46,7 +44,13 @@ function UnitPage() {
             />
           ) : null}{" "}
         </div>
-      ) : <Box sx={{display: 'flex', justifyContent: 'center'}}><span style={{fontSize: '2rem', marginTop: '1rem'}}>הסקר המבוקש לא נמצא</span></Box>}
+      ) : (
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <span style={{ fontSize: "2rem", marginTop: "1rem" }}>
+            הסקר המבוקש לא נמצא
+          </span>
+        </Box>
+      )}
     </div>
   );
 }

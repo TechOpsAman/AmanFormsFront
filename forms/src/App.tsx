@@ -26,14 +26,16 @@ function App() {
     tNumber: "noT",
   });
 
-  const [isLoadingUser, setIsLoadingUser] = useState(true);
+  const [shareDialogOpen, setShareDialogOpen] = useState(false);
+  const handleshareDialogOpen = (bool: boolean) => setShareDialogOpen(bool);
+
+  const [surveyUrl, setSurveyUrl] = useState("");
 
   useEffect(() => {
     const initUser = async () => {
       const newUser = AuthService.getUser();
       if (user) {
         setNewUser(newUser);
-        setIsLoadingUser(false);
         setaUser({
           name: newUser?.name.firstName + " " + newUser?.name.lastName,
           tNumber: newUser?.displayName.split("@")[0] as string,
@@ -46,13 +48,26 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar {...auser} />
+      <Navbar {...auser} handleShareDialogOpen={handleshareDialogOpen} surveyUrl={surveyUrl} />
       <Box
-        sx={{ bgcolor: "secondary.main", minHeight: "93.1vh", minWidth: "90rem" }}
+        sx={{
+          bgcolor: "secondary.main",
+          minHeight: "93.1vh",
+          minWidth: "90rem",
+        }}
       >
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/createSurvey" element={<SurveyCreationPage />} />
+          <Route
+            path="/createSurvey"
+            element={
+              <SurveyCreationPage
+                isOpen={shareDialogOpen}
+                setIsOpen={handleshareDialogOpen}
+                setSurveyUrl={setSurveyUrl}
+              />
+            }
+          />
           <Route path="/surveyUnit/:id" element={<UnitPage />} />
           <Route path="/answerSurvey/:id" element={<SubmitAnswerPage />} />
         </Routes>

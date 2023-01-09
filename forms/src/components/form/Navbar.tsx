@@ -14,13 +14,18 @@ import pic from "../../assets/profilePic.png";
 import logo from "../../assets/whiteforms.png";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import ShareIcon from "@mui/icons-material/Share";
 
 export function Navbar({
   name,
   tNumber,
+  handleShareDialogOpen,
+  surveyUrl
 }: {
   name: string;
   tNumber: string;
+  handleShareDialogOpen: (bool: boolean) => void;
+  surveyUrl: string;
 }) {
   const location = useLocation();
   const { t } = useTranslation();
@@ -45,6 +50,11 @@ export function Navbar({
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const openInNewTab = (url: string) => {
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
   };
 
   return (
@@ -101,10 +111,30 @@ export function Navbar({
                     display: "block",
                   }}
                 >
-                  <MenuItem onClick={handleCloseNavMenu}>
+                  <MenuItem
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      flexDirection: "column",
+                    }}
+                  >
                     <Tooltip title={t("firstShow")} placement="right" arrow>
-                      <IconButton>
+                      <IconButton
+                        onClick={() => {
+                          openInNewTab(surveyUrl);
+                        }}
+                      >
                         <VisibilityIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title={t("share")} placement="right" arrow>
+                      <IconButton
+                        onClick={() => {
+                          handleShareDialogOpen(true);
+                        }}
+                      >
+                        <ShareIcon />
                       </IconButton>
                     </Tooltip>
                   </MenuItem>

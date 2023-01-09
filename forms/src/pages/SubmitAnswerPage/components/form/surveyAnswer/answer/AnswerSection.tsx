@@ -121,8 +121,10 @@ function AnswerType({
     let allRequiredAnswered = true;
 
     questionsAndAnswers.content.forEach((question, index) => {
-      console.log('hh', currAnswers[index][0]?.length)
-      if (question.required && currAnswers[index].length === 0 || currAnswers[index][0]?.length === 0) {
+      if (
+        (question.required && currAnswers[index].length === 0) ||
+        currAnswers[index][0]?.length === 0
+      ) {
         allRequiredAnswered = false;
       }
     });
@@ -171,7 +173,7 @@ function AnswerType({
           </RtlProvider>
           {questionsAndAnswers.content.map((questions: any, i: number) => {
             return (
-              <RtlProvider>
+              <RtlProvider key={i}>
                 <Box
                   className={
                     questions.required &&
@@ -181,7 +183,6 @@ function AnswerType({
                       ? "survey-answer-type_questions_div"
                       : "survey-answer-type_questions_div_required"
                   }
-                  key={i}
                 >
                   <AnswerContext.Provider value={survey}>
                     {questions.required ? (

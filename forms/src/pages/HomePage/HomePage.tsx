@@ -170,7 +170,6 @@ export default function HomePage() {
             gap: "20px",
             flexWrap: "wrap",
             justifyContent: "right",
-            mx: 10,
           }}
         >
           {currSurveys.map((survey, index) => {

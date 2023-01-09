@@ -50,7 +50,6 @@ export const updateLastUpdated = async (surveyId: string) => {
 };
 
 export const postSurvey = async (survey: iSurvey) => {
-  console.log(survey);
   return axios
     .post(
       `${config.questionsService.questionsCrudConnectionString}/createSurvey`,

@@ -17,7 +17,6 @@ function AnswerSection({
   selectedAnswerId: string[];
 }) {
   const handelAnswers = () => {
-    console.log(questionType);
     switch (questionType.toLocaleLowerCase()) {
       case "checkbox":
         return (
@@ -71,7 +70,7 @@ function AnswerSection({
 
   return (
     <RtlProvider>
-      <Box sx={{padding:'5%'}}>
+      <Box sx={{ padding: "5%" }}>
         <>{handelAnswers()}</>
       </Box>
     </RtlProvider>
