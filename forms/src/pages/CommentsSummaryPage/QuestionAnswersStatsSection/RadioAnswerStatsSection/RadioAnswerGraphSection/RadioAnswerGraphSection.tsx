@@ -13,40 +13,45 @@ function RadioAnswerGraphSection({
   graphToCopy: React.RefObject<any>;
 }) {
   const getPossibleAnswers = () => {
-    const possibleAnswers: string[] = [];
     const arrayOfSectionsAccordingToQuestionName =
-      ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
+      ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionNameWithoutSimilarities(
         answerList,
         questionName
       );
 
-    arrayOfSectionsAccordingToQuestionName.forEach((answer) => {
-      if (!possibleAnswers.includes(answer.answers[0]))
-        possibleAnswers.push(answer.answers[0]);
-    });
+    const answers: string[] = [];
 
-    return possibleAnswers;
+    for (const section of arrayOfSectionsAccordingToQuestionName) {
+      for (const answer of section.answers) {
+        if (!answers.includes(answer)) {
+          answers.push(answer);
+        }
+      }
+    }
+
+    return answers;
   };
 
   const getData = () => {
-    const data: Map<string, number> = new Map<string, number>();
-
-    const arrayOfSectionsAccordingToQuestionName =
+    const answers = getPossibleAnswers();
+    const sections =
       ISurveyAnswersActions.getArrayOfSectionsAccordingToQuestionName(
         answerList,
         questionName
       );
+    const data = new Map<string, number>();
 
-    const possibleAnswers = getPossibleAnswers();
-    possibleAnswers?.forEach((answer) => {
+    for (const answer of answers) {
       data.set(answer, 0);
-    });
+    }
 
-    arrayOfSectionsAccordingToQuestionName.forEach((section) => {
-      section.answers.forEach((answer) => {
-        data.set(answer, data.get(answer)! + 1);
-      });
-    });
+    for (const section of sections) {
+      for (const answer of section.answers) {
+        if (data.has(answer)) {
+          data.set(answer, data.get(answer)! + 1);
+        }
+      }
+    }
 
     return data;
   };
@@ -55,6 +60,7 @@ function RadioAnswerGraphSection({
     <React.Fragment>
       <div className="container-fluid mb-5" ref={graphToCopy}>
         <br />
+        <>{console.log(Array.from(getData().values()))}</>
         <Chart
           type="pie"
           width={800}

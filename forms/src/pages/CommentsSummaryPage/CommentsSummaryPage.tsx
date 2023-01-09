@@ -15,6 +15,7 @@ import SurveyNotFoundPage from "../SurveyNotFoundPage/SurveyNotFoundPage";
 import "./CommentsSummaryPage.scss";
 
 function CommentsSummaryPage() {
+  const [loading, setLoading] = useState(true);
   const [surveyFound, setSurveyFound] = useState(false);
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
   const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
@@ -55,6 +56,15 @@ function CommentsSummaryPage() {
       </div>
     );
   };
+
+  useEffect(() => {
+    async function sleep() {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      setLoading(false);
+    }
+
+    sleep();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -147,6 +157,10 @@ function CommentsSummaryPage() {
         return <div></div>;
     }
   };
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <div className="comments-summary-page-main">
