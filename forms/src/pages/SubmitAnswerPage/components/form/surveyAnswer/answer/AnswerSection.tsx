@@ -171,37 +171,40 @@ function AnswerType({
               </Typography>
             </Box>
           </RtlProvider>
-          {questionsAndAnswers.content.map((questions: any, i: number) => {
+          {questionsAndAnswers.content.map((question: any, i: number) => {
             return (
               <RtlProvider key={i}>
-                <Box
-                  className={
-                    questions.required &&
-                    questions.questionType !== "TITLE" &&
+                {console.log(
+                  question.required &&
+                    question.questionType !== "TITLE" &&
                     currAnswers[i].length > 0 &&
                     currAnswers[i][0]
-                      ? "survey-answer-type_questions_div"
-                      : "survey-answer-type_questions_div_required"
+                )}
+                <Box
+                  className={
+                    question.required
+                      ? question.questionType !== "TITLE" &&
+                        currAnswers[i].length > 0 &&
+                        currAnswers[i][0]
+                        ? "survey-answer-type_questions_div"
+                        : "survey-answer-type_questions_div_required"
+                      : "survey-answer-type_questions_div"
                   }
                 >
                   <AnswerContext.Provider value={survey}>
-                    {questions.required ? (
+                    {question.required ? (
                       <Box className="survey-answer-type_question_name">
-                        <h3>{questions.questionName}</h3>
+                        <h3>{question.questionName}</h3>
                         <h4 className="survey-answer-type_required_asterisk">
                           {"*"}
                         </h4>
                       </Box>
                     ) : (
                       <h3 className="survey-answer-type_question_name">
-                        {questions.questionName}
+                        {question.questionName}
                       </h3>
                     )}
-                    {handleAnswers(
-                      questions.questionType,
-                      questions.answers,
-                      i
-                    )}
+                    {handleAnswers(question.questionType, question.answers, i)}
                   </AnswerContext.Provider>
                 </Box>
               </RtlProvider>
