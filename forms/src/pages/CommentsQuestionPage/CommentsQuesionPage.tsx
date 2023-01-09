@@ -87,6 +87,7 @@ function CommentsQuestionPage() {
               answerList={answerList}
               chosenQuestion={chosenQuestion}
             />
+
             <QuestionChoosingSectionBottom
               questionList={questionList}
               chosenQuestion={chosenQuestion}
