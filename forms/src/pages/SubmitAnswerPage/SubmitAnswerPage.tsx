@@ -5,7 +5,7 @@ import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import QuestionService from "../../services/questionService";
 import { useLocation } from "react-router-dom";
 
-function SurveyCreationPage() {
+function SurveyCreationPage({ user }: { user: string }) {
   const location = useLocation();
   const [answerAndQuestions, setAnswerAndQuestions] =
     useState<ISurveyQuestions>();
@@ -28,6 +28,7 @@ function SurveyCreationPage() {
           questionsAndAnswers={
             answerAndQuestions as unknown as ISurveyQuestions
           }
+          user={user}
         />
       ) : (
         "Error"

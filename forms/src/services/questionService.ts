@@ -16,8 +16,8 @@ export default class QuestionService {
         .get(
           `${config.compositor.compositorConnectionString}/getSurveyResults?surveyId=${surveyId}`
         )
-        .then((res) => res.data)
-        .catch((err) => {
+        .then((res: { data: any; }) => res.data)
+        .catch((err: { response: { status: number; }; }) => {
           if (err.response.status !== 404) console.log(err);
         });
     }

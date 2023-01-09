@@ -15,11 +15,14 @@ import { AnswerContext } from "../../../../../../context/sectionContext";
 import { ISurveyQuestions } from "../../../../../../interfaces/questions/iSurvey";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
 import AnswerService from "../../../../../../services/answerService";
+import { updateRepliers } from "../../../../../../services/questionsService";
 
 function AnswerType({
   questionsAndAnswers,
+  user,
 }: {
   questionsAndAnswers: ISurveyQuestions;
+  user: string;
 }) {
   const [currAnswers, setCurrAnswers] = useState<string[][]>(
     new Array(questionsAndAnswers.content.length).fill([])
@@ -121,7 +124,10 @@ function AnswerType({
     let allRequiredAnswered = true;
 
     questionsAndAnswers.content.forEach((question, index) => {
-      if (question.required && currAnswers[index].length === 0) {
+      if (
+        question.required &&
+        (currAnswers[index].length === 0 || currAnswers[index][0] === "")
+      ) {
         allRequiredAnswered = false;
       }
     });
@@ -204,7 +210,10 @@ function AnswerType({
           <Box dir="rtl">
             <Button
               variant="contained"
-              onClick={() => postSurveyData(survey)}
+              onClick={() => {
+                postSurveyData(survey);
+                updateRepliers(survey.surveyId, user);
+              }}
               disabled={!isAllRequiredAnsewred}
             >
               הבא

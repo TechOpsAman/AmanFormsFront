@@ -6,8 +6,8 @@ import { iQuestion } from "../interfaces/iQuestion";
 export const getAll = async () => {
   return axios
     .get(`${config.questionsService.questionsCrudConnectionString}/getAll`)
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
@@ -17,8 +17,8 @@ export const getById = async (surveyId: string) => {
     .get(
       `${config.questionsService.questionsCrudConnectionString}/getSurveyById?id=${surveyId}`
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
@@ -32,8 +32,8 @@ export const updateContent = async (surveyId: string, content: iQuestion[]) => {
         content: content,
       }
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
@@ -43,8 +43,8 @@ export const updateLastUpdated = async (surveyId: string) => {
     .put(
       `${config.questionsService.questionsCrudConnectionString}/updateLastUpdated?id=${surveyId}`
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
@@ -60,8 +60,8 @@ export const postSurvey = async (survey: iSurvey) => {
         content: survey.content,
       }
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
@@ -85,8 +85,23 @@ export const updateSurvey = async (
       `${config.questionsService.questionsCrudConnectionString}/updateSurvey`,
       temp
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
+      console.log(err);
+    });
+};
+
+export const updateRepliers = async (surveyId: string, replier: string) => {
+  return axios
+    .put(
+      `${config.questionsService.questionsCrudConnectionString}/updateRepliers`,
+      {
+        surveyId: surveyId,
+        repliers: replier,
+      }
+    )
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };

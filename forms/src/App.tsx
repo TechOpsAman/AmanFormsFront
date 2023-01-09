@@ -48,7 +48,11 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar {...auser} handleShareDialogOpen={handleshareDialogOpen} surveyUrl={surveyUrl} />
+      <Navbar
+        {...auser}
+        handleShareDialogOpen={handleshareDialogOpen}
+        surveyUrl={surveyUrl}
+      />
       <Box
         sx={{
           bgcolor: "secondary.main",
@@ -69,7 +73,10 @@ function App() {
             }
           />
           <Route path="/surveyUnit/:id" element={<UnitPage />} />
-          <Route path="/answerSurvey/:id" element={<SubmitAnswerPage />} />
+          <Route
+            path="/answerSurvey/:id"
+            element={<SubmitAnswerPage user={auser.tNumber} />}
+          />
         </Routes>
       </Box>
     </ThemeProvider>
