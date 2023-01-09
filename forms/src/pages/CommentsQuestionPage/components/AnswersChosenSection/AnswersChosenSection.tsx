@@ -17,13 +17,6 @@ function AnswersChosenSection({
   answerList: ISurveyAnswers[];
   chosenQuestion: IQuestion;
 }) {
-  const checkAmountOfIdenticalAnswers = (
-    answers: string[],
-    data: Map<string[], number> = new Map<string[], number>()
-  ) => {
-    return data.get(answers);
-  };
-
   const getCheckboxAnswerSectionWrap = (
     sectionData: (number | ISection)[]
   ): JSX.Element => {
@@ -32,7 +25,7 @@ function AnswersChosenSection({
         {(sectionData[0] as ISection).answers.map(
           (answer: string, answerIndex: number) => {
             return (
-              <div className="checkbox-answer">
+              <div className="checkbox-answer" key={answerIndex}>
                 <span className="answer">{answer}</span>
                 <div>
                   <CheckBoxIcon />
@@ -62,7 +55,7 @@ function AnswersChosenSection({
         {(sectionData[0] as ISection).answers.map(
           (answer: string, answerIndex: number) => {
             return (
-              <div className="radio-answer">
+              <div className="radio-answer" key={answerIndex}>
                 <span className="answer">{answer}</span>
                 <div>
                   <RadioButtonCheckedIcon />
@@ -76,8 +69,7 @@ function AnswersChosenSection({
           <span className="answer-counter">תשובה אחת</span>
         ) : (
           <span className="answer-counter" dir="rtl">
-            {sectionData[1] as number}
-            תשובות
+            {sectionData[1] as number} תשובות
           </span>
         )}
       </div>
