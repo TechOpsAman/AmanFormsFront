@@ -121,10 +121,7 @@ function AnswerType({
     let allRequiredAnswered = true;
 
     questionsAndAnswers.content.forEach((question, index) => {
-      if (
-        (question.required && currAnswers[index].length === 0) ||
-        currAnswers[index][0]?.length === 0
-      ) {
+      if (question.required && currAnswers[index].length === 0) {
         allRequiredAnswered = false;
       }
     });
@@ -174,12 +171,6 @@ function AnswerType({
           {questionsAndAnswers.content.map((question: any, i: number) => {
             return (
               <RtlProvider key={i}>
-                {console.log(
-                  question.required &&
-                    question.questionType !== "TITLE" &&
-                    currAnswers[i].length > 0 &&
-                    currAnswers[i][0]
-                )}
                 <Box
                   className={
                     question.required
