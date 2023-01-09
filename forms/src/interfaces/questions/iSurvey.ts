@@ -6,4 +6,6 @@ export interface ISurveyQuestions {
   surveyName: string;
   surveyDescription: string;
   content: Array<IQuestion>;
+  annonimous: boolean;
+  repliers: Array<string>;
 }
