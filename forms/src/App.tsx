@@ -60,24 +60,26 @@ function App() {
           minWidth: "90rem",
         }}
       >
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/createSurvey"
-            element={
-              <SurveyCreationPage
-                isOpen={shareDialogOpen}
-                setIsOpen={handleshareDialogOpen}
-                setSurveyUrl={setSurveyUrl}
-              />
-            }
-          />
-          <Route path="/surveyUnit/:id" element={<UnitPage />} />
-          <Route
-            path="/answerSurvey/:id"
-            element={<SubmitAnswerPage user={auser.tNumber} />}
-          />
-        </Routes>
+        {auser.tNumber !== "noT" ? (
+          <Routes>
+            <Route path="/" element={<HomePage user={auser.tNumber} />} />
+            <Route
+              path="/createSurvey"
+              element={
+                <SurveyCreationPage
+                  isOpen={shareDialogOpen}
+                  setIsOpen={handleshareDialogOpen}
+                  setSurveyUrl={setSurveyUrl}
+                />
+              }
+            />
+            <Route path="/surveyUnit/:id" element={<UnitPage />} />
+            <Route
+              path="/answerSurvey/:id"
+              element={<SubmitAnswerPage user={auser.tNumber} />}
+            />
+          </Routes>
+        ) : 'טוען'}
       </Box>
     </ThemeProvider>
   );

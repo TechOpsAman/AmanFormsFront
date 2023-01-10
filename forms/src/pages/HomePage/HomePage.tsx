@@ -26,7 +26,7 @@ import pic from "../../assets/forms.png";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { deleteSurveyById } from "../../services/compositorService";
 
-export default function HomePage() {
+export default function HomePage({ user }: { user: string }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [menu, setMenu] = useState<null | HTMLElement>(null);
@@ -57,8 +57,7 @@ export default function HomePage() {
 
   const handleAddSurvey = async () => {
     const newSurvey = await postSurvey({
-      id: "123456123456123456123456",
-      creatorId: "123456123456123456123456",
+      creatorId: user,
       surveyName: t("newSurvey"),
       content: [],
       surveyDescription: t("surveyDescription"),
@@ -102,7 +101,8 @@ export default function HomePage() {
 
   useEffect(() => {
     const getSurveys = async () => {
-      const groups = (await getAll()) || [];
+      console.log(user)
+      const groups = (await getAll(user)) || [];
       setSurveys(groups);
       setCurrSurveys(groups);
     };

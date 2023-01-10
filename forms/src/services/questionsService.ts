@@ -3,9 +3,9 @@ import axios from "axios";
 import { iSurvey } from "../interfaces/iSurvey";
 import { iQuestion } from "../interfaces/iQuestion";
 
-export const getAll = async () => {
+export const getAll = async (user: string) => {
   return axios
-    .get(`${config.questionsService.questionsCrudConnectionString}/getAll`)
+    .get(`${config.questionsService.questionsCrudConnectionString}/getAll?creatorId=${user}`)
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
       console.log(err);
