@@ -31,5 +31,7 @@ export const config = {
       .default('questions-service')
       .asString(),
   },
-  
+  website: {
+    address: env.get('FRONTEND_URL').default('http://localhost:3000').asString()
+  }
 };

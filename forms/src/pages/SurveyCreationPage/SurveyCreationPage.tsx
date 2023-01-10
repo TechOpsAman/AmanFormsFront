@@ -22,6 +22,7 @@ import {
   Alert,
 } from "@mui/material";
 import { writeText } from "clipboard-polyfill";
+import { config } from "../../data/config/config";
 
 function SurveyCreationPage({
   isOpen,
@@ -143,8 +144,8 @@ function SurveyCreationPage({
         setSections(newSurvey.content);
       }
       updateLastUpdated(location.state.survey.id);
-      setCurrSurvey(`localhost:3000/answerSurvey/${currSurvey.id}`);
-      setSurveyUrl(`http://localhost:3000/answerSurvey/${currSurvey.id}`);
+      setCurrSurvey(`${config.website.address}/answerSurvey/${currSurvey.id}`);
+      setSurveyUrl(`${config.website.address}/answerSurvey/${currSurvey.id}`);
     };
     getSurvey();
 
