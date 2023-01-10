@@ -105,3 +105,18 @@ export const updateRepliers = async (surveyId: string, replier: string) => {
       console.log(err);
     });
 };
+
+export const updateIsOpen = async (surveyId: string, isOpen: boolean) => {
+  return axios
+    .put(
+      `${config.questionsService.questionsCrudConnectionString}/updateIsOpen`,
+      {
+        surveyId: surveyId,
+        isOpen: isOpen,
+      }
+    )
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
+      console.log(err);
+    });
+};

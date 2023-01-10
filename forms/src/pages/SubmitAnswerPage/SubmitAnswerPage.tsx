@@ -31,7 +31,7 @@ function SurveyCreationPage({ user }: { user: string }) {
           user={user}
         />
       ) : (
-        "Error"
+        "טוען, אנא המתן"
       )}
     </div>
   );

@@ -135,6 +135,8 @@ function AnswerType({
     if (user === "" || questionsAndAnswers.repliers.includes(user))
       allRequiredAnswered = false;
 
+    if (!questionsAndAnswers.isOpen) allRequiredAnswered = false;
+
     setIsAllRequiredAnsewred(allRequiredAnswered);
   };
 
@@ -164,7 +166,8 @@ function AnswerType({
   }, [flag]);
 
   return (
-    <div>
+    <div style={{textAlign: 'center'}}>
+      {!questionsAndAnswers.isOpen && <h1 style={{color: 'red'}}>סקר לא פעיל</h1>}
       {survey?.content.length > 0 && (
         <div>
           <RtlProvider>
@@ -219,7 +222,7 @@ function AnswerType({
               }}
               disabled={!isAllRequiredAnsewred}
             >
-              הבא
+              שלח/י
             </Button>
           </Box>
         </div>

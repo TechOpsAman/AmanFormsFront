@@ -8,4 +8,5 @@ export interface ISurveyQuestions {
   content: Array<IQuestion>;
   annonimous: boolean;
   repliers: Array<string>;
+  isOpen: boolean;
 }
