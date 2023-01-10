@@ -1,0 +1,23 @@
+.survey-result-page_main_box {
+    background-color: white;
+    width: 70%;
+    height: 50%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    flex-direction: column;
+    padding: 6rem;
+}
+
+.survey-result-page_wraps_box {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.survey-result-page_buttons {
+    display: flex;
+    justify-content: space-between;
+}
