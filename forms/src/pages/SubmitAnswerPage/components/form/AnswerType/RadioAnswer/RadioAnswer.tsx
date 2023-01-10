@@ -33,7 +33,7 @@ function RadioAnswer({
         return (
           <FormControlLabel
             key={`radio-${index}`}
-            value={element.answer + index}
+            value={element.answer}
             onChange={(e) => {
               setCurrAnswer((e.target as HTMLInputElement).value as string);
               surveySection.content[questionIndex].answers = [

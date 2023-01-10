@@ -39,6 +39,7 @@ function AnswerType({
   });
 
   const postSurveyData = (survey: ISurveyAnswers) => {
+    console.log(survey);
     AnswerService.postAnswerSurvey(survey);
   };
 
@@ -162,12 +163,19 @@ function AnswerType({
   }, []);
 
   useEffect(() => {
+    survey.content.map((_question, index) => {
+      survey.content[index].answers = currAnswers[index];
+    });
     checkAllRequirments();
   }, [flag]);
 
   return (
-    <div style={{textAlign: 'center'}}>
-      {!questionsAndAnswers.isOpen && <h1 style={{color: 'red'}}>סקר לא פעיל</h1>}
+    <div>
+      <div style={{ textAlign: "center" }}>
+        {!questionsAndAnswers.isOpen && (
+          <h1 style={{ color: "red" }}>סקר לא פעיל</h1>
+        )}
+      </div>
       {survey?.content.length > 0 && (
         <div>
           <RtlProvider>
