@@ -42,7 +42,7 @@ function UnitPage() {
               questionsAndAnswers={selectedAnswers}
               survey={answerAndQuestions as ISurveyQuestions}
             />
-          ) : null}{" "}
+          ) : null}
         </div>
       ) : (
         <Box sx={{ display: "flex", justifyContent: "center" }}>

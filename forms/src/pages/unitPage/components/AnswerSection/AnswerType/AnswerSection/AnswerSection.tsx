@@ -21,13 +21,12 @@ function AnswerSection({
       case "checkbox":
         return (
           <Box className="survey-answer-unit_answers_div">
-            {" "}
             {
               <CheckboxAnswer
                 answers={answers as IAnswer[]}
                 selectedAnswerId={selectedAnswerId as string[]}
               />
-            }{" "}
+            }
           </Box>
         );
       case "select":
