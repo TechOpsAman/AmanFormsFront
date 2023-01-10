@@ -18,15 +18,14 @@ function RadioAnswer({
   setFlag: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const surveySection = useContext(AnswerContext);
-  const [currAnswer, setCurrAnswer] = useState('');
+  const [currAnswer, setCurrAnswer] = useState("");
 
   useEffect(() => {
     const temp = currAnswers;
     temp[questionIndex] = [currAnswer];
     setCurrAnswers(temp);
-    setFlag(!flag)
+    setFlag(!flag);
   }, [currAnswer]);
-
 
   return (
     <RadioGroup>
@@ -34,7 +33,7 @@ function RadioAnswer({
         return (
           <FormControlLabel
             key={`radio-${index}`}
-            value={element.answer}
+            value={element.answer + index}
             onChange={(e) => {
               setCurrAnswer((e.target as HTMLInputElement).value as string);
               surveySection.content[questionIndex].answers = [

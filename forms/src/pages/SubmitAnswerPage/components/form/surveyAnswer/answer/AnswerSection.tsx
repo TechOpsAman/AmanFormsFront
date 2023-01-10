@@ -132,8 +132,6 @@ function AnswerType({
       }
     });
 
-    console.log(questionsAndAnswers.repliers.includes(user));
-
     if (user === "" || questionsAndAnswers.repliers.includes(user))
       allRequiredAnswered = false;
 
