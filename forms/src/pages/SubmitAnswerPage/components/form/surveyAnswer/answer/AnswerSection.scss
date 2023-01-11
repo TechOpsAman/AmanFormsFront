@@ -1,0 +1,50 @@
+.survey-answer-type_answers_div {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 6;
+    margin-bottom: 2rem;
+}
+
+.survey-answer-type_questions_div {
+    background-color: white;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0.2rem 0.2rem 0.5rem gray;
+    justify-content: center;
+}
+
+.survey-answer-type_questions_div_required {
+    background-color: white;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0.2rem 0.2rem 0.5rem gray;
+    justify-content: center;
+    border:1px solid red;
+}
+
+.survey-answer-type_question_name {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.survey-answer-type_survey_titel {
+    background-color: white;
+    margin-bottom: 15px;
+    width: 60rem;
+    border-radius: 25px;
+    display: flex;
+    box-shadow: 0.2rem 0.2rem 0.5rem gray;
+    padding: 2rem;
+    border-top: 25px solid #7cbddb;
+    flex-direction: column;
+}
+
+.survey-answer-type_required_asterisk{
+    color: red;
+}
+

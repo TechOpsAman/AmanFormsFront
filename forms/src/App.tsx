@@ -1,14 +1,94 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import CommentsQuesionPage from "./pages/CommentsQuestionPage/CommentsQuesionPage";
+import UnitPage from "./pages/unitPage/unitPage";
+import SurveyCreationPage from "./pages/SurveyCreationPage/SurveyCreationPage";
+import HomePage from "./pages/HomePage/HomePage";
+import { Navbar } from "./components/form/Navbar";
+import { useEffect, useState } from "react";
+import { createTheme, Box, ThemeProvider } from "@mui/material";
+import { AuthService } from "./services/authService";
+import { useUser } from "./context/userContext";
+import SubmitAnswerPage from "./pages/SubmitAnswerPage/SubmitAnswerPage";
+
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: "#bbdefb",
+    },
+  },
+});
 
 function App() {
+  const { user, setNewUser } = useUser();
+
+  const [auser, setaUser] = useState({
+    name: "noName",
+    tNumber: "noT",
+  });
+
+  const [shareDialogOpen, setShareDialogOpen] = useState(false);
+  const handleshareDialogOpen = (bool: boolean) => setShareDialogOpen(bool);
+
+  const [surveyUrl, setSurveyUrl] = useState("");
+
+  useEffect(() => {
+    const initUser = async () => {
+      const newUser = AuthService.getUser();
+      if (user) {
+        setNewUser(newUser);
+        setaUser({
+          name: newUser?.name.firstName + " " + newUser?.name.lastName,
+          tNumber: newUser?.displayName.split("@")[0] as string,
+        });
+      }
+    };
+
+    initUser();
+  }, []);
+
   return (
-    <div className="comments-question-page-container">
-      <Routes>
-        <Route path="/commentsSummary/:id" element={<CommentsQuesionPage />} />
-      </Routes>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Navbar
+        {...auser}
+        handleShareDialogOpen={handleshareDialogOpen}
+        surveyUrl={surveyUrl}
+      />
+      <Box
+        sx={{
+          bgcolor: "secondary.main",
+          minHeight: "93.1vh",
+          minWidth: "90rem",
+        }}
+      >
+        {auser.tNumber !== "noT" ? (
+          <Routes>
+            <Route path="/" element={<HomePage user={auser.tNumber} />} />
+            <Route
+              path="/createSurvey"
+              element={
+                <SurveyCreationPage
+                  isOpen={shareDialogOpen}
+                  setIsOpen={handleshareDialogOpen}
+                  setSurveyUrl={setSurveyUrl}
+                />
+              }
+            />
+            <Route path="/surveyUnit/:id" element={<UnitPage />} />
+            <Route
+              path="/answerSurvey/:id"
+              element={<SubmitAnswerPage user={auser.tNumber} />}
+            />
+            <Route
+              path="/commentsSummary/:id"
+              element={<CommentsQuesionPage />}
+            />
+          </Routes>
+        ) : (
+          "טוען"
+        )}
+      </Box>
+    </ThemeProvider>
   );
 }
 
