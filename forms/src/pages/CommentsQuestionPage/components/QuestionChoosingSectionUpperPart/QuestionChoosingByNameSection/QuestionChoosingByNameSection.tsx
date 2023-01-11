@@ -3,6 +3,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
 import RtlProvider from "../../../../../components/forms/RtlProvider";
+import { column } from "stylis";
 
 function QuestionChoosingByNameSection({
   questionList,
@@ -32,7 +33,14 @@ function QuestionChoosingByNameSection({
         >
           {questionList
             ? questionList.map((question: IQuestion, index: number) => (
-                <MenuItem value={question.questionName} key={index}>
+                <MenuItem
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                  value={question.questionName}
+                  key={index}
+                >
                   {question.questionName}
                 </MenuItem>
               ))
