@@ -1,7 +1,6 @@
 import "./AnswersChosenSection.scss";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import { Card } from "@material-ui/core";
 import { ISection } from "../../../../interfaces/answers/iSection";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import {
@@ -9,6 +8,7 @@ import {
   QuestionType,
 } from "../../../../interfaces/questions/iQuestion";
 import ISurveyAnswersActions from "../../../../utils/InterfacesActions/ISurveyAnswersActions";
+import { Card } from "@mui/material";
 
 function AnswersChosenSection({
   answerList,
@@ -123,14 +123,17 @@ function AnswersChosenSection({
 
   return (
     <div>
-      <></>
       {answerList
         ? ISurveyAnswersActions.getData(
             answerList,
             chosenQuestion.questionName
           ).map((setionData: Array<ISection | number>, index: number) => {
             return (
-              <Card className="answer-card" key={index}>
+              <Card
+                style={{ borderRadius: "30px" }}
+                className="answer-card"
+                key={index}
+              >
                 {returnQuestionAccordingToType(setionData)}
               </Card>
             );

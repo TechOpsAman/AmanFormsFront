@@ -14,7 +14,10 @@ function QuestionChoosingSectionUpperPart({
   setChosenQuestion: React.Dispatch<React.SetStateAction<IQuestion>>;
 }) {
   return (
-    <Card className="question-choosing-section-upper-part-main">
+    <Card
+      className="question-choosing-section-upper-part-main"
+      style={{ borderRadius: "30px" }}
+    >
       <QuestionChoosingByIndexSection
         questionList={questionList}
         chosenQuestion={chosenQuestion}

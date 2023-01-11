@@ -22,7 +22,10 @@ function QuestionChoosingSectionBottom({
   };
 
   return (
-    <Card className="question-choosing-section-bottom-main">
+    <Card
+      className="question-choosing-section-bottom-main"
+      style={{ borderRadius: "30px" }}
+    >
       {questionList.indexOf(chosenQuestion) === 0 ? (
         <IconButton disabled>
           <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>

@@ -24,7 +24,10 @@ function QuestionsAndPossibleAnswersSection({
       case QuestionType.checkbox:
       case QuestionType.select:
         return (
-          <Card className="questions-and-possible-answers-container">
+          <Card
+            style={{ borderRadius: "30px" }}
+            className="questions-and-possible-answers-container"
+          >
             <div className="display-button-and-title">
               <DisplayOptions
                 areAnswersDisplayed={areAnswersDisplayed}
@@ -50,7 +53,10 @@ function QuestionsAndPossibleAnswersSection({
       case QuestionType.longAnswer:
       case QuestionType.title:
         return (
-          <Card className="questions-and-possible-answers-container">
+          <Card
+            style={{ borderRadius: "30px" }}
+            className="questions-and-possible-answers-container"
+          >
             <div className="only-title">
               <span className="question-name">
                 {chosenQuestion.questionName}
