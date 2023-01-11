@@ -1,6 +1,7 @@
 import * as Lodash from "lodash";
 import { useRef } from "react";
-import { Card } from "@material-ui/core";
+import { Card } from "@mui/material";
+
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import ISurveyAnswersActions from "../../../../utils/InterfacesActions/ISurveyAnswersActions";
@@ -47,7 +48,10 @@ function ShortAnswerStatsSection({
 
   return (
     <div>
-      <Card style={{ borderRadius: "30px" }} className="short-answer-stats-section-main">
+      <Card
+        style={{ borderRadius: "30px" }}
+        className="short-answer-stats-section-main"
+      >
         {didUsersAnswerSameAnswer() ? (
           <>
             <div className="short-answer-stats-section-upper-section-graph">

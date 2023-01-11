@@ -1,5 +1,5 @@
+import { Card } from "@mui/material";
 import { useRef } from "react";
-import { Card } from "@material-ui/core";
 import { ISurveyAnswers } from "../../../../interfaces/answers/iSurvey";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import CopyButtonGraphComponent from "../CopyButtonGraphComponent";
