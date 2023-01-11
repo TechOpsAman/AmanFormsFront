@@ -54,9 +54,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/createSurvey" element={<SurveyCreationPage />} />
-          <Route path="/surveyUnit/:id" element={<UnitPage />} />
           <Route path="/answerSurvey/:id" element={<SubmitAnswerPage />} />
-          <Route path="/resultPage/" element={<ResultPage />} />
+          <Route path="/resultPage/:id" element={<ResultPage />} />
         </Routes>
       </Box>
     </ThemeProvider>

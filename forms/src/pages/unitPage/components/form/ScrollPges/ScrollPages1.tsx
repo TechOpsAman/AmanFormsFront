@@ -7,7 +7,7 @@ import { Box, TextField } from "@material-ui/core";
 import QuestionName from "../QuestionName/QuestionName";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
-
+console.log()
 function ScrollPages({
   questionsAndAnswers,
   survey,
