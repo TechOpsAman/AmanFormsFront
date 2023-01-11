@@ -11,6 +11,7 @@ import { createTheme, Box, ThemeProvider } from "@mui/material";
 import { AuthService } from "./services/authService";
 import { useUser } from "./context/userContext";
 import SubmitAnswerPage from "./pages/SubmitAnswerPage/SubmitAnswerPage";
+import SurveySentSuccessfullyPage from "./pages/SurveySentSuccessfullyPage/SurveySentSuccessfullyPage";
 
 const theme = createTheme({
   palette: {
@@ -87,6 +88,10 @@ function App() {
             <Route
               path="/commentsSummary/:id"
               element={<CommentsSummaryPage />}
+            />
+            <Route
+              path="surveySentSuccessfullyPage/:id"
+              element={<SurveySentSuccessfullyPage />}
             />
           </Routes>
         ) : (
