@@ -47,7 +47,7 @@ function ShortAnswerStatsSection({
 
   return (
     <div>
-      <Card className="short-answer-stats-section-main">
+      <Card style={{ borderRadius: "30px" }} className="short-answer-stats-section-main">
         {didUsersAnswerSameAnswer() ? (
           <>
             <div className="short-answer-stats-section-upper-section-graph">

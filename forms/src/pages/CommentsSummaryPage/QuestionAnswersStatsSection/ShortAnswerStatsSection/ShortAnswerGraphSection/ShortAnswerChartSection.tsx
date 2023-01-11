@@ -42,7 +42,7 @@ function ShortAnswerChartSection({
                 <Card
                   dir="rtl"
                   className="answer-card-short"
-                  style={{ backgroundColor: "#ebecf0" }}
+                  style={{ backgroundColor: "#ebecf0", borderRadius: "30px" }}
                   key={sectionIndex}
                 >
                   <span>{section.answers[0]}</span>

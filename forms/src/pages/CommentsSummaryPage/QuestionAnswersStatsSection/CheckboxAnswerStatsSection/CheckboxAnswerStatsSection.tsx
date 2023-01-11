@@ -24,7 +24,10 @@ function CheckboxAnswerStatsSection({
   let graphToCopy = useRef<HTMLElement>(htmlInitialValue);
 
   return (
-    <Card className="checkbox-answer-stats-section-main">
+    <Card
+      style={{ borderRadius: "30px" }}
+      className="checkbox-answer-stats-section-main"
+    >
       <div className="checkbox-answer-stats-section-upper-section">
         <CopyButtonGraphComponent
           graphToCopyRef={graphToCopy}

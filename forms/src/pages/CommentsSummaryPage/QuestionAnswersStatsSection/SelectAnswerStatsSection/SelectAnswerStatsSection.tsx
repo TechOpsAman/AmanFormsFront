@@ -24,7 +24,7 @@ function SelectAnswerStatsSection({
   let graphToCopy = useRef<HTMLElement>(htmlInitialValue);
 
   return (
-    <Card className="select-answer-stats-section-main">
+    <Card style={{ borderRadius: "30px" }} className="select-answer-stats-section-main">
       <div className="select-answer-stats-section-upper-section">
         <CopyButtonGraphComponent
           graphToCopyRef={graphToCopy}

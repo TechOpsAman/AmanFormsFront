@@ -17,7 +17,10 @@ function LongAnswerStatsSection({
 }) {
   return (
     <div>
-      <Card className="long-answer-stats-section-main">
+      <Card
+        style={{ borderRadius: "30px" }}
+        className="long-answer-stats-section-main"
+      >
         <div>
           <div className="long-answer-stats-section-upper-section-chart">
             <span className="question-name">{questionName}</span>

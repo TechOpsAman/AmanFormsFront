@@ -38,7 +38,7 @@ function LongAnswerGraphSection({
                 <Card
                   dir="rtl"
                   className="answer-card-long"
-                  style={{ backgroundColor: "#ebecf0" }}
+                  style={{ backgroundColor: "#ebecf0", borderRadius: "30px" }}
                   key={answerIndex}
                 >
                   <span>{answer}</span>

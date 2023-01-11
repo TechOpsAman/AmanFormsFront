@@ -21,7 +21,10 @@ function RadioAnswerStatsSection({
   let graphToCopy = useRef<HTMLElement>(htmlInitialValue);
 
   return (
-    <Card className="radio-answer-stats-section-main">
+    <Card
+      style={{ borderRadius: "30px" }}
+      className="radio-answer-stats-section-main"
+    >
       <div className="radio-answer-stats-section-upper-section">
         <CopyButtonGraphComponent
           graphToCopyRef={graphToCopy}
