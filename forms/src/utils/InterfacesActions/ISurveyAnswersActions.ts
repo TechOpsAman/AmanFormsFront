@@ -52,4 +52,34 @@ export default class ISurveyAnswersActions {
 
     return arrayOfData;
   }
+
+  static getArrayOfSectionsAccordingToQuestionNameWithoutSimilarities(
+    answerList: ISurveyAnswers[],
+    questionName: string
+  ) {
+    const uniqueSections = new Set();
+    const arrayOfSectionsAccordingToQuestionNameWithoutSimilarities =
+      this.getArrayOfSectionsAccordingToQuestionName(
+        answerList,
+        questionName
+      ).filter((section) => {
+        const isUnique = !uniqueSections.has(section.answers.toString());
+        if (isUnique) {
+          uniqueSections.add(section.answers.toString());
+        }
+        return isUnique;
+      });
+
+    return arrayOfSectionsAccordingToQuestionNameWithoutSimilarities;
+  }
+
+  static getNumberOfCommentsAccordingToQuestion(
+    answerList: ISurveyAnswers[],
+    questionName: string
+  ): number {
+    return this.getArrayOfSectionsAccordingToQuestionName(
+      answerList,
+      questionName
+    ).length;
+  }
 }

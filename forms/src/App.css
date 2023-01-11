@@ -1,3 +1,7 @@
+.comments-question-page-container {
+  height: 100%;
+  width: 100%;
+}
 .survey-submit-container {
   background-color: rgb(144, 187, 187);
   width: 100%;

@@ -1,5 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import CommentsSummaryPage from "./pages/CommentsSummaryPage/CommentsSummaryPage";
 import CommentsQuesionPage from "./pages/CommentsQuestionPage/CommentsQuesionPage";
 import UnitPage from "./pages/unitPage/unitPage";
 import SurveyCreationPage from "./pages/SurveyCreationPage/SurveyCreationPage";
@@ -82,6 +83,10 @@ function App() {
             <Route
               path="/commentsQuesionPage/:id"
               element={<CommentsQuesionPage />}
+            />
+            <Route
+              path="/commentsSummary/:id"
+              element={<CommentsSummaryPage />}
             />
           </Routes>
         ) : (
