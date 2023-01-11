@@ -1,3 +1,14 @@
 {
-  "dependencies": {}
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.12",
+    "fs": "^0.0.1-security",
+    "os": "^0.1.2",
+    "path": "^0.12.7",
+    "stylis-plugin-rtl": "^2.1.1"
+  },
+  "browser": {
+    "fs": false
+  }
 }

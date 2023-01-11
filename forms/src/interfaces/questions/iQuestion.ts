@@ -1,4 +1,4 @@
-import { IAnswer } from "./iAnswer";
+import { IAnswer } from "../answers/iAnswer";
 
 export interface IQuestion {
   id?: string;
