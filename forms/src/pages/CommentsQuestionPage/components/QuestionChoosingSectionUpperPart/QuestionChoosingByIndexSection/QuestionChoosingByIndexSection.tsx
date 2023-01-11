@@ -38,6 +38,7 @@ function QuestionChoosingByIndexSection({
       )}
       <p className="number-of-question"> מתוך {questionList.length}</p>
       <input
+        className='number-of-question-input'
         type="number"
         value={questionList.indexOf(chosenQuestion) + 1}
         min="1"

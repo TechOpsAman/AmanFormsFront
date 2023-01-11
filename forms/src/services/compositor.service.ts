@@ -11,7 +11,10 @@ export default class CompositorService {
       .get(
         `${config.compositor.compositorConnectionString}/getSurveyResults?surveyId=${surveyId}`
       )
-      .then((res) => res.data)
+      .then((res) => {
+        console.log(res.data);
+        return res.data;
+      })
       .catch((err) => {
         if (err.response.status !== 404) console.log(err);
       });

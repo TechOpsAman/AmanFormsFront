@@ -22,12 +22,12 @@ function QuestionChoosingSectionUpperPart({
         questionList={questionList}
         chosenQuestion={chosenQuestion}
         setChosenQuestion={setChosenQuestion}
-      ></QuestionChoosingByIndexSection>
+      />
       <QuestionChoosingByNameSection
         questionList={questionList}
         chosenQuestion={chosenQuestion}
         setChosenQuestion={setChosenQuestion}
-      ></QuestionChoosingByNameSection>
+      />
     </Card>
   );
 }
