@@ -1,4 +1,4 @@
-import { TextareaAutosize } from "@material-ui/core";
+import { TextareaAutosize } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 import "./ShortAnswer.scss";

@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel } from "@material-ui/core";
+import { Checkbox, FormControlLabel } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 import "./CheckboxAnswer.scss";

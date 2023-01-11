@@ -81,7 +81,7 @@ function App() {
               element={<SubmitAnswerPage user={auser.tNumber} />}
             />
             <Route
-              path="surveySentSuccessfullyPage/:id"
+              path="/surveySentSuccessfullyPage/:id"
               element={<SurveySentSuccessfullyPage />}
             />
             <Route path="/resultPage/:id" element={<ResultPage />} />

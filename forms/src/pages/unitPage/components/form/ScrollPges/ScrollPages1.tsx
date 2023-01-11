@@ -3,10 +3,10 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import IconButton from "@mui/material/IconButton";
 import "./ScrollPages.scss";
 import { useState } from "react";
-import { Box, TextField } from "@material-ui/core";
 import QuestionName from "../QuestionName/QuestionName";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
+import { Box, TextField } from "@mui/material";
 console.log()
 function ScrollPages({
   questionsAndAnswers,

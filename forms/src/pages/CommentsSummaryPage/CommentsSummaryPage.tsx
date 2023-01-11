@@ -11,7 +11,6 @@ import RadioAnswerStatsSection from "./QuestionAnswersStatsSection/RadioAnswerSt
 import SelectAnswerStatsSection from "./QuestionAnswersStatsSection/SelectAnswerStatsSection/SelectAnswerStatsSection";
 import ShortAnswerStatsSection from "./QuestionAnswersStatsSection/ShortAnswerStatsSection/ShortAnswerStatsSection";
 import SurveyNotFoundPage from "../SurveyNotFoundPage/SurveyNotFoundPage";
-import "./CommentsSummaryPage.scss";
 
 function CommentsSummaryPage({ id }: { id: string }) {
   const [loading, setLoading] = useState(true);

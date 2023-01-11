@@ -1,4 +1,4 @@
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
 import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import CheckboxAnswer from "../CheckboxAnswer/CheckboxAnswer";
