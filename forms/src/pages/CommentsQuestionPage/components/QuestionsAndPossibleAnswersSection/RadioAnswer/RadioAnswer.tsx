@@ -1,6 +1,6 @@
 import "./RadioAnswer.scss";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import { IAnswer } from "../../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../../interfaces/answers/iAnswer";
 
 function RadioAnswer({ radioAnswer }: { radioAnswer: IAnswer }) {
   return (

@@ -4,7 +4,7 @@ import {
   IQuestion,
   QuestionType,
 } from "../../../../interfaces/questions/iQuestion";
-import { IAnswer } from "../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../interfaces/answers/iAnswer";
 import CheckboxAnswer from "./CheckboxAnswer/CheckboxAnswer";
 import RadioAnswer from "./RadioAnswer/RadioAnswer";
 import DisplayOptions from "./DisplayOptions/DisplayOptions";
@@ -39,7 +39,9 @@ function QuestionsAndPossibleAnswersSection({
                   <ul className="display-button-and-title-ul">
                     {chosenQuestion.answers?.map(
                       (answer: IAnswer, index: number) => (
-                        <li className="display-button-and-title-li" key={index}>{getPossibleAnswersList(answer)}</li>
+                        <li className="display-button-and-title-li" key={index}>
+                          {getPossibleAnswersList(answer)}
+                        </li>
                       )
                     )}
                   </ul>

@@ -3,7 +3,7 @@ import SurveySection from "./components/form/SurveySection/SurveySection";
 import SurveyTitle from "./components/form/SurveyTitle/SurveyTitle";
 import "./SurveyCreationPage.scss";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { iQuestion, QuestionType } from "../../interfaces/iQuestion";
+import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
 import { sectionsContext } from "../../context/sectionsContext";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
@@ -37,7 +37,7 @@ function SurveyCreationPage({
   const { t } = useTranslation();
   const [render, setRender] = useState(false);
   const [addQuestionorTitle, setAddQuestionorTitle] = useState<boolean[]>([]);
-  const [sections, setSections] = useState<iQuestion[]>([]);
+  const [sections, setSections] = useState<IQuestion[]>([]);
   const [shareDialogOpen, setShareDialogOpen] = useState(false);
   const [currSurvey, setCurrSurvey] = useState("");
 
@@ -46,7 +46,7 @@ function SurveyCreationPage({
     setIsOpen(false);
   };
 
-  const swapContent = async (temp: iQuestion[]) => {
+  const swapContent = async (temp: IQuestion[]) => {
     updateContent(location.state.survey.id, temp);
   };
 
@@ -79,7 +79,7 @@ function SurveyCreationPage({
   };
 
   const addSectionWithParams = async (
-    section: iQuestion,
+    section: IQuestion,
     questionIndex: number,
     isSwitch: boolean
   ) => {

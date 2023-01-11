@@ -29,6 +29,14 @@ function CommentsQuestionPage() {
 
   // const surveyId: string = "63b2eb48f7ddfee84ad3f338";
 
+  const getQuestionListWithoutTitles = (questionList: IQuestion[]) => {
+    const updatedQuestionList: IQuestion[] = [];
+    questionList.forEach((question: IQuestion) => {
+      if (question.questionType !== "TITLE") updatedQuestionList.push(question);
+    });
+    return updatedQuestionList;
+  };
+
   const getChosenQuestion = () => {
     if (
       chosenQuestion !== questionList[questionList.length - 1] &&
@@ -54,7 +62,9 @@ function CommentsQuestionPage() {
         const temp = await CompositorService.getSurveyQuestionsAndUsersAnswers(
           surveyId
         );
-        setQuestionList((temp[0] as ISurveyQuestions).content);
+        setQuestionList(
+          getQuestionListWithoutTitles((temp[0] as ISurveyQuestions).content)
+        );
         setAnswerList(temp[1] as ISurveyAnswers[]);
       } catch (err) {
         setSurveyFound(false);

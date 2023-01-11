@@ -1,6 +1,6 @@
 import "./CheckboxAnswer.scss";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import { IAnswer } from "../../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../../interfaces/answers/iAnswer";
 
 function CheckboxAnswer({ checkboxAnswer }: { checkboxAnswer: IAnswer }) {
   return (

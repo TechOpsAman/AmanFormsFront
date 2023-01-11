@@ -6,7 +6,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import "./RadioAnswer.scss";
 
 function RadioAnswer({
@@ -16,7 +16,6 @@ function RadioAnswer({
   answers: IAnswer[];
   selectedAnswerId: string[];
 }) {
-
   return (
     <RadioGroup
       aria-labelledby="demo-row-radio-buttons-group-label"

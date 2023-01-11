@@ -1,6 +1,6 @@
 import "./AnswersSection.scss";
-import { iAnswer } from "../../../../../interfaces/iAnswer";
-import { QuestionType } from "../../../../../interfaces/iQuestion";
+import { IAnswer } from "../../../../../interfaces/answers/iAnswer";
+import { QuestionType } from "../../../../../interfaces/questions/iQuestion";
 import CheckBoxAnswer from "./AnswerType/CheckBoxAnswer";
 import LongAnswer from "./AnswerType/LongAnswer";
 import RadioAnswer from "./AnswerType/RadioAnswer";
@@ -20,7 +20,7 @@ function AnswersSection({
   handleRemoveAnswer,
   questionIndex,
 }: {
-  answers: iAnswer[];
+  answers: IAnswer[];
   questionType: QuestionType;
   handleRemoveAnswer: any;
   questionIndex: number;
@@ -31,8 +31,8 @@ function AnswersSection({
   const handleDrag = (result: any) => {
     if (!result.destination) return;
     const items = sections[questionIndex].answers;
-    const [recordedItems] = (items as iAnswer[]).splice(result.source.index, 1);
-    (items as iAnswer[]).splice(result.destination.index, 0, recordedItems);
+    const [recordedItems] = (items as IAnswer[]).splice(result.source.index, 1);
+    (items as IAnswer[]).splice(result.destination.index, 0, recordedItems);
     sections[questionIndex].answers = items;
     updateContent(location.state.survey.id, sections);
   };
@@ -65,10 +65,12 @@ function AnswersSection({
                                 handleRemoveAnswer(i);
 
                                 sections[questionIndex].answers = [
-                                  ...(sections[questionIndex]
-                                    .answers as iAnswer[]).slice(0, i),
-                                  ...(sections[questionIndex]
-                                    .answers as iAnswer[]).slice(i + 1),
+                                  ...(
+                                    sections[questionIndex].answers as IAnswer[]
+                                  ).slice(0, i),
+                                  ...(
+                                    sections[questionIndex].answers as IAnswer[]
+                                  ).slice(i + 1),
                                 ];
                               }}
                             >
@@ -80,7 +82,10 @@ function AnswersSection({
                                 index={i}
                                 questionIndex={questionIndex}
                               />
-                              <div className="dragIconAnswerCheckbox" {...provided.dragHandleProps}>
+                              <div
+                                className="dragIconAnswerCheckbox"
+                                {...provided.dragHandleProps}
+                              >
                                 <DragIndicatorRoundedIcon />
                               </div>
                             </div>
@@ -131,10 +136,12 @@ function AnswersSection({
                                 handleRemoveAnswer(i);
 
                                 sections[questionIndex].answers = [
-                                  ...(sections[questionIndex]
-                                    .answers as iAnswer[]).slice(0, i),
-                                  ...(sections[questionIndex]
-                                    .answers as iAnswer[]).slice(i + 1),
+                                  ...(
+                                    sections[questionIndex].answers as IAnswer[]
+                                  ).slice(0, i),
+                                  ...(
+                                    sections[questionIndex].answers as IAnswer[]
+                                  ).slice(i + 1),
                                 ];
                               }}
                             >
@@ -146,7 +153,10 @@ function AnswersSection({
                                 index={i}
                                 questionIndex={questionIndex}
                               />
-                              <div className="dragIconAnswer" {...provided.dragHandleProps}>
+                              <div
+                                className="dragIconAnswer"
+                                {...provided.dragHandleProps}
+                              >
                                 <DragIndicatorRoundedIcon />
                               </div>
                             </div>
@@ -188,10 +198,12 @@ function AnswersSection({
                                 handleRemoveAnswer(i);
 
                                 sections[questionIndex].answers = [
-                                  ...(sections[questionIndex]
-                                    .answers as iAnswer[]).slice(0, i),
-                                  ...(sections[questionIndex]
-                                    .answers as iAnswer[]).slice(i + 1),
+                                  ...(
+                                    sections[questionIndex].answers as IAnswer[]
+                                  ).slice(0, i),
+                                  ...(
+                                    sections[questionIndex].answers as IAnswer[]
+                                  ).slice(i + 1),
                                 ];
                               }}
                             >
@@ -203,7 +215,10 @@ function AnswersSection({
                                 index={i}
                                 questionIndex={questionIndex}
                               />
-                              <div className="dragIconAnswerselect" {...provided.dragHandleProps}>
+                              <div
+                                className="dragIconAnswerselect"
+                                {...provided.dragHandleProps}
+                              >
                                 <DragIndicatorRoundedIcon />
                               </div>
                             </div>

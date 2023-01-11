@@ -1,6 +1,6 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
-import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import { useState } from "react";
 
 function SelectAnswer({

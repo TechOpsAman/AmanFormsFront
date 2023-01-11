@@ -1,6 +1,6 @@
 import { Box } from "@material-ui/core";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
-import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import CheckboxAnswer from "../CheckboxAnswer/CheckboxAnswer";
 import OpenAnswer from "../OpenAnswer/OpenAnswer";
 import RadioAnswer from "../RadioAnswer/RadioAnswer";

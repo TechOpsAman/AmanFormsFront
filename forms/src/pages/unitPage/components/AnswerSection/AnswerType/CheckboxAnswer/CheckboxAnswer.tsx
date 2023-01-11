@@ -1,5 +1,5 @@
 import { Box, Checkbox, FormControlLabel, FormGroup } from "@material-ui/core";
-import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import "./CheckboxAnswer.scss";
 
 function CheckboxAnswer({
@@ -9,7 +9,6 @@ function CheckboxAnswer({
   answers: IAnswer[];
   selectedAnswerId: string[];
 }) {
-
   return (
     <FormGroup>
       {answers.map((answerInfo: IAnswer, answerIndex: number) => {

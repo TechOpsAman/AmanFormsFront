@@ -1,6 +1,6 @@
 import { Box } from "@material-ui/core";
 import AnswerSection from "../../AnswerSection/AnswerType/AnswerSection/AnswerSection";
-import { IAnswer } from "../../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../../interfaces/answers/iAnswer";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
 import { ISection } from "../../../../../interfaces/answers/iSection";

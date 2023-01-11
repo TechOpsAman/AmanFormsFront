@@ -80,7 +80,7 @@ function App() {
               element={<SubmitAnswerPage user={auser.tNumber} />}
             />
             <Route
-              path="/commentsSummary/:id"
+              path="/commentsQuesionPage/:id"
               element={<CommentsQuesionPage />}
             />
           </Routes>

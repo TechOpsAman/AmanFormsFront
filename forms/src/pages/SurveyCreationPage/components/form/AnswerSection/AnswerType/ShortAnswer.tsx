@@ -1,7 +1,7 @@
 import "./SingleAnswer.scss";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { iAnswer } from "../../../../../../interfaces/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import { sectionsContext } from "../../../../../../context/sectionsContext";
 import { updateContent } from "../../../../../../services/questionsService";
 import { useLocation } from "react-router-dom";
@@ -10,7 +10,7 @@ function ShortAnswer({
   answer,
   questionIndex,
 }: {
-  answer: iAnswer;
+  answer: IAnswer;
   questionIndex: number;
 }) {
   const location = useLocation();

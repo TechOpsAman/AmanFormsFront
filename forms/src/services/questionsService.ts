@@ -1,11 +1,13 @@
 import { config } from "../data/config/config";
 import axios from "axios";
-import { iSurvey } from "../interfaces/iSurvey";
-import { iQuestion } from "../interfaces/iQuestion";
+import { ISurveyQuestions } from "../interfaces/questions/iSurvey";
+import { IQuestion } from "../interfaces/questions/iQuestion";
 
 export const getAll = async (user: string) => {
   return axios
-    .get(`${config.questionsService.questionsCrudConnectionString}/getAll?creatorId=${user}`)
+    .get(
+      `${config.questionsService.questionsCrudConnectionString}/getAll?creatorId=${user}`
+    )
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
       console.log(err);
@@ -23,7 +25,7 @@ export const getById = async (surveyId: string) => {
     });
 };
 
-export const updateContent = async (surveyId: string, content: iQuestion[]) => {
+export const updateContent = async (surveyId: string, content: IQuestion[]) => {
   return axios
     .put(
       `${config.questionsService.questionsCrudConnectionString}/updateContent`,
@@ -49,7 +51,7 @@ export const updateLastUpdated = async (surveyId: string) => {
     });
 };
 
-export const postSurvey = async (survey: iSurvey) => {
+export const postSurvey = async (survey: Partial<ISurveyQuestions>) => {
   return axios
     .post(
       `${config.questionsService.questionsCrudConnectionString}/createSurvey`,

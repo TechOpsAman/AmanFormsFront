@@ -13,7 +13,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { iSurvey } from "../../interfaces/iSurvey";
+import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
@@ -30,12 +30,12 @@ export default function HomePage({ user }: { user: string }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [menu, setMenu] = useState<null | HTMLElement>(null);
-  const [currSurvey, setCurrSurvey] = useState<iSurvey>();
+  const [currSurvey, setCurrSurvey] = useState<ISurveyQuestions>();
   const menuOpen = Boolean(menu);
   const [dialogOpen, setDialogOpen] = useState(false);
   const handleDialogOpen = () => setDialogOpen(true);
   const handleDialogClose = () => setDialogOpen(false);
-  const [surveys, setSurveys] = useState<iSurvey[]>([]);
+  const [surveys, setSurveys] = useState<ISurveyQuestions[]>([]);
   const [currSurveys, setCurrSurveys] = useState<any[]>(surveys);
   const [render, setRender] = useState(false);
 
@@ -47,7 +47,7 @@ export default function HomePage({ user }: { user: string }) {
       );
   };
 
-  const handleCardClick = (survey: iSurvey) => {
+  const handleCardClick = (survey: ISurveyQuestions) => {
     navigate("/createSurvey", {
       state: {
         survey: survey,
@@ -58,9 +58,12 @@ export default function HomePage({ user }: { user: string }) {
   const handleAddSurvey = async () => {
     const newSurvey = await postSurvey({
       creatorId: user,
-      surveyName: t("newSurvey"),
+      surveyName: t("newSurvey") as string,
       content: [],
-      surveyDescription: t("surveyDescription"),
+      surveyDescription: t("surveyDescription") as string,
+      annonimous: true,
+      repliers: [],
+      isOpen: false,
     });
     await surveys.push(newSurvey);
     navigate("/createSurvey", {
@@ -94,14 +97,14 @@ export default function HomePage({ user }: { user: string }) {
   };
 
   const handleDeleteSurvey = async () => {
-    await deleteSurveyById((currSurvey as iSurvey).id as string);
+    await deleteSurveyById((currSurvey as ISurveyQuestions).id as string);
     setCurrSurvey(undefined);
     setRender(!render);
   };
 
   useEffect(() => {
     const getSurveys = async () => {
-      console.log(user)
+      console.log(user);
       const groups = (await getAll(user)) || [];
       setSurveys(groups);
       setCurrSurveys(groups);
@@ -285,7 +288,7 @@ export default function HomePage({ user }: { user: string }) {
           <MenuItem
             onClick={() => {
               handleCloseMenu();
-              handleCardClick(currSurvey as iSurvey);
+              handleCardClick(currSurvey as ISurveyQuestions);
             }}
           >
             {t("editSurvey")}
