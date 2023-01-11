@@ -36,7 +36,6 @@ function ScrollPages({
     if (currPage !== 1) setCurrPage((prevPage) => prevPage - 1);
     setChangePage(true);
   };
-  console.log(survey);
   return (
     <Box>
       <Box className="survey-answer-unit_scroll_survey_units">

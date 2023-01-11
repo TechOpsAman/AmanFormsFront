@@ -1,12 +1,7 @@
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@mui/material";
+import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
-import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
+import { useState } from "react";
 
 function SelectAnswer({
   answers,
@@ -15,11 +10,23 @@ function SelectAnswer({
   answers: IAnswer[];
   selectedAnswerId: string[];
 }) {
+  let newAnswers = answers;
+
+  const removeDuplicates = (arr: IAnswer[]): IAnswer[] => {
+    const uniqueAnswers = new Set<string>();
+    arr.forEach((item) => uniqueAnswers.add(item.answer));
+    return Array.from(uniqueAnswers).map((answer) => {
+      return { answer: answer } as IAnswer;
+    });
+  };
+
+  newAnswers = removeDuplicates(newAnswers);
+
   return (
     <RtlProvider>
       <Box>
-        {answers.map((answerInfo: IAnswer, answerIndex: number) => {
-          if (selectedAnswerId.includes(answerInfo.id as string)) {
+        {newAnswers.map((answerInfo: IAnswer, answerIndex: number) => {
+          if (selectedAnswerId.includes(answerInfo.answer as string)) {
             return (
               <Box key={`select${answerIndex}`}>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -40,7 +47,6 @@ function SelectAnswer({
               </Box>
             );
           }
-          return null;
         })}
       </Box>
     </RtlProvider>

@@ -18,15 +18,14 @@ function RadioAnswer({
   setFlag: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const surveySection = useContext(AnswerContext);
-  const [currAnswer, setCurrAnswer] = useState('');
+  const [currAnswer, setCurrAnswer] = useState("");
 
   useEffect(() => {
     const temp = currAnswers;
     temp[questionIndex] = [currAnswer];
     setCurrAnswers(temp);
-    setFlag(!flag)
+    setFlag(!flag);
   }, [currAnswer]);
-
 
   return (
     <RadioGroup>

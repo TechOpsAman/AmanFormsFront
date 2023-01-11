@@ -15,11 +15,14 @@ import { AnswerContext } from "../../../../../../context/sectionContext";
 import { ISurveyQuestions } from "../../../../../../interfaces/questions/iSurvey";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
 import AnswerService from "../../../../../../services/answerService";
+import { updateRepliers } from "../../../../../../services/questionsService";
 
 function AnswerType({
   questionsAndAnswers,
+  user,
 }: {
   questionsAndAnswers: ISurveyQuestions;
+  user: string;
 }) {
   const [currAnswers, setCurrAnswers] = useState<string[][]>(
     new Array(questionsAndAnswers.content.length).fill([])
@@ -36,6 +39,7 @@ function AnswerType({
   });
 
   const postSurveyData = (survey: ISurveyAnswers) => {
+    console.log(survey);
     AnswerService.postAnswerSurvey(survey);
   };
 
@@ -121,11 +125,18 @@ function AnswerType({
     let allRequiredAnswered = true;
 
     questionsAndAnswers.content.forEach((question, index) => {
-      console.log('hh', currAnswers[index][0]?.length)
-      if (question.required && currAnswers[index].length === 0 || currAnswers[index][0]?.length === 0) {
+      if (
+        question.required &&
+        (currAnswers[index].length === 0 || currAnswers[index][0] === "")
+      ) {
         allRequiredAnswered = false;
       }
     });
+
+    if (user === "" || questionsAndAnswers.repliers.includes(user))
+      allRequiredAnswered = false;
+
+    if (!questionsAndAnswers.isOpen) allRequiredAnswered = false;
 
     setIsAllRequiredAnsewred(allRequiredAnswered);
   };
@@ -152,11 +163,19 @@ function AnswerType({
   }, []);
 
   useEffect(() => {
+    survey.content.map((_question, index) => {
+      survey.content[index].answers = currAnswers[index];
+    });
     checkAllRequirments();
   }, [flag]);
 
   return (
     <div>
+      <div style={{ textAlign: "center" }}>
+        {!questionsAndAnswers.isOpen && (
+          <h1 style={{ color: "red" }}>סקר לא פעיל</h1>
+        )}
+      </div>
       {survey?.content.length > 0 && (
         <div>
           <RtlProvider>
@@ -169,38 +188,34 @@ function AnswerType({
               </Typography>
             </Box>
           </RtlProvider>
-          {questionsAndAnswers.content.map((questions: any, i: number) => {
+          {questionsAndAnswers.content.map((question: any, i: number) => {
             return (
-              <RtlProvider>
+              <RtlProvider key={i}>
                 <Box
                   className={
-                    questions.required &&
-                    questions.questionType !== "TITLE" &&
-                    currAnswers[i].length > 0 &&
-                    currAnswers[i][0]
-                      ? "survey-answer-type_questions_div"
-                      : "survey-answer-type_questions_div_required"
+                    question.required
+                      ? question.questionType !== "TITLE" &&
+                        currAnswers[i].length > 0 &&
+                        currAnswers[i][0]
+                        ? "survey-answer-type_questions_div"
+                        : "survey-answer-type_questions_div_required"
+                      : "survey-answer-type_questions_div"
                   }
-                  key={i}
                 >
                   <AnswerContext.Provider value={survey}>
-                    {questions.required ? (
+                    {question.required ? (
                       <Box className="survey-answer-type_question_name">
-                        <h3>{questions.questionName}</h3>
+                        <h3>{question.questionName}</h3>
                         <h4 className="survey-answer-type_required_asterisk">
                           {"*"}
                         </h4>
                       </Box>
                     ) : (
                       <h3 className="survey-answer-type_question_name">
-                        {questions.questionName}
+                        {question.questionName}
                       </h3>
                     )}
-                    {handleAnswers(
-                      questions.questionType,
-                      questions.answers,
-                      i
-                    )}
+                    {handleAnswers(question.questionType, question.answers, i)}
                   </AnswerContext.Provider>
                 </Box>
               </RtlProvider>
@@ -209,10 +224,13 @@ function AnswerType({
           <Box dir="rtl">
             <Button
               variant="contained"
-              onClick={() => postSurveyData(survey)}
+              onClick={() => {
+                postSurveyData(survey);
+                updateRepliers(survey.surveyId, user);
+              }}
               disabled={!isAllRequiredAnsewred}
             >
-              הבא
+              שלח/י
             </Button>
           </Box>
         </div>

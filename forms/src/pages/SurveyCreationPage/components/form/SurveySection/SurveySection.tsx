@@ -1,8 +1,11 @@
 import "./SurveySection.scss";
-import { iQuestion, QuestionType } from "../../../../../interfaces/iQuestion";
+import {
+  IQuestion,
+  QuestionType,
+} from "../../../../../interfaces/questions/iQuestion";
 import { useTranslation } from "react-i18next";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { iAnswer } from "../../../../../interfaces/iAnswer";
+import { IAnswer } from "../../../../../interfaces/answers/iAnswer";
 import AnswersSection from "../AnswerSection/AnswersSection";
 import QuestionTypeSelection from "../QuestionTypeSelection/QuestionTypeSelection";
 import Button from "@mui/material/Button";
@@ -29,7 +32,7 @@ function SurveySection({
   addQuestionorTitle,
   setAddQuestionorTitle,
 }: {
-  section: iQuestion;
+  section: IQuestion;
   index: number;
   render: any;
   setRender: any;
@@ -58,21 +61,21 @@ function SurveySection({
 
   const handleAddAnswer = () => {
     sections[questionIndex].answers = [
-      ...(sections[questionIndex].answers as iAnswer[]),
+      ...(sections[questionIndex].answers as IAnswer[]),
       { answer: "" },
     ];
-    setAnswers([...(answers as iAnswer[]), { answer: "" }]);
+    setAnswers([...(answers as IAnswer[]), { answer: "" }]);
     updateContent(location.state.survey.id, sections);
   };
 
   const handleRemoveAnswer = (answerIndex: number) => {
     sections[questionIndex].answers = [
-      ...(answers as iAnswer[]).slice(0, answerIndex),
-      ...(answers as iAnswer[]).slice(answerIndex + 1),
+      ...(answers as IAnswer[]).slice(0, answerIndex),
+      ...(answers as IAnswer[]).slice(answerIndex + 1),
     ];
     setAnswers([
-      ...(answers as iAnswer[]).slice(0, answerIndex),
-      ...(answers as iAnswer[]).slice(answerIndex + 1),
+      ...(answers as IAnswer[]).slice(0, answerIndex),
+      ...(answers as IAnswer[]).slice(answerIndex + 1),
     ]);
     updateContent(location.state.survey.id, sections);
   };
@@ -144,7 +147,7 @@ function SurveySection({
             </div>
             <div className="survey-section-answers-wrapper">
               <AnswersSection
-                answers={answers as iAnswer[]}
+                answers={answers as IAnswer[]}
                 questionType={questionType}
                 handleRemoveAnswer={handleRemoveAnswer}
                 questionIndex={questionIndex}

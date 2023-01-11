@@ -3,23 +3,52 @@ import SurveySection from "./components/form/SurveySection/SurveySection";
 import SurveyTitle from "./components/form/SurveyTitle/SurveyTitle";
 import "./SurveyCreationPage.scss";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { iQuestion, QuestionType } from "../../interfaces/iQuestion";
+import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
 import { sectionsContext } from "../../context/sectionsContext";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { getById, updateContent, updateLastUpdated, updateSurvey } from "../../services/questionsService";
+import {
+  getById,
+  updateContent,
+  updateLastUpdated,
+  updateSurvey,
+} from "../../services/questionsService";
+import {
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  Button,
+  DialogContent,
+  Alert,
+} from "@mui/material";
+import { writeText } from "clipboard-polyfill";
+import { config } from "../../data/config/config";
 
-function SurveyCreationPage() {
+function SurveyCreationPage({
+  isOpen,
+  setIsOpen,
+  setSurveyUrl,
+}: {
+  isOpen: boolean;
+  setIsOpen: (bool: boolean) => void;
+  setSurveyUrl: (url: string) => void;
+}) {
   const location = useLocation();
   const { t } = useTranslation();
   const [render, setRender] = useState(false);
   const [addQuestionorTitle, setAddQuestionorTitle] = useState<boolean[]>([]);
+  const [sections, setSections] = useState<IQuestion[]>([]);
+  const [shareDialogOpen, setShareDialogOpen] = useState(false);
+  const [currSurvey, setCurrSurvey] = useState("");
 
-  const [sections, setSections] = useState<iQuestion[]>([]);
+  const handleshareDialogClose = () => {
+    setShareDialogOpen(false);
+    setIsOpen(false);
+  };
 
-  const swapContent = async (temp: iQuestion[]) => {
+  const swapContent = async (temp: IQuestion[]) => {
     updateContent(location.state.survey.id, temp);
-  }
+  };
 
   const addSection = (questionIndex: number) => {
     const temp = sections;
@@ -50,7 +79,7 @@ function SurveyCreationPage() {
   };
 
   const addSectionWithParams = async (
-    section: iQuestion,
+    section: IQuestion,
     questionIndex: number,
     isSwitch: boolean
   ) => {
@@ -84,6 +113,17 @@ function SurveyCreationPage() {
     swapContent(items);
   };
 
+  const copyToClipboard = () => {
+    writeText(currSurvey).then(
+      function () {
+        <Alert severity="success">{t("copiedToClipboard")}</Alert>;
+      },
+      function (error: any) {
+        <Alert severity="error">{t("filedToCopy")}</Alert>;
+      }
+    );
+  };
+
   useEffect(() => {
     const getSurvey = async () => {
       const currSurvey = await getById(location.state.survey.id);
@@ -96,7 +136,7 @@ function SurveyCreationPage() {
             questionType: QuestionType.radio,
             answers: [],
             required: true,
-          }, 
+          },
         ];
 
         await updateSurvey(location.state.survey.id, "", "", tempSections);
@@ -104,9 +144,13 @@ function SurveyCreationPage() {
         setSections(newSurvey.content);
       }
       updateLastUpdated(location.state.survey.id);
+      setCurrSurvey(`${config.website.address}/answerSurvey/${currSurvey.id}`);
+      setSurveyUrl(`${config.website.address}/answerSurvey/${currSurvey.id}`);
     };
     getSurvey();
-  }, [location, render, t]);
+
+    setShareDialogOpen(isOpen);
+  }, [isOpen, location, render, t]);
 
   return (
     <div className="survey-creation-page-container">
@@ -160,6 +204,28 @@ function SurveyCreationPage() {
           </DragDropContext>
         </div>
       </div>
+      <Dialog
+        open={shareDialogOpen}
+        onClose={handleshareDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title" sx={{ direction: "rtl" }}>
+          {t("copyLink")}
+        </DialogTitle>
+        <DialogContent>{currSurvey}</DialogContent>
+        <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            onClick={() => {
+              copyToClipboard();
+              handleshareDialogClose();
+            }}
+            variant="outlined"
+          >
+            {t("copy")}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

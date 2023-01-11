@@ -1,13 +1,13 @@
 import "./SingleAnswer.scss";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { iAnswer } from "../../../../../../interfaces/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import { sectionsContext } from "../../../../../../context/sectionsContext";
 import { updateContent } from "../../../../../../services/questionsService";
 import { useLocation } from "react-router-dom";
 
 function RadioAnswer({answer, index, questionIndex}: {
-  answer: iAnswer;
+  answer: IAnswer;
   index: number;
   questionIndex: number;
 }) {
@@ -31,7 +31,7 @@ function RadioAnswer({answer, index, questionIndex}: {
           value={newAnswer}
           onChange={(e) => {
             setNewAnswer(e.target.value);
-            const temp = sections[questionIndex].answers as iAnswer[];
+            const temp = sections[questionIndex].answers as IAnswer[];
             temp[index].answer = e.target.value;
             sections[questionIndex].answers = temp;
             updateContent(location.state.survey.id, sections);

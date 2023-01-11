@@ -29,21 +29,15 @@ function ShortAnswer({
       surveySection.content[questionIndex].answers = [
         surveySection.content[questionIndex].answers[0] + answers,
       ];
-
-      console.log(currAnswer)
-      console.log(answers)
   };
-
 
   useEffect(() => {
     const temp = currAnswers;
     temp[questionIndex] = currAnswer;
     setCurrAnswers(temp);
-    setFlag(!flag)
-    console.log(currAnswer)
+    setFlag(!flag);
   }, [currAnswer]);
 
- 
   return (
     <TextareaAutosize
       className="survey-answer-type_short_answer"

@@ -19,7 +19,6 @@ function UnitPage({ id }: { id: string }) {
         const temp = await CompositorService.getSurveyQuestionsAndUsersAnswers(
           id
         );
-        console.log(temp);
         setAnswerAndQuestions(temp[0] as ISurveyQuestions);
         setSelectedAnswers(temp[1] as ISurveyAnswers[]);
         setSurveyFound(true);
@@ -31,7 +30,6 @@ function UnitPage({ id }: { id: string }) {
     fetchData();
   }, [id]);
 
-  console.log(answerAndQuestions);
   return (
     <div>
       {surveyFound ? (

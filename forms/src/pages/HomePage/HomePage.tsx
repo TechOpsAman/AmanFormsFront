@@ -13,7 +13,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { iSurvey } from "../../interfaces/iSurvey";
+import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
@@ -26,16 +26,16 @@ import pic from "../../assets/forms.png";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { deleteSurveyById } from "../../services/compositorService";
 
-export default function HomePage() {
+export default function HomePage({ user }: { user: string }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [menu, setMenu] = useState<null | HTMLElement>(null);
-  const [currSurvey, setCurrSurvey] = useState<iSurvey>();
+  const [currSurvey, setCurrSurvey] = useState<ISurveyQuestions>();
   const menuOpen = Boolean(menu);
   const [dialogOpen, setDialogOpen] = useState(false);
   const handleDialogOpen = () => setDialogOpen(true);
   const handleDialogClose = () => setDialogOpen(false);
-  const [surveys, setSurveys] = useState<iSurvey[]>([]);
+  const [surveys, setSurveys] = useState<ISurveyQuestions[]>([]);
   const [currSurveys, setCurrSurveys] = useState<any[]>(surveys);
   const [render, setRender] = useState(false);
 
@@ -47,7 +47,7 @@ export default function HomePage() {
       );
   };
 
-  const handleCardClick = (survey: iSurvey) => {
+  const handleCardClick = (survey: ISurveyQuestions) => {
     navigate("/createSurvey", {
       state: {
         survey: survey,
@@ -57,11 +57,13 @@ export default function HomePage() {
 
   const handleAddSurvey = async () => {
     const newSurvey = await postSurvey({
-      id: "123456123456123456123456",
-      creatorId: "123456123456123456123456",
-      surveyName: t("newSurvey"),
+      creatorId: user,
+      surveyName: t("newSurvey") as string,
       content: [],
-      surveyDescription: t("surveyDescription"),
+      surveyDescription: t("surveyDescription") as string,
+      annonimous: true,
+      repliers: [],
+      isOpen: false,
     });
     await surveys.push(newSurvey);
     navigate("/createSurvey", {
@@ -94,15 +96,16 @@ export default function HomePage() {
     setMenu(null);
   };
 
-  const handleDeleteSurvey = () => {
-    deleteSurveyById((currSurvey as iSurvey).id as string);
+  const handleDeleteSurvey = async () => {
+    await deleteSurveyById((currSurvey as ISurveyQuestions).id as string);
     setCurrSurvey(undefined);
     setRender(!render);
   };
 
   useEffect(() => {
     const getSurveys = async () => {
-      const groups = (await getAll()) || [];
+      console.log(user);
+      const groups = (await getAll(user)) || [];
       setSurveys(groups);
       setCurrSurveys(groups);
     };
@@ -170,7 +173,6 @@ export default function HomePage() {
             gap: "20px",
             flexWrap: "wrap",
             justifyContent: "right",
-            mx: 10,
           }}
         >
           {currSurveys.map((survey, index) => {
@@ -286,7 +288,7 @@ export default function HomePage() {
           <MenuItem
             onClick={() => {
               handleCloseMenu();
-              handleCardClick(currSurvey as iSurvey);
+              handleCardClick(currSurvey as ISurveyQuestions);
             }}
           >
             {t("editSurvey")}

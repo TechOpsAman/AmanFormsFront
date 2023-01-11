@@ -1,13 +1,15 @@
 import { config } from "../data/config/config";
 import axios from "axios";
-import { iSurvey } from "../interfaces/iSurvey";
-import { iQuestion } from "../interfaces/iQuestion";
+import { ISurveyQuestions } from "../interfaces/questions/iSurvey";
+import { IQuestion } from "../interfaces/questions/iQuestion";
 
-export const getAll = async () => {
+export const getAll = async (user: string) => {
   return axios
-    .get(`${config.questionsService.questionsCrudConnectionString}/getAll`)
-    .then((res) => res.data)
-    .catch((err) => {
+    .get(
+      `${config.questionsService.questionsCrudConnectionString}/getAll?creatorId=${user}`
+    )
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
@@ -17,13 +19,13 @@ export const getById = async (surveyId: string) => {
     .get(
       `${config.questionsService.questionsCrudConnectionString}/getSurveyById?id=${surveyId}`
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
 
-export const updateContent = async (surveyId: string, content: iQuestion[]) => {
+export const updateContent = async (surveyId: string, content: IQuestion[]) => {
   return axios
     .put(
       `${config.questionsService.questionsCrudConnectionString}/updateContent`,
@@ -32,8 +34,8 @@ export const updateContent = async (surveyId: string, content: iQuestion[]) => {
         content: content,
       }
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
@@ -43,14 +45,13 @@ export const updateLastUpdated = async (surveyId: string) => {
     .put(
       `${config.questionsService.questionsCrudConnectionString}/updateLastUpdated?id=${surveyId}`
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
 
-export const postSurvey = async (survey: iSurvey) => {
-  console.log(survey);
+export const postSurvey = async (survey: Partial<ISurveyQuestions>) => {
   return axios
     .post(
       `${config.questionsService.questionsCrudConnectionString}/createSurvey`,
@@ -61,8 +62,8 @@ export const postSurvey = async (survey: iSurvey) => {
         content: survey.content,
       }
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };
@@ -86,8 +87,38 @@ export const updateSurvey = async (
       `${config.questionsService.questionsCrudConnectionString}/updateSurvey`,
       temp
     )
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
+      console.log(err);
+    });
+};
+
+export const updateRepliers = async (surveyId: string, replier: string) => {
+  return axios
+    .put(
+      `${config.questionsService.questionsCrudConnectionString}/updateRepliers`,
+      {
+        surveyId: surveyId,
+        repliers: replier,
+      }
+    )
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
+      console.log(err);
+    });
+};
+
+export const updateIsOpen = async (surveyId: string, isOpen: boolean) => {
+  return axios
+    .put(
+      `${config.questionsService.questionsCrudConnectionString}/updateIsOpen`,
+      {
+        surveyId: surveyId,
+        isOpen: isOpen,
+      }
+    )
+    .then((res: { data: any }) => res.data)
+    .catch((err: any) => {
       console.log(err);
     });
 };

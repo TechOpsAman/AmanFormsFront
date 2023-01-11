@@ -22,7 +22,7 @@ function CheckboxAnswer({
   const [answersIndexArray, setAnswersIndexArray] = useState<number[]>([]);
   const [answersStringsArray, setAnswersStringsArray] = useState<string[]>([]);
 
-  const updateCheckboxAnswer = (answer: string, answerIndex: number) => {      
+  const updateCheckboxAnswer = (answer: string, answerIndex: number) => {
     if (!answersIndexArray.includes(answerIndex)) {
       setAnswersIndexArray([...answersIndexArray, answerIndex]);
       setAnswersStringsArray([...answersStringsArray, answer]);

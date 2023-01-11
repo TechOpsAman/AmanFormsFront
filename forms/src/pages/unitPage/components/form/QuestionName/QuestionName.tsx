@@ -1,6 +1,6 @@
 import { Box } from "@material-ui/core";
 import AnswerSection from "../../AnswerSection/AnswerType/AnswerSection/AnswerSection";
-import { IAnswer } from "../../../../../interfaces/questions/iAnswer";
+import { IAnswer } from "../../../../../interfaces/answers/iAnswer";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
 import { ISection } from "../../../../../interfaces/answers/iSection";
@@ -35,13 +35,26 @@ function QuestionName({
               key={index}
               className="survey-answer-unit_answers_box"
             >
-              <h3 className="survey-answer-unit_question_name">{questionInfo(question).questionName}</h3>
-              <Box sx={{ height: '75%' }} className="survey-answer-unit_correct_answer">
-                <AnswerSection
-                  answers={questionInfo(question).answers as IAnswer[]}
-                  questionType={questionInfo(question).questionType as string}
-                  selectedAnswerId={question.answers as string[]}
-                />
+              <Box>
+                {questionInfo(question) ? (
+                  <Box>
+                    <h3 className="survey-answer-unit_question_name">
+                      {questionInfo(question).questionName}
+                    </h3>
+                    <Box
+                      sx={{ height: "75%" }}
+                      className="survey-answer-unit_correct_answer"
+                    >
+                      <AnswerSection
+                        answers={questionInfo(question).answers as IAnswer[]}
+                        questionType={
+                          questionInfo(question).questionType as string
+                        }
+                        selectedAnswerId={question.answers as string[]}
+                      />
+                    </Box>
+                  </Box>
+                ) : null}
               </Box>
             </Box>
           );

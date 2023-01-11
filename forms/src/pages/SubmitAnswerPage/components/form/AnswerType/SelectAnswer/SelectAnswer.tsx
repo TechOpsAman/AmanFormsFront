@@ -1,10 +1,4 @@
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@material-ui/core";
+import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
 import { AnswerContext } from "../../../../../../context/sectionContext";
@@ -32,38 +26,38 @@ function SelectAnswer({
     const temp = currAnswers;
     temp[questionIndex] = [currAnswer];
     setCurrAnswers(temp);
-    setFlag(!flag)
+    setFlag(!flag);
   }, [currAnswer]);
 
   return (
-    <RtlProvider>
-    <Box>
-      <FormControl variant="standard">
-        <InputLabel id="demo-simple-select-standard-label">Select</InputLabel>
-        <Select
-          className="survey-answer-type_select_answer"
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          value={currAnswer}
-          onChange={(e) => {
-            setCurrAnswer(e.target.value as string);
-            surveyAnswers.content[questionIndex].answers = [
-              e.target.value as string,
-            ];
-          }}
-          label="select"
-        >
-          {answers.map((element: any, index: number) => {
-            return (
-              <MenuItem value={element.answer} key={index}>
-                {element.answer}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+    <Box sx={{ ml: 4 }}>
+      <RtlProvider>
+        <FormControl variant="standard">
+          <InputLabel id="demo-simple-select-standard-label">בחירה</InputLabel>
+          <Select
+            className="survey-answer-type_select_answer"
+            labelId="demo-simple-select-standard-label"
+            id="demo-simple-select-standard"
+            value={currAnswer}
+            onChange={(e) => {
+              setCurrAnswer(e.target.value as string);
+              surveyAnswers.content[questionIndex].answers = [
+                e.target.value as string,
+              ];
+            }}
+            label="select"
+          >
+            {answers.map((element: any, index: number) => {
+              return (
+                <MenuItem value={element.answer} key={index}>
+                  {element.answer}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </RtlProvider>
     </Box>
-    </RtlProvider>
   );
 }
 

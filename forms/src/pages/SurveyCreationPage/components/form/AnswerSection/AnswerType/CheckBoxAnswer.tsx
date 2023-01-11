@@ -1,7 +1,7 @@
 import "./SingleAnswer.scss";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { iAnswer } from "../../../../../../interfaces/iAnswer";
+import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import Checkbox from "@mui/material/Checkbox";
 import { sectionsContext } from "../../../../../../context/sectionsContext";
 import { updateContent } from "../../../../../../services/questionsService";
@@ -12,7 +12,7 @@ function CheckBoxAnswer({
   index,
   questionIndex,
 }: {
-  answer: iAnswer;
+  answer: IAnswer;
   index: number;
   questionIndex: number;
 }) {
@@ -37,7 +37,7 @@ function CheckBoxAnswer({
           value={newAnswer}
           onChange={(e) => {
             setNewAnswer(e.target.value);
-            const temp = sections[questionIndex].answers as iAnswer[];
+            const temp = sections[questionIndex].answers as IAnswer[];
             temp[index].answer = e.target.value;
             sections[questionIndex].answers = temp;
             updateContent(location.state.survey.id, sections);

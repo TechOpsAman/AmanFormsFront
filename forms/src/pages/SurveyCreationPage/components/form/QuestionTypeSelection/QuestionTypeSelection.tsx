@@ -3,7 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import { useTranslation } from "react-i18next";
-import { QuestionType } from "../../../../../interfaces/iQuestion";
+import { QuestionType } from "../../../../../interfaces/questions/iQuestion";
 import { sectionsContext } from "../../../../../context/sectionsContext";
 
 function QuestionTypeSelection({
