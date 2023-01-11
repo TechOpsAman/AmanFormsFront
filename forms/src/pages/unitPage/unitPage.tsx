@@ -3,23 +3,21 @@ import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import CompositorService from "../../services/questionService";
 import ScrollPages from "./components/form/ScrollPges/ScrollPages1";
-import { useLocation } from "react-router-dom";
 import { Box } from "@mui/material";
 
-function UnitPage() {
-  const location = useLocation();
+function UnitPage({ id }: { id: string }) {
   const [selectedAnswers, setSelectedAnswers] = useState<ISurveyAnswers[]>([]);
   const [answerAndQuestions, setAnswerAndQuestions] =
     useState<ISurveyQuestions>();
 
-  const surveyId: string = location.pathname.split("/")[2];
+  console.log(id);
   const [surveyFound, setSurveyFound] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const temp = await CompositorService.getSurveyQuestionsAndUsersAnswers(
-          surveyId
+          id
         );
         setAnswerAndQuestions(temp[0] as ISurveyQuestions);
         setSelectedAnswers(temp[1] as ISurveyAnswers[]);
@@ -30,7 +28,7 @@ function UnitPage() {
     };
 
     fetchData();
-  }, [surveyId]);
+  }, [id]);
 
   return (
     <div>

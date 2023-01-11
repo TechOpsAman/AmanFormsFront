@@ -11,6 +11,7 @@ import { createTheme, Box, ThemeProvider } from "@mui/material";
 import { AuthService } from "./services/authService";
 import { useUser } from "./context/userContext";
 import SubmitAnswerPage from "./pages/SubmitAnswerPage/SubmitAnswerPage";
+import ResultPage from "./pages/resultPage/resultPage";
 import SurveySentSuccessfullyPage from "./pages/SurveySentSuccessfullyPage/SurveySentSuccessfullyPage";
 
 const theme = createTheme({
@@ -76,7 +77,6 @@ function App() {
                 />
               }
             />
-            <Route path="/surveyUnit/:id" element={<UnitPage />} />
             <Route
               path="/answerSurvey/:id"
               element={<SubmitAnswerPage user={auser.tNumber} />}
@@ -93,6 +93,7 @@ function App() {
               path="surveySentSuccessfullyPage/:id"
               element={<SurveySentSuccessfullyPage />}
             />
+            <Route path="/resultPage/:id" element={<ResultPage />} />
           </Routes>
         ) : (
           "טוען"
