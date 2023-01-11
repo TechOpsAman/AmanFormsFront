@@ -10,7 +10,6 @@ function UnitPage({ id }: { id: string }) {
   const [answerAndQuestions, setAnswerAndQuestions] =
     useState<ISurveyQuestions>();
 
-  console.log(id);
   const [surveyFound, setSurveyFound] = useState(false);
 
   useEffect(() => {

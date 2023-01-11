@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
@@ -14,7 +13,7 @@ import ShortAnswerStatsSection from "./QuestionAnswersStatsSection/ShortAnswerSt
 import SurveyNotFoundPage from "../SurveyNotFoundPage/SurveyNotFoundPage";
 import "./CommentsSummaryPage.scss";
 
-function CommentsSummaryPage() {
+function CommentsSummaryPage({ id }: { id: string }) {
   const [loading, setLoading] = useState(true);
   const [surveyFound, setSurveyFound] = useState(false);
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
@@ -23,8 +22,7 @@ function CommentsSummaryPage() {
   let element: HTMLElement;
   element = document.getElementById("") as HTMLElement;
 
-  const location = useLocation();
-  const surveyId: string = location.pathname.split("/")[2];
+  const surveyId: string = id;
 
   const takeScreenshot = (graphToCopy: React.MutableRefObject<HTMLElement>) => {
     html2canvas(graphToCopy.current).then((canvas) => {

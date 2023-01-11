@@ -13,6 +13,8 @@ import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import { useEffect, useState } from "react";
 import UnitPage from "../unitPage/unitPage";
 import { updateIsOpen } from "../../services/questionsService";
+import CommentsQuesionPage from "../CommentsQuestionPage/CommentsQuesionPage";
+import CommentsSummaryPage from "../CommentsSummaryPage/CommentsSummaryPage";
 
 function ResultPage() {
   const location = useLocation();
@@ -22,6 +24,8 @@ function ResultPage() {
   >([]);
 
   const [isUnitClicked, setIsUnitClicked] = useState(false);
+  const [isQuestionClicked, setisQuestionClicked] = useState(false);
+  const [isSummeryClicked, setisSummeryClicked] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,9 +38,30 @@ function ResultPage() {
 
   const surveyCommentLength = answerAndQuestions?.length;
 
-  const handleUnitClicked = () => {
-    setIsUnitClicked(true);
+  const handleUnitClicked = (value: string) => {
+    switch (value) {
+        case 'unit':
+            setIsUnitClicked(true);
+            setisQuestionClicked(false);
+            setisSummeryClicked(false);
+            break;
+        case 'question':
+            setisQuestionClicked(true);
+            setIsUnitClicked(false);
+            setisSummeryClicked(false);
+            break;
+        case 'summery':
+            setisSummeryClicked(true);
+            setisQuestionClicked(false);
+            setIsUnitClicked(false);
+            break;
+    
+        default:
+            break;
+    }
+    
   };
+
 
   const handleCommentsSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateIsOpen(surveyId, event.target.checked);
@@ -76,6 +101,9 @@ function ResultPage() {
                 fontWeight: 600,
                 color: "black",
               }}
+              onClick={() => {
+                handleUnitClicked('summery');
+              }}
             >
               סיכום
             </Button>
@@ -87,6 +115,9 @@ function ResultPage() {
                 fontSize: 20,
                 fontWeight: 600,
                 color: "black",
+              }}
+              onClick={() => {
+                handleUnitClicked('question');
               }}
             >
               שאלה
@@ -101,14 +132,18 @@ function ResultPage() {
                 color: "black",
               }}
               onClick={() => {
-                handleUnitClicked();
+                handleUnitClicked('unit');
               }}
             >
               יחידה
             </Button>
           </Box>
         </Box>
-        <Box>{isUnitClicked && <UnitPage id={surveyId} />}</Box>
+        <Box>
+            {isUnitClicked && <UnitPage id={surveyId} />}
+            {isQuestionClicked && <CommentsQuesionPage id={surveyId} />}
+            {isSummeryClicked && <CommentsSummaryPage id={surveyId} />}
+        </Box>
       </Box>
     </Box>
   );

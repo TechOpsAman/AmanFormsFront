@@ -2,7 +2,6 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import CommentsSummaryPage from "./pages/CommentsSummaryPage/CommentsSummaryPage";
 import CommentsQuesionPage from "./pages/CommentsQuestionPage/CommentsQuesionPage";
-import UnitPage from "./pages/unitPage/unitPage";
 import SurveyCreationPage from "./pages/SurveyCreationPage/SurveyCreationPage";
 import HomePage from "./pages/HomePage/HomePage";
 import { Navbar } from "./components/form/Navbar";
@@ -80,14 +79,6 @@ function App() {
             <Route
               path="/answerSurvey/:id"
               element={<SubmitAnswerPage user={auser.tNumber} />}
-            />
-            <Route
-              path="/commentsQuesionPage/:id"
-              element={<CommentsQuesionPage />}
-            />
-            <Route
-              path="/commentsSummary/:id"
-              element={<CommentsSummaryPage />}
             />
             <Route
               path="surveySentSuccessfullyPage/:id"
