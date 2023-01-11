@@ -1,8 +1,8 @@
 import "./QuestionChoosingSectionBottom.scss";
-import { Card, IconButton } from "@material-ui/core";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { Card, IconButton } from "@mui/material";
 
 function QuestionChoosingSectionBottom({
   questionList,

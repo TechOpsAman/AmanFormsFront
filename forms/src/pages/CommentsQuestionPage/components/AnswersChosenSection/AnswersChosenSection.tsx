@@ -102,7 +102,6 @@ function AnswersChosenSection({
         );
       case QuestionType.shortAnswer:
       case QuestionType.longAnswer:
-      case QuestionType.title:
         return (
           <div dir="rtl">
             <h2>{(sectionData[0] as ISection).answers[0]}</h2>
@@ -127,15 +126,19 @@ function AnswersChosenSection({
         ? ISurveyAnswersActions.getData(
             answerList,
             chosenQuestion.questionName
-          ).map((setionData: Array<ISection | number>, index: number) => {
+          ).map((sectionData: Array<ISection | number>, index: number) => {
             return (
-              <Card
-                style={{ borderRadius: "30px" }}
-                className="answer-card"
-                key={index}
-              >
-                {returnQuestionAccordingToType(setionData)}
-              </Card>
+              <>
+                {(sectionData[0] as ISection).questionType !== "TITLE" ? (
+                  <Card
+                    style={{ borderRadius: "30px" }}
+                    className="answer-card"
+                    key={index}
+                  >
+                    {returnQuestionAccordingToType(sectionData)}
+                  </Card>
+                ) : null}
+              </>
             );
           })
         : null}

@@ -34,14 +34,14 @@
   color: black;
 }
 
-ul {
+.display-button-and-title-ul {
   display: flex;
   flex-direction: column;
   list-style-type: none;
   margin-top: 10%;
 }
 
-li {
+.display-button-and-title-li {
   align-self: flex-end;
   padding-bottom: 1rem;
 }

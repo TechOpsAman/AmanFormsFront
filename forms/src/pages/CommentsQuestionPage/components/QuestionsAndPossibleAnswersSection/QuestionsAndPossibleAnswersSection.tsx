@@ -1,5 +1,4 @@
 import "./QuestionsAndPossibleAnswersSection.scss";
-import { Card } from "@material-ui/core";
 import { useState } from "react";
 import {
   IQuestion,
@@ -9,6 +8,7 @@ import { IAnswer } from "../../../../interfaces/questions/iAnswer";
 import CheckboxAnswer from "./CheckboxAnswer/CheckboxAnswer";
 import RadioAnswer from "./RadioAnswer/RadioAnswer";
 import DisplayOptions from "./DisplayOptions/DisplayOptions";
+import { Card } from "@mui/material";
 
 function QuestionsAndPossibleAnswersSection({
   chosenQuestion,
@@ -36,10 +36,10 @@ function QuestionsAndPossibleAnswersSection({
               ></DisplayOptions>
               {areAnswersDisplayed ? (
                 <div>
-                  <ul>
+                  <ul className="display-button-and-title-ul">
                     {chosenQuestion.answers?.map(
                       (answer: IAnswer, index: number) => (
-                        <li key={index}>{getPossibleAnswersList(answer)}</li>
+                        <li className="display-button-and-title-li" key={index}>{getPossibleAnswersList(answer)}</li>
                       )
                     )}
                   </ul>

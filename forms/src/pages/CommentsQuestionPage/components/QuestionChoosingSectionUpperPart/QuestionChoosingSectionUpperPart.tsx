@@ -1,8 +1,8 @@
 import "./QuestionChoosingSectionUpperPart.scss";
-import { Card } from "@material-ui/core";
 import { IQuestion } from "../../../../interfaces/questions/iQuestion";
 import QuestionChoosingByIndexSection from "./QuestionChoosingByIndexSection/QuestionChoosingByIndexSection";
 import QuestionChoosingByNameSection from "./QuestionChoosingByNameSection/QuestionChoosingByNameSection";
+import { Card } from "@mui/material";
 
 function QuestionChoosingSectionUpperPart({
   questionList,
