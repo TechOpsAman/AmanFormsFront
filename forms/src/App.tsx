@@ -1,5 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import CommentsQuesionPage from "./pages/CommentsQuestionPage/CommentsQuesionPage";
 import UnitPage from "./pages/unitPage/unitPage";
 import SurveyCreationPage from "./pages/SurveyCreationPage/SurveyCreationPage";
 import HomePage from "./pages/HomePage/HomePage";
@@ -78,8 +79,14 @@ function App() {
               path="/answerSurvey/:id"
               element={<SubmitAnswerPage user={auser.tNumber} />}
             />
+            <Route
+              path="/commentsSummary/:id"
+              element={<CommentsQuesionPage />}
+            />
           </Routes>
-        ) : 'טוען'}
+        ) : (
+          "טוען"
+        )}
       </Box>
     </ThemeProvider>
   );
