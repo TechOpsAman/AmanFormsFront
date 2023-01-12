@@ -25,8 +25,6 @@ function CommentsQuestionPage({ id }: { id: string }) {
 
   const surveyId: string = id;
 
-  // const surveyId: string = "63b2eb48f7ddfee84ad3f338";
-
   const getQuestionListWithoutTitles = (questionList: IQuestion[]) => {
     const updatedQuestionList: IQuestion[] = [];
     questionList.forEach((question: IQuestion) => {

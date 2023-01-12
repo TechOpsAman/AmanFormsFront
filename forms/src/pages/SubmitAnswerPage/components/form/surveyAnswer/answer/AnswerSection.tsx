@@ -43,7 +43,7 @@ function AnswerType({
   const postSurveyData = (survey: ISurveyAnswers) => {
     console.log(survey);
     AnswerService.postAnswerSurvey(survey);
-    navigate(`/surveySentSuccessfullyPage/${survey.surveyId}`)
+    navigate(`/surveySentSuccessfullyPage/${survey.surveyId}`);
   };
 
   const handleAnswers = (
@@ -209,8 +209,7 @@ function AnswerType({
                     {question.required ? (
                       <Box className="survey-answer-type_question_name">
                         <h3>{question.questionName}</h3>
-                        <h4 className="survey-answer-type_required_asterisk">
-                        </h4>
+                        <h4 className="survey-answer-type_required_asterisk"></h4>
                       </Box>
                     ) : (
                       <h3 className="survey-answer-type_question_name">

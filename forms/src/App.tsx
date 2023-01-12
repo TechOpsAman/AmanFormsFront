@@ -81,12 +81,12 @@ function App() {
               element={<SubmitAnswerPage user={auser.tNumber} />}
             />
             <Route
-              path="/commentsQuesion/:id"
-              element={<CommentsQuesionPage id={""} />}
+              path="/commentsSummary/:id"
+              element={<CommentsQuesionPage id={"63be78cbcec6c88b16fd32e2"} />}
             />
             <Route
               path="/commentsSummary/:id"
-              element={<CommentsSummaryPage id={""} />}
+              element={<CommentsSummaryPage id={"63be78cbcec6c88b16fd32e2"} />}
             />
             <Route
               path="/surveySentSuccessfullyPage/:id"
