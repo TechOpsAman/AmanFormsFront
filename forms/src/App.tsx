@@ -1,7 +1,5 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import CommentsSummaryPage from "./pages/CommentsSummaryPage/CommentsSummaryPage";
-import CommentsQuesionPage from "./pages/CommentsQuestionPage/CommentsQuesionPage";
 import SurveyCreationPage from "./pages/SurveyCreationPage/SurveyCreationPage";
 import HomePage from "./pages/HomePage/HomePage";
 import { Navbar } from "./components/form/Navbar";
@@ -33,6 +31,14 @@ function App() {
   const handleshareDialogOpen = (bool: boolean) => setShareDialogOpen(bool);
 
   const [surveyUrl, setSurveyUrl] = useState("");
+  const [surveyCommentsUrl, setSurveyCommentsUrl] = useState("");
+
+  useEffect(() => {
+    if(surveyUrl) {
+      const surveyCommentsUrl = surveyUrl.replace("answerSurvey", "resultPage");
+      setSurveyCommentsUrl(surveyCommentsUrl);
+    }
+  }, [surveyUrl]);
 
   useEffect(() => {
     const initUser = async () => {
@@ -55,6 +61,7 @@ function App() {
         {...auser}
         handleShareDialogOpen={handleshareDialogOpen}
         surveyUrl={surveyUrl}
+        surveyCommentsUrl={surveyCommentsUrl}
       />
       <Box
         sx={{

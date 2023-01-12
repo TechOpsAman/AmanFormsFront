@@ -15,17 +15,20 @@ import logo from "../../assets/whiteforms.png";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import ShareIcon from "@mui/icons-material/Share";
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 export function Navbar({
   name,
   tNumber,
   handleShareDialogOpen,
-  surveyUrl
+  surveyUrl,
+  surveyCommentsUrl
 }: {
   name: string;
   tNumber: string;
   handleShareDialogOpen: (bool: boolean) => void;
   surveyUrl: string;
+  surveyCommentsUrl: string;
 }) {
   const location = useLocation();
   const { t } = useTranslation();
@@ -136,7 +139,18 @@ export function Navbar({
                       >
                         <ShareIcon />
                       </IconButton>
+
                     </Tooltip>
+                    <Tooltip title={t("תגובות")} placement="right" arrow>
+                      <IconButton
+                        onClick={() => {
+                          openInNewTab(surveyCommentsUrl);
+                        }}
+                      >
+                        <LibraryBooksIcon />
+                      </IconButton>
+                    </Tooltip>
+
                   </MenuItem>
                 </Menu>
               </Box>
