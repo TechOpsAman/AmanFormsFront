@@ -25,7 +25,7 @@ function ResultPage() {
 
   const [isUnitClicked, setIsUnitClicked] = useState(false);
   const [isQuestionClicked, setisQuestionClicked] = useState(false);
-  const [isSummeryClicked, setisSummeryClicked] = useState(false);
+  const [isSummeryClicked, setisSummeryClicked] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
