@@ -128,7 +128,7 @@ function AnswersChosenSection({
             chosenQuestion.questionName
           ).map((sectionData: Array<ISection | number>, index: number) => {
             return (
-              <>
+              <div key={index}>
                 {(sectionData[0] as ISection).questionType !== "TITLE" ? (
                   <Card
                     style={{ borderRadius: "30px" }}
@@ -138,7 +138,7 @@ function AnswersChosenSection({
                     {returnQuestionAccordingToType(sectionData)}
                   </Card>
                 ) : null}
-              </>
+              </div>
             );
           })
         : null}

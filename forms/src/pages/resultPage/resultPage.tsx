@@ -69,13 +69,6 @@ function ResultPage() {
 
   return (
     <Box className="survey-result-page_wraps_box">
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-        }}
-      >
         <Box className="survey-result-page_main_box">
           <Box className="survey-result-page_comments_box">
             <Typography dir="rtl" variant="h4">
@@ -144,7 +137,6 @@ function ResultPage() {
             {isQuestionClicked && <CommentsQuesionPage id={surveyId} />}
             {isSummeryClicked && <CommentsSummaryPage id={surveyId} />}
         </Box>
-      </Box>
     </Box>
   );
 }
