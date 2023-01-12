@@ -81,7 +81,7 @@ function App() {
               element={<SubmitAnswerPage user={auser.tNumber} />}
             />
             <Route
-              path="/commentsSummary/:id"
+              path="/commentsQuesion/:id"
               element={<CommentsQuesionPage id={"63be78cbcec6c88b16fd32e2"} />}
             />
             <Route
