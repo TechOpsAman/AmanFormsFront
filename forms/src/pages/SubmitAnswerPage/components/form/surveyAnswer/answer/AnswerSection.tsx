@@ -41,7 +41,6 @@ function AnswerType({
   });
 
   const postSurveyData = (survey: ISurveyAnswers) => {
-    console.log(survey);
     AnswerService.postAnswerSurvey(survey);
     navigate(`/surveySentSuccessfullyPage/${survey.surveyId}`);
   };

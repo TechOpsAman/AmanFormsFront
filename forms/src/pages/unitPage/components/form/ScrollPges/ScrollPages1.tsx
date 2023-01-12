@@ -7,7 +7,6 @@ import QuestionName from "../QuestionName/QuestionName";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
 import { Box, TextField } from "@mui/material";
-console.log()
 function ScrollPages({
   questionsAndAnswers,
   survey,

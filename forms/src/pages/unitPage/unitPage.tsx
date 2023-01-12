@@ -4,6 +4,7 @@ import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import CompositorService from "../../services/questionService";
 import ScrollPages from "./components/form/ScrollPges/ScrollPages1";
 import { Box } from "@mui/material";
+import SurveyNotFoundPage from "../SurveyNotFoundPage/SurveyNotFoundPage";
 
 function UnitPage({ id }: { id: string }) {
   const [selectedAnswers, setSelectedAnswers] = useState<ISurveyAnswers[]>([]);
@@ -43,9 +44,7 @@ function UnitPage({ id }: { id: string }) {
         </div>
       ) : (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <span style={{ fontSize: "2rem", marginTop: "1rem" }}>
-            הסקר המבוקש לא נמצא
-          </span>
+          <SurveyNotFoundPage/>
         </Box>
       )}
     </div>

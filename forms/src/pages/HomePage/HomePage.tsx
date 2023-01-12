@@ -104,7 +104,6 @@ export default function HomePage({ user }: { user: string }) {
 
   useEffect(() => {
     const getSurveys = async () => {
-      console.log(user);
       const groups = (await getAll(user)) || [];
       setSurveys(groups);
       setCurrSurveys(groups);

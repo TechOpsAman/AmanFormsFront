@@ -8,7 +8,7 @@ import AnswersChosenSection from "./components/AnswersChosenSection/AnswersChose
 import QuestionChoosingSectionBottom from "./components/QuestionChoosingSectionBottom/QuestionChoosingSectionBottom";
 import CompositorService from "../../services/compositor.service";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
-import SurveyNotFoundPage from "./SurveyNotFoundPage/SurveyNotFoundPage";
+import SurveyNotFoundPage from "../SurveyNotFoundPage/SurveyNotFoundPage";
 
 function CommentsQuestionPage({ id }: { id: string }) {
   const [loading, setLoading] = useState(true);

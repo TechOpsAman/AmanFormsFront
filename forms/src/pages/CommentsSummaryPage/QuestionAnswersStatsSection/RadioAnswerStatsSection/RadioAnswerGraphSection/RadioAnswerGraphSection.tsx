@@ -60,7 +60,6 @@ function RadioAnswerGraphSection({
     <React.Fragment>
       <div className="container-fluid mb-5" ref={graphToCopy}>
         <br />
-        <>{console.log(Array.from(getData().values()))}</>
         <Chart
           type="pie"
           width={800}
