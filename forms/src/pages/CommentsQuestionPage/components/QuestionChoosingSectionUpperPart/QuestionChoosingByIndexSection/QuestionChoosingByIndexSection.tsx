@@ -27,12 +27,12 @@ function QuestionChoosingByIndexSection({
 
   return (
     <div>
-      {questionList.indexOf(chosenQuestion) === 0 ? (
+      {questionList.indexOf(chosenQuestion) === questionList.length - 1 ? (
         <IconButton disabled>
           <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
         </IconButton>
       ) : (
-        <IconButton onClick={changeToPreviousQuestion}>
+        <IconButton onClick={changeToNextQuestion}>
           <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
         </IconButton>
       )}
@@ -46,12 +46,12 @@ function QuestionChoosingByIndexSection({
         dir="ltr"
         onChange={changeQuestion}
       />
-      {questionList.indexOf(chosenQuestion) === questionList.length - 1 ? (
+      {questionList.indexOf(chosenQuestion) === 0 ? (
         <IconButton disabled>
           <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
         </IconButton>
       ) : (
-        <IconButton onClick={changeToNextQuestion}>
+        <IconButton onClick={changeToPreviousQuestion}>
           <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
         </IconButton>
       )}

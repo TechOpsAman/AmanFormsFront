@@ -3,7 +3,6 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
 import RtlProvider from "../../../../../components/forms/RtlProvider";
-import { column } from "stylis";
 
 function QuestionChoosingByNameSection({
   questionList,
@@ -23,9 +22,9 @@ function QuestionChoosingByNameSection({
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }}>
+    <FormControl sx={{ m: 1 }}>
       <RtlProvider>
-        <Select
+        <Select sx={{ minWidth: 180 }}
           value={chosenQuestion?.questionName}
           onChange={handleChange}
           displayEmpty

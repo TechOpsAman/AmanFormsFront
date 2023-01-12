@@ -23,9 +23,9 @@ function ResultPage() {
     ISurveyAnswers[]
   >([]);
 
-  const [isUnitClicked, setIsUnitClicked] = useState(false);
+  const [isUnitClicked, setIsUnitClicked] = useState(true);
   const [isQuestionClicked, setisQuestionClicked] = useState(false);
-  const [isSummeryClicked, setisSummeryClicked] = useState(true);
+  const [isSummeryClicked, setisSummeryClicked] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
