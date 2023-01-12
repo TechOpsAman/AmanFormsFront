@@ -1,6 +1,6 @@
-import { Box, Checkbox, FormControlLabel, FormGroup } from "@material-ui/core";
-import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
-import "./CheckboxAnswer.scss";
+import { Box, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { IAnswer } from "../../../../../../interfaces/questions/iAnswer";
+import './CheckboxAnswer.scss'
 
 function CheckboxAnswer({
   answers,

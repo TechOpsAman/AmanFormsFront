@@ -1,5 +1,4 @@
 import "./AnswerSection.scss";
-import { Box, Button, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { ISurveyAnswers } from "../../../../../../interfaces/answers/iSurvey";
 import {
@@ -16,6 +15,8 @@ import { ISurveyQuestions } from "../../../../../../interfaces/questions/iSurvey
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
 import AnswerService from "../../../../../../services/answerService";
 import { updateRepliers } from "../../../../../../services/questionsService";
+import { Box, Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function AnswerType({
   questionsAndAnswers,
@@ -24,6 +25,7 @@ function AnswerType({
   questionsAndAnswers: ISurveyQuestions;
   user: string;
 }) {
+  const navigate = useNavigate();
   const [currAnswers, setCurrAnswers] = useState<string[][]>(
     new Array(questionsAndAnswers.content.length).fill([])
   );
@@ -41,6 +43,7 @@ function AnswerType({
   const postSurveyData = (survey: ISurveyAnswers) => {
     console.log(survey);
     AnswerService.postAnswerSurvey(survey);
+    navigate(`/surveySentSuccessfullyPage/${survey.surveyId}`)
   };
 
   const handleAnswers = (
@@ -207,7 +210,6 @@ function AnswerType({
                       <Box className="survey-answer-type_question_name">
                         <h3>{question.questionName}</h3>
                         <h4 className="survey-answer-type_required_asterisk">
-                          {"*"}
                         </h4>
                       </Box>
                     ) : (

@@ -1,6 +1,6 @@
 import "./CopyButtonGraphComponent.scss";
 import DownloadIcon from "@mui/icons-material/Download";
-import { IconButton } from "@material-ui/core";
+import { IconButton } from "@mui/material";
 
 function CopyButtonGraphComponent({
   graphToCopyRef,

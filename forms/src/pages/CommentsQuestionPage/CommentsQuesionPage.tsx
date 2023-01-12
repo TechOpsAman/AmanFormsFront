@@ -1,7 +1,6 @@
 import "./CommentsQuesionPage.scss";
 import { IQuestion, QuestionType } from "../../interfaces/questions/iQuestion";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import QuestionChoosingSectionUpperPart from "./components/QuestionChoosingSectionUpperPart/QuestionChoosingSectionUpperPart";
 import QuestionsAndPossibleAnswersSection from "./components/QuestionsAndPossibleAnswersSection/QuestionsAndPossibleAnswersSection";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
@@ -11,9 +10,9 @@ import CompositorService from "../../services/compositor.service";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import SurveyNotFoundPage from "./SurveyNotFoundPage/SurveyNotFoundPage";
 
-function CommentsQuestionPage() {
+function CommentsQuestionPage({ id }: { id: string }) {
   const [loading, setLoading] = useState(true);
-  const [surveyFound, setSurveyFound] = useState(false);
+  const [_surveyFound, setSurveyFound] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);
   const [answerList, setAnswerList] = useState<ISurveyAnswers[]>([]);
@@ -24,8 +23,7 @@ function CommentsQuestionPage() {
     answers: [],
   });
 
-  const location = useLocation();
-  const surveyId: string = location.pathname.split("/")[2];
+  const surveyId: string = id;
 
   // const surveyId: string = "63b2eb48f7ddfee84ad3f338";
 

@@ -1,8 +1,8 @@
 import "./QuestionChoosingByIndexSection.scss";
-import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { IQuestion } from "../../../../../interfaces/questions/iQuestion";
+import { IconButton } from "@mui/material";
 
 function QuestionChoosingByIndexSection({
   questionList,

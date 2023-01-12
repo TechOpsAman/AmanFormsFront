@@ -2,7 +2,6 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import CommentsSummaryPage from "./pages/CommentsSummaryPage/CommentsSummaryPage";
 import CommentsQuesionPage from "./pages/CommentsQuestionPage/CommentsQuesionPage";
-import UnitPage from "./pages/unitPage/unitPage";
 import SurveyCreationPage from "./pages/SurveyCreationPage/SurveyCreationPage";
 import HomePage from "./pages/HomePage/HomePage";
 import { Navbar } from "./components/form/Navbar";
@@ -11,6 +10,7 @@ import { createTheme, Box, ThemeProvider } from "@mui/material";
 import { AuthService } from "./services/authService";
 import { useUser } from "./context/userContext";
 import SubmitAnswerPage from "./pages/SubmitAnswerPage/SubmitAnswerPage";
+import ResultPage from "./pages/resultPage/resultPage";
 import SurveySentSuccessfullyPage from "./pages/SurveySentSuccessfullyPage/SurveySentSuccessfullyPage";
 
 const theme = createTheme({
@@ -76,23 +76,23 @@ function App() {
                 />
               }
             />
-            <Route path="/surveyUnit/:id" element={<UnitPage />} />
             <Route
               path="/answerSurvey/:id"
               element={<SubmitAnswerPage user={auser.tNumber} />}
             />
             <Route
               path="/commentsQuesion/:id"
-              element={<CommentsQuesionPage />}
+              element={<CommentsQuesionPage id={""} />}
             />
             <Route
               path="/commentsSummary/:id"
-              element={<CommentsSummaryPage />}
+              element={<CommentsSummaryPage id={""} />}
             />
             <Route
-              path="/surveySentSuccessfully/:id"
+              path="/surveySentSuccessfullyPage/:id"
               element={<SurveySentSuccessfullyPage />}
             />
+            <Route path="/resultPage/:id" element={<ResultPage />} />
           </Routes>
         ) : (
           "טוען"

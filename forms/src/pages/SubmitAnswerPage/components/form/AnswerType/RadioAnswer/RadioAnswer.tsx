@@ -1,4 +1,4 @@
-import { FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 
