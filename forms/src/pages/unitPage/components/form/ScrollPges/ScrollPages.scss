@@ -1,8 +1,18 @@
+.scroll-pages-main-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
 .survey-answer-unit_scroll_survey_units {
+    width: 50rem;
     background-color: white;
     margin-top: 1rem;
     display: flex;
     justify-content: center;
+    padding: 1rem;
+    border-radius: 20px;
 }
 
 .survey-answer-unit_page_conter {
@@ -15,7 +25,9 @@
 }
 
 .survey-answer-unit_questions_and_answers {
+    width: 50rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 2rem;
 }

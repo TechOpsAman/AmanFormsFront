@@ -7,6 +7,9 @@ import QuestionName from "../QuestionName/QuestionName";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
 import { Box, TextField } from "@mui/material";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+
 function ScrollPages({
   questionsAndAnswers,
   survey,
@@ -19,11 +22,8 @@ function ScrollPages({
   const theme = `  מתוך   ${numOfPages}  `;
   const [changePage, setChangePage] = useState(false);
 
-  const handelPages = (pageNum: number) => {
-    if (pageNum <= numOfPages) {
-      setCurrPage(() => pageNum);
-      setChangePage(true);
-    }
+  const handelPages = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrPage(Number(event.target.value));
   };
 
   const handelForwardPage = () => {
@@ -36,30 +36,38 @@ function ScrollPages({
     setChangePage(true);
   };
   return (
-    <Box>
+    <div className="scroll-pages-main-div">
       <Box className="survey-answer-unit_scroll_survey_units">
+      <div>
+      {currPage === numOfPages ? (
+        <IconButton disabled>
+          <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
+        </IconButton>
+      ) : (
         <IconButton onClick={handelForwardPage}>
-          <ChevronLeftIcon fontSize="large" />
+          <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
         </IconButton>
-        <Box dir="rtl" className="survey-answer-unit_page_conter">
-          <TextField
-            id="standard-basic"
-            variant="standard"
-            type="number"
-            value={currPage}
-            className="survey-answer-unit_text_filed"
-            InputProps={{ inputProps: { min: 1, max: numOfPages } }}
-            onChange={(event) => {
-              handelPages(
-                (event.target as HTMLInputElement).value as unknown as number
-              );
-            }}
-          />
-          <span>{theme}</span>
-        </Box>
+      )}
+      <p className="number-of-question"> מתוך {numOfPages}</p>
+      <input
+        className="number-of-question-input"
+        type="number"
+        value={currPage}
+        min="1"
+        max={numOfPages}
+        dir="ltr"
+        onChange={handelPages}
+      />
+      {currPage === 1 ? (
+        <IconButton disabled>
+          <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
+        </IconButton>
+      ) : (
         <IconButton onClick={handelBackwardsPage}>
-          <ChevronRightIcon fontSize="large" />
+          <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
         </IconButton>
+      )}
+    </div>
       </Box>
 
       <Box className="survey-answer-unit_questions_and_answers">
@@ -77,7 +85,7 @@ function ScrollPages({
           />
         )}
       </Box>
-    </Box>
+    </div>
   );
 }
 

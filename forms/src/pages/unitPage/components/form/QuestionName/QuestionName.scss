@@ -2,9 +2,18 @@ body{
     background-color: rgb(185, 236, 238);
 }
 
+.question-name-main-box {
+    width: 52rem;
+    min-width: 52em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .survey-answer-unit_titel_div{
     background-color: white;
-    width: 50rem;
+    width: 52rem;
     height: 10rem;
     border-radius: 20px;  
     border-top: 25px solid #7cbddb;
@@ -14,6 +23,9 @@ body{
 }
 
 .survey-answer-unit_answers_box{
+    min-width: 52rem;
+    width: 52rem;
+    margin-bottom: 1rem;
     background-color: white;
     box-shadow: 1px 2px 9px gray;
 }
