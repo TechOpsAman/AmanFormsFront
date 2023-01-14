@@ -17,11 +17,13 @@ function RadioAnswer({answer, index, questionIndex}: {
   const { t } = useTranslation();
   const [newAnswer, setNewAnswer] = useState(answer.answer);
 
-  if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
-
-  useEffect(() => {
-    setNewAnswer(answer.answer);
+    useEffect(() => {
+    if (!(answer.answer === "" || !answer.answer)) setNewAnswer(answer.answer);
   }, [answer]);
+  
+  useEffect(() => {
+    if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
+  }, []);
 
   return (
       <div>

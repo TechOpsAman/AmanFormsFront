@@ -68,8 +68,6 @@ function App() {
           bgcolor: "secondary.main",
           minHeight: "93.1vh",
           minWidth: "90rem",
-          display: "flex",
-          justifyContent: "center"
         }}
       >
         {auser.tNumber !== "noT" ? (

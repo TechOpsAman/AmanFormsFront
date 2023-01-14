@@ -1,5 +1,5 @@
 import "./SingleAnswer.scss";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useInsertionEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import Checkbox from "@mui/material/Checkbox";
@@ -20,13 +20,15 @@ function CheckBoxAnswer({
 
   const location = useLocation();
   const { t } = useTranslation();
-  const [newAnswer, setNewAnswer] = useState(answer.answer);
 
-  if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
+  const [newAnswer, setNewAnswer] = useState(answer.answer);
+  useEffect(() => {
+    if (!(answer.answer === "" || !answer.answer)) setNewAnswer(answer.answer);
+  }, [answer]);
 
   useEffect(() => {
-    setNewAnswer(answer.answer);
-  }, [answer]);
+    if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
+  }, []);
 
   return (
     <div className="check_box_answer-checkbox-container">

@@ -29,8 +29,8 @@ function ResultPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-        const temp = await AnswerService.getAnswerSurvey(surveyId);
-        setAnswerAndQuestions(temp);
+      const temp = await AnswerService.getAnswerSurvey(surveyId);
+      setAnswerAndQuestions(temp);
     };
 
     fetchData();
@@ -40,35 +40,34 @@ function ResultPage() {
 
   const handleUnitClicked = (value: string) => {
     switch (value) {
-        case 'unit':
-            setIsUnitClicked(true);
-            setisQuestionClicked(false);
-            setisSummeryClicked(false);
-            break;
-        case 'question':
-            setisQuestionClicked(true);
-            setIsUnitClicked(false);
-            setisSummeryClicked(false);
-            break;
-        case 'summery':
-            setisSummeryClicked(true);
-            setisQuestionClicked(false);
-            setIsUnitClicked(false);
-            break;
-    
-        default:
-            break;
-    }
-    
-  };
+      case "unit":
+        setIsUnitClicked(true);
+        setisQuestionClicked(false);
+        setisSummeryClicked(false);
+        break;
+      case "question":
+        setisQuestionClicked(true);
+        setIsUnitClicked(false);
+        setisSummeryClicked(false);
+        break;
+      case "summery":
+        setisSummeryClicked(true);
+        setisQuestionClicked(false);
+        setIsUnitClicked(false);
+        break;
 
+      default:
+        break;
+    }
+  };
 
   const handleCommentsSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateIsOpen(surveyId, event.target.checked);
-  }
+  };
 
   return (
-    <Box className="survey-result-page_wraps_box">
+    <Box sx={{display: 'flex', justifyContent: 'center'}}>
+      <Box className="survey-result-page_wraps_box">
         <Box className="survey-result-page_main_box">
           <Box className="survey-result-page_comments_box">
             <Typography dir="rtl" variant="h4">
@@ -78,9 +77,11 @@ function ResultPage() {
           <Box className="survey-result-page_switch">
             <FormGroup>
               <FormControlLabel
-                control={<Switch defaultChecked onChange={handleCommentsSwitch}/>}
+                control={
+                  <Switch defaultChecked onChange={handleCommentsSwitch} />
+                }
                 label="מקבל תגובות"
-                sx={{minWidth: '6rem', ml: 2}}
+                sx={{ minWidth: "6rem", ml: 2 }}
               />
             </FormGroup>
           </Box>
@@ -95,7 +96,7 @@ function ResultPage() {
                 color: "black",
               }}
               onClick={() => {
-                handleUnitClicked('summery');
+                handleUnitClicked("summery");
               }}
             >
               סיכום
@@ -110,7 +111,7 @@ function ResultPage() {
                 color: "black",
               }}
               onClick={() => {
-                handleUnitClicked('question');
+                handleUnitClicked("question");
               }}
             >
               שאלה
@@ -125,7 +126,7 @@ function ResultPage() {
                 color: "black",
               }}
               onClick={() => {
-                handleUnitClicked('unit');
+                handleUnitClicked("unit");
               }}
             >
               יחידה
@@ -133,10 +134,11 @@ function ResultPage() {
           </Box>
         </Box>
         <Box>
-            {isUnitClicked && <UnitPage id={surveyId} />}
-            {isQuestionClicked && <CommentsQuesionPage id={surveyId} />}
-            {isSummeryClicked && <CommentsSummaryPage id={surveyId} />}
+          {isUnitClicked && <UnitPage id={surveyId} />}
+          {isQuestionClicked && <CommentsQuesionPage id={surveyId} />}
+          {isSummeryClicked && <CommentsSummaryPage id={surveyId} />}
         </Box>
+      </Box>
     </Box>
   );
 }
