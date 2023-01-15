@@ -14,7 +14,8 @@ import logo from "../../assets/whiteforms.png";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import ShareIcon from "@mui/icons-material/Share";
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import armyIcon from "../../assets/armyIcon.png";
 
 export function Navbar({
   name,
@@ -22,7 +23,7 @@ export function Navbar({
   profilePic,
   handleShareDialogOpen,
   surveyUrl,
-  surveyCommentsUrl
+  surveyCommentsUrl,
 }: {
   name: string;
   tNumber: string;
@@ -140,7 +141,6 @@ export function Navbar({
                       >
                         <ShareIcon />
                       </IconButton>
-
                     </Tooltip>
                     <Tooltip title={t("תגובות")} placement="right" arrow>
                       <IconButton
@@ -151,7 +151,6 @@ export function Navbar({
                         <LibraryBooksIcon />
                       </IconButton>
                     </Tooltip>
-
                   </MenuItem>
                 </Menu>
               </Box>
@@ -203,6 +202,15 @@ export function Navbar({
               </Menu>
             </Box>
           </Toolbar>
+              <img
+                src={armyIcon}
+                style={{
+                  height: "2.8rem",
+                  marginTop: '.6rem',
+                  marginLeft: '1rem'
+                }}
+                alt="army icon"
+              />
         </Box>
       </AppBar>
     </Box>
