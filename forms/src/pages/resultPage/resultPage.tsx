@@ -15,6 +15,7 @@ import UnitPage from "../unitPage/unitPage";
 import { updateIsOpen } from "../../services/questionsService";
 import CommentsQuesionPage from "../CommentsQuestionPage/CommentsQuesionPage";
 import CommentsSummaryPage from "../CommentsSummaryPage/CommentsSummaryPage";
+import CommentButton from "./CommentButton/CommentButton";
 
 function ResultPage() {
   const location = useLocation();
@@ -50,7 +51,7 @@ function ResultPage() {
         setIsUnitClicked(false);
         setisSummeryClicked(false);
         break;
-      case "summery":
+      case "summary":
         setisSummeryClicked(true);
         setisQuestionClicked(false);
         setIsUnitClicked(false);
@@ -66,7 +67,7 @@ function ResultPage() {
   };
 
   return (
-    <Box sx={{display: 'flex', justifyContent: 'center'}}>
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box className="survey-result-page_wraps_box">
         <Box className="survey-result-page_main_box">
           <Box className="survey-result-page_comments_box">
@@ -86,51 +87,24 @@ function ResultPage() {
             </FormGroup>
           </Box>
           <Box className="survey-result-page_buttons">
-            <Button
-              sx={{
-                width: 100,
-                padding: 1,
-                margin: 2,
-                fontSize: 20,
-                fontWeight: 600,
-                color: "black",
-              }}
-              onClick={() => {
-                handleUnitClicked("summery");
-              }}
-            >
-              סיכום
-            </Button>
-            <Button
-              sx={{
-                width: 100,
-                padding: 1,
-                margin: 2,
-                fontSize: 20,
-                fontWeight: 600,
-                color: "black",
-              }}
-              onClick={() => {
-                handleUnitClicked("question");
-              }}
-            >
-              שאלה
-            </Button>
-            <Button
-              sx={{
-                width: 100,
-                padding: 1,
-                margin: 2,
-                fontSize: 20,
-                fontWeight: 600,
-                color: "black",
-              }}
-              onClick={() => {
-                handleUnitClicked("unit");
-              }}
-            >
-              יחידה
-            </Button>
+            <CommentButton
+              handleUnitClicked={handleUnitClicked}
+              commentTypeToHandle={"summary"}
+              commentTypeName={"סיכום"}
+              isClicked={isSummeryClicked}
+            />
+            <CommentButton
+              handleUnitClicked={handleUnitClicked}
+              commentTypeToHandle={"question"}
+              commentTypeName={"שאלה"}
+              isClicked={isQuestionClicked}
+            />
+            <CommentButton
+              handleUnitClicked={handleUnitClicked}
+              commentTypeToHandle={"unit"}
+              commentTypeName={"יחידה"}
+              isClicked={isUnitClicked}
+            />
           </Box>
         </Box>
         <Box>

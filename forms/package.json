@@ -11,7 +11,7 @@
     "@material/icon-button": "^14.0.0",
     "@material/select": "^14.0.0",
     "@mui/icons-material": "^5.10.16",
-    "@mui/material": "^5.10.16",
+    "@mui/material": "^5.11.4",
     "@mui/styles": "^5.10.16",
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.16.5",
