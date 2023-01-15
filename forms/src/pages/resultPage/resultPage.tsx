@@ -1,12 +1,7 @@
-import {
-  Box,
-  FormControlLabel,
-  Switch,
-  Typography,
-} from "@mui/material";
+import { Box, FormControlLabel, Switch, Typography } from "@mui/material";
+import { CSVLink } from "react-csv";
 import AnswerService from "../../services/answerService";
 import { useLocation } from "react-router-dom";
-import "./resultPage.scss";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import { useEffect, useState } from "react";
 import UnitPage from "../unitPage/unitPage";
@@ -15,6 +10,8 @@ import CommentsQuesionPage from "../CommentsQuestionPage/CommentsQuesionPage";
 import CommentsSummaryPage from "../CommentsSummaryPage/CommentsSummaryPage";
 import CommentButton from "./CommentButton/CommentButton";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
+import CsvDownloadButton from "./CsvDownloadButton/CsvDownloadButton";
+import "./resultPage.scss";
 
 function ResultPage() {
   const location = useLocation();
@@ -80,6 +77,16 @@ function ResultPage() {
     setOpen(event.target.checked);
   };
 
+  const returnCsvData = (): Array<string[]> => {
+    // TODO : finish the function
+    const data: Array<string[]> = [
+      ["name", "age"],
+      ["Bob", "23"],
+      ["Alice", "27"],
+    ]; // temporary data
+    return data;
+  };
+
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box className="survey-result-page_wraps_box">
@@ -93,6 +100,9 @@ function ResultPage() {
               label="מקבל תגובות"
               sx={{ minWidth: "6rem", ml: 2 }}
             />
+
+            <CsvDownloadButton data={returnCsvData()} />
+
             <Typography
               dir="rtl"
               variant="h4"
