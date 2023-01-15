@@ -10,7 +10,6 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import pic from "../../assets/profilePic.png";
 import logo from "../../assets/whiteforms.png";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
@@ -20,12 +19,14 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 export function Navbar({
   name,
   tNumber,
+  profilePic,
   handleShareDialogOpen,
   surveyUrl,
   surveyCommentsUrl
 }: {
   name: string;
   tNumber: string;
+  profilePic: string;
   handleShareDialogOpen: (bool: boolean) => void;
   surveyUrl: string;
   surveyCommentsUrl: string;
@@ -173,9 +174,9 @@ export function Navbar({
             </Typography>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              <Tooltip title="פרטים אישיים">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={name} src={pic} />
+                  <Avatar alt={name} src={profilePic} />
                 </IconButton>
               </Tooltip>
               <Menu

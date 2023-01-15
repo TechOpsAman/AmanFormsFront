@@ -25,6 +25,7 @@ function App() {
   const [auser, setaUser] = useState({
     name: "noName",
     tNumber: "noT",
+    profilePic: ''
   });
 
   const [shareDialogOpen, setShareDialogOpen] = useState(false);
@@ -42,12 +43,13 @@ function App() {
 
   useEffect(() => {
     const initUser = async () => {
-      const newUser = AuthService.getUser();
+      const newUser = AuthService.getUser() as any;
       if (user) {
         setNewUser(newUser);
         setaUser({
           name: newUser?.name.firstName + " " + newUser?.name.lastName,
           tNumber: newUser?.displayName.split("@")[0] as string,
+          profilePic: newUser?.photo as string,
         });
       }
     };
