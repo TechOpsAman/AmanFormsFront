@@ -12,10 +12,11 @@ import "./resultPage.scss";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import { useEffect, useState } from "react";
 import UnitPage from "../unitPage/unitPage";
-import { updateIsOpen } from "../../services/questionsService";
+import { getById, updateIsOpen } from "../../services/questionsService";
 import CommentsQuesionPage from "../CommentsQuestionPage/CommentsQuesionPage";
 import CommentsSummaryPage from "../CommentsSummaryPage/CommentsSummaryPage";
 import CommentButton from "./CommentButton/CommentButton";
+import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 
 function ResultPage() {
   const location = useLocation();
@@ -27,6 +28,8 @@ function ResultPage() {
   const [isUnitClicked, setIsUnitClicked] = useState(true);
   const [isQuestionClicked, setisQuestionClicked] = useState(false);
   const [isSummeryClicked, setisSummeryClicked] = useState(false);
+  const [open, setOpen] = useState(true);
+  const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +37,16 @@ function ResultPage() {
       setAnswerAndQuestions(temp);
     };
 
+    const fatchOpen = async () => {
+      if (firstLoad) {
+        const { isOpen } = await getById(surveyId) as unknown as ISurveyQuestions;
+        console.log(isOpen)
+        setOpen(isOpen);
+        setFirstLoad(false);
+      }
+    };
+
+    fatchOpen();
     fetchData();
   }, [surveyId]);
 
@@ -64,6 +77,7 @@ function ResultPage() {
 
   const handleCommentsSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateIsOpen(surveyId, event.target.checked);
+    setOpen(event.target.checked);
   };
 
   return (
@@ -79,7 +93,7 @@ function ResultPage() {
             <FormGroup>
               <FormControlLabel
                 control={
-                  <Switch defaultChecked onChange={handleCommentsSwitch} />
+                  <Switch checked={open} onChange={handleCommentsSwitch} />
                 }
                 label="מקבל תגובות"
                 sx={{ minWidth: "6rem", ml: 2 }}
