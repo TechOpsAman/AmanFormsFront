@@ -57,6 +57,7 @@ function SurveySection({
   const handleQuestionNameCallBack = (e: ChangeEvent<HTMLInputElement>) => {
     setQuestionName(e.target.value);
     sections[questionIndex].questionName = e.target.value;
+    updateContent(location.state.survey.id, sections);
   };
 
   const handleAddAnswer = () => {
