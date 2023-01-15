@@ -19,7 +19,6 @@ function ScrollPages({
 }) {
   const numOfPages = questionsAndAnswers.length;
   const [currPage, setCurrPage] = useState(1);
-  const theme = `  מתוך   ${numOfPages}  `;
   const [changePage, setChangePage] = useState(false);
 
   const handelPages = (event: React.ChangeEvent<HTMLInputElement>) => {

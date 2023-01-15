@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import RtlProvider from "../../../../../../components/forms/RtlProvider";
 import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
+import { QuestionType } from "../../../../../../interfaces/answers/iSection";
 import CheckboxAnswer from "../CheckboxAnswer/CheckboxAnswer";
 import OpenAnswer from "../OpenAnswer/OpenAnswer";
 import RadioAnswer from "../RadioAnswer/RadioAnswer";
@@ -17,50 +18,39 @@ function AnswerSection({
   selectedAnswerId: string[];
 }) {
   const handelAnswers = () => {
-    switch (questionType.toLocaleLowerCase()) {
-      case "checkbox":
+    switch (questionType) {
+      case QuestionType.checkbox:
         return (
           <Box className="survey-answer-unit_answers_div">
-            {
               <CheckboxAnswer
                 answers={answers as IAnswer[]}
                 selectedAnswerId={selectedAnswerId as string[]}
               />
-            }
           </Box>
         );
-      case "select":
+      case QuestionType.select:
         return (
           <Box className="survey-answer-unit_answers_div">
-            {
               <SelectAnswer
                 answers={answers as IAnswer[]}
                 selectedAnswerId={selectedAnswerId as string[]}
               />
-            }
           </Box>
         );
-      case "radio":
+      case QuestionType.radio:
         return (
           <Box className="survey-answer-unit_answers_div">
-            {
               <RadioAnswer
                 answers={answers as IAnswer[]}
                 selectedAnswerId={selectedAnswerId as string[]}
               />
-            }
           </Box>
         );
-      case "short_answer":
+      case QuestionType.shortAnswer:
+      case QuestionType.longAnswer:
         return (
           <Box className="survey-answer-unit_answers_div">
-            {<OpenAnswer selectedAnswerId={selectedAnswerId as string[]} />}
-          </Box>
-        );
-      case "long_answer":
-        return (
-          <Box className="survey-answer-unit_answers_div">
-            {<OpenAnswer selectedAnswerId={selectedAnswerId as string[]} />}
+            <OpenAnswer selectedAnswerId={selectedAnswerId as string[]} />
           </Box>
         );
       default:
