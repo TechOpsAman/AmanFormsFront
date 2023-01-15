@@ -17,6 +17,7 @@ function CheckboxAnswer({
             <Box key={answerIndex}>
               <FormControlLabel
                 disabled
+                key={`checked${answerIndex}`}
                 checked
                 control={<Checkbox />}
                 label={answerInfo.answer}
@@ -30,6 +31,7 @@ function CheckboxAnswer({
             <Box key={answerIndex}>
               <FormControlLabel
                 disabled
+                key={`not-checked${answerIndex}`}
                 control={<Checkbox />}
                 label={answerInfo.answer}
                 labelPlacement="end"
