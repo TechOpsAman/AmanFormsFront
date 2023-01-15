@@ -44,7 +44,7 @@ function UnitPage({ id }: { id: string }) {
         </div>
       ) : (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <SurveyNotFoundPage/>
+          <SurveyNotFoundPage />
         </Box>
       )}
     </div>

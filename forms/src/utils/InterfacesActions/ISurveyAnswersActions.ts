@@ -82,4 +82,21 @@ export default class ISurveyAnswersActions {
       questionName
     ).length;
   }
+
+  static getArrayOfQuestionNamesWithoutSimilarities(
+    answerList: ISurveyAnswers[]
+  ) {
+    const questionNamesWithoutSimilarities: string[] = [];
+    answerList.forEach((answer: ISurveyAnswers) => {
+      answer.content.forEach((section: ISection) => {
+        if (
+          !questionNamesWithoutSimilarities.includes(section.questionName) &&
+          section.questionType !== "TITLE"
+        )
+          questionNamesWithoutSimilarities.push(section.questionName);
+      });
+    });
+
+    return questionNamesWithoutSimilarities;
+  }
 }

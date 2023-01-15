@@ -12,6 +12,8 @@ import CommentButton from "./CommentButton/CommentButton";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import CsvDownloadButton from "./CsvDownloadButton/CsvDownloadButton";
 import "./resultPage.scss";
+import { ISection } from "../../interfaces/answers/iSection";
+import ISurveyAnswersActions from "../../utils/InterfacesActions/ISurveyAnswersActions";
 
 function ResultPage() {
   const location = useLocation();
@@ -77,14 +79,35 @@ function ResultPage() {
     setOpen(event.target.checked);
   };
 
+  const getRowDataFromAnswer = (
+    headers: string[],
+    answer: ISurveyAnswers
+  ): string[] => {
+    const csvDataRow: string[] = new Array(headers.length).fill("");
+
+    answer.content.forEach((section: ISection) => {
+      csvDataRow[headers.indexOf(section.questionName)] =
+        section.answers.join(", ");
+    });
+
+    return csvDataRow;
+  };
+
   const returnCsvData = (): Array<string[]> => {
     // TODO : finish the function
-    const data: Array<string[]> = [
-      ["name", "age"],
-      ["Bob", "23"],
-      ["Alice", "27"],
-    ]; // temporary data
-    return data;
+    const headers =
+      ISurveyAnswersActions.getArrayOfQuestionNamesWithoutSimilarities(
+        answerAndQuestions
+      );
+
+    const data: Array<string[]> = [];
+    answerAndQuestions.forEach((answer: ISurveyAnswers) => {
+      data.push(getRowDataFromAnswer(headers, answer));
+    });
+
+    const csvData: Array<string[]> = [[...headers], ...data];
+
+    return csvData;
   };
 
   return (
@@ -101,7 +124,9 @@ function ResultPage() {
               sx={{ minWidth: "6rem", ml: 2 }}
             />
 
-            <CsvDownloadButton data={returnCsvData()} />
+            <CSVLink data={returnCsvData()} filename={"my-file.csv"}>
+              <CsvDownloadButton />
+            </CSVLink>
 
             <Typography
               dir="rtl"
