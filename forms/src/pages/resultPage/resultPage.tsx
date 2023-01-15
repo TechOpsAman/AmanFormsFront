@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   FormControlLabel,
   FormGroup,
   Switch,
@@ -70,21 +69,22 @@ function ResultPage() {
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box className="survey-result-page_wraps_box">
         <Box className="survey-result-page_main_box">
-          <Box className="survey-result-page_comments_box">
-            <Typography dir="rtl" variant="h4">
+          <Box className="survey-result-page_upper_part_main_box">
+            <FormControlLabel
+              className="survey-result-page-form-control-label"
+              control={
+                <Switch defaultChecked onChange={handleCommentsSwitch} />
+              }
+              label="מקבל תגובות"
+              sx={{ minWidth: "6rem", ml: 2 }}
+            />
+            <Typography
+              dir="rtl"
+              variant="h4"
+              className="survey-result-page-typography"
+            >
               {surveyCommentLength} תגובות
             </Typography>
-          </Box>
-          <Box className="survey-result-page_switch">
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Switch defaultChecked onChange={handleCommentsSwitch} />
-                }
-                label="מקבל תגובות"
-                sx={{ minWidth: "6rem", ml: 2 }}
-              />
-            </FormGroup>
           </Box>
           <Box className="survey-result-page_buttons">
             <CommentButton
