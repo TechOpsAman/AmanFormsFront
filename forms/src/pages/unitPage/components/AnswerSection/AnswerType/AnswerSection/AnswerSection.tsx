@@ -22,28 +22,28 @@ function AnswerSection({
       case QuestionType.checkbox:
         return (
           <Box className="survey-answer-unit_answers_div">
-              <CheckboxAnswer
-                answers={answers as IAnswer[]}
-                selectedAnswerId={selectedAnswerId as string[]}
-              />
+            <CheckboxAnswer
+              answers={answers as IAnswer[]}
+              selectedAnswerId={selectedAnswerId as string[]}
+            />
           </Box>
         );
       case QuestionType.select:
         return (
           <Box className="survey-answer-unit_answers_div">
-              <SelectAnswer
-                answers={answers as IAnswer[]}
-                selectedAnswerId={selectedAnswerId as string[]}
-              />
+            <SelectAnswer
+              answers={answers as IAnswer[]}
+              selectedAnswerId={selectedAnswerId as string[]}
+            />
           </Box>
         );
       case QuestionType.radio:
         return (
           <Box className="survey-answer-unit_answers_div">
-              <RadioAnswer
-                answers={answers as IAnswer[]}
-                selectedAnswerId={selectedAnswerId as string[]}
-              />
+            <RadioAnswer
+              answers={answers as IAnswer[]}
+              selectedAnswerId={selectedAnswerId as string[]}
+            />
           </Box>
         );
       case QuestionType.shortAnswer:
@@ -59,7 +59,7 @@ function AnswerSection({
 
   return (
     <RtlProvider>
-      <Box sx={{ padding: "5%" }}>
+      <Box sx={{ padding: "1rem" }}>
         <>{handelAnswers()}</>
       </Box>
     </RtlProvider>
