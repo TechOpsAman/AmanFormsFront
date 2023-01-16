@@ -45,7 +45,7 @@ function SelectAnswer({
           }}
         />
       </div>
-      <h3>.{index}</h3>
+      <h3>.{index+1}</h3>
     </div>
   );
 }
