@@ -2,7 +2,6 @@ import { Card } from "@mui/material";
 import "./SurveySentSuccessfullyPage.scss";
 
 const SurveySentSuccessfullyPage = () => {
-  // keep working on it (should have massage and upper navbar)
   return (
     <div className="survey-sent-successfully-page-main">
       <Card

@@ -4,9 +4,9 @@ import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
 import CompositorService from "../../services/questionService";
 import ScrollPages from "./components/form/ScrollPges/ScrollPages1";
 import { Box } from "@mui/material";
-import SurveyNotFoundPage from "../SurveyNotFoundPage/SurveyNotFoundPage";
 import { ISection } from "../../interfaces/answers/iSection";
 import ISurveyAnswersActions from "../../utils/InterfacesActions/ISurveyAnswersActions";
+import NoCommentsFoundPage from "../NoCommentsFoundPage/NoCommentsFoundPage";
 
 function UnitPage({ id }: { id: string }) {
   const [selectedAnswers, setSelectedAnswers] = useState<ISurveyAnswers[]>([]);
@@ -79,7 +79,7 @@ function UnitPage({ id }: { id: string }) {
         </div>
       ) : (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <SurveyNotFoundPage />
+          <NoCommentsFoundPage />
         </Box>
       )}
     </div>
