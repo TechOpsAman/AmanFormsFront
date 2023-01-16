@@ -16,7 +16,8 @@ function QuestionChoosingSectionUpperPart({
   return (
     <Card
       className="question-choosing-section-upper-part-main"
-      style={{ borderRadius: "30px" }}
+      style={{ boxShadow: "1px 2px 4px 1px rgb(131, 131, 131)",
+      borderRadius: "30px" }}
     >
       <QuestionChoosingByIndexSection
         questionList={questionList}

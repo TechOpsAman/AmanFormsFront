@@ -49,7 +49,8 @@ function ShortAnswerStatsSection({
   return (
     <div>
       <Card
-        style={{ borderRadius: "30px" }}
+        style={{ boxShadow: "1px 2px 4px 1px rgb(131, 131, 131)",
+        borderRadius: "30px" }}
         className="short-answer-stats-section-main"
       >
         {didUsersAnswerSameAnswer() ? (
@@ -68,7 +69,6 @@ function ShortAnswerStatsSection({
               questionList={questionList}
               graphToCopy={graphToCopy}
             />
-            {/* גרף עמודות אנכי */}
           </>
         ) : (
           <div>
@@ -82,7 +82,6 @@ function ShortAnswerStatsSection({
               questionName={questionName}
               questionList={questionList}
             />
-            {/* עמודות אופקיות */}
           </div>
         )}
       </Card>

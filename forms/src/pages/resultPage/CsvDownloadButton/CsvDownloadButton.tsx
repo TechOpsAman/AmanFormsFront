@@ -6,7 +6,7 @@ function CsvDownloadButton() {
   return (
     <div className="csv-download-button-main">
       <IconButton>
-        <span className="csv-download-text">הורדה</span>
+        <span className="csv-download-text">הורדת נתונים</span>
         <DownloadIcon fontSize="small" style={{ color: "blue" }}></DownloadIcon>
       </IconButton>
     </div>

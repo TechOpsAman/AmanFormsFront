@@ -26,7 +26,8 @@ function CheckboxAnswerStatsSection({
 
   return (
     <Card
-      style={{ borderRadius: "30px" }}
+      style={{ boxShadow: "1px 2px 4px 1px rgb(131, 131, 131)",
+      borderRadius: "30px" }}
       className="checkbox-answer-stats-section-main"
     >
       <div className="checkbox-answer-stats-section-upper-section">

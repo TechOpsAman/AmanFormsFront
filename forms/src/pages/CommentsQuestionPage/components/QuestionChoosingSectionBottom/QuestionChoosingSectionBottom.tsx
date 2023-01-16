@@ -24,7 +24,8 @@ function QuestionChoosingSectionBottom({
   return (
     <Card
       className="question-choosing-section-bottom-main"
-      style={{ borderRadius: "30px" }}
+      style={{ boxShadow: "1px 2px 4px 1px rgb(131, 131, 131)",
+      borderRadius: "30px" }}
     >
       {questionList.indexOf(chosenQuestion) === 0 ? (
         <IconButton disabled>

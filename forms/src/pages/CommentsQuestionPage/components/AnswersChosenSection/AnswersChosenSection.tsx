@@ -131,7 +131,10 @@ function AnswersChosenSection({
               <div key={index}>
                 {(sectionData[0] as ISection).questionType !== "TITLE" ? (
                   <Card
-                    style={{ borderRadius: "30px" }}
+                    style={{ 
+                      boxShadow: "1px 2px 4px 1px rgb(131, 131, 131)",
+                      borderRadius: "30px" 
+                    }}
                     className="answer-card"
                     key={index}
                   >
