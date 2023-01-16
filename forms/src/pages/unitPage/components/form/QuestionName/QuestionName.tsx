@@ -26,7 +26,7 @@ function QuestionName({
 
   return (
     <Box className="question-name-main-box">
-      <h1 className="survey-answer-unit_titel_div">{survey.surveyName}</h1>
+      <h1 className="survey-answer-unit_titel">{survey.surveyName}</h1>
       <>
         {questionsAndAnswers[currPage].content.map((question, index) => {
           return (

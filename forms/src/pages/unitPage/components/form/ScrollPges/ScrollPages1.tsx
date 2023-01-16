@@ -1,19 +1,23 @@
 import IconButton from "@mui/material/IconButton";
 import "./ScrollPages.scss";
 import { useState } from "react";
+import { CSVLink } from "react-csv";
 import QuestionName from "../QuestionName/QuestionName";
 import { ISurveyAnswers } from "../../../../../interfaces/answers/iSurvey";
 import { ISurveyQuestions } from "../../../../../interfaces/questions/iSurvey";
 import { Box } from "@mui/material";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import CsvDownloadButton from "../../../../resultPage/CsvDownloadButton/CsvDownloadButton";
 
 function ScrollPages({
   questionsAndAnswers,
   survey,
+  csvData
 }: {
   questionsAndAnswers: ISurveyAnswers[];
   survey: ISurveyQuestions;
+  csvData: Array<string[]>;
 }) {
   const numOfPages = questionsAndAnswers.length;
   const [currPage, setCurrPage] = useState(1);
@@ -34,37 +38,39 @@ function ScrollPages({
   };
   return (
     <div className="scroll-pages-main-div">
-      <Box className="survey-answer-unit_scroll_survey_units">
-      <div>
-      {currPage === numOfPages ? (
-        <IconButton disabled>
-          <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
-        </IconButton>
-      ) : (
-        <IconButton onClick={handelForwardPage}>
-          <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
-        </IconButton>
-      )}
-      <p className="number-of-question"> מתוך {numOfPages}</p>
-      <input
-        className="number-of-question-input"
-        type="number"
-        value={currPage}
-        min="1"
-        max={numOfPages}
-        dir="ltr"
-        onChange={handelPages}
-      />
-      {currPage === 1 ? (
-        <IconButton disabled>
-          <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
-        </IconButton>
-      ) : (
-        <IconButton onClick={handelBackwardsPage}>
-          <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
-        </IconButton>
-      )}
-    </div>
+      <Box className="survey-answer-unit_scroll_survey_units_box">
+        <CSVLink style={{textDecoration: 'none'}} data={csvData}>
+        <CsvDownloadButton />
+        </CSVLink >
+        <div>{currPage === numOfPages ? (
+          <IconButton disabled>
+            <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
+          </IconButton>
+        ) : (
+          <IconButton onClick={handelForwardPage}>
+            <KeyboardArrowLeftIcon className="switch-to-previous-question-arrow"></KeyboardArrowLeftIcon>
+          </IconButton>
+        )}
+        <p className="number-of-question"> מתוך {numOfPages}</p>
+        <input
+          className="number-of-question-input"
+          type="number"
+          value={currPage}
+          min="1"
+          max={numOfPages}
+          dir="ltr"
+          onChange={handelPages}
+        />
+        {currPage === 1 ? (
+          <IconButton disabled>
+            <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
+          </IconButton>
+        ) : (
+          <IconButton onClick={handelBackwardsPage}>
+            <KeyboardArrowRightIcon className="switch-to-next-question-arrow"></KeyboardArrowRightIcon>
+          </IconButton>
+        )
+        }</div>
       </Box>
 
       <Box className="survey-answer-unit_questions_and_answers">

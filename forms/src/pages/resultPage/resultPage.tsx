@@ -1,5 +1,4 @@
 import { Box, FormControlLabel, Switch, Typography } from "@mui/material";
-import { CSVLink } from "react-csv";
 import AnswerService from "../../services/answerService";
 import { useLocation } from "react-router-dom";
 import { ISurveyAnswers } from "../../interfaces/answers/iSurvey";
@@ -10,10 +9,7 @@ import CommentsQuesionPage from "../CommentsQuestionPage/CommentsQuesionPage";
 import CommentsSummaryPage from "../CommentsSummaryPage/CommentsSummaryPage";
 import CommentButton from "./CommentButton/CommentButton";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
-import CsvDownloadButton from "./CsvDownloadButton/CsvDownloadButton";
 import "./resultPage.scss";
-import { ISection } from "../../interfaces/answers/iSection";
-import ISurveyAnswersActions from "../../utils/InterfacesActions/ISurveyAnswersActions";
 
 function ResultPage() {
   const location = useLocation();
@@ -39,7 +35,6 @@ function ResultPage() {
         const { isOpen } = (await getById(
           surveyId
         )) as unknown as ISurveyQuestions;
-        console.log(isOpen);
         setOpen(isOpen);
         setFirstLoad(false);
       }
@@ -79,37 +74,6 @@ function ResultPage() {
     setOpen(event.target.checked);
   };
 
-  const getRowDataFromAnswer = (
-    headers: string[],
-    answer: ISurveyAnswers
-  ): string[] => {
-    const csvDataRow: string[] = new Array(headers.length).fill("");
-
-    answer.content.forEach((section: ISection) => {
-      csvDataRow[headers.indexOf(section.questionName)] =
-        section.answers.join(", ");
-    });
-
-    return csvDataRow;
-  };
-
-  const returnCsvData = (): Array<string[]> => {
-    // TODO : finish the function
-    const headers =
-      ISurveyAnswersActions.getArrayOfQuestionNamesWithoutSimilarities(
-        answerAndQuestions
-      );
-
-    const data: Array<string[]> = [];
-    answerAndQuestions.forEach((answer: ISurveyAnswers) => {
-      data.push(getRowDataFromAnswer(headers, answer));
-    });
-
-    const csvData: Array<string[]> = [[...headers], ...data];
-
-    return csvData;
-  };
-
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box className="survey-result-page_wraps_box">
@@ -123,11 +87,6 @@ function ResultPage() {
               label="מקבל תגובות"
               sx={{ minWidth: "6rem", ml: 2 }}
             />
-
-            <CSVLink data={returnCsvData()} filename={"my-file.csv"}>
-              <CsvDownloadButton />
-            </CSVLink>
-
             <Typography
               dir="rtl"
               variant="h4"

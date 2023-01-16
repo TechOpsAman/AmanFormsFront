@@ -5,12 +5,13 @@
     align-items: center;
 }
 
-.survey-answer-unit_scroll_survey_units {
+.survey-answer-unit_scroll_survey_units_box {
     width: 50rem;
     background-color: white;
     margin-top: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    flex-direction: row;
     padding: 1rem;
     border-radius: 20px;
 }

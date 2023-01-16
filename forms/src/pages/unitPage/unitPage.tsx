@@ -5,6 +5,8 @@ import CompositorService from "../../services/questionService";
 import ScrollPages from "./components/form/ScrollPges/ScrollPages1";
 import { Box } from "@mui/material";
 import SurveyNotFoundPage from "../SurveyNotFoundPage/SurveyNotFoundPage";
+import { ISection } from "../../interfaces/answers/iSection";
+import ISurveyAnswersActions from "../../utils/InterfacesActions/ISurveyAnswersActions";
 
 function UnitPage({ id }: { id: string }) {
   const [selectedAnswers, setSelectedAnswers] = useState<ISurveyAnswers[]>([]);
@@ -30,16 +32,49 @@ function UnitPage({ id }: { id: string }) {
     fetchData();
   }, [id]);
 
+  const getRowDataFromAnswer = (
+    headers: string[],
+    answer: ISurveyAnswers
+  ): string[] => {
+    const csvDataRow: string[] = new Array(headers.length).fill("");
+
+    answer.content.forEach((section: ISection) => {
+      csvDataRow[headers.indexOf(section.questionName)] =
+        section.answers.join(", ");
+    });
+
+    return csvDataRow;
+  };
+
+  const returnCsvData = (): Array<string[]> => {
+    const headers =
+      ISurveyAnswersActions.getArrayOfQuestionNamesWithoutSimilarities(
+        selectedAnswers 
+      );
+
+    const data: Array<string[]> = [];
+    selectedAnswers.forEach((answer: ISurveyAnswers) => {
+      data.push(getRowDataFromAnswer(headers, answer));
+    });
+
+    const csvData: Array<string[]> = [[...headers], ...data];
+
+    return csvData;
+  };
+  
   return (
     <div>
       {surveyFound ? (
         <div>
           {answerAndQuestions &&
           (answerAndQuestions as ISurveyQuestions).content.length > 0 ? (
-            <ScrollPages
+            <div>
+              <ScrollPages
               questionsAndAnswers={selectedAnswers}
               survey={answerAndQuestions as ISurveyQuestions}
+              csvData={returnCsvData()}
             />
+            </div>
           ) : null}
         </div>
       ) : (
