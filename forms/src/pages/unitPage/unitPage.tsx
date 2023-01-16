@@ -51,12 +51,14 @@ function UnitPage({ id }: { id: string; }) {
     const headers =
       [...(ISurveyAnswersActions.getArrayOfQuestionNamesWithoutSimilarities(
         selectedAnswers 
-      )), ""];
+      ))];
 
     const data: Array<string[]> = [];
     selectedAnswers.forEach((answer: ISurveyAnswers, answerIndex: number) => {
-      data.push([...getRowDataFromAnswer(headers, answer), "משתמש" + " " + (answerIndex+1).toString()]);
+      data.push([...getRowDataFromAnswer(headers, answer), ...[(("משתמש" + " ") + (answerIndex+1).toString())]]);
     });
+
+    headers.push("");
 
     const csvData: Array<string[]> = [[...headers], ...data];
 
