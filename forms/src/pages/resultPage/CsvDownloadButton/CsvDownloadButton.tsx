@@ -2,7 +2,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import { IconButton } from "@mui/material";
 import "./CsvDownloadButton.scss";
 
-function CsvDownloadButton({}: {}) {
+function CsvDownloadButton() {
   return (
     <div className="csv-download-button-main">
       <IconButton>

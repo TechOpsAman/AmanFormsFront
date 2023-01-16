@@ -12,7 +12,7 @@ import SelectAnswerStatsSection from "./QuestionAnswersStatsSection/SelectAnswer
 import ShortAnswerStatsSection from "./QuestionAnswersStatsSection/ShortAnswerStatsSection/ShortAnswerStatsSection";
 import NoCommentsFoundPage from "../NoCommentsFoundPage/NoCommentsFoundPage";
 
-function CommentsSummaryPage({ id }: { id: string }) {
+function CommentsSummaryPage({ id }: { id: string; }) {
   const [loading, setLoading] = useState(true);
   const [surveyFound, setSurveyFound] = useState(false);
   const [questionList, setQuestionList] = useState<IQuestion[]>([]);

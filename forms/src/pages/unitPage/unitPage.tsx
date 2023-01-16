@@ -8,7 +8,7 @@ import { ISection } from "../../interfaces/answers/iSection";
 import ISurveyAnswersActions from "../../utils/InterfacesActions/ISurveyAnswersActions";
 import NoCommentsFoundPage from "../NoCommentsFoundPage/NoCommentsFoundPage";
 
-function UnitPage({ id }: { id: string }) {
+function UnitPage({ id }: { id: string; }) {
   const [selectedAnswers, setSelectedAnswers] = useState<ISurveyAnswers[]>([]);
   const [answerAndQuestions, setAnswerAndQuestions] =
     useState<ISurveyQuestions>();
@@ -30,6 +30,7 @@ function UnitPage({ id }: { id: string }) {
     };
 
     fetchData();
+    
   }, [id]);
 
   const getRowDataFromAnswer = (
@@ -48,13 +49,13 @@ function UnitPage({ id }: { id: string }) {
 
   const returnCsvData = (): Array<string[]> => {
     const headers =
-      ISurveyAnswersActions.getArrayOfQuestionNamesWithoutSimilarities(
+      [...(ISurveyAnswersActions.getArrayOfQuestionNamesWithoutSimilarities(
         selectedAnswers 
-      );
+      )), ""];
 
     const data: Array<string[]> = [];
-    selectedAnswers.forEach((answer: ISurveyAnswers) => {
-      data.push(getRowDataFromAnswer(headers, answer));
+    selectedAnswers.forEach((answer: ISurveyAnswers, answerIndex: number) => {
+      data.push([...getRowDataFromAnswer(headers, answer), "משתמש" + " " + (answerIndex+1).toString()]);
     });
 
     const csvData: Array<string[]> = [[...headers], ...data];

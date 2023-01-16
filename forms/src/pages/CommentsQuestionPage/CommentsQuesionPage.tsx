@@ -10,7 +10,7 @@ import CompositorService from "../../services/compositor.service";
 import { ISurveyQuestions } from "../../interfaces/questions/iSurvey";
 import NoCommentsFoundPage from "../NoCommentsFoundPage/NoCommentsFoundPage";
 
-function CommentsQuestionPage({ id }: { id: string }) {
+function CommentsQuestionPage({ id }: { id: string; }) {
   const [loading, setLoading] = useState(true);
   const [_surveyFound, setSurveyFound] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
