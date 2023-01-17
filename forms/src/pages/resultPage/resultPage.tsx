@@ -23,6 +23,7 @@ function ResultPage() {
   const [isSummeryClicked, setisSummeryClicked] = useState(false);
   const [open, setOpen] = useState(true);
   const [firstLoad, setFirstLoad] = useState(true);
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,11 +43,12 @@ function ResultPage() {
 
     fatchOpen();
     fetchData();
-  }, [surveyId]);
+  }, [surveyId, flag]);
 
   const surveyCommentLength = answerAndQuestions?.length;
 
   const handleUnitClicked = (value: string) => {
+    setFlag(!flag);
     switch (value) {
       case "unit":
         setIsUnitClicked(true);
@@ -74,6 +76,7 @@ function ResultPage() {
     setOpen(event.target.checked);
   };
 
+
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box className="survey-result-page_wraps_box">
@@ -82,7 +85,7 @@ function ResultPage() {
             <FormControlLabel
               className="survey-result-page-form-control-label"
               control={
-                <Switch defaultChecked onChange={handleCommentsSwitch} />
+                <Switch checked={open} onChange={handleCommentsSwitch} />
               }
               label="מקבל תגובות"
               sx={{ minWidth: "6rem", ml: 2 }}
