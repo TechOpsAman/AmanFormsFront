@@ -32,6 +32,6 @@ export const config = {
       .asString(),
   },
   website: {
-    address: env.get('FRONTEND_URL').default('/').asString()
+    address: window.location.origin
   }
 };
