@@ -26,14 +26,15 @@ function CheckBoxAnswer({
     if (!(answer.answer === "" || !answer.answer)) setNewAnswer(answer.answer);
   }, [answer]);
 
-  useEffect(() => {
-    if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
-  }, []);
+  // useEffect(() => {
+  //   if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
+  // }, []);
 
   return (
     <div className="check_box_answer-checkbox-container">
       <div className="check_box_answer_wrapper">
         <input
+          placeholder="הוסף תשובה"
           type="text"
           className="survey-section-answer"
           value={newAnswer}

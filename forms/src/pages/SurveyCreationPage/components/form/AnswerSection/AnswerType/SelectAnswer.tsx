@@ -21,18 +21,19 @@ function SelectAnswer({
   const { t } = useTranslation();
   const [newAnswer, setNewAnswer] = useState(answer.answer);
 
-    useEffect(() => {
+  useEffect(() => {
     if (!(answer.answer === "" || !answer.answer)) setNewAnswer(answer.answer);
   }, [answer]);
-  
-  useEffect(() => {
-    if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
-  }, []);
+
+  // useEffect(() => {
+  //   if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
+  // }, []);
 
   return (
     <div className="select-answer-container">
       <div className="select-answer_input_wrapper">
         <input
+          placeholder="הוסף תשובה"
           type="text"
           className="survey-section-answer"
           value={newAnswer}
@@ -45,7 +46,7 @@ function SelectAnswer({
           }}
         />
       </div>
-      <h3>.{index+1}</h3>
+      <h3>.{index + 1}</h3>
     </div>
   );
 }

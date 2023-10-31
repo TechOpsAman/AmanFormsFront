@@ -13,22 +13,23 @@ function LongAnswer({
   answer: IAnswer;
   questionIndex: number;
 }) {
-  const location = useLocation()
+  const location = useLocation();
   const sections = useContext(sectionsContext);
 
   const { t } = useTranslation();
   const [newAnswer, setNewAnswer] = useState(answer.answer);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     if (!(answer.answer === "" || !answer.answer)) setNewAnswer(answer.answer);
   }, [answer]);
-  
-  useEffect(() => {
-    if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
-  }, []);
+
+  // useEffect(() => {
+  //   if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
+  // }, []);
 
   return (
     <input
+      placeholder="הוסף תשובה"
       type="text"
       className="survey-section-answer"
       value={newAnswer}
