@@ -43,5 +43,7 @@
 
 
 .survey-title-text-input_survey_description:focus, .survey-title-text-input_survey_name:focus{
-  border-bottom: 2px solid #568ea8;
+  border: none;
+  display: none;
+  border-radius: 0;
 }

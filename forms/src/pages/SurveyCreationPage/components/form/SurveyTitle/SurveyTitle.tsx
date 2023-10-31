@@ -29,8 +29,6 @@ function SurveyTitle({
           disableUnderline: true,
           style: {
             fontSize: "2.5rem",
-            border: "none",
-            borderRadius: 0,
             marginTop: 8,
           },
         }}
