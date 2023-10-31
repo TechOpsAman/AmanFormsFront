@@ -142,7 +142,7 @@ export function Navbar({
                         <ShareIcon />
                       </IconButton>
                     </Tooltip>
-                    <Tooltip title={t("תגובות")} placement="right" arrow>
+                    <Tooltip title={t("comments")} placement="right" arrow>
                       <IconButton
                         onClick={() => {
                           openInNewTab(surveyCommentsUrl);
@@ -202,15 +202,15 @@ export function Navbar({
               </Menu>
             </Box>
           </Toolbar>
-              <img
-                src={armyIcon}
-                style={{
-                  height: "2.8rem",
-                  marginTop: '.6rem',
-                  marginLeft: '1rem'
-                }}
-                alt="army icon"
-              />
+          <img
+            src={armyIcon}
+            style={{
+              height: "2.8rem",
+              marginTop: ".6rem",
+              marginLeft: "1rem",
+            }}
+            alt="army icon"
+          />
         </Box>
       </AppBar>
     </Box>

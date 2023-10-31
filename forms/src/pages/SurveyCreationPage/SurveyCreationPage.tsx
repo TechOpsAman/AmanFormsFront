@@ -40,7 +40,7 @@ function SurveyCreationPage({
   const [sections, setSections] = useState<IQuestion[]>([]);
   const [shareDialogOpen, setShareDialogOpen] = useState(false);
   const [currSurvey, setCurrSurvey] = useState("");
-
+     
   const handleshareDialogClose = () => {
     setShareDialogOpen(false);
     setIsOpen(false);
@@ -143,6 +143,7 @@ function SurveyCreationPage({
         const newSurvey = await getById(location.state.survey.id);
         setSections(newSurvey.content);
       }
+      console.log("Survey Name ", location.state);
       updateLastUpdated(location.state.survey.id);
       setCurrSurvey(`${config.website.address}/answerSurvey/${currSurvey.id}`);
       setSurveyUrl(`${config.website.address}/answerSurvey/${currSurvey.id}`);

@@ -1,5 +1,5 @@
 .survey-title-container {
-  width: 100%;
+  width: fit-content;
   background-color: rgb(255, 255, 255);
   border-radius: 36px;
   box-shadow: 1px 2px 4px 1px rgb(131, 131, 131);
@@ -19,10 +19,9 @@
   height: 3.5rem;
   margin-top: 3rem;
   background-color: white;
-  font-size: 3rem;
+  font-size: 10rem;
   text-align: right;
   margin-bottom: 1rem;
-  border: 0;
   outline: 0;
   background: transparent;
 }
@@ -35,6 +34,7 @@
   text-align: right;
   margin-left: 1.4rem;
   margin-bottom: 2rem;
+  margin-top: 2rem;
   text-justify: distribute;
   border: 0;
   outline: 0;
@@ -43,5 +43,7 @@
 
 
 .survey-title-text-input_survey_description:focus, .survey-title-text-input_survey_name:focus{
-  border-bottom: 2px solid #568ea8;
+  border: none;
+  display: none;
+  border-radius: 0;
 }
