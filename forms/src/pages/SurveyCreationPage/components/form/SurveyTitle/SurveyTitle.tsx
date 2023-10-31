@@ -2,6 +2,7 @@ import "./SurveyTitle.scss";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { updateSurvey } from "../../../../../services/questionsService";
+import { TextField } from "@mui/material";
 
 function SurveyTitle({
   surveyName,
@@ -13,40 +14,48 @@ function SurveyTitle({
   surveyId: string;
 }) {
   const { t } = useTranslation();
-
-  const [newSurveyName, setNewSurveyName] = useState(surveyName);
-  const [newSurveyDescription, setNewSurveyDescription] = useState(
-    surveyDescription !== ""
-      ? surveyDescription
-      : (t("surveyDescription") as string)
-  );
-
-  if (newSurveyName === "" || !newSurveyName)
-    setNewSurveyName(t("newSurvey") as string);
+  console.log(surveyName);
+  const [title, setTitle] = useState(surveyName);
+  const [description, setDescription] = useState(surveyDescription);
 
   return (
     <div className="survey-title-container">
-      <input
+      <TextField
         type="text"
-        maxLength={25}
+        placeholder="סקר ללא כותרת"
         className="survey-title-text-input_survey_name"
-        value={newSurveyName}
+        inputProps={{
+          maxLength: 25,
+          disableUnderline: true,
+          style: {
+            fontSize: "2.5rem",
+            border: "none",
+            borderRadius: 0,
+            marginTop: 8,
+          },
+        }}
+        dir="rtl"
+        value={title}
+        // label={title}
+        variant="standard"
         onChange={(e) => {
-          setNewSurveyName(e.target.value);
-          updateSurvey(surveyId, (surveyName = e.target.value));
+          console.log(e.target.value);
+          setTitle(e.target.value);
+          updateSurvey(surveyId, e.target.value);
         }}
       />
-      <input
+      <TextField
         type="text"
         className="survey-title-text-input_survey_description"
-        value={newSurveyDescription}
+        placeholder="תיאור הסקר"
+        variant="standard"
+        dir="rtl"
+        sx={{ marginTop: 8 }}
+        value={description}
         onChange={(e) => {
-          setNewSurveyDescription(e.target.value);
-          updateSurvey(
-            surveyId,
-            (surveyName = newSurveyName),
-            (surveyDescription = e.target.value)
-          );
+          console.log(e.target.value);
+          setDescription(e.target.value);
+          updateSurvey(surveyId, title, e.target.value);
         }}
       />
     </div>

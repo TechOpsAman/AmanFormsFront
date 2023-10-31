@@ -6,6 +6,6 @@ services:
     build:
       context: .
     environment:
-      - FRONTEND_URL: 'http://localhost'
+      - FRONTEND_URL:=http://localhost
     ports:
       - 3000:3000
