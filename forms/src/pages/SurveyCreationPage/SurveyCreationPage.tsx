@@ -40,7 +40,7 @@ function SurveyCreationPage({
   const [sections, setSections] = useState<IQuestion[]>([]);
   const [shareDialogOpen, setShareDialogOpen] = useState(false);
   const [currSurvey, setCurrSurvey] = useState("");
-     
+
   const handleshareDialogClose = () => {
     setShareDialogOpen(false);
     setIsOpen(false);
@@ -51,14 +51,20 @@ function SurveyCreationPage({
   };
 
   const addSection = (questionIndex: number) => {
+    console.log("create new question");
     const temp = sections;
     const recordedItems: any[] = temp.splice(questionIndex, 1);
+
+    console.log(recordedItems, "hi");
+    if (recordedItems[0].answers.length === 0) console.log("1234");
     recordedItems.push({
       questionName: t("newQuestion") as string,
       questionType: QuestionType.radio as string,
       answers: [],
       required: true,
     });
+
+    console.log("123456");
     temp.splice(questionIndex, 0, ...recordedItems);
     swapContent(temp);
     setRender(!render);
@@ -84,6 +90,7 @@ function SurveyCreationPage({
     isSwitch: boolean
   ) => {
     const temp = sections;
+    console.log(temp)
     const recordedItems = temp.splice(questionIndex, 1);
     recordedItems.push({
       questionName: section.questionName,
@@ -91,6 +98,7 @@ function SurveyCreationPage({
       answers: section.answers,
       required: isSwitch,
     });
+
     temp.splice(questionIndex, 0, ...recordedItems);
     swapContent(temp);
     setRender(!render);
@@ -123,7 +131,6 @@ function SurveyCreationPage({
       }
     );
   };
-
   useEffect(() => {
     const getSurvey = async () => {
       const currSurvey = await getById(location.state.survey.id);
@@ -139,17 +146,22 @@ function SurveyCreationPage({
           },
         ];
 
+        // eslint-disable-next-line eqeqeq
+
+        console.log("maya");
         await updateSurvey(location.state.survey.id, "", "", tempSections);
+        const answerChecker = tempSections.every(
+          (section) => section.answers.length > 0
+        );
         const newSurvey = await getById(location.state.survey.id);
+
         setSections(newSurvey.content);
       }
-      console.log("Survey Name ", location.state);
       updateLastUpdated(location.state.survey.id);
       setCurrSurvey(`${config.website.address}/answerSurvey/${currSurvey.id}`);
       setSurveyUrl(`${config.website.address}/answerSurvey/${currSurvey.id}`);
     };
     getSurvey();
-
     setShareDialogOpen(isOpen);
   }, [isOpen, location, render, t]);
 
@@ -168,7 +180,7 @@ function SurveyCreationPage({
             <Droppable droppableId="characters">
               {(provided) => (
                 <ul
-                  className="survey-creation-page-secion-list"
+                  className="survey-creation-page-section-list"
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >

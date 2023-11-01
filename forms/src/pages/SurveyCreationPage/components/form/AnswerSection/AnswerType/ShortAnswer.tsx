@@ -23,9 +23,6 @@ function ShortAnswer({
     if (!(answer.answer === "" || !answer.answer)) setNewAnswer(answer.answer);
   }, [answer]);
 
-  // useEffect(() => {
-  //   if (!newAnswer || newAnswer === "") setNewAnswer(t("newAnswer") as string);
-  // }, []);
 
   return (
     <input

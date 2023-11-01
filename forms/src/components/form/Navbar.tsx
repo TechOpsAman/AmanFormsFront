@@ -171,9 +171,9 @@ export function Navbar({
             >
               <img src={logo} alt="logo" width="200" />
             </Typography>
-
+            {/* add to i18next */}
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="פרטים אישיים">
+              <Tooltip title="פרטים אישיים"> 
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt={name} src={profilePic} />
                 </IconButton>

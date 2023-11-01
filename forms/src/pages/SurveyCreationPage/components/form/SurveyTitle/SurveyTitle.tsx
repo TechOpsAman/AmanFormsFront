@@ -14,7 +14,6 @@ function SurveyTitle({
   surveyId: string;
 }) {
   const { t } = useTranslation();
-  console.log(surveyName);
   const [title, setTitle] = useState(surveyName);
   const [description, setDescription] = useState(surveyDescription);
 
@@ -26,7 +25,6 @@ function SurveyTitle({
         className="survey-title-text-input_survey_name"
         inputProps={{
           maxLength: 25,
-          disableUnderline: true,
           style: {
             fontSize: "2.5rem",
             marginTop: 8,
