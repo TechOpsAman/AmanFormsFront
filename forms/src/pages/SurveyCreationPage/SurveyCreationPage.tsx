@@ -172,6 +172,7 @@ function SurveyCreationPage({
     setShareDialogOpen(isOpen);
   }, [isOpen, location, render, t]);
 
+  // TEST: the use effect checks if a survey (in creation) is valid (not empty)
   useEffect(() => {
     const answersLength = sections[0]?.answers?.length;
 
