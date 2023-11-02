@@ -23,6 +23,7 @@ import {
 } from "@mui/material";
 import { writeText } from "clipboard-polyfill";
 import { config } from "../../data/config/config";
+import { use } from "i18next";
 
 function SurveyCreationPage({
   isOpen,
@@ -40,6 +41,7 @@ function SurveyCreationPage({
   const [sections, setSections] = useState<IQuestion[]>([]);
   const [shareDialogOpen, setShareDialogOpen] = useState(false);
   const [currSurvey, setCurrSurvey] = useState("");
+  const [valid, setValid] = useState(false);
 
   const handleshareDialogClose = () => {
     setShareDialogOpen(false);
@@ -134,6 +136,7 @@ function SurveyCreationPage({
   useEffect(() => {
     const getSurvey = async () => {
       const currSurvey = await getById(location.state.survey.id);
+      console.log(currSurvey, 'currSurvey')
       if (currSurvey.content.length > 0) {
         setSections(currSurvey.content);
       } else {
@@ -147,12 +150,16 @@ function SurveyCreationPage({
         ];
 
         // eslint-disable-next-line eqeqeq
-
+        console.log('tempSections',tempSections)
+        if(tempSections[0].answers.length > 0) {
+          console.log('bar')
+        } else {
+          console.log('yoni')
+        }
         console.log("maya");
+
         await updateSurvey(location.state.survey.id, "", "", tempSections);
-        const answerChecker = tempSections.every(
-          (section) => section.answers.length > 0
-        );
+
         const newSurvey = await getById(location.state.survey.id);
 
         setSections(newSurvey.content);
@@ -164,6 +171,20 @@ function SurveyCreationPage({
     getSurvey();
     setShareDialogOpen(isOpen);
   }, [isOpen, location, render, t]);
+
+  useEffect(() => {
+    const answersLength = sections[0]?.answers?.length;
+
+    if (typeof answersLength !== "undefined" && answersLength > 0) {
+        setValid(true);
+        console.log('cat')
+        console.log(answersLength)
+    } else {
+        setValid(false);
+        console.log('dog')
+        console.log(answersLength)
+    }
+  }, [sections[0]?.answers?.length])
 
   return (
     <div className="survey-creation-page-container">
@@ -183,7 +204,7 @@ function SurveyCreationPage({
                   className="survey-creation-page-section-list"
                   {...provided.droppableProps}
                   ref={provided.innerRef}
-                >
+                > 
                   {sections.map((section, i) => (
                     <Draggable key={i} draggableId={`id${i}`} index={i}>
                       {(provided) => (
