@@ -10,10 +10,12 @@ function RadioAnswer({
   answer,
   index,
   questionIndex,
+  answers,
 }: {
   answer: IAnswer;
   index: number;
   questionIndex: number;
+  answers: IAnswer[];
 }) {
   const location = useLocation();
   const sections = useContext(sectionsContext);
@@ -21,24 +23,41 @@ function RadioAnswer({
   const { t } = useTranslation();
   const [newAnswer, setNewAnswer] = useState(answer.answer);
 
-  useEffect(() => {
-    if (!(answer.answer === "" || !answer.answer)) setNewAnswer(answer.answer);
-  }, [answer]);
-
-
   return (
     <div>
       <input
         placeholder="הוסף תשובה"
         type="text"
         className="survey-section-answer"
-        value={newAnswer}
+        value={answer.answer}
         onChange={(e) => {
           setNewAnswer(e.target.value);
           const temp = sections[questionIndex].answers as IAnswer[];
           temp[index].answer = e.target.value;
           sections[questionIndex].answers = temp;
           updateContent(location.state.survey.id, sections);
+        }}
+        onBlur={(e) => {
+          if (!e.target.value) {
+            setNewAnswer(t("newAnswer") + " " + (index + 1));
+            const temp = sections[questionIndex].answers as IAnswer[];
+            temp[index].answer = t("newAnswer") + " " + (index + 1);
+            sections[questionIndex].answers = temp;
+            updateContent(location.state.survey.id, sections);
+          } else {
+            answers.forEach((tAnswer, tIndex) => {
+              //console.log(tAnswer.answer, answer.answer);
+
+              if (tAnswer.answer === answer.answer && tIndex !== index) {
+                setNewAnswer(t("newAnswer") + " " + (index + 1));
+                const temp = sections[questionIndex].answers as IAnswer[];
+                temp[index].answer = t("newAnswer") + " " + (index + 1);
+                sections[questionIndex].answers = temp;
+                updateContent(location.state.survey.id, sections);
+                return;
+              }
+            });
+          }
         }}
       />
       <input type="radio" disabled />

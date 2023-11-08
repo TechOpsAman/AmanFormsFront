@@ -8,7 +8,7 @@ import SelectAnswer from "./AnswerType/SelectAnswer";
 import ShortAnswer from "./AnswerType/ShortAnswer";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { sectionsContext } from "../../../../../context/sectionsContext";
-import { useContext } from "react";
+import { Dispatch, SetStateAction, useContext, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import DragIndicatorRoundedIcon from "@mui/icons-material/DragIndicatorRounded";
 import { updateContent } from "../../../../../services/questionsService";
@@ -19,11 +19,13 @@ function AnswersSection({
   questionType,
   handleRemoveAnswer,
   questionIndex,
+  setAnswers,
 }: {
   answers: IAnswer[];
   questionType: QuestionType;
   handleRemoveAnswer: any;
   questionIndex: number;
+  setAnswers: Dispatch<SetStateAction<IAnswer[] | undefined>>;
 }) {
   const location = useLocation();
   const sections = useContext(sectionsContext);
@@ -35,6 +37,7 @@ function AnswersSection({
     (items as IAnswer[]).splice(result.destination.index, 0, recordedItems);
     sections[questionIndex].answers = items;
     updateContent(location.state.survey.id, sections);
+    // setAnswers(items);
   };
 
   const detectAnswer = () => {
@@ -63,15 +66,10 @@ function AnswersSection({
                               className="answers-section-answers-X-button"
                               onClick={() => {
                                 handleRemoveAnswer(i);
-
-                                sections[questionIndex].answers = [
-                                  ...(
-                                    sections[questionIndex].answers as IAnswer[]
-                                  ).slice(0, i),
-                                  ...(
-                                    sections[questionIndex].answers as IAnswer[]
-                                  ).slice(i + 1),
-                                ];
+                                // setAnswers([
+                                //   ...(answers as IAnswer[]).slice(0, i),
+                                //   ...(answers as IAnswer[]).slice(i + 1),
+                                // ]);
                               }}
                             >
                               <CloseOutlinedIcon />
@@ -81,6 +79,7 @@ function AnswersSection({
                                 answer={answer}
                                 index={i}
                                 questionIndex={questionIndex}
+                                answers={answers}
                               />
                               <div
                                 className="dragIconAnswerCheckbox"
@@ -134,15 +133,6 @@ function AnswersSection({
                               className="answers-section-answers-X-button"
                               onClick={() => {
                                 handleRemoveAnswer(i);
-
-                                sections[questionIndex].answers = [
-                                  ...(
-                                    sections[questionIndex].answers as IAnswer[]
-                                  ).slice(0, i),
-                                  ...(
-                                    sections[questionIndex].answers as IAnswer[]
-                                  ).slice(i + 1),
-                                ];
                               }}
                             >
                               <CloseOutlinedIcon />
@@ -152,6 +142,7 @@ function AnswersSection({
                                 answer={answer}
                                 index={i}
                                 questionIndex={questionIndex}
+                                answers={answers}
                               />
                               <div
                                 className="dragIconAnswer"
@@ -196,15 +187,10 @@ function AnswersSection({
                               className="answers-section-answers-X-button"
                               onClick={() => {
                                 handleRemoveAnswer(i);
-
-                                sections[questionIndex].answers = [
-                                  ...(
-                                    sections[questionIndex].answers as IAnswer[]
-                                  ).slice(0, i),
-                                  ...(
-                                    sections[questionIndex].answers as IAnswer[]
-                                  ).slice(i + 1),
-                                ];
+                                // setAnswers([
+                                //   ...(answers as IAnswer[]).slice(0, i),
+                                //   ...(answers as IAnswer[]).slice(i + 1),
+                                // ]);
                               }}
                             >
                               <CloseOutlinedIcon />
@@ -214,6 +200,7 @@ function AnswersSection({
                                 answer={answer}
                                 index={i}
                                 questionIndex={questionIndex}
+                                answers={answers}
                               />
                               <div
                                 className="dragIconAnswerselect"

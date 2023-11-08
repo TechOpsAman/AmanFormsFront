@@ -48,6 +48,7 @@ function AnswerType({
   const handleAnswers = (
     type: string,
     answers: string[],
+    required: boolean,
     questionIndex: number
   ) => {
     switch (type) {
@@ -69,6 +70,7 @@ function AnswerType({
         return (
           <div className="survey-answer-type_answers_div">
             <RadioAnswer
+              required={required}
               answers={answers as string[]}
               questionIndex={questionIndex as number}
               currAnswers={currAnswers}
@@ -215,7 +217,12 @@ function AnswerType({
                         {question.questionName}
                       </h3>
                     )}
-                    {handleAnswers(question.questionType, question.answers, i)}
+                    {handleAnswers(
+                      question.questionType,
+                      question.answers,
+                      question.required,
+                      i
+                    )}
                   </AnswerContext.Provider>
                 </Box>
               </RtlProvider>

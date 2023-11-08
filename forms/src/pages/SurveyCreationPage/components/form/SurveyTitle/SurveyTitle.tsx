@@ -35,7 +35,7 @@ function SurveyTitle({
         // label={title}
         variant="standard"
         onChange={(e) => {
-          console.log(e.target.value);
+          //console.log(e.target.value);
           setTitle(e.target.value);
           updateSurvey(surveyId, e.target.value);
         }}
@@ -49,7 +49,7 @@ function SurveyTitle({
         sx={{ marginTop: 8 }}
         value={description}
         onChange={(e) => {
-          console.log(e.target.value);
+          //console.log(e.target.value);
           setDescription(e.target.value);
           updateSurvey(surveyId, title, e.target.value);
         }}

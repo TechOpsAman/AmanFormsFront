@@ -44,6 +44,8 @@ function SurveySection({
   addQuestionorTitle: any;
   setAddQuestionorTitle: any;
 }) {
+  //console.log(section);
+
   let sections = useContext(sectionsContext);
   const label = { inputProps: { "aria-label": "must" } };
   const { t } = useTranslation();
@@ -63,22 +65,29 @@ function SurveySection({
   const handleAddAnswer = () => {
     sections[questionIndex].answers = [
       ...(sections[questionIndex].answers as IAnswer[]),
-      { answer: "" },
+      {
+        answer: "",
+      },
     ];
     setAnswers([...(answers as IAnswer[]), { answer: "" }]);
     updateContent(location.state.survey.id, sections);
   };
 
   const handleRemoveAnswer = (answerIndex: number) => {
-    sections[questionIndex].answers = [
-      ...(answers as IAnswer[]).slice(0, answerIndex),
-      ...(answers as IAnswer[]).slice(answerIndex + 1),
-    ];
-    setAnswers([
-      ...(answers as IAnswer[]).slice(0, answerIndex),
-      ...(answers as IAnswer[]).slice(answerIndex + 1),
-    ]);
-    updateContent(location.state.survey.id, sections);
+    if (answers?.length != 1) {
+      // setAnswers([
+      //   ...(answers as IAnswer[]).slice(0, answerIndex),
+      //   ...(answers as IAnswer[]).slice(answerIndex + 1),
+      // ]);
+
+      const temp = sections;
+      temp[questionIndex].answers = [
+        ...(answers as IAnswer[]).slice(0, answerIndex),
+        ...(answers as IAnswer[]).slice(answerIndex + 1),
+      ];
+      sections = temp;
+      updateContent(location.state.survey.id, sections);
+    }
   };
 
   const handleQuestionTypeChange = (newType: QuestionType) => {
@@ -105,6 +114,7 @@ function SurveySection({
     section.questionType,
     questionName,
     sections,
+    answers,
     t,
   ]);
 
@@ -152,6 +162,7 @@ function SurveySection({
                 questionType={questionType}
                 handleRemoveAnswer={handleRemoveAnswer}
                 questionIndex={questionIndex}
+                setAnswers={setAnswers}
               />
             </div>
             <hr />

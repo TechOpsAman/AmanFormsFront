@@ -40,8 +40,9 @@ const resources = {
       newSurvey: "סקר ללא כותרת",
       surveyDescription: "תיאור הסקר",
       newQuestion: "כתוב שאלה חדשה",
-      newAnswer: "הוסף תשובה",
+      newAnswer: "תשובה",
       questionType: "בחר/י סוג שאלה",
+      question: "שאלה",
       selectQuestionType: {
         radio: "רדיו",
         checkbox: "תיבת סימון",

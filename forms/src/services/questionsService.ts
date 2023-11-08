@@ -2,6 +2,7 @@ import { config } from "../data/config/config";
 import axios from "axios";
 import { ISurveyQuestions } from "../interfaces/questions/iSurvey";
 import { IQuestion } from "../interfaces/questions/iQuestion";
+import { t } from "i18next";
 
 export const getAll = async (user: string) => {
   return axios
@@ -10,7 +11,7 @@ export const getAll = async (user: string) => {
     )
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
-      console.log(err);
+      //console.log(err);
     });
 };
 
@@ -21,11 +22,28 @@ export const getById = async (surveyId: string) => {
     )
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
-      console.log(err);
+      //console.log(err);
     });
 };
 
 export const updateContent = async (surveyId: string, content: IQuestion[]) => {
+  content.map((question) => {
+    question.answers?.map((answer, answerIndex) => {
+      if (answer.answer === "") {
+        let counter = 1;
+        while (
+          question.answers?.some(
+            (obj) =>
+              obj.answer === t("newAnswer") + " " + (answerIndex + counter)
+          )
+        ) {
+          counter++;
+        }
+        answer.answer = t("newAnswer") + " " + (answerIndex + counter);
+      }
+    });
+  });
+
   return axios
     .put(
       `${config.questionsService.questionsCrudConnectionString}/updateContent`,
@@ -36,7 +54,7 @@ export const updateContent = async (surveyId: string, content: IQuestion[]) => {
     )
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
-      console.log(err);
+      //console.log(err);
     });
 };
 
@@ -47,7 +65,7 @@ export const updateLastUpdated = async (surveyId: string) => {
     )
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
-      console.log(err);
+      //console.log(err);
     });
 };
 
@@ -64,7 +82,7 @@ export const postSurvey = async (survey: Partial<ISurveyQuestions>) => {
     )
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
-      console.log(err);
+      //console.log(err);
     });
 };
 
@@ -89,7 +107,7 @@ export const updateSurvey = async (
     )
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
-      console.log(err);
+      //console.log(err);
     });
 };
 
@@ -104,7 +122,7 @@ export const updateRepliers = async (surveyId: string, replier: string) => {
     )
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
-      console.log(err);
+      //console.log(err);
     });
 };
 
@@ -119,6 +137,6 @@ export const updateIsOpen = async (surveyId: string, isOpen: boolean) => {
     )
     .then((res: { data: any }) => res.data)
     .catch((err: any) => {
-      console.log(err);
+      //console.log(err);
     });
 };

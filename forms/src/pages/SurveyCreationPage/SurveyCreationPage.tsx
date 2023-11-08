@@ -57,19 +57,17 @@ function SurveyCreationPage({
     const temp = sections;
     const recordedItems: any[] = temp.splice(questionIndex, 1);
 
-    console.log(recordedItems, "hi");
     if (recordedItems[0].answers.length === 0) console.log("1234");
     recordedItems.push({
       questionName: t("newQuestion") as string,
-      questionType: QuestionType.radio as string,
-      answers: [],
+      questionType: QuestionType.radio,
+      answers: [{ answer: t("newAnswer") + " 1" }],
       required: true,
     });
 
     console.log("123456");
     temp.splice(questionIndex, 0, ...recordedItems);
     swapContent(temp);
-    setRender(!render);
   };
 
   const addTitle = (questionIndex: number) => {
@@ -144,19 +142,10 @@ function SurveyCreationPage({
           {
             questionName: t("newQuestion") as string,
             questionType: QuestionType.radio,
-            answers: [],
+            answers: [{ answer: t("newAnswer") + " 1" }],
             required: true,
           },
         ];
-
-        // eslint-disable-next-line eqeqeq
-        console.log("tempSections", tempSections);
-        if (tempSections[0].answers.length > 0) {
-          console.log("bar");
-        } else {
-          console.log("yoni");
-        }
-        console.log("maya");
 
         await updateSurvey(location.state.survey.id, "", "", tempSections);
 
@@ -178,12 +167,8 @@ function SurveyCreationPage({
 
     if (typeof answersLength !== "undefined" && answersLength > 0) {
       setValid(true);
-      console.log('cat');
-      console.log(answersLength);
     } else {
       setValid(false);
-      console.log('dog');
-      console.log(answersLength);
     }
   }, [sections[0]?.answers?.length]);
 

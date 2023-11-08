@@ -1,8 +1,9 @@
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { Button, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 
 function RadioAnswer({
+  required,
   answers,
   questionIndex,
   currAnswers,
@@ -10,6 +11,7 @@ function RadioAnswer({
   flag,
   setFlag,
 }: {
+  required: boolean,
   answers: string[];
   questionIndex: number;
   currAnswers: string[][];
@@ -24,29 +26,42 @@ function RadioAnswer({
     const temp = currAnswers;
     temp[questionIndex] = [currAnswer];
     setCurrAnswers(temp);
-    setFlag(!flag);
+    // Ensure we are toggling the flag only if the answer has changed
+    if (currAnswers[questionIndex][0] !== currAnswer) {
+      setFlag(!flag);
+    }
   }, [currAnswer]);
 
+  // Function to clear the current answer
+  const handleClear = () => {
+    setCurrAnswer(""); // Reset the answer state
+    surveySection.content[questionIndex].answers = [""]; // Update the context
+    setFlag(!flag); // Toggle the flag to force update
+  };
+
   return (
-    <RadioGroup>
-      {answers.map((element: any, index: number) => {
-        return (
-          <FormControlLabel
-            key={`radio-${index}`}
-            value={element.answer}
-            onChange={(e) => {
-              setCurrAnswer((e.target as HTMLInputElement).value as string);
-              surveySection.content[questionIndex].answers = [
-                (e.target as HTMLInputElement).value as string,
-              ];
-            }}
-            control={<Radio color="primary" />}
-            label={element.answer}
-            labelPlacement="end"
-          />
-        );
-      })}
-    </RadioGroup>
+    <>
+      <RadioGroup value={currAnswer}>
+        {answers.map((element: any, index: number) => {
+          return (
+            <FormControlLabel
+              key={`radio-${index}`}
+              value={element.answer}
+              control={<Radio color="primary" />}
+              label={element.answer}
+              labelPlacement="end"
+              onChange={(e) =>
+                setCurrAnswer((e.target as HTMLInputElement).value as string)
+              }
+            />
+          );
+        })}
+      </RadioGroup>
+      {!required &&
+      <Button onClick={handleClear} variant="outlined" color="primary">
+        Clear Answer
+      </Button>}
+    </>
   );
 }
 
