@@ -2,10 +2,8 @@ import "./AnswersSection.scss";
 import { IAnswer } from "../../../../../interfaces/answers/iAnswer";
 import { QuestionType } from "../../../../../interfaces/questions/iQuestion";
 import CheckBoxAnswer from "./AnswerType/CheckBoxAnswer";
-import LongAnswer from "./AnswerType/LongAnswer";
 import RadioAnswer from "./AnswerType/RadioAnswer";
 import SelectAnswer from "./AnswerType/SelectAnswer";
-import ShortAnswer from "./AnswerType/ShortAnswer";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { sectionsContext } from "../../../../../context/sectionsContext";
 import { Dispatch, SetStateAction, useContext, useEffect } from "react";
@@ -100,16 +98,16 @@ function AnswersSection({
           </div>
         );
         break;
-      case QuestionType.longAnswer:
-        ans = (
-          <div>
-            <LongAnswer
-              answer={answers.length > 0 ? answers[0] : { answer: "" }}
-              questionIndex={questionIndex}
-            />
-          </div>
-        );
-        break;
+      // case QuestionType.longAnswer:
+      //   ans = (
+      //     <div>
+      //       {/* <LongAnswer
+      //         answer={answers.length > 0 ? answers[0] : { answer: "" }}
+      //         questionIndex={questionIndex}
+      //       /> */}
+      //     </div>
+      //   );
+      //   break;
       case QuestionType.radio:
         ans = (
           <div className="answers-section-answers-container">
@@ -218,17 +216,6 @@ function AnswersSection({
                 )}
               </Droppable>
             </DragDropContext>
-          </div>
-        );
-        break;
-
-      case QuestionType.shortAnswer:
-        ans = (
-          <div>
-            <ShortAnswer
-              answer={answers.length > 0 ? answers[0] : { answer: "" }}
-              questionIndex={questionIndex}
-            />
           </div>
         );
         break;
