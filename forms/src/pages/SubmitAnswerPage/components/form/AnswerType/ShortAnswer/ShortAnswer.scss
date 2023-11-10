@@ -1,8 +1,27 @@
 .survey-answer-type_short_answer {
+  
     border: none;
-    border-bottom: solid;
-    width: 15rem;
-    height: 15rem;
-    padding: 10px;
+    border-bottom: 3px solid #2596be;
+    transition: border-bottom-color 0.3s ease;
+    resize: none;
+    padding: 0 0.5rem;
+    width: 30%;
     margin-right: 2rem;
+    margin-bottom: 0.5rem;
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
+
+    &:focus,
+        &:focus::after, // Targeting pseudo-element if that's where the focus style is applied
+        &:focus + .Mui-focused, // Targeting a sibling with a specific class
+        .Mui-focused &, // Targeting a focused class within the component
+        &.Mui-focused {
+      // If the Mui-focused class is applied to the same element
+      outline: none !important;
+      border-bottom: 3px solid #bbdefb;
+      padding: 1rem;
+      transition: border-bottom-color 0.3s ease, box-shadow 0.3s ease;
+    
+  }
 }

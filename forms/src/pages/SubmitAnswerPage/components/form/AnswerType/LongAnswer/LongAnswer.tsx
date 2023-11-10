@@ -41,6 +41,7 @@ function LongAnswer({
   return (
     <TextareaAutosize
       className="survey-answer-type_long_answer"
+      minRows={3}
       maxRows={4}
       maxLength={1000}
       value={currAnswer[0]}
