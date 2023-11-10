@@ -150,6 +150,7 @@ function SurveySection({
               <input
                 type="text"
                 className="survey-section-input_question_name"
+                placeholder="כתוב שאלה חדשה"
                 value={questionName}
                 onChange={(e) => {
                   handleQuestionNameCallBack(e);

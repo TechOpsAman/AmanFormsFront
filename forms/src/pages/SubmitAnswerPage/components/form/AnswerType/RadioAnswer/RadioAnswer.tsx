@@ -1,4 +1,10 @@
-import { Button, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 
@@ -11,7 +17,7 @@ function RadioAnswer({
   flag,
   setFlag,
 }: {
-  required: boolean,
+  required: boolean;
   answers: string[];
   questionIndex: number;
   currAnswers: string[][];
@@ -57,10 +63,17 @@ function RadioAnswer({
           );
         })}
       </RadioGroup>
-      {!required &&
-      <Button onClick={handleClear} variant="outlined" color="primary">
-        Clear Answer
-      </Button>}
+      {!required && currAnswer !== "" && (
+        <Box sx={{ pr:6 ,display: 'flex', justifyContent: 'flex-end' }}>
+          <Button
+            onClick={handleClear}
+            variant="text"
+            color="primary"
+          >
+            ניקוי הבחירה
+          </Button>
+        </Box>
+      )}
     </>
   );
 }
