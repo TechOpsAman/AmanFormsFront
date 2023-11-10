@@ -24,7 +24,7 @@ function SurveyTitle({
         placeholder="סקר ללא כותרת"
         className="survey-title-text-input_survey_name"
         inputProps={{
-          maxLength: 25,
+          maxLength: 35,
           style: {
             fontSize: "2.5rem",
             marginTop: 8,
@@ -46,10 +46,12 @@ function SurveyTitle({
         placeholder="תיאור הסקר"
         variant="standard"
         dir="rtl"
+        inputProps = {{
+          maxLength: 90,
+        }}
         sx={{ marginTop: 8 }}
         value={description}
         onChange={(e) => {
-          //console.log(e.target.value);
           setDescription(e.target.value);
           updateSurvey(surveyId, title, e.target.value);
         }}

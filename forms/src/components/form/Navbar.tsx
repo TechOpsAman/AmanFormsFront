@@ -88,71 +88,39 @@ export function Navbar({
           <Toolbar disableGutters sx={{ width: "90%" }}>
             {location.pathname === "/createSurvey" && (
               <Box sx={{ flexGrow: 1 }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: "block",
-                  }}
-                >
-                  <MenuItem
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      flexDirection: "column",
+                <Tooltip title={t("firstShow")} placement="bottom" arrow>
+                  <IconButton
+                    size="large"
+                    color="inherit"
+                    onClick={() => {
+                      openInNewTab(surveyUrl);
                     }}
                   >
-                    <Tooltip title={t("firstShow")} placement="right" arrow>
-                      <IconButton
-                        onClick={() => {
-                          openInNewTab(surveyUrl);
-                        }}
-                      >
-                        <VisibilityIcon />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title={t("share")} placement="right" arrow>
-                      <IconButton
-                        onClick={() => {
-                          handleShareDialogOpen(true);
-                        }}
-                      >
-                        <ShareIcon />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title={t("comments")} placement="right" arrow>
-                      <IconButton
-                        onClick={() => {
-                          openInNewTab(surveyCommentsUrl);
-                        }}
-                      >
-                        <LibraryBooksIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </MenuItem>
-                </Menu>
+                    <VisibilityIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={t("share")} placement="bottom" arrow>
+                  <IconButton
+                    size="large"
+                    color="inherit"
+                    onClick={() => {
+                      handleShareDialogOpen(true);
+                    }}
+                  >
+                    <ShareIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={t("comments")} placement="bottom" arrow>
+                  <IconButton
+                    size="large"
+                    color="inherit"
+                    onClick={() => {
+                      openInNewTab(surveyCommentsUrl);
+                    }}
+                  >
+                    <LibraryBooksIcon />
+                  </IconButton>
+                </Tooltip>
               </Box>
             )}
             <Typography
@@ -173,7 +141,7 @@ export function Navbar({
             </Typography>
             {/* add to i18next */}
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="פרטים אישיים"> 
+              <Tooltip title="פרטים אישיים">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt={name} src={profilePic} />
                 </IconButton>
