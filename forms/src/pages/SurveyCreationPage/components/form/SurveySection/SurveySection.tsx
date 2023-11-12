@@ -149,6 +149,7 @@ function SurveySection({
 
               <input
                 type="text"
+                dir="rtl"
                 className="survey-section-input_question_name"
                 placeholder="כתוב שאלה חדשה"
                 value={questionName}

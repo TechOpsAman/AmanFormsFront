@@ -1,4 +1,4 @@
-import { TextareaAutosize } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useState, useContext, useEffect } from "react";
 import { AnswerContext } from "../../../../../../context/sectionContext";
 import "./LongAnswer.scss";
@@ -35,21 +35,16 @@ function LongAnswer({
     const temp = currAnswers;
     temp[questionIndex] = currAnswer;
     setCurrAnswers(temp);
-    setFlag(!flag)
+    setFlag(!flag);
   }, [currAnswer]);
 
   return (
-    <TextareaAutosize
-      className="survey-answer-type_long_answer"
-      minRows={3}
-      maxRows={4}
-      maxLength={1000}
-      value={currAnswer[0]}
-      onChange={(e) => {
-        updateAnswer(e.target.value, questionIndex);
-        currAnswer[0] = e.target.value as string;
-        setCurrAnswer([currAnswer[0]]);
-      }}
+    <TextField
+      fullWidth
+      variant="standard"
+      style={{ width: "90%", marginRight: "1rem" }}
+      inputProps={{ maxLength: 250 }}
+      multiline
     />
   );
 }

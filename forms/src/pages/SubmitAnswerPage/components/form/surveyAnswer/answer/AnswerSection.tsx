@@ -96,7 +96,7 @@ function AnswerType({
 
       case QuestionType.longAnswer:
         return (
-          <div dir="rtl">
+          <div className="survey-answer-type_answers_div" dir="rtl">
             <LongAnswer
               questionIndex={questionIndex as number}
               currAnswers={currAnswers}
