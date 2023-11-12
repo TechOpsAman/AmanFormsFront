@@ -110,7 +110,7 @@ function AnswerType({
       case QuestionType.select:
         return (
           <div className="survey-answer-type_answers_div">
-            <SelectAnswer
+            <SelectAnswer 
               answers={answers as string[]}
               questionIndex={questionIndex as number}
               currAnswers={currAnswers}

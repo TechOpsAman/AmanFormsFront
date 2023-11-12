@@ -30,22 +30,22 @@ function SelectAnswer({
   }, [currAnswer]);
 
   return (
-    <Box sx={{ ml: 4 }}>
+    <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
       <RtlProvider>
-        <FormControl variant="standard">
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
           <InputLabel id="demo-simple-select-standard-label">בחירה</InputLabel>
           <Select
             className="survey-answer-type_select_answer"
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
+            labelId="demo-select-small-label"
+            id="demo-select-small"
             value={currAnswer}
+            label="select"
             onChange={(e) => {
               setCurrAnswer(e.target.value as string);
               surveyAnswers.content[questionIndex].answers = [
                 e.target.value as string,
               ];
             }}
-            label="select"
           >
             {answers.map((element: any, index: number) => {
               return (
