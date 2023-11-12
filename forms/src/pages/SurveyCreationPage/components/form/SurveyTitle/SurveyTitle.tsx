@@ -20,6 +20,8 @@ function SurveyTitle({
   return (
     <div className="survey-title-container">
       <TextField
+        fullWidth
+        style={{ width: "90%" }}
         type="text"
         placeholder="סקר ללא כותרת"
         className="survey-title-text-input_survey_name"
@@ -41,12 +43,13 @@ function SurveyTitle({
         }}
       />
       <TextField
+        style={{ width: "90%" }}
         type="text"
         className="survey-title-text-input_survey_description"
         placeholder="תיאור הסקר"
         variant="standard"
         dir="rtl"
-        inputProps = {{
+        inputProps={{
           maxLength: 90,
         }}
         sx={{ marginTop: 8 }}

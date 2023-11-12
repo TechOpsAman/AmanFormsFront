@@ -1,5 +1,5 @@
 .survey-title-container {
-  width: fit-content;
+  width: 100%;
   background-color: rgb(255, 255, 255);
   border-radius: 36px;
   box-shadow: 1px 2px 4px 1px rgb(131, 131, 131);
@@ -7,15 +7,12 @@
   text-align: right;
   padding-right: 3rem;
   padding-top: 1rem;
-  background-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0) 87%,
-    #7cbddb 20%
-  ); /* Standard syntax (must be last) */
+  padding-bottom: 1.5rem;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 87%, #7cbddb 20%);
 }
 
 .survey-title-text-input_survey_name {
-  width: 43rem;
+  width: 90%;
   height: 3.5rem;
   margin-top: 3rem;
   background-color: white;
@@ -27,7 +24,7 @@
 }
 
 .survey-title-text-input_survey_description {
-  width: 57rem;
+  width: 90%;
   height: 2.5rem;
   background-color: white;
   font-size: 1.1rem;
@@ -41,8 +38,8 @@
   background: transparent;
 }
 
-
-.survey-title-text-input_survey_description:focus, .survey-title-text-input_survey_name:focus{
+.survey-title-text-input_survey_description:focus,
+.survey-title-text-input_survey_name:focus {
   border: none;
   display: none;
   border-radius: 0;
