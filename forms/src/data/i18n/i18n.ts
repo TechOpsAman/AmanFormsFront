@@ -54,6 +54,8 @@ const resources = {
       required: "חובה",
       newTitle: "הוסף כותרת חדשה",
       firstShow: "תצוגה מקדימה",
+      deleteQuestion: "מחק שאלה",
+      duplicateQuestion: "שכפל שאלה",
       searchSurveys: "חיפוש סקרים",
       lastSurveys: "סקרים אחרונים",
       lastOpened: "נפתח לאחרונה ב",

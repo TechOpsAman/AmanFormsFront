@@ -23,7 +23,7 @@
 }
 
 .survey-section-add-title {
-  margin-top: .4rem;
+  margin-top: 0.4rem;
   color: rgb(82, 80, 80);
 }
 
@@ -36,10 +36,10 @@
   border: 0;
   outline: 0;
   background: transparent;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 .survey-section-input_question_name-title {
-  margin-top: .3rem;
+  margin-top: 0.3rem;
   margin-bottom: 1rem;
   width: 62rem;
   height: 3.5rem;
@@ -49,7 +49,7 @@
   border: 0;
   outline: 0;
   background: transparent;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .survey-section-input_question_name:focus {
@@ -77,9 +77,7 @@
 }
 
 .survey-section_add_answer {
-  margin-bottom: 1rem;
   margin-right: 0.3rem;
-  margin-top: 0.2rem;
 }
 
 .survery-section-drag-indicatior-container {
@@ -94,33 +92,39 @@
 .bottom-container {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
 }
 
-.bottom-container-must { 
-  margin-top: .5rem;
+.bottom-container-must {
+  display: flex;
+  align-items: center; // Ensures the text is aligned with the flex items
 }
 
 .bottom-container-must span {
   display: inline-block;
   line-height: 2;
   padding: 0 1em;
-  margin-bottom: 1em;
   border-right: 1px solid;
 }
 
 .bottom-container-must-wrapper {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center; // Added to vertically center the items
 }
 
 .bottom-container-icons {
+  display: flex;
+  align-items: center; // Ensures the icons are aligned with the flex items
   color: rgb(82, 80, 80);
-  margin-top: 6px;
-  margin-left: 6px;
+  margin-left: 1rem;
+  gap: -10000rem;
 }
 
 .switch {
-  margin-top: .4rem;
+  margin-top: 0.2rem;
 }
 
 .survey-section-container-title {

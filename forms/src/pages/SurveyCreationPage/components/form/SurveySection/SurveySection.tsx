@@ -18,6 +18,8 @@ import AddCircleOutlineTwoToneIcon from "@mui/icons-material/AddCircleOutlineTwo
 import TextFieldsTwoToneIcon from "@mui/icons-material/TextFieldsTwoTone";
 import { useLocation } from "react-router-dom";
 import { updateContent } from "../../../../../services/questionsService";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
 
 function SurveySection({
   section,
@@ -182,20 +184,36 @@ function SurveySection({
                   <span>{t("required")}</span>
                 </div>
                 <div className="bottom-container-icons">
-                  <DeleteForeverOutlinedIcon
-                    fontSize="large"
-                    onClick={() => {
-                      handleDelete(questionIndex);
-                    }}
-                    sx={{ cursor: "pointer" }}
-                  />
-                  <CopyAllIcon
-                    sx={{ cursor: "pointer" }}
-                    fontSize="large"
-                    onClick={() => {
-                      addSectionWithParams(section, questionIndex, isSwitch);
-                    }}
-                  />
+                  <Tooltip title={t("deleteQuestion")} placement="bottom" arrow>
+                    <IconButton color="inherit">
+                      <DeleteForeverOutlinedIcon
+                        fontSize="large"
+                        onClick={() => {
+                          handleDelete(questionIndex);
+                        }}
+                        sx={{ cursor: "pointer" }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip
+                    title={t("duplicateQuestion")}
+                    placement="bottom"
+                    arrow
+                  >
+                    <IconButton color="inherit">
+                      <CopyAllIcon
+                        sx={{ cursor: "pointer" }}
+                        fontSize="large"
+                        onClick={() => {
+                          addSectionWithParams(
+                            section,
+                            questionIndex,
+                            isSwitch
+                          );
+                        }}
+                      />
+                    </IconButton>
+                  </Tooltip>
                 </div>
               </div>
               {!(questionType === QuestionType.longAnswer) &&
