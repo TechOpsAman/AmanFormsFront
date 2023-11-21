@@ -192,7 +192,11 @@ function SurveyCreationPage({
                   ref={provided.innerRef}
                 >
                   {sections.map((section, i) => (
-                    <Draggable key={i} draggableId={`id${i}`} index={i}>
+                    <Draggable
+                      key={section.id}
+                      draggableId={`id${section.id}`}
+                      index={i}
+                    >
                       {(provided) => (
                         <li
                           {...provided.draggableProps}
