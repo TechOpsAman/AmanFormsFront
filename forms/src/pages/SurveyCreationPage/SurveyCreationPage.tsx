@@ -53,19 +53,17 @@ function SurveyCreationPage({
   };
 
   const addSection = (questionIndex: number) => {
-    console.log("create new question");
     const temp = sections;
     const recordedItems: any[] = temp.splice(questionIndex, 1);
 
-    if (recordedItems[0].answers.length === 0) console.log("1234");
-    recordedItems.push({
-      questionName: t("newQuestion") as string,
-      questionType: QuestionType.radio,
-      answers: [{ answer: t("newAnswer") + " 1" }],
-      required: true,
-    });
+    if (recordedItems[0].answers.length === 0)
+      recordedItems.push({
+        questionName: t("newQuestion") as string,
+        questionType: QuestionType.radio,
+        answers: [{ answer: t("newAnswer") + " 1" }],
+        required: true,
+      });
 
-    console.log("123456");
     temp.splice(questionIndex, 0, ...recordedItems);
     swapContent(temp);
   };
@@ -134,7 +132,6 @@ function SurveyCreationPage({
   useEffect(() => {
     const getSurvey = async () => {
       const currSurvey = await getById(location.state.survey.id);
-      console.log(currSurvey, "currSurvey");
       if (currSurvey.content.length > 0) {
         setSections(currSurvey.content);
       } else {

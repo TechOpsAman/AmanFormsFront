@@ -18,19 +18,17 @@
 }
 
 .select-answer-container {
+  height: auto;
   display: flex;
   justify-content: right;
+  flex-direction: row;
   gap: 4px;
 }
 
-.select-answer_input_wrapper {
-  margin-top: 1rem;
-}
-
-.survey-section-div{
-  height: .1rem;
+.survey-section-div {
+  height: 0.1rem;
 }
 
 .checkbox {
-  margin-top: -.3rem;
+  margin-top: -0.3rem;
 }

@@ -53,7 +53,11 @@ function AnswersSection({
                     className="ulclass"
                   >
                     {answers?.map((answer, i) => (
-                      <Draggable key={i} draggableId={`id${i}`} index={i}>
+                      <Draggable
+                        key={answer.id}
+                        draggableId={`id${answer.id}`}
+                        index={i}
+                      >
                         {(provided) => (
                           <li
                             {...provided.draggableProps}
@@ -64,10 +68,6 @@ function AnswersSection({
                               className="answers-section-answers-X-button"
                               onClick={() => {
                                 handleRemoveAnswer(i);
-                                // setAnswers([
-                                //   ...(answers as IAnswer[]).slice(0, i),
-                                //   ...(answers as IAnswer[]).slice(i + 1),
-                                // ]);
                               }}
                             >
                               <CloseOutlinedIcon />
@@ -98,16 +98,6 @@ function AnswersSection({
           </div>
         );
         break;
-      // case QuestionType.longAnswer:
-      //   ans = (
-      //     <div>
-      //       {/* <LongAnswer
-      //         answer={answers.length > 0 ? answers[0] : { answer: "" }}
-      //         questionIndex={questionIndex}
-      //       /> */}
-      //     </div>
-      //   );
-      //   break;
       case QuestionType.radio:
         ans = (
           <div className="answers-section-answers-container">
@@ -120,7 +110,11 @@ function AnswersSection({
                     className="ulclass"
                   >
                     {answers?.map((answer, i) => (
-                      <Draggable key={i} draggableId={`id${i}`} index={i}>
+                      <Draggable
+                        key={answer.id}
+                        draggableId={`id${answer.id}`}
+                        index={i}
+                      >
                         {(provided) => (
                           <li
                             {...provided.draggableProps}
@@ -135,6 +129,7 @@ function AnswersSection({
                             >
                               <CloseOutlinedIcon />
                             </button>
+
                             <div className="answers">
                               <RadioAnswer
                                 answer={answer}
@@ -174,7 +169,11 @@ function AnswersSection({
                     className="ulclass"
                   >
                     {answers?.map((answer, i) => (
-                      <Draggable key={i} draggableId={`id${i}`} index={i}>
+                      <Draggable
+                        key={answer.id}
+                        draggableId={`id${answer.id}`}
+                        index={i}
+                      >
                         {(provided) => (
                           <li
                             {...provided.draggableProps}
@@ -185,10 +184,6 @@ function AnswersSection({
                               className="answers-section-answers-X-button"
                               onClick={() => {
                                 handleRemoveAnswer(i);
-                                // setAnswers([
-                                //   ...(answers as IAnswer[]).slice(0, i),
-                                //   ...(answers as IAnswer[]).slice(i + 1),
-                                // ]);
                               }}
                             >
                               <CloseOutlinedIcon />

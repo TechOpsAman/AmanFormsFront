@@ -24,38 +24,36 @@ function SelectAnswer({
 
   return (
     <div className="select-answer-container">
-      <div className="select-answer_input_wrapper">
-        <input
-          placeholder="הוסף תשובה"
-          type="text"
-          className="survey-section-answer"
-          value={answer.answer}
-          onChange={(e) => {
+      <input
+        placeholder="הוסף תשובה"
+        type="text"
+        className="survey-section-answer"
+        value={answer.answer}
+        onChange={(e) => {
+          const temp = sections[questionIndex].answers as IAnswer[];
+          temp[index].answer = e.target.value;
+          sections[questionIndex].answers = temp;
+          updateContent(location.state.survey.id, sections);
+        }}
+        onBlur={(e) => {
+          if (!e.target.value) {
             const temp = sections[questionIndex].answers as IAnswer[];
-            temp[index].answer = e.target.value;
+            temp[index].answer = t("newAnswer") + " " + (index + 1);
             sections[questionIndex].answers = temp;
             updateContent(location.state.survey.id, sections);
-          }}
-          onBlur={(e) => {
-            if (!e.target.value) {
-              const temp = sections[questionIndex].answers as IAnswer[];
-              temp[index].answer = t("newAnswer") + " " + (index + 1);
-              sections[questionIndex].answers = temp;
-              updateContent(location.state.survey.id, sections);
-            } else {
-              answers.forEach((tAnswer, tIndex) => {
-                if (tAnswer.answer === answer.answer && tIndex !== index) {
-                  const temp = sections[questionIndex].answers as IAnswer[];
-                  temp[index].answer = t("newAnswer") + " " + (index + 1);
-                  sections[questionIndex].answers = temp;
-                  updateContent(location.state.survey.id, sections);
-                  return;
-                }
-              });
-            }
-          }}
-        />
-      </div>
+          } else {
+            answers.forEach((tAnswer, tIndex) => {
+              if (tAnswer.answer === answer.answer && tIndex !== index) {
+                const temp = sections[questionIndex].answers as IAnswer[];
+                temp[index].answer = t("newAnswer") + " " + (index + 1);
+                sections[questionIndex].answers = temp;
+                updateContent(location.state.survey.id, sections);
+                return;
+              }
+            });
+          }
+        }}
+      />
       <h3>.{index + 1}</h3>
     </div>
   );
