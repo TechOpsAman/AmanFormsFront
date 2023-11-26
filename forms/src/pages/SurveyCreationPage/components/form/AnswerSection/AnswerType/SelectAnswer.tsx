@@ -1,5 +1,5 @@
 import "./SingleAnswer.scss";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IAnswer } from "../../../../../../interfaces/answers/iAnswer";
 import { sectionsContext } from "../../../../../../context/sectionsContext";
@@ -21,6 +21,7 @@ function SelectAnswer({
   const sections = useContext(sectionsContext);
 
   const { t } = useTranslation();
+  const [newAnswer, setNewAnswer] = useState(answer.answer);
 
   return (
     <div className="select-answer-container">
@@ -30,6 +31,7 @@ function SelectAnswer({
         className="survey-section-answer"
         value={answer.answer}
         onChange={(e) => {
+          setNewAnswer(e.target.value);
           const temp = sections[questionIndex].answers as IAnswer[];
           temp[index].answer = e.target.value;
           sections[questionIndex].answers = temp;
@@ -37,6 +39,7 @@ function SelectAnswer({
         }}
         onBlur={(e) => {
           if (!e.target.value) {
+            setNewAnswer(t("newAnswer") + " " + (index + 1));
             const temp = sections[questionIndex].answers as IAnswer[];
             temp[index].answer = t("newAnswer") + " " + (index + 1);
             sections[questionIndex].answers = temp;
@@ -44,6 +47,7 @@ function SelectAnswer({
           } else {
             answers.forEach((tAnswer, tIndex) => {
               if (tAnswer.answer === answer.answer && tIndex !== index) {
+                setNewAnswer(t("newAnswer") + " " + (index + 1));
                 const temp = sections[questionIndex].answers as IAnswer[];
                 temp[index].answer = t("newAnswer") + " " + (index + 1);
                 sections[questionIndex].answers = temp;
