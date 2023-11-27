@@ -30,6 +30,7 @@ function CheckBoxAnswer({
       <div className="check_box_answer_wrapper">
         <input
           placeholder="הוסף תשובה"
+          dir="rtl"
           type="text"
           className="survey-section-answer"
           value={answer.answer}

@@ -27,6 +27,7 @@ function SelectAnswer({
     <div className="select-answer-container">
       <input
         placeholder="הוסף תשובה"
+        dir="rtl"
         type="text"
         className="survey-section-answer"
         value={answer.answer}

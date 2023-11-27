@@ -27,6 +27,7 @@ function RadioAnswer({
     <div>
       <input
         placeholder="הוסף תשובה"
+        dir="rtl"
         type="text"
         className="survey-section-answer"
         value={answer.answer}
