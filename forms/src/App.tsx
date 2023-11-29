@@ -25,7 +25,7 @@ function App() {
   const [auser, setaUser] = useState({
     name: "noName",
     tNumber: "noT",
-    profilePic: ''
+    profilePic: "",
   });
 
   const [shareDialogOpen, setShareDialogOpen] = useState(false);
@@ -35,7 +35,7 @@ function App() {
   const [surveyCommentsUrl, setSurveyCommentsUrl] = useState("");
 
   useEffect(() => {
-    if(surveyUrl) {
+    if (surveyUrl) {
       const surveyCommentsUrl = surveyUrl.replace("answerSurvey", "resultPage");
       setSurveyCommentsUrl(surveyCommentsUrl);
     }

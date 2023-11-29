@@ -37,6 +37,11 @@ function AnswersSection({
     updateContent(location.state.survey.id, sections);
     // setAnswers(items);
   };
+  answers.map((answer) => {
+    console.log("line 40", answer.id);
+    console.log("line 43", answer.answer);
+    console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+  });
 
   const detectAnswer = () => {
     let ans = <div></div>;

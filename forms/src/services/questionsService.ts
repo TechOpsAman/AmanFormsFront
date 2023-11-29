@@ -3,6 +3,7 @@ import axios from "axios";
 import { ISurveyQuestions } from "../interfaces/questions/iSurvey";
 import { IQuestion } from "../interfaces/questions/iQuestion";
 import { t } from "i18next";
+import { v4 as uuidv4 } from "uuid";
 
 export const getAll = async (user: string) => {
   return axios
@@ -40,6 +41,7 @@ export const updateContent = async (surveyId: string, content: IQuestion[]) => {
           counter++;
         }
         answer.answer = t("newAnswer") + " " + (answerIndex + counter);
+        if (answer.id === undefined) answer.id = uuidv4();
       }
     });
   });

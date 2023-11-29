@@ -24,6 +24,7 @@ import {
 import { writeText } from "clipboard-polyfill";
 import { config } from "../../data/config/config";
 import { use } from "i18next";
+import { v4 as uuidv4 } from "uuid";
 
 function SurveyCreationPage({
   isOpen,
@@ -61,7 +62,7 @@ function SurveyCreationPage({
     recordedItems.push({
       questionName: t("newQuestion") as string,
       questionType: QuestionType.radio,
-      answers: [{ answer: t("newAnswer") + " 1" }],
+      answers: [{ answer: t("newAnswer") + " 1", id: uuidv4() }],
       required: true,
     });
 
